@@ -1,0 +1,44 @@
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ row.attributes.addClass(row_classes) }}>
+  <section class="bloc-activites-export">
+  <div class="container container-interne">
+    <div class="view-filters">
+      <div class="flexbox-filtre-activites boxfiltre-opportinutes">
+        <div class="filter-news">
+        {% if exposed is defined and exposed %}
+          {{ exposed }}
+        {% endif %}
+        </div>
+      </div>
+      </div>  
+    </div>
+  </section>
+
+  {# Contenu des actualités #}
+ <div class="section-support nobg" style="padding-top: 0;">
+ <div class="container">
+ <div class="tab-content tabs-content">
+ <div class="box" style="display: block;">
+  {% if rows is defined and rows %}
+      {{ rows }}
+  {% endif %}
+  </div>
+</div>
+</div>
+</div>
+  {# Pagination #}
+  {% if pager is defined and pager %}
+    <nav aria-label="Page navigation" class="paginator-guide">
+      {{ pager }}
+    </nav>
+  {% endif %}
+</div>
+</div>

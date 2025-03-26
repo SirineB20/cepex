@@ -1,0 +1,35 @@
+uuid: e89c4808-95e8-4e9a-b60e-2d9cba333f4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.menu
+  module:
+    - node
+    - system
+  theme:
+    - cepex
+id: cepex_menu
+theme: cepex
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:menu'
+settings:
+  id: 'system_menu_block:menu'
+  label: menu
+  label_display: visible
+  provider: system
+  level: 2
+  depth: 2
+  expand_all_items: true
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      article: article
+      mine: mine
+      page: page

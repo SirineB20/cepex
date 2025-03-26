@@ -1,0 +1,48 @@
+{% if links %}
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+  <div{{ attributes.addClass(classes) }}>
+
+    <!-- Dropdown structure -->
+    <div class="dropdown">
+      {% for langcode, item in links %}
+        {% if langcode == item.current_langcode %}
+          <!-- Dropdown toggle button with current language -->
+          <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="languageDropdown"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+            {% if configuration.display.items.show.icons != "0" %}
+              <!-- Rounded flag icon -->
+              <img src="{{ item.icon }}" class="rounded-circle me-2" height="24"
+                   alt="{{ 'Flag of '~item.langcode | trans }}"/>
+            {% endif %}
+            <!-- Language code -->
+            <span class="lang-code">{{ item.langcode|capitalize }}</span>
+          </button>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Dropdown menu -->
+      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        {% for langcode, item in links %}
+          {% if langcode != item.current_langcode %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ item.uri }}">
+                {% if configuration.display.items.show.icons != "0" %}
+                  <!-- Rounded flag icon -->
+                  <img src="{{ item.icon }}" class="rounded-circle me-2" height="24"
+                       alt="{{ 'Flag of '~item.langcode | trans }}"/>
+                {% endif %}
+                <!-- Language code and name -->
+                {{ item.langcode|capitalize }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

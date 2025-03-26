@@ -1,0 +1,9 @@
+uuid: 37a91446-abf5-4d1f-97ab-44ba7051aff6
+langcode: en
+status: true
+dependencies: {  }
+name: 'Catégorie Promotionnelle'
+vid: categorie_promotionnelle
+description: 'les 6 sous actualités Promotionnelle'
+weight: 0
+new_revision: false

@@ -1,0 +1,247 @@
+html:has(.user-dashboards){
+  overflow:hidden;
+}
+.user-dashboards form input {
+  height: 55px;
+  border-radius: 8px!important;
+  border: 1px solid grey!important;
+  width: 100%;
+  padding: 10px;
+}
+.user-dashboards form select {
+  height: 55px !important;
+  border-radius: 8px!important;
+  border: 1px solid grey!important;
+  width: 100%;
+  padding: 10px;
+}
+.user-dashboards form label {
+  font-weight: 600;
+  padding: 8px 0px;
+  color: #000 !important;
+}
+
+.user-dashboards .custom-file-btn {
+  padding: 8px 16px;
+  color: #fff;
+  border: 1px dashed grey !important;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.user-dashboards .btn-produit {
+  border-radius: 50px;
+  border: 1px solid grey;
+  background: #fff;
+  padding: 5px 16px;
+  margin: 10px;
+}
+
+.user-dashboards .btn-produit.active {
+  background: #e5f5fb;
+  border: 0;
+}
+
+.user-dashboards .submit {
+  border-radius: 5px;
+  color: #fff;
+  background: #cb043d;
+  padding: 10px 20px;
+  border: 0px;
+  margin-left: 15px;
+}
+.user-dashboards #edit-field-certifications-wrapper .clearfix{
+  display:flex;
+  justify-content:center;
+}
+.user-dashboards #edit-field-certifications-wrapper .clearfix input{
+
+    border-radius: 5px;
+    color: #fff;
+    background: #cb043d;
+    padding: 10px 20px;
+    border: 0px;
+    margin-left: 15px;
+    width: fit-content;
+
+
+}
+
+.user-dashboards #edit-submit {
+  border-radius: 5px;
+  color: #fff;
+  background: #cb043d;
+  padding: 10px 20px;
+  border: 0px;
+  margin-left: 15px;
+}
+
+.user-dashboards .btn-primary{
+  border-radius: 5px !important;
+  color: #fff !important;
+  background: #cb043d !important;
+  padding: 10px 20px;
+  border: 0px !important;
+  margin-left: 15px !important;
+  width: auto;
+  margin: 20px;
+}
+
+
+
+.image-widget-data .btn-primary{
+  width:150px;
+  margin: 20px
+}
+.user-dashboards .custom-file-btn input {
+  height: unset;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.user-dashboards .custom-file-btn .icone {
+  color: #cb043d;
+}
+input#shs-widget-create-new-item-shs-field-secteurs-produit-delta-0, button#shs-widget-create-new-item-shs-field-secteurs-produit-delta-0_button {
+  display: none;
+}
+
+#block-cepex-local-tasks{
+  display: none;
+}
+
+.menu a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu li:hover {
+  background-color: #f0f0f0;
+}
+#webform-submission-navigation-demande_devis, #webform-submission-demande-devis-edit-form > details.webform-submission-information.card, #edit-log-fieldset, #block-cepex-help, #webform-submission-demande-devis-edit-form > div.webform-details-toggle-state-wrapper {
+  display: none;
+}
+
+.form-demande input[value]:not([value=""]) {
+  background-color: #eaeaea;
+  color: #878787;
+  border: none !important
+}
+.form-demande textarea:not(:placeholder-shown) {
+  background-color: #eaeaea;
+  color: #878787;
+  border: none !important
+}
+.form-demande textarea {
+  height: 95px;
+  width: 100% !important;
+  min-height: auto !important;
+  padding-top: 15px;
+}
+.form-demande h5 {
+  margin-top: 25px;
+}
+.devis-forms form input {
+  height: 55px;
+  border-radius: 8px!important;
+  border: 1px solid grey!important;
+  width: 100%;
+  padding: 10px;
+}
+.devis-forms form select {
+  height: 55px !important;
+  border-radius: 8px!important;
+  border: 1px solid grey!important;
+  width: 100%;
+  padding: 10px;
+}
+.devis-forms form label {
+  font-weight: 600;
+  padding: 8px 0px;
+  color: #000 !important;
+}
+
+.devis-forms .custom-file-btn {
+  padding: 8px 16px;
+  color: #fff;
+  border: 1px dashed grey !important;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.devis-forms .btn-produit {
+  border-radius: 50px;
+  border: 1px solid grey;
+  background: #fff;
+  padding: 5px 16px;
+  margin: 10px;
+}
+
+.devis-forms .btn-produit.active {
+  background: #e5f5fb;
+  border: 0;
+}
+
+.devis-forms .submit {
+  border-radius: 5px;
+  color: #fff;
+  background: #cb043d;
+  padding: 10px 20px;
+  border: 0px;
+  margin-left: 15px;
+}
+.devis-forms #edit-field-certifications-wrapper .clearfix{
+  display:flex;
+  justify-content:center;
+}
+.devis-forms #edit-field-certifications-wrapper .clearfix input{
+
+    border-radius: 5px;
+    color: #fff;
+    background: #cb043d;
+    padding: 10px 20px;
+    border: 0px;
+    margin-left: 15px;
+    width: fit-content;
+
+
+}
+
+.devis-forms #edit-submit {
+  border-radius: 5px;
+  color: #fff;
+  background: #cb043d;
+  padding: 10px 20px;
+  border: 0px;
+  margin-left: 15px;
+}
+
+.devis-forms .btn-primary{
+  border-radius: 5px !important;
+  color: #fff !important;
+  background: #cb043d !important;
+  padding: 10px 20px;
+  border: 0px !important;
+  margin-left: 15px !important;
+  width: auto;
+  margin: 20px;
+}
+
+.devis-forms .custom-file-btn input {
+  height: unset;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.devis-forms .custom-file-btn .icone {
+  color: #cb043d;
+}
+
+.form-demande select:not([value=""]) {
+  background-color: #eaeaea;
+  color: #878787;
+  border: none !important;
+}
+
+

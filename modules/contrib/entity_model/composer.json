@@ -1,0 +1,22 @@
+{
+    "name": "drupal/entity_model",
+    "type": "drupal-module",
+    "description": "Adds annotation-based entity type and bundle models for Drupal entities.",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": "^8.1",
+        "drupal/core": "^10.1 || ^11"
+    },
+    "require-dev": {
+        "drush/drush": "^10 || ^11 || ^12 || ^13"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

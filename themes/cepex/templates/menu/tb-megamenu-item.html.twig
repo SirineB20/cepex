@@ -1,0 +1,91 @@
+{# Récupération des attributs du lien #}
+{% set linkAttributes = link['attributes'] %}
+
+{# Vérification si le lien a une URL définie et non vide #}
+{% if link['url'] is defined and link['url'] is not empty %}
+  {# Si le lien a une URL, utiliser une balise <a> #}
+  {% set tag = "a" %}
+{% else %}
+  {# Si le lien n'a pas d'URL, utiliser une balise <span> (pour un texte non cliquable) #}
+  {% set tag = 'span' %}
+  
+  {# 
+    - Si le sous-menu est vide, on ajoute une classe indiquant l'absence de sous-menu.
+    - Cela peut être utile pour le style CSS.
+  #}
+  {% if submenu is empty %}
+    {% set linkAttributes = linkAttributes.addClass('tbm-no-submenu') %}
+  {% endif %}
+{% endif %}
+
+{# Début de l'élément de liste du menu avec la classe 'link-nav' #}
+<li {{ attributes.addClass('link-nav') }}>
+
+  {# 
+    - Si on est dans la section 'frontend', 
+    - on enveloppe le lien dans un conteneur pour un style spécifique. 
+  #}
+  {% if section == 'frontend' %}
+    <div class="link-nav">
+  {% endif %}
+
+    {# Vérification si la balise est un lien <a> #}
+    {% if tag == 'a' %}
+      {# 
+        - Rendu du lien <a> avec l'URL et les classes CSS 
+        - On ajoute la classe 'nav-link' pour le style du menu
+      #}
+      <{{ tag }} href="{{ link['url'] }}" {{ linkAttributes.addClass('link-nav') }}>
+    {% else %}
+      {# 
+        - Si ce n'est pas un lien (donc un <span>), 
+        - On applique quand même la classe 'nav-link' pour un style cohérent
+      #}
+      <{{ tag }}{{ linkAttributes.addClass('link-nav') }}>
+    {% endif %}
+
+      {# 
+        - Vérification si FontAwesome est utilisé et si une icône est configurée
+        - Affichage de l'icône avec la classe appropriée 
+      #}
+      {% if fontawesome and item_config['xicon'] %}
+        <span class="{{ item_config['xicon'] }}"></span>
+      {% endif %}
+
+      {# Affichage du texte du lien avec la traduction #}
+      {{ link.title_translate }}
+
+      {# 
+        - Si une légende (caption) est configurée pour le lien, 
+        - elle est affichée dans un <span> avec la classe 'tbm-caption'.
+        - Utilisation de 'autoescape' pour autoriser le HTML sécurisé
+      #}
+      {% if item_config['caption'] %}
+        {% autoescape %}
+          {# Le HTML est déjà filtré pour éviter les failles XSS #}
+          <span class="tbm-caption">{{ item_config['caption']|raw }}</span>
+        {% endautoescape %}
+      {% endif %}
+
+    {# Fermeture de la balise <a> ou <span> #}
+    </{{ tag }}>
+
+  {# Fermeture du conteneur pour la section 'frontend' #}
+  {% if section == 'frontend' %}
+      {# 
+        - Si un sous-menu existe et qu'il n'est pas groupé, 
+        - on affiche un bouton pour basculer l'affichage du sous-menu.
+      #}
+      {% if submenu and not group %}
+        <button class="tbm-submenu-toggle{% if block_config['auto-arrow'] %} always-show{% endif %}">
+          <span class="visually-hidden">{{ 'Toggle submenu'|t }}</span>
+        </button>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Affichage du sous-menu s'il existe #}
+  {{ submenu }}
+  
+{# Fermeture de l'élément de liste #}
+</li>

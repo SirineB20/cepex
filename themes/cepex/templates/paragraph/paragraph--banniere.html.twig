@@ -1,0 +1,24 @@
+<section class="banner-interne">
+  <div class="container container-interne">
+    <div class="contenu-banner">
+      <div class="box-foprodex" style="width: 100%">
+          {% block paragraph %}
+              {% block content %}
+                {# Affiche le champ titre s'il existe #}
+               
+                {% if content.field_titre %}
+                 <span class="title-interne text-uppercase">
+                 {{ content.field_titre }}
+                 </span>
+                {% endif %}
+
+                {# Affiche le champ body s'il existe #}
+                {% if content.field_body %}
+                 {{ content.field_body }}
+                {% endif %}
+              {% endblock %}
+          {% endblock paragraph %}
+    </div>
+  </div>
+  </div>
+</section>

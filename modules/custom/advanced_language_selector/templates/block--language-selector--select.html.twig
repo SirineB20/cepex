@@ -1,0 +1,41 @@
+{% if links %}
+
+  {# Définition des classes pour le sélecteur de langue #}
+  {% set classes = [ 'advanced-language-selector', 'boxlangue', 'form-select', configuration.general.css|clean_class ] %}
+
+  {# Sélecteur de langue avec les attributs et les classes appropriées #}
+  <select {{ attributes.addClass(classes) }} onchange="window.location.href=this.value" style="border: none; width: auto !important; min-width: 40px; text-transform: uppercase; cursor: pointer;">
+    {# Vérification si les icônes doivent être affichées #}
+    {% if configuration.display.icons %}
+      <style>
+        select.advanced-language-selector {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background: url({{ link_active.icon }}) no-repeat {{ configuration.display.icon_alignment }} center;
+          height: {{ configuration.display.icon_height }}px;
+          {% if configuration.display.icon_alignment == 'left' %}
+            padding: 0 10px 0 calc({{ configuration.display.icon_height }}px * 1.5);
+          {% else %}
+            padding: 0 calc({{ configuration.display.icon_height }}px * 1.5) 0 10px;
+          {% endif %}
+        }
+      </style>
+    {% endif %}
+    
+    {# Boucle sur chaque lien de langue pour créer les options du sélecteur #}
+    {% for langcode, language in links %}
+      <option value="{{ language.uri }}" {% if langcode == language.current_langcode %}selected{% endif %}>
+        {# Affichage du code de la langue si configuré #}
+        {% if configuration.display.show.lang_code != "0" %}
+          {{ language.langcode }}
+        {% endif %}
+        {# Affichage du nom de la langue si configuré #}
+        {% if configuration.display.show.lang_name != "0" %}
+          {{ language.title }}
+        {% endif %}
+      </option>
+    {% endfor %}
+  </select>
+
+{% endif %}

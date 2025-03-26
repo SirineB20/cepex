@@ -1,0 +1,68 @@
+.flexbox-title-opportinutes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-cepex.btn-contact {
+    background: #cb033d;
+    color: #fff;
+}
+
+.flex-date-adr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 30px 0 0;
+}
+
+.flex-date-adr .boxdate-communique {
+    margin-right: 35px;
+}
+
+.flexbox-title-opportinutes .title-communique {
+    margin: 0;
+}
+
+.bloc-communique .type-event img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-right: 4px;
+}
+
+.bloc-communique .type-event {
+    margin: 20px 0 0;
+}
+
+.flex-date-sociaux.flex-end {
+    justify-content: flex-end;
+}
+
+.details-communique.sansbg {
+    background: transparent;
+    padding: 0;
+}
+.box-entrepise.boxdate-communique {
+    margin: 20px 0 0;
+}
+
+.box-entrepise.boxdate-communique span {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 992px) {
+.btn-cepex.btn-contact {
+    margin: 20px 0 0;
+}
+.flex-date-adr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 30px 0 0;
+    flex-direction: column;
+}
+.flex-date-adr .boxdate-communique:last-child {
+    margin: 20px 0 0;
+}
+}

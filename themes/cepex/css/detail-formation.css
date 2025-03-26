@@ -1,0 +1,84 @@
+.image-dformation img
+{
+    width: 100%;
+    height: auto;
+}
+
+.icone-dformation img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.dformation-header {
+    display: flex;
+}
+
+.box-dformation {
+    background: #cb043d;
+    color: white;
+    padding: 3px 20px;
+    margin: 0px 20px 0px 12px;
+    position: relative;
+    width: 100px;
+}
+
+.dformation-header2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.icone-dformation {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.box-dformation:after {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: white;
+    left: 7px;
+    top: 12px;
+    border-radius: 20px;
+}
+
+.tdformation {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.left-dformation {
+    width: 100%;
+    height: 100%;
+    background: #80808030;
+    padding: 20px;
+}
+
+.description-dformation {
+    min-height: 300px;
+    background: #e7e7e7;
+    padding: 20px;
+}
+
+
+.pocket img {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .dformation-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+

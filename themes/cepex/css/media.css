@@ -1,0 +1,73 @@
+
+.comm-date {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background: #cb033d;
+    color: white;
+  }
+  
+  .comm-titre {
+    font-weight: 700;
+    margin-bottom: 2px;
+    height: 80px;
+    overflow: hidden;
+    padding: 10px 0px 0px 0px;
+    
+  }
+  
+  .comm-lieu {
+    font-weight: 700;
+    height: 25px;
+    overflow: hidden;
+  }
+  
+  .comm-header {
+    margin-bottom: 15px;
+  }
+  
+  .comm-desc {
+    height: 216px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  .communiqe .bgwhite-actiivtes {
+    padding: 16px 25px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+  }
+  .communiqe .boxactiivtes:hover:after {
+      height: calc(100% - 40px);
+  }
+  .communiqe .boxactiivtes:after {
+      bottom: 20px;
+  }
+  
+  .communiqe .boxactiivtes:before {
+      bottom: 20px;
+  }
+  
+  .communiqe {
+    margin-bottom: 50px;
+  }
+  
+  
+  .comm-button a {
+    text-decoration: none;
+    color: black;
+  
+  }
+  .comm-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .communiqe .bgwhite-actiivtes:hover
+  {
+    cursor: pointer;
+  }

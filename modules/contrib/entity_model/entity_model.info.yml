@@ -1,0 +1,10 @@
+name: Entity Model
+type: module
+description: Adds annotation-based entity type and bundle models for entities.
+core_version_requirement: ^10.1 || ^11
+php: 8.1
+
+# Information added by Drupal.org packaging script on 2025-02-28
+version: '3.2.1'
+project: 'entity_model'
+datestamp: 1740744175

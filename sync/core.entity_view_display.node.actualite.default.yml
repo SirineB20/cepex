@@ -1,0 +1,62 @@
+uuid: 520ac910-2c70-4577-8c7b-82c42bb445e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.actualite.body
+    - field.field.node.actualite.field_date
+    - field.field.node.actualite.field_images
+    - field.field.node.actualite.field_lieu
+    - field.field.node.actualite.field_soustype
+    - field.field.node.actualite.field_type
+    - node.type.actualite
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.actualite.default
+targetEntityType: node
+bundle: actualite
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: Africa/Tunis
+      date_format: Y/m/d
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_images:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  field_lieu:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_soustype: true
+  field_type: true
+  langcode: true

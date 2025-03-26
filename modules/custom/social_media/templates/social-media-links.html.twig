@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Template pour afficher la liste des liens de partage sur les réseaux sociaux.
+ *
+ * Variables disponibles:
+ * - elements: tableau contenant chaque lien social avec ses propriétés, par exemple :
+ *    - text: le texte (ou nom) du réseau social,
+ *    - img: l'URL d'une image à afficher (optionnel),
+ *    - forward_dialog: 1 si le lien doit être ouvert en AJAX,
+ *    - attr: objet contenant les attributs HTML (target, rel, class, etc.),
+ *    - api: attributs supplémentaires éventuels.
+ */
+#}
+
+{# Conteneur principal pour les liens de partage sur les réseaux sociaux #}
+<div class="box-sociaux-header">
+  {# Liste non ordonnée pour les liens de réseaux sociaux avec des classes spécifiques #}
+  <ul class="ul-sociaux-header">
+    {# On définit une classe de base pour le lien #}
+    {% set classes = ['share'] %}
+    
+    {# Boucle sur chaque élément de réseaux sociaux #}
+    {% for element in elements %}
+      {# Initialisation par défaut pour les attributs liés au dialogue #}
+      {% set link_classes = classes %}
+      {% set dialogType = '' %}
+      {% set dialogOptions = '' %}
+      
+      {# Vérification si le lien doit ouvrir une boîte de dialogue en AJAX #}
+      {% if element.forward_dialog == 1 %}
+        {# Si le lien doit s'ouvrir en AJAX, on ajoute la classe et les attributs associés #}
+        {% set link_classes = link_classes|merge(['use-ajax']) %}
+        {% set dialogType = 'data-dialog-type="dialog"' %}
+        {% set dialogOptions = 'data-dialog-options=' ~ {'width': '600'}|json_encode %}
+      {% endif %}
+      
+      {# Élément de liste pour chaque lien de réseau social #}
+      <li>
+        {# Lien avec les attributs et les classes appropriées #}
+        <a {{ dialogType|raw }} {{ dialogOptions|raw }} {{ element.attr.target }} {{ element.attr.rel }} {{ element.attr.class.addClass(link_classes) }} {{ element.api|raw }}
+          title="{{ element.text }}">
+          {# Vérification si une image est définie pour le lien #}
+          {% if element.img %}
+            {# Affichage de l'image avec l'attribut alt #}
+            <img alt="{{ element.text }}" src="{{ element.img }}">
+          {% else %}
+            {# Affichage de l'icône du réseau social si aucune image n'est définie #}
+            <i class="fab fa-{{ element.text|lower }}"></i>
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

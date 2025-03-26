@@ -1,0 +1,123 @@
+.flexbox-banner-home {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.txt-banner-home {
+    padding: 0 30px 0 100px;
+    width: 50%;
+}
+
+.image-banner-home {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.img-banner-home {
+    clip-path: polygon(3% 28%, 11% 10%, 33% 0, 85% 0%, 100% 0, 100% 15%, 100% 85%, 100% 100%, 85% 100%, 7% 100%, 0 84%, 4% 59%);
+    width: 100%;
+    height: 555px;
+    object-fit: cover;
+}
+.title-banner-home {
+    display: block;
+    font-size: 45px;
+    color: #cd0b47;
+    font-weight: 900;
+    margin: 0 0 15px;
+}
+
+.title-banner-home .colorgris {
+    color: #484848;
+}
+
+.txt-banner-home p {
+    font-size: 22px;
+    color: #a6a6a6;
+    margin: 0;
+    line-height: 35px;
+}
+.btn-cepex {
+    padding: 5px 25px;
+    border: 1px solid #cb043d;
+    border-radius: 20px;
+    background-color: transparent;
+    margin: 30px 0 0;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    color: #686868;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-cepex:hover {
+    background: #cb043d;
+    color: #ffff;
+}
+
+.btn-cepex i {
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 1280px) {
+    .txt-banner-home {
+        padding: 0 30px 0 60px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .title-banner-home {
+        font-size: 32px;
+    }
+    .txt-banner-home p {
+        font-size: 18px;
+        line-height: 30px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .img-banner-home {
+        height: 470px;    
+    }
+    .txt-banner-home {
+        padding: 0 15px 0 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .img-banner-home {
+        height: 400px;    
+    }
+    .txt-banner-home {
+        padding: 0 15px;
+    }
+    .txt-banner-home p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .title-banner-home {
+        font-size: 28px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .img-banner-home {
+        height: 350px;    
+    }
+    .txt-banner-home {
+        padding: 0 15px;
+    }
+    .txt-banner-home p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .title-banner-home {
+        font-size: 28px;
+    }
+    .txt-banner-home {
+        width: 60%;
+    }
+    .image-banner-home {
+        width: 40%;
+    }
+}

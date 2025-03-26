@@ -1,0 +1,11 @@
+uuid: 8d623fca-77dc-487d-ac91-a30463afd729
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.actualites
+id: taxonomy_term.actualites
+target_entity_type_id: taxonomy_term
+target_bundle: actualites
+default_langcode: site_default
+language_alterable: false

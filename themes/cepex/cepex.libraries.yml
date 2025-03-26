@@ -1,0 +1,65 @@
+global:
+  css:
+    theme:
+      css/style.css: {}
+      css/activities.css: {}
+      css/ambassades.css: {}
+      css/appui.css: {}
+      css/annuaire.css: {}
+      css/bienvenue.css: {}
+      css/boxservice.css: {}
+      css/calendrier.css: {}
+      css/chatbot.css: {}
+      css/communique.css: {}
+      css/decouvrir-tunisie.css: {}
+      css/detail-event.css: {}
+      css/detail-formation.css: {}
+      css/details-opportinutes.css: {}
+      css/details-ouvrage.css: {}
+      css/een.css: {}
+      css/from-contact.css: {}
+      css/guichet-unique.css: {}
+      css/slick.css: {}
+      css/profile.css: {}
+      css/profile-form.css: {}
+      css/programme.css: {}
+      css/marketplace.css: {}
+      css/maps.css: {}
+      css/header.css: {}
+      css/banner.css: {}
+      css/filtre.css: {}
+      css/intelligence.css: {}
+      css/opportunites.css: {}
+      css/details-actualites.css: {}
+      css/jquery.fancybox.min.css: {}
+      https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css: { type: external }
+      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css: { type: external }
+      https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css: { type: external }
+      https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css: { type: external }
+  js:
+    https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js: { type: external }
+    https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js: { type: external }
+    https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js: { type: external }
+    js/cepex.js: {}
+    js/appui.js: {}
+    js/chatbot.js: {}
+    js/een.js: {}
+    js/calendrier.js: {}
+    js/date.js: {}
+    js/header.js: {}
+    js/maketplace.js: {}
+    js/media.js: {}
+    js/slide.js: {}
+    js/slick-offre.js: {}
+    js/conflict.js: {}
+    js/jquery.fancybox.min.js: {}
+    js/slick-temoingane.js: {}
+    js/profile.js: {}
+    js/temoignage.js: {}
+    https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js: { type: external, attributes: { defer: true } }
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.form

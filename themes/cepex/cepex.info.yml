@@ -1,0 +1,19 @@
+name: cepex
+type: theme
+base theme: false
+description: A flexible theme with a responsive, mobile-first layout.
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - cepex/global
+regions:
+  header: 'Header'
+  header_top: 'Header top'
+  header_bottom: 'Header bottom'
+  featured: 'Featured'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  footer: 'Footer'
+  footer-left: 'Footer left'
+  footer-center: 'Footer center'
+  footer-right: 'Footer right'

@@ -1,0 +1,166 @@
+.entete-form {
+    margin: 20px 0 0;
+}
+
+.flex-entete-form {
+    background: #cd0f45;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.title-entete-form {
+    font-size: 32px;
+    color: #fff;
+    font-weight: 500;
+}
+.title-form-cepex {
+    display: block;
+    background: #f9e2e8;
+    width: 80%;
+    margin: 35px auto 0;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #383838;
+    font-weight: 500;
+}
+
+.form-cepex {
+    padding: 50px 0;
+}
+
+.boxform-cepex {
+    margin: 35px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+}
+
+.flex-etes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.title-etes {
+    font-size: 16px;
+    color: #282828;
+    display: inline-block;
+    margin-right: 70px;
+}
+
+.d-flex-input {
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+}
+
+.d-flex-input label {
+    color: #5f5f5f;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.form-group {
+    margin: 30px 0 0;
+}
+
+.form-group label {
+    color: #282828;
+    font-size: 16px;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.form-group .msg-small {
+    font-size: 11px;
+    color: #000;
+}
+
+.form-group input {
+    height: 55px;
+    border-radius: 8px !important;
+    border: 1px solid #c7c7c7!important;
+}
+.form-group select {
+    height: 55px;
+    border-radius: 8px !important;
+    border: 1px solid #c7c7c7!important;
+}
+.flexrow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexrow .form-group {
+    padding: 0 15px;
+}
+.form-group .label-check {
+    width: auto;
+    margin-left: 10px;
+}
+.form-group.alignbox {
+    align-items: center;
+    display: flex;
+}
+
+.form-group.alignbox .form-check-input {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px !important;
+    margin: 0;
+}
+
+.form-group .label-check .btn-check {
+    position: relative;
+    color: #c40020;
+}
+
+.flexbox-bouton-form {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 0;
+}
+.logo-entete-form img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+@media screen and (max-width: 768px) {
+.title-form-cepex {
+    width: 98%;
+    margin: 20px auto 0;
+    font-size: 17px;
+}
+.title-entete-form {
+    font-size: 25px;
+}
+.flex-entete-form {
+    padding: 10px 30px;
+}
+.boxform-cepex {
+    padding: 0;
+}
+.d-flex-input {
+    margin-left: 0;
+    margin-right: 20px;
+}
+.flexrow .form-group {
+    padding: 0;
+    margin: 20px 0 0;
+}
+.title-etes {
+    font-size: 16px;
+    margin-right: 0;
+    width: 100%;
+}
+}
+@media screen and (max-width: 480px) {
+.logo-entete-form {
+    display: none;
+}
+}

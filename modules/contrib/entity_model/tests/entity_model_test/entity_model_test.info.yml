@@ -1,0 +1,13 @@
+name: 'Entity Model test'
+type: module
+description: 'Support module for testing Entity Model.'
+package: Testing
+core_version_requirement: ^10.1 || ^11
+dependencies:
+  - drupal:entity_model
+  - drupal:node
+
+# Information added by Drupal.org packaging script on 2025-02-28
+version: '3.2.1'
+project: 'entity_model'
+datestamp: 1740744175

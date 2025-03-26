@@ -1,0 +1,33 @@
+uuid: 5c34fd4b-c6ed-4c8a-aa34-0be4f8dfc415
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b625ed82-bc12-416f-b46e-f2630e0ce36d'
+  module:
+    - block_content
+    - node
+  theme:
+    - cepex
+id: cepex_actualites
+theme: cepex
+region: featured
+weight: 0
+provider: null
+plugin: 'block_content:b625ed82-bc12-416f-b46e-f2630e0ce36d'
+settings:
+  id: 'block_content:b625ed82-bc12-416f-b46e-f2630e0ce36d'
+  label: Actualités
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      actualite: actualite

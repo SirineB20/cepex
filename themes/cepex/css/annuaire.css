@@ -1,0 +1,66 @@
+.boxfiltre-guide input.form-select {
+    background: #dfdfdf;
+    border: 0;
+    padding: 10px 15px !important;
+    border-radius: 15px;
+}
+
+.bgred-activite-secteur {
+    background: #cb043d;
+    padding: 10px 20px;
+    border-radius: 0px 20px 20px 0px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.box-annuaire {
+    position: relative;
+}
+
+.box-annuaire .bgwhite-guide.bgwhite-secteur {
+    align-items: flex-start;
+}
+
+.boximg-guie.boximg-secteur .img-guide.img-annuaire {
+    margin: 0 auto;
+    display: block;
+    width: auto;
+    height: 150px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.logo-annuaire {
+    margin: 0 auto;
+}
+
+.info-annuaire {
+    display: block;
+    font-size: 15px;
+    margin: 10px 0 0;
+    color: #4c4c4c;
+    font-weight: 400;
+}
+
+.info-annuaire i {
+    color: #cb043d;
+}
+.title-annuaire-recherche {
+    display: block;
+    font-size: 30px;
+    color: #494949;
+    text-align: center;
+    margin: 0 0 30px;
+}
+.section-annuaire {
+    background: url(../images/bg-een.png) center 15% repeat;
+    background-size: contain;
+}
+@media screen and (max-width: 767px) {
+.title-annuaire-recherche {
+    font-size: 22px;
+}
+}

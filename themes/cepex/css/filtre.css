@@ -1,0 +1,54 @@
+.boxfiltre-guide.boxfiltre-event .div-filtre {
+    width: calc(33.3333% - 40px);
+    padding: 0 10px;
+}
+
+.boxfiltre-guide.boxfiltre-event  .btn-filtrer {
+    margin: 0;
+}
+
+.div-filtre#datepicker {
+    background: #dfdfdf;
+    border: 0;
+    padding: 10px 15px !important;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.div-filtre#datepicker .input-group-text {
+    background: transparent !important;
+    padding: 0 !important;
+    border: 0;
+}
+
+.div-filtre#datepicker  .form-control {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+/****** Deja mawjoud *****/
+.boxfiltre-guide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .boxfiltre-guide select {
+    background: #dfdfdf;
+    border: 0;
+    padding: 10px 15px !important;
+    border-radius: 15px;
+  }
+  
+  .btn-filtrer {
+    margin-left: 35px;
+    border: 0;
+    background: #3f3f3f;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    border-radius: 15px;
+  }

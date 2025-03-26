@@ -1,0 +1,29 @@
+uuid: 4a5cc8a8-0e66-46c4-beef-c0f57ba252b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_soustype
+    - node.type.actualite
+    - taxonomy.vocabulary.categorie_promotionnelle
+id: node.actualite.field_soustype
+field_name: field_soustype
+entity_type: node
+bundle: actualite
+label: soustype
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      categorie_promotionnelle: categorie_promotionnelle
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: actualites
+field_type: entity_reference

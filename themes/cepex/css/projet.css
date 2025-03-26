@@ -1,0 +1,129 @@
+.bloc-projet {
+    padding: 50px 0 0;
+}
+.flex-boximg-projet {
+    position: relative;
+    overflow: hidden;
+}
+
+.boximg {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-projet {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.absolute-details-projet {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    clip-path: polygon(0 0, 70% 0, 85% 100%, 0% 100%);
+    background: url("../images/bg-effect-projet.png") top center no-repeat;
+    padding: 50px 100px;
+    width: 55%;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.absolute-details-projet:before {
+    content: "";
+    background-color: rgb(221 221 222 / 70%);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    z-index: -1;
+}
+
+.flexboxdetails {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+}
+.subtitle-projet {
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+    color: #000;
+}
+
+.title-projet {
+    display: block;
+    font-size: 34px;
+    font-weight: 700;
+    color: #cb043d;
+    margin: 10px 0 0;
+}
+
+.parag-projet {
+    display: block;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    margin: 10px 0 0;
+}
+
+.flexboxdetails p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin: 10px 0 0;
+}
+
+@media screen and (max-width: 1600px) {
+    .absolute-details-projet {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .absolute-details-projet {
+        width: 65%;
+        padding: 50px 85px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .absolute-details-projet {
+        width: 75%;
+        padding: 30px 70px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .absolute-details-projet {
+        width: 90%;
+        padding: 20px 70px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .absolute-details-projet {
+        width: 100%;
+        clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+    }
+    .flexboxdetails {
+        width: 85%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .absolute-details-projet {
+        width: 100%;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .flexboxdetails {
+        width: 100%;
+    }
+    .img-projet {
+        height: 450px;
+    }
+}

@@ -1,0 +1,9 @@
+name: Advanced Language Selector
+type: module
+description: Provides an advanced language selector block.
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2024-10-04
+version: '1.4.1'
+project: 'advanced_language_selector'
+datestamp: 1728036920

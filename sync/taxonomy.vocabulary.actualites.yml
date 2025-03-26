@@ -1,0 +1,9 @@
+uuid: e7f6a3a5-50d2-4723-b057-28c60820e1a9
+langcode: und
+status: true
+dependencies: {  }
+name: Actualités
+vid: actualites
+description: 'taxonomi Actualités institutionnelles et promotionnelles'
+weight: -1
+new_revision: false

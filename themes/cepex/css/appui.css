@@ -1,0 +1,232 @@
+.bloc-diagnostic {
+    background: #cb033d;
+    margin: 30px 0 0;
+    padding: 50px 0;
+}
+
+.boxflex-diagnostic {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.box-diagnostic {
+    position: relative;
+    padding: 0 15px;
+}
+
+.image-diagnostic {
+    position: relative;
+    overflow: hidden;
+    padding: 0 15px;
+}
+
+.title-diagnostic {
+    display: block;
+    font-size: 38px;
+    color: #484848;
+    font-weight: 600;
+    padding: 0px 0 20px;
+    line-height: 46px;
+}
+
+.title-white {
+    color: #fff;
+}
+
+.boxflex-diagnostic p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: justify;
+    margin: 0;
+}
+
+.btn-cepex.btnwhite-diagnostic {
+    background: #fff;
+    border: 1px solid #fff;
+    margin-top: 35px;
+}
+
+.btn-cepex.btnwhite-diagnostic:hover {
+    background: transparent;
+}
+
+.img-dossier {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.bibliotheque {
+    padding: 50px 0;
+}
+
+.title-bibliotheque {
+    color: #cb033d;
+    display: block;
+    font-size: 38px;
+    text-align: center;
+    font-weight: 600;
+    padding: 0px 0 20px;
+    line-height: 46px;
+}
+
+.bibliotheque p {
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    line-height: 30px;
+}
+
+p {}
+
+.boxflex-bibliotheque {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0 0;
+    flex-wrap: wrap;
+}
+
+.boxflex-bibliotheque .img-guide {
+    object-fit: contain;
+    box-shadow: none;
+    height: 195px;
+}
+
+.boxflex-bibliotheque .boximg-guie {
+    box-shadow: none;
+}
+
+.boxflex-bibliotheque .titre-guide {
+    height: 60px;
+    overflow: hidden;
+}
+.bgwhite-guide .btn-cepex i {
+    margin-left: 5px !important;
+}
+
+.img-diagnostic {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+}
+.img-diagnostic {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+}
+
+.title-diagnostic.title-red {
+    color: #cb033d;
+}
+
+.boxflex-diagnostic.flexbox-color p {
+    color: #000;
+}
+
+.boxflex-diagnostic.flexbox-color .btn-cepex {
+    margin: 20px 0;
+}
+
+.bloc-guichet {
+    padding: 40px 0;
+}
+
+.bloc-commerce {
+    padding: 40px 0;
+}
+
+.bloc-soutien {
+    padding: 40px 0;
+}
+.cooperation {
+    background: #ededed;
+    padding: 60px 0;
+    margin: 30px 0 0;
+}
+
+.boxtitle-cooperation {
+    position: relative;
+    text-align: center;
+}
+
+.boxtitle-cooperation span {
+    display: inline-block;
+    font-size: 40px;
+    color: #484848;
+    font-weight: 700;
+    padding: 0px 0 20px;
+    line-height: 46px;
+}
+
+.boxtitle-cooperation span.title-red {
+    color: #cb043d;
+}
+
+.flexbox-cooperation {
+    margin: 50px 0 30px;
+}
+
+.image-cooperation {
+    display: block;
+    overflow: hidden;
+}
+
+.img-cooperation {
+    max-width: 100%;
+    height: 70px;
+    object-fit: contain;
+}
+
+.box-cooperation {
+    padding: 0 20px;
+}
+
+.box-cooperation p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    margin: 30px 0 0;
+}
+
+.box-cooperation a {
+    margin: 40px 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .title-diagnostic {
+        font-size: 32px;
+        line-height: 44px;
+    }
+    .boxflex-bibliotheque .boxguide {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 992px) {
+    .boxflex-bibliotheque .boxguide {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .image-diagnostic {
+        margin: 35px auto 0;
+        order: 2;
+    }
+    .boxflex-bibliotheque .boxguide {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .title-diagnostic, .boxtitle-cooperation span {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .boxflex-bibliotheque .boxguide {
+        width: 100%;
+    }
+}

@@ -1,0 +1,196 @@
+.details-ouvrage {
+    padding: 50px 0 0;
+    z-index: 2;
+}
+
+.flexbox-details-ouvrage {
+    display: flex;
+    flex-wrap: wrap;
+}
+.boxcontenu-ouvrage {
+    padding-right: 45px;
+}
+
+.title-details-ouvrage {
+    display: block;
+    font-size: 26px;
+    color: #000;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.boxcontenu-ouvrage p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin: 0;
+}
+
+.information-ouvrage {
+    padding: 15px;
+}
+
+.bgwhite-ouvrage {
+    background: #ffff;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.title-details {
+    display: block;
+    background: #cd1b4d;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.box-information-ouvrage {
+    display: flex;
+    padding: 15px;
+    position: relative;
+    align-items: center;
+}
+
+.box-information-ouvrage:after {
+    content: "";
+    background: #000;
+    width: 90%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+.box-information-ouvrage:last-child:after {
+    display: none;
+}
+
+.img-infomation-ouvrage {
+    width: 50px;
+    height: 50px;
+    background: #ffdbdb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.img-infomation-ouvrage img {
+    width: 30px;
+    display: block;
+    height: auto;
+}
+
+.boxbloc-info {
+    margin-left: 15px;
+}
+
+.title-info-ouvrage {
+    display: block;
+    font-size: 16px;
+    color: #000;
+}
+
+.subtitle-info-ouvrage {
+    display: block;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+}
+
+.detailstwo-ouvrage {
+    background: #f0f0f0;
+    margin-top: -85px;
+    padding: 50px 0;
+}
+
+.boxcontenu-two-ouvrage p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin: 0;
+}
+.boxcontenu-two-ouvrage ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.boxcontenu-two-ouvrage ul li {margin-top: 15px;}
+
+.boxcontenu-two-ouvrage ul li i {
+    color: #cd0b47;
+    margin-right: 10px;
+}
+.detailsthree-ouvrage {
+    padding: 50px 0;
+}
+
+.boxcontenu-three-ouvrage {
+    text-align: center;
+}
+
+.boxcontenu-three-ouvrage p {
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+    --max-lines: 6;
+    --line-height: 1.8;
+    overflow: hidden;
+    line-height: var(--line-height);
+    max-height: calc(var(--max-lines)* 1em* var(--line-height));
+    position: relative;
+}
+
+.boxcontenu-three-ouvrage p:before {
+    content: "";
+    position: absolute;
+    height: calc(1em* var(--line-height));
+    width: 100%;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+.boxcontenu-three-ouvrage .btn-cepex {
+    margin: 20px 0 0;
+}
+.boxcontenu-three-ouvrage p.parag {
+    --max-lines: auto;
+}
+
+.boxcontenu-three-ouvrage p.parag:before {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+.boxcontenu-ouvrage {
+    width: 100%;
+    padding: 0 15px;
+}
+.information-ouvrage {
+    padding: 15px;
+    width: 100%;
+}
+.detailstwo-ouvrage {
+    margin-top: 0;
+}
+.details-ouvrage {
+    padding: 50px 0;
+}
+.boxcontenu-two-ouvrage, .boxcontenu-three-ouvrage {
+    padding: 0 15px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.title-details-ouvrage {
+    font-size: 18px;
+}
+.details-ouvrage, .detailstwo-ouvrage, .detailsthree-ouvrage {
+    padding: 30px 0;
+}
+}

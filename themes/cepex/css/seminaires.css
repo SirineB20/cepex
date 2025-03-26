@@ -1,0 +1,121 @@
+.card-seminaire img
+{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.date-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+
+
+
+
+
+.desc-seminaire {
+    padding: 10px 10px 40px 0px;
+    z-index: 0;
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+
+
+
+.card-seminaire .flexbox-button {
+    position: relative;
+    z-index: 1;
+    top: -43px;
+    margin-bottom: -43px;
+}
+
+
+.flex-icone-seminaire {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 15px 0 0;
+    padding: 10px;
+}
+
+.border-seminaire
+{
+border-bottom: 1px solid;
+}
+
+.card-seminaire {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    margin-bottom: 50px;
+}
+
+
+.date-bg-seminaire,.date-bg-formation {
+    width: 100px;
+    height: 100px;
+    color: white;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+
+.date-bg-formation
+{
+background: #cb033d;
+}
+
+.date-bg-seminaire
+{
+background: #949494;
+}
+
+
+
+.date-bg-seminaire:after,.date-bg-formation::after
+{
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: 64px;
+    width: 44%;
+    height: 50%;
+    z-index: -1;
+    rotate: 16px;
+    transform: rotate(45deg);
+}
+
+.date-bg-seminaire:after
+{
+    background: #949494;
+}
+
+.date-bg-formation::after
+{
+background: #cb033d;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .desc-seminaire {
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .card-seminaire .flexbox-button {
+        
+        top: unset; 
+        margin-bottom: unset; 
+    }
+
+
+    }
+

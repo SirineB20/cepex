@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+
+{% if attributes.get('type') in ['button', 'submit'] %}
+  {%
+    set classes = [
+      'btn',
+      attributes.hasClass('button--danger') ? 'btn-danger' : '',
+      (not attributes.hasClass('media-library-item__remove') and not attributes.hasClass('button--danger')) ? 'btn-primary' : ''
+    ]
+  %}
+  <input{{ attributes.addClass(classes) }}>
+{% else %}
+  <input{{ attributes }}>
+{% endif %}

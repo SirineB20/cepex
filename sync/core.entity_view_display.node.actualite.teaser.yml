@@ -1,0 +1,64 @@
+uuid: 947a667d-e411-4a9d-8885-6fa1f2d0c9e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.actualite.body
+    - field.field.node.actualite.field_date
+    - field.field.node.actualite.field_images
+    - field.field.node.actualite.field_lieu
+    - field.field.node.actualite.field_soustype
+    - field.field.node.actualite.field_type
+    - node.type.actualite
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.actualite.teaser
+targetEntityType: node
+bundle: actualite
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: Africa/Tunis
+      date_format: Y/m/d
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_images:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_lieu:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_soustype: true
+  field_type: true
+  langcode: true

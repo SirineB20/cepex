@@ -1,0 +1,299 @@
+.presentation-een {
+    background: #f0f0f0;
+    padding: 50px 0 130px;
+}
+
+.boxflex-een {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image-een {
+    padding: 0 15px;
+}
+
+.img-een {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.box-een {
+    padding: 0 15px;
+}
+
+.title-een {
+    font-size: 42px;
+    color: #5a5a5a;
+    font-weight: 700;
+    display: block;
+    margin: 0 0 15px;
+}
+
+.box-een p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin: 0;
+    line-height: 30px;
+}
+
+.statistique-een {
+    margin-top: -50px;
+}
+
+.flexbox-stat-een {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.boxstat-een {
+    padding: 0 15px;
+}
+
+.bgred-een {
+    background: #cf1d4f;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.img-stat-een {
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.icon-een {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+}
+
+.title-stat-een {
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    font-weight: 500;
+    line-height: 27px;
+    margin: 20px 0 0;
+    height: 55px;
+    overflow: hidden;
+}
+
+.een-tunisie {
+    background: url(../images/bg-een.png) top center no-repeat;
+    padding: 100px 0 50px;
+    background-size: cover;
+}
+.title-een.color-red {
+    color: #cf1d4f;
+}
+
+.reseau-een {
+    padding: 50px 30px 0;
+}
+
+.flexbox-reseau-een {
+    margin: 50px 0 0;
+}
+
+.box-reseau-een {
+    background: #efefef;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.flexbox-reseau-een .slick-slide {
+    padding: 0 10px;
+}
+
+.logo-reseau-een {
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-logo-een {
+    height: 140px;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+.box-reseau-een p {
+    margin: 20px 0 0;
+    text-align: justify;
+    font-size: 15px;
+    line-height: 28px;
+}
+
+.btn-cepex.btn-right {
+    margin: 20px 0 0;
+    float: right;
+}
+
+.box-reseau-een:hover {
+    background: #cb033d;
+}
+
+.box-reseau-een:hover p {
+    color: #fff;
+}
+
+.box-reseau-een:hover .btn-cepex {
+    background: #fff;
+}
+.flexbox-reseau-een .slick-dots li.slick-active button {
+  background-color: #cb033d;
+}
+
+.flexbox-reseau-een .slick-dots li button {
+  border: 1px solid #cb033d;
+  border-radius: 50%;
+  text-indent: -9999px;
+}
+.flexbox-reseau-een .slick-dots li.slick-active button {
+    background-color: #cb033d;
+}
+.flexbox-reseau-een .slick-dots li button {
+border: 1px solid #cb033d;
+border-radius: 50%;
+text-indent: -9999px;
+}
+.mission-een {
+    padding: 50px 0;
+}
+
+.mission-een p {
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.flexbox-mission-een {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0 0;
+}
+
+.box-mission-een {
+    padding: 0 15px;
+    margin: 20px 0;
+}
+
+.bgwhite-mission-een {
+    overflow: hidden;
+    text-align: justify;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-left: 4px solid #d01f4b;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+.boxicon {
+    width: 170px;
+}
+
+.logo-mission-een {
+    max-width: 100%;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+}
+
+.contenu-mission-een {
+    padding-left: 15px;
+}
+
+.title-mission-een {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contenu-mission-een p {
+    text-align: justify;
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 25px;
+}
+.box-een ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.box-een ul li:before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.box-een ul li {
+    margin: 10px 0 0;
+    font-size: 15px;
+}
+.benefice-een {
+    padding: 50px 0;
+}
+
+@media screen and (max-width: 1440px) {
+.title-stat-een {
+    font-size: 18px;
+    height: 85px;
+}
+.title-een {
+    font-size: 36px;
+}
+}
+@media screen and (max-width: 992px) {
+.image-een {
+    width: 100%;
+    order: 2;
+    margin: 30px 0 0;
+}
+.box-een {
+    width: 100%;
+}
+.boxstat-een {
+    width: 50%;
+    margin: 0 0 30px;
+}
+.title-een {
+    font-size: 32px;
+}
+}
+@media screen and (max-width: 768px) {
+.boxstat-een {
+    width: 100%;
+}
+.een-tunisie {
+    background: url(../images/bg-een.png) top center no-repeat;
+    padding: 25px 0 20px;
+    background-size: cover;
+}
+.benefice-een {
+    padding: 0 0 30px;
+}
+.title-stat-een {
+    height: auto;
+}
+.icon-een {
+    height: 95px;
+}
+.img-stat-een {
+    height: 95px;
+}
+}
+@media screen and (max-width: 480px) {
+.title-een {
+    font-size: 26px;
+}
+}

@@ -1,0 +1,101 @@
+
+.flexbox-opportunites .box-actualites .details-actualite {
+    width: 100%;
+    padding: 0;
+    border: 0;
+}
+
+
+.opportinutes-affaires {
+    padding: 50px 0 0;
+}
+
+.boxtitle-opportinutes {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title-opportinutes {
+    display: block;
+    font-size: 36px;
+    color: #cb043d;
+    font-weight: 600;
+    margin: 0 0 20px;
+}
+
+.boxtitle-opportinutes p {
+    color: #4e4e4e;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0;
+}
+
+.boxfiltre-opportinutes {
+    margin: 40px 0 0;
+}
+.flexbox-opportunites {
+    display: flex;
+    flex-wrap: wrap;
+}
+a.title-actualite {
+    text-decoration: none;
+    line-height: 26px;
+}
+a.title-actualite:hover {
+    color: #cb033d
+}
+.flexbox-opportunites .box-actualites .details-actualite {
+    width: 100%;
+    padding: 0;
+    border: 0;
+}
+.presentation-opportinutes {
+    padding: 50px 0;
+}
+@media screen and (max-width: 992px) {
+.boxtitle-opportinutes {
+    width: 100%;
+}
+.boxfiltre-guide.boxfiltre-event.boxfiltre-opportinutes .div-filtre {
+    width: 33.3333%;
+}
+}
+@media screen and (max-width: 768px) {
+.boxfiltre-guide {
+    flex-wrap: wrap;
+}
+.boxfiltre-guide.boxfiltre-event .div-filtre, .boxfiltre-guide.boxfiltre-event.boxfiltre-opportinutes .div-filtre {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+.boxfiltre-guide.boxfiltre-event.boxfiltre-opportinutes .btn-filtrer {
+    margin: 0 auto;
+}
+}
+@media screen and (max-width: 550px) {
+.title-opportinutes {
+    font-size: 26px;
+}
+.boxdate-act {
+    margin-left: 0;
+    margin-top: 10px;
+}
+.flexbox-adr-date {
+    display: flex;
+    align-items: flex-start;
+    margin: 15px 0 0;
+    flex-direction: column;
+}
+}
+@media screen and (max-width: 380px) {
+.title-opportinutes {
+    font-size: 22px;
+}
+}
+.image-diagnostic.image-een-opportinutes img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}

@@ -1,0 +1,227 @@
+.absolute-details-gouvernance {
+    position: absolute;
+    bottom: -20px;
+    background: #fff;
+    width: 80%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    padding: 15px;
+    z-index: 3;
+    border-top: 5px solid transparent;
+    transition: 0.5s ease all;
+}
+
+.name-team-organisme.name-gouvernance {
+    padding: 0;
+    margin: 0;
+}
+
+.name-team-organisme.name-gouvernance:before {
+    display: none;
+}
+
+.function-gouvernance {
+    font-size: 18px;
+    color: #000;
+    padding: 10px 0 0;
+}
+
+.box-organisme:hover .absolute-details-gouvernance {
+    border-top: 5px solid #cb043d;
+    transition: 0.5s ease all;
+}
+.box-organisme.box-gouvernance {
+    position: relative;
+    padding: 0 10px 30px;
+    margin-bottom: 25px;
+}
+.gouvernance-qualite {
+    padding: 50px 0 0;
+}
+
+.flexbox-gouvernance-qualite {
+    display: flex;
+    flex-wrap: wrap;
+}
+.gouvernance-bloc {
+    background: url(../images/bg-gouvernance.jpg) top center no-repeat;
+    padding: 50px 125px;
+    background-size: cover;
+}
+
+.gouvernance-bloc-qualite {
+    background: #cb043d;
+    padding: 50px 125px;
+}
+.image-gouvernance {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-gouvernance {
+    width: auto;
+    height: 175px;
+}
+
+.title-gouvernance {
+    font-size: 30px;
+    color: #cb043d;
+    font-weight: 600;
+    margin: 15px 0;
+    display: block;
+}
+
+.gouvernance-bloc p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    line-height: 26px;
+    margin: 0;
+}
+
+.image-gouvernance-qualite {
+    position: relative;
+    overflow: hidden;
+}
+
+.title-gouvernance-qualite {
+    font-size: 30px;
+    color: #fff;
+    font-weight: 600;
+    margin: 15px 0;
+    display: block;
+}
+
+.gouvernance-bloc-qualite p {
+    font-size: 16px;
+    color: #fff;
+    text-align: justify;
+    line-height: 26px;
+    margin: 0;
+}
+.acces-formation {
+    padding: 50px 0 30px;
+}
+
+.title-acces-info {
+    font-size: 36px;
+    color: #cb043d;
+    font-weight: 600;
+    margin: 15px 0;
+    display: block;
+    padding: 0 15px;
+}
+
+.flexbox-acces-information {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-acces-information {
+    padding: 0 15px;
+}
+
+.box-details-acces-information {
+    padding: 0 15px;
+}
+
+.box-acces-information p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    line-height: 26px;
+    margin: 0;
+}
+
+.info-acces-gouvernance {
+    padding-left: 25px;
+    display: block;
+    font-size: 18px;
+    color: #626262;
+    position: relative;
+}
+
+.info-acces-gouvernance:before {
+    content: "";
+    background: #626262;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    border-radius: 50%;
+}
+
+.box-details-acces-information .adr-acces-info {
+    margin: 0;
+    background: #cb043d;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0 20px;
+}
+
+.box-details-acces-information .adr-acces-info-mail {
+    display: flex;
+    align-items: center;
+    color: #626262;
+    margin: 10px 0 0;
+}
+
+.box-details-acces-information .adr-acces-info-mail i {
+    background: #626262;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+/******* Responsive **********/
+@media screen and (max-width: 1440px) {
+.gouvernance-bloc, .gouvernance-bloc-qualite {
+    padding: 50px 105px;
+}
+}
+
+@media screen and (max-width: 1280px) {
+.gouvernance-bloc, .gouvernance-bloc-qualite {
+    padding: 50px 75px;
+}
+}
+
+@media screen and (max-width: 1024px) {
+.gouvernance-bloc, .gouvernance-bloc-qualite {
+    padding: 50px 40px;
+}
+.title-acces-info {
+    font-size: 30px;
+}
+}
+@media screen and (max-width: 992px) {
+.gouvernance-bloc, .gouvernance-bloc-qualite {
+    padding: 30px;
+}
+.title-acces-info {
+    font-size: 28px;
+}
+.title-gouvernance, .title-gouvernance-qualite {
+    font-size: 26px;
+}
+}
+@media screen and (max-width: 550px) {
+.title-acces-info {
+    font-size: 26px;
+}
+.title-gouvernance, .title-gouvernance-qualite {
+    font-size: 22px;
+}
+.acces-formation {
+    padding: 30px 0;
+}
+}

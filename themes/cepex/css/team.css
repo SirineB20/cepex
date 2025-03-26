@@ -1,0 +1,155 @@
+.organisme {
+    padding: 50px 0;
+}
+
+.boxname-details {
+    position: relative;
+    text-align: center;
+}
+
+.title-organisme {
+    font-size: 36px;
+    color: #cb043d;
+    display: block;
+    font-weight: 700;
+    line-height: 43px;
+    margin: 0 0 25px;
+}
+
+.title-organisme .titlegris {
+    color: #5d5d5d;
+}
+
+.boxname-details p {
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    margin: 0;
+}
+
+.flexbox-organisme {
+    margin: 35px 0 0;
+    padding: 0 0 40px;
+}
+
+.box-organisme {
+    padding: 0 10px;
+}
+
+.image-organisme {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-organisme {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.name-team-organisme {
+    position: relative;
+    overflow: hidden;
+    padding-left: 95px;
+    font-size: 22px;
+    color: #000;
+    font-weight: 500;
+    margin: 15px 0 0;
+    display: block;
+}
+
+.name-team-organisme:before {
+    content: "";
+    background: #cd1b4d;
+    width: 85px;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    top: 15px;
+}
+
+.box-organisme p {
+    font-size: 15px;
+    color: #000;
+    line-height: 27px;
+    margin: 5px 0 0;
+}
+
+.flexbox-organisme .slick-dots li.slick-active button {
+  background-color: #cb033d;
+}
+
+.flexbox-organisme .slick-dots li button {
+  border: 1px solid #cb033d;
+  border-radius: 50%;
+  text-indent: -9999px;
+}
+.flexbox-galerie .slick-dots li.slick-active button {
+    background-color: #cb033d;
+}
+.flexbox-galerie .slick-dots li button {
+border: 1px solid #cb033d;
+border-radius: 50%;
+text-indent: -9999px;
+}
+.flexbox-button {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0;
+}
+.galerie {
+    background: #d8d8d8;
+    padding: 50px 0;
+}
+
+.title-galerie {
+    font-size: 36px;
+    color: #cb043d;
+    display: block;
+    font-weight: 700;
+    line-height: 43px;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.box-galerie {
+    margin: 15px 0 0;
+}
+
+.img-galerie {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+.image-galerie {
+    padding: 0 10px;
+}
+@media screen and (max-width: 768px) {
+.title-organisme, .title-galerie {
+    font-size: 32px;
+    line-height: 38px;
+}
+.organisme {
+    padding: 50px 0 0;
+}
+.galerie {
+    margin: 50px 0 0;
+}
+.name-team-organisme {
+    font-size: 18px;
+}
+}
+@media screen and (max-width: 550px) {
+.img-organisme {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.title-organisme, .title-galerie {
+    font-size: 26px;
+    line-height: 32px;
+}
+.image-galerie {
+    padding: 0;
+}
+}

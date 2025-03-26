@@ -1,0 +1,10 @@
+entity_model.settings:
+    type: config_object
+    label: Settings
+    mapping:
+        override_account_proxy:
+            type: boolean
+            label: 'Make AccountProxyInterface::getAccount return the user entity.'
+        resolve_form_state_argument_type:
+            type: boolean
+            label: 'Resolve FormStateInterface arguments based on both type and argument name'

@@ -1,0 +1,148 @@
+.network {
+    background: #f7f7f7;
+    padding: 70px 0;
+}
+
+.box-contenu-network {
+    padding: 0 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.title-network {
+    font-size: 36px;
+    color: #cb033d;
+    font-weight: 600;
+    line-height: 47px;
+}
+
+.box-contenu-network p {
+    font-size: 16px;
+    color: #000;
+    width: 70%;
+    margin: 20px auto 0;
+}
+.detailsmaps.detailsmaps-network {
+    width: auto;
+}
+
+.flex-maps-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-maps-details .image-bureau {
+    border-radius: 20px;
+    width: 215px;
+    height: auto;
+}
+
+.flex-maps-details .details-adr {
+    margin: 0;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+.title-diagnostic .title-red {
+    color: #cb043d;
+}
+.demande-information {
+    background: url(../images/bg-reclamation.jpg) top center no-repeat;
+    background-size: cover;
+    padding: 70px 0;
+}
+.flexbox-demande-information {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-information {
+    padding: 0 45px 0 15px;
+}
+
+.title-information {
+    font-size: 36px;
+    color: #cb043d;
+    font-weight: 600;
+    line-height: 44px;
+    margin: 0 0 20px;
+    display: block;
+}
+
+.box-information p {
+    font-size: 16px;
+    color: #000;
+    line-height: 30px;
+    text-align: justify;
+    margin: 15px 0 0;
+}
+
+.flexbox-demande-information .form-etude {
+    border-radius: 15px;
+}
+
+.select-cepex {
+    border: 1px solid #717171;
+    border-radius: 35px;
+    padding: 15px;
+    font-weight: 300;
+}
+
+.flexbox-demande-information .form-etude:before {
+    display: none;
+}
+
+.box-contenu-network p {
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+    margin: 20px auto 0;
+}
+
+/**************** Responsive ***************/
+@media screen and (max-width: 1024px) {
+    .box-contenu-network p {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 768px) {
+.box-information {
+    padding: 0 15px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.title-information {
+    font-size: 30px;
+}
+.demande-information {
+    padding: 30px 0;
+}
+.flex-maps-details .details-adr {
+    width: calc(100% - 250px);
+}
+.flex-maps-details .boxadr span {
+    color: #3c3c3c;
+    font-size: 14px;
+}
+.flex-maps-details .image-bureau {
+    height: auto;
+}
+}
+@media screen and (max-width: 480px) {
+    .flex-maps-details .image-bureau {
+        height: 250px;
+        width: 100%;
+    }
+    .flex-maps-details .details-adr {
+        width: 100%;
+    }
+    .title-network, .title-information {
+        font-size: 26px;
+        line-height: 37px;
+    }
+    .network {
+        padding: 30px 0;
+    }
+}

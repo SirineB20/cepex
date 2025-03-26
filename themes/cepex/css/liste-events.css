@@ -1,0 +1,55 @@
+.span-event {
+    position: absolute;
+    background: #cb043d;
+    padding: 10px 20px;
+    top: 22px;
+    left: 12px;
+    border-radius: 0px 20px 20px 0px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.button-event {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-event a {
+    padding: 10px 20px;
+    margin-right: 30px;
+    text-decoration: none;
+    color: white;
+    background: #cb043d;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.background-map {
+    background-image: url(../images/World-Map-a.png);
+    background-position: center;
+    background-size: contain;
+}
+
+th.dow {
+    text-align: center;
+}
+
+th.datepicker-switch {
+    text-align: center;
+}
+
+td.old.day, .day {
+    width: 44px;
+    text-align: center;
+}
+
+
+
+.fil-programme
+{
+    bottom:163px;
+    z-index:1;
+    margin-bottom:-163px;
+}

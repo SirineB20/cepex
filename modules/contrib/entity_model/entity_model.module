@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for the Entity Model module.
+ */
+
+use Drupal\entity_model\Field\TranslatableEntityReferenceFieldItemList;
+use Drupal\entity_model\Field\TranslatableEntityReferenceRevisionsFieldItemList;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function entity_model_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the entity_model module.
+    case 'help.page.entity_model':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Entity Model adds the possibility to create custom, annotation-based entity type and bundle models for entities.') . '</p>';
+      $output .= '<pre><?php
+
+namespace Drupal\mymodule\Entity\Node;
+
+use Drupal\node\Entity\Node;
+
+/**
+ * @Model(
+ *   entity_type = "node",
+ *   bundle = "page",
+ * )
+ */
+class Page extends Node {
+
+  public function getBody(): ?string {
+    return $this->get(\'body\')->processed;
+  }
+
+}
+</pre>';
+      $output .= '<h3>' . t('More Information') . '</h3>';
+      $output .= '<p>' . t('For more information about this module please visit the <a href="@link">module page</a>.', ['@link' => 'https://www.drupal.org/project/entity_model']) . '</p>';
+      return $output;
+  }
+}
+/**
+ * Implements @see hook_entity_type_alter().
+ */
+function entity_model_entity_type_alter(array &$entity_types) {
+  $manager = \Drupal::getContainer()->get('plugin.manager.entity_model.model');
+
+  foreach ($manager->getDefinitions() as $definition) {
+    $entityTypeId = $definition['entity_type'];
+
+    if (!isset($entity_types[$entityTypeId])) {
+      continue;
+    }
+
+    if (isset($definition['bundle'])) {
+      continue;
+    }
+
+    $entity_types[$definition['entity_type']]->setClass($definition['class']);
+  }
+}
+
+/**
+ * Implements @see hook_entity_bundle_info_alter().
+ */
+function entity_model_entity_bundle_info_alter(array &$bundles): void {
+  $manager = \Drupal::getContainer()->get('plugin.manager.entity_model.model');
+
+  foreach ($manager->getDefinitions() as $definition) {
+    $entityTypeId = $definition['entity_type'];
+
+    if (!isset($definition['bundle'])) {
+      continue;
+    }
+
+    $bundle = $definition['bundle'];
+
+    if (!isset($bundles[$entityTypeId][$bundle])) {
+      continue;
+    }
+
+    $bundles[$entityTypeId][$bundle]['class'] = $definition['class'];
+  }
+}
+
+/**
+ * Implements @see hook_field_info_alter().
+ */
+function entity_model_field_info_alter(array &$info): void {
+  if (isset($info['entity_reference'])) {
+    $info['entity_reference']['list_class'] = TranslatableEntityReferenceFieldItemList::class;
+  }
+
+  if (isset($info['entity_reference_revisions'])) {
+    $info['entity_reference_revisions']['list_class'] = TranslatableEntityReferenceRevisionsFieldItemList::class;
+  }
+}

@@ -1,0 +1,19 @@
+.entete-form {
+    margin: 20px 0 0;
+}
+
+.flex-entete-form {
+    background: #cd0f45;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.title-entete-form {
+    font-size: 32px;
+    color: #fff;
+    font-weight: 500;
+}

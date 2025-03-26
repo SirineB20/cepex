@@ -1,0 +1,11 @@
+uuid: a2eec0a4-ca94-4560-b261-adee7d3fc9fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_promotionnelle
+id: taxonomy_term.categorie_promotionnelle
+target_entity_type_id: taxonomy_term
+target_bundle: categorie_promotionnelle
+default_langcode: site_default
+language_alterable: false

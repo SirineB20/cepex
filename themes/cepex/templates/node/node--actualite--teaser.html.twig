@@ -1,0 +1,43 @@
+
+  {# Image de l'actualité #}
+  {% if content.field_images is defined and content.field_images %}
+    {% set image_url = content.field_images.0['#markup'] %}
+    <div class="boximg-activites boximg-activites-export">
+      <img src="{{ image_url }}" alt="" class="img-activites img-export" />
+    </div>
+  {% endif %}
+
+  <div class="flex-adresse-date">
+    {# Date de l'actualité #}
+    {% if content.field_date is defined and content.field_date %}
+      <div class="boxdate-activites">
+       <span> {{ content.field_date }}</span>
+      </div>
+    {% endif %}
+
+    {# Lieu de l'actualité #}
+    {% if content.field_lieu is defined and content.field_lieu %}
+      <div class="adresse-activites">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>{{ content.field_lieu }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="title-activites-export">
+    {# Titre de l'actualité #}
+    <span>{{ label }}</span>
+  </div>
+
+  <div class="flexbox-button">
+    <button type="button" class="btn-support" style="width: max-content;
+    float: left;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px;" onclick="window.location.href='{{ url }}';">
+      <a style="font-size: 14px !important;
+    display: contents !important;">Lire la suite</a>
+      <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>

@@ -1,0 +1,8 @@
+services:
+    entity_model.commands:
+        class: Drupal\entity_model\Commands\EntityModelCommands
+        arguments:
+            - '@entity_type.manager'
+            - '@plugin.manager.entity_model.model'
+        tags:
+            - { name: drush.command }

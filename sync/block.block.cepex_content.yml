@@ -1,0 +1,39 @@
+uuid: ad26e092-7690-40ed-86b8-6c3d0881da18
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - system
+    - taxonomy
+  theme:
+    - cepex
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: cepex_content
+theme: cepex
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      article: article
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+    bundles:
+      actualites: actualites
+      categorie_promotionnelle: categorie_promotionnelle

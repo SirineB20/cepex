@@ -1,0 +1,647 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+.tab-content {
+  width: 100%;
+}
+
+.tabs-content .box {
+  display: none;
+}
+
+.tabs-content .box.active {
+  display: block;
+}
+.section-support.nobg {
+  margin: -60px 0px 0;
+  /*padding: 30px 0px 0;*/
+  background: #fff;
+  background-image: none;
+}
+
+@media screen and (max-width: 768px) {
+
+  .title-support {
+    height: 92px;
+  }
+}
+/**
+ * @file
+ * better_exposed_filters.css
+ */
+
+/*
+ * Basic styling for features added by Better Exposed Filters
+ */
+ #edit-field-soustype-target-id-all
+ {
+  display: none;}
+
+ .form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15sease-in-out, box-shadow 0.15sease-in-out;
+}
+.form-text {
+  margin-top: 0;
+  font-size: 0.875em;
+  color: var(--bs-secondary-color);
+}
+ .bef-exposed-form .form--inline .form-item {
+  float: none;
+}
+.bef-exposed-form .form--inline > .form-item,
+.bef-exposed-form .form--inline .js-form-wrapper > .form-item {
+  float: left; /* LRT */
+}
+.bef-exposed-form .form--inline .bef--secondary {
+  clear: left;
+}
+
+.bef-exposed-form .noUi-vertical {
+  height: 150px;
+}
+.form-item, .form-actions {
+  margin-bottom: unset;
+}
+
+.bloc-activites {
+  padding: 50px 0;
+  background: #f7f7f7;
+  margin: 60px 0 0;
+}
+
+.flexbox-activites {
+  display: flex;
+  flex-direction: warp;
+}
+
+.boxactiivtes {
+  width: 33.3333%;
+  padding: 0 15px;
+  margin: 30px 0 0;
+}
+
+.bgwhite-actiivtes {
+  padding: 35px 20px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.boxfiltre-opportinutes {
+  margin: 40px 0 0;
+}
+.boximg-activites {
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  overflow: hidden; 
+}
+
+.img-activites {
+  max-width: 100%; /* Empêche l'image de dépasser son conteneur */
+  height: auto; /* Garde les proportions de l'image */
+  object-fit: contain; /* Affiche l'image en entier sans la rogner */
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 30px;
+}
+
+
+.details-activites {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-activites {
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+  color: #323232;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.title-activites:before {
+  content: "";
+  background: #323232;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.btn-activites {
+  margin-top: 50px;
+}
+.bgwhite-actiivtes:before {
+  content: "";
+  background: #cb033d;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 7px;
+  z-index: 0;
+  transition: 0.5s ease all;
+}
+.bgwhite-actiivtes:after {
+  content: "";
+  background: #cb033d;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7px;
+  height: 35%;
+  z-index: 0;
+  transition: 0.5s ease all;
+}
+
+.boxactiivtes:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 35%;
+  height: 7px;
+  z-index: 1;
+  transition: 0.5s ease all;
+}
+.boxactiivtes:after {
+  content: "";
+  background: #cb033d;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  height: 35%;
+  z-index: 1;
+  transition: 0.5s ease all;
+}
+.boxactiivtes:hover .bgwhite-actiivtes:before {
+  width: 100%;
+}
+.boxactiivtes:hover .bgwhite-actiivtes:after {
+  height: 100%;
+}
+.boxactiivtes:hover:before {
+  width: calc(100% - 30px);
+}
+.boxactiivtes:hover:after {
+  height: 100%;
+}
+.bloc-activites-export {
+  padding: 50px 0;
+}
+/* Filtres */
+
+.filter-news ul {
+  /* On enlève les puces et marges par défaut */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* On utilise Flexbox pour organiser les éléments */
+  display: flex;
+  flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+  gap: 20px;       /* Espace horizontal/vertical entre les éléments */
+  justify-content: center; /* Centre les éléments horizontalement */
+}
+
+/* Chaque élément de liste peut rester en inline-flex
+   pour que le lien prenne toute la place */
+.filter-news li {
+  display: inline-flex;
+}
+
+/* Style pour les liens NON sélectionnés */
+.filter-news a.bef-link {
+  text-align: center;
+  display: flex;
+  flex-direction: column;    /* Empile le contenu verticalement si besoin */
+  align-items: center;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 0;          /* Retirez ou ajustez selon l'espacement désiré */
+  color: #000;
+  text-decoration: none;     /* Supprime le soulignement du lien */
+  background-color: #fff;    /* Couleur de fond (optionnelle) */
+  min-width: 120px;          /* Largeur minimale pour un rendu plus homogène */
+}
+
+/*pager*/
+.paginator-guide .page-link {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 17px;
+  margin: 0 10px;
+}
+
+
+.paginator-guide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0 0;
+}
+
+
+.paginator-guide .page-item.active .page-link {
+  background: #e4e4e4;
+  border-color: #e4e4e4;
+  color: #000;
+}
+
+.paginator-guide .page-link:hover {
+  background: #cb033d;
+  border-color: #cb033d;
+  color: #fff;
+}
+.paginator-guide .page-link {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  margin: 0 5px;
+} 
+
+/* Applique la couleur #cb033d au lien sélectionné */
+.filter-news a.bef-link--selected {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  background: #cb033d;
+  color: #fff;
+}
+
+.flexbox-filtre-activites {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #010101;
+  padding: 0 0 25px;
+  margin-bottom: 35px;
+}
+.form--inline.clearfix {
+  display: flex;          /* Aligne en flex */
+  flex-wrap: wrap;        /* Passe à la ligne si nécessaire */
+  align-items: center;    /* Centre verticalement */
+  gap: 20px;              /* Espace entre les champs */
+  margin-bottom: 20px;
+}
+.hide-if-not-selected {
+  display: none;
+}
+
+
+/* Permet de "nettoyer" tout float interne */
+.form--inline.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+.bouton-filtre {
+  color: #000;
+  font-size: 20px;
+  display: inline-flex;
+  padding: 10px 20px;
+  border-radius: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s ease all;
+  background: transparent;
+  font-weight: 400;
+  align-items: center;
+  margin: 0 25px;
+}
+
+.bouton-filtre:hover {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  background: #cb033d;
+  color: #fff;
+}
+
+.boxactiivtes.boxshadow-activites {
+  margin-bottom: 30px;
+  padding: 0 5px;
+}
+
+.boxactiivtes.boxshadow-activites .bgwhite-actiivtes {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  margin: 15px;
+  height: 94%;
+}
+
+.boxactiivtes.boxshadow-activites:before {
+  left: 20px;
+  bottom: 15px;
+}
+
+.boxactiivtes.boxshadow-activites:after {
+  left: 20px;
+  bottom: 15px;
+}
+
+.boxactiivtes.boxshadow-activites:hover:before
+ {
+  width: calc(100% - 40px);
+}
+
+.boxactiivtes.boxshadow-activites:hover:after
+ {
+  height: calc(100% - 30px);
+}
+.flexbox-button {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 0;
+  float: right;
+}
+.img-activites .img-export {
+  height: 250px;
+}
+
+.adresse-activites {
+  display: flex;
+  margin: 10px 0 0;
+  width: calc(100% - 80px);
+  height: 70px;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.adresse-activites i {
+  color: #cb033d;
+  margin-right: 1px;
+}
+
+.adresse-activites span {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.boxdate-activites {
+  position: absolute;
+  top: -61px;
+  background: #cb033d;
+  height: 80px;
+  width: 80px;
+  color: #fff;
+  right: 0;
+  padding: 5px;
+  font-size: 14px;
+  display: flex
+;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+.flex-adresse-date {
+  position: relative;
+}
+
+.title-activites-export {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 0;
+  line-height: 28px;
+}/*temoignage*/
+/* testimonial.css */
+.temoignage {
+  margin-bottom: 30px;
+}
+
+.succes-stories {
+  background: url("../images/bg-succes-storie.jpg") top center no-repeat;
+  margin: 30px 0 0;
+  padding: 60px 0;
+  background-size: cover;
+}
+
+.titre-success-storie {
+  text-align: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.titre-success-storie span {
+  display: block;
+  font-size: 45px;
+  color: #3f3f3f;
+  font-weight: 700;
+}
+
+.box-succes-stories {
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+.fancybox-video {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.fancybox-video i {
+  color: #fe0002;
+  font-size: 70px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 22;
+}
+
+.fancybox-video.fancybox-succes i {
+  background: rgb(203 3 61 / 50%);
+  display: inline-flex;
+  width: 80px;
+  height: 45px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.contnu-succes-storie {
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-succes-storie {
+  display: block;
+  font-size: 20px;
+  color: #303030;
+  font-weight: 500;
+  margin: 0 0 120px;
+}
+
+.tooltip-popup {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 300px;
+  z-index: 1000;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.contnu-succes-storie p {
+  font-size: 15px;
+  color: #000;
+  line-height: 28px;
+  text-align: justify;
+  margin: 0;
+}
+
+.desc-succes-storie p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  cursor: pointer;
+}
+
+.image-succes-storie {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-succes {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.bgwhite-success {
+  background: #fff;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  margin: 20px 10px;
+}
+
+/* RTL support */
+html[lang="ar"] .image-succes-storie {
+  margin-right: 0;
+  margin-left: 20px;
+}
+/* Barre de navigation des actualités */
+.view-filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.view-filters span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.view-filters a {
+  color: black;
+  padding: 8px 15px;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+.view-filters a:hover {
+  background: #cb033d;
+}
+.date-picker,
+.search-bar {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+/* Catégories */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.category {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.category:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+}
+@media screen and (max-width: 992px) {
+  .boxactiivtes {
+      width: 100%;
+      margin: 30px 0 0;
+  }
+  .boxactiivtes.boxshadow-activites {
+      width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .details-activites {
+      flex-direction: column;
+  }
+  .btn-activites {
+      margin-top: 30px;
+  }
+  .bgwhite-actiivtes {
+      padding: 20px;
+  }
+  .boxactiivtes.boxshadow-activites {
+      width: 100%;
+      margin-bottom: 0px;
+  }
+  .title-activites-export {
+      font-size: 16px;
+      line-height: 22px;
+  }
+  .adresse-activites span {
+      font-size: 14px;
+  }
+}

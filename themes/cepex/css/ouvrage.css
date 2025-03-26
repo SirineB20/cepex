@@ -1,0 +1,61 @@
+.flexboxfiltre-secteur {
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.boximg-guie.boximg-secteur {
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.boximg-guie.boximg-secteur .img-guide {
+    height: 205px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.titre-guide.text-inherit {
+    text-transform: inherit;
+}
+.btn-cepex.btn-secteur i {
+    margin-left: 10px;
+}
+
+.bgwhite-guide.bgwhite-secteur {
+    border-radius: 0;
+    padding: 0;
+}
+
+.bgred-secteur {
+    background: #cd1b4d;
+    width: 100%;
+    padding: 15px;
+}
+
+.bgred-secteur span {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.boximg-guie.boximg-secteur {
+    padding: 15px;
+}
+
+.bgwhite-guide.bgwhite-secteur .details-guide {
+    padding: 15px;
+    margin: 0;
+}
+.guide-secteurs {
+    padding: 50px 0;
+}
+@media screen and (max-width: 768px) {
+.boxguide {
+    width: 100%;
+}
+.flexboxfiltre-secteur {
+    margin: 10px 0;
+}
+}

@@ -1,0 +1,238 @@
+.presentation-guichet {
+    padding: 50px 0;
+}
+
+.boxflex-guichet-unique {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.title-guichet-unique {
+    display: block;
+    font-size: 38px;
+    font-weight: 600;
+    padding: 0px 0 20px;
+    line-height: 46px;
+    color: #cb033d;
+}
+
+.image-guichet-unique {
+    padding: 0 15px;
+}
+
+.box-guichet-unique {
+    padding: 0 15px;
+}
+
+.box-guichet-unique p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    line-height: 30px;
+    margin: 0;
+}
+
+.details-info-guichet p {
+    display: flex;
+    align-items: center;
+    color: #000;
+    margin: 10px 0 0;
+}
+
+.details-info-guichet p i {
+    background: #cb073f;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.details-info-guichet {
+    margin: 20px 0 0;
+}
+.img-guichet-unique {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.equipes-guichet {
+    padding: 50px 0 120px;
+    background: #cb043d;
+}
+
+.title-equipe-guichet {
+    display: block;
+    font-size: 38px;
+    font-weight: 600;
+    padding: 0px 0 20px;
+    line-height: 46px;
+    color: #fff;
+    text-align: center;
+}
+
+.equipes-guichet p {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0;
+}
+
+.tab-nav.tab-nav-guichet {
+    box-shadow: none;
+    margin: 30px 0 0;
+}
+
+.tab-nav.tab-nav-guichet .tab-button.active {
+    background: transparent;
+    font-weight: normal;
+}
+
+.tab-nav.tab-nav-guichet .tab-button {
+    color: #d0c9c9;
+    margin: 0;
+    width: 33.3333%;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.tab-nav.tab-nav-guichet .tab-button:before {
+    content: "";
+    background: #fff;
+    width: 0.5px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.tab-nav.tab-nav-guichet .tab-button:hover {
+    background: transparent;
+    font-weight: normal;
+}
+
+.tab-nav.tab-nav-guichet .tab-button:last-child:before {
+    display: none;
+}
+.bloc-tabs.bloc-tabs-guichet {
+    margin-top: -120px;
+}
+
+.tab-content.tabs-content-guichet {
+    background: #fff;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 30px 45px;
+}
+
+.title-tab-guichet {
+    font-size: 25px;
+    font-weight: 600;
+    color: #cb043d;
+    display: block;
+    text-align: center;
+}
+
+.flex-infos-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 0;
+}
+
+.boxinfo-tabs p {
+    display: flex;
+    align-items: center;
+    color: #000;
+    margin: 10px 0 0;
+}
+
+.boxinfo-tabs p i {
+    background: #cb073f;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.boxinfo-tabs {
+    margin: 0 10px;
+}
+
+.details-infos-tabs {
+    margin-top: 60px;
+}
+
+.details-infos-tabs p {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin: 35px 0;
+}
+
+.details-infos-tabs ul li:before {
+    content: "\f061";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #cb043d;
+    margin-right: 5px;
+}
+
+.details-infos-tabs ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.details-infos-tabs ul li {
+    font-size: 15px;
+    margin: 10px 0 0;
+}
+@media screen and (max-width: 992px) {
+.tab-nav.tab-nav-guichet .tab-button {
+    width: 100%;
+}
+.tab-nav.tab-nav-guichet .tab-button:before {
+    display: none;
+}
+.tab-nav.tab-nav-guichet {
+    flex-wrap: wrap;
+}
+.image-guichet-unique {
+    width: 100%;
+    order: 2;
+}
+.box-guichet-unique {
+    width: 100%;
+}
+.img-guichet-unique {
+    margin: 30px auto 0;
+}
+}
+@media screen and (max-width: 550px) {
+.flex-infos-tabs {
+    flex-direction: column;
+}
+.tab-content.tabs-content-guichet {
+    padding: 30px 20px;
+}
+.title-tab-guichet {
+    font-size: 20px;
+}
+.title-guichet-unique, .title-equipe-guichet {
+    font-size: 28px;
+    line-height: 32px;
+}
+}

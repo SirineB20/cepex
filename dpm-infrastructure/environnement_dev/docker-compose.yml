@@ -1,0 +1,79 @@
+version: '3'
+services:
+  db-dpm:
+    build:
+      context: ./mysql
+    container_name: mysql-dpm-dev
+    restart: always
+    volumes:
+      - ../../../db_dpm:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=dpm
+    ports:
+      - "3308:3306"
+    networks:
+      default9dpm:
+        ipv4_address: 10.30.6.2
+
+  php-dpm:
+    build:
+      context: .
+    container_name: php-dpm-dev
+    restart: always
+    environment:
+      DEV_USERNAME: "${DEVELOPPER:-developer}"
+      MYSQL_HOST: 10.30.6.2
+      MYSQL_PORT: 3306
+    depends_on:
+      - db-dpm
+    volumes:
+      - ../..:/var/www/html
+    extra_hosts:
+      - "dpm.local:127.0.0.1"
+    networks:
+      default9dpm:
+        ipv4_address: 10.30.6.3
+
+  web-dpm:
+    image: nginx:1.21.0
+    container_name: nginx-dpm-dev
+    restart: always
+    depends_on:
+      - db-dpm
+      - php-dpm                      # Ajout de dépendance pour php-dpm
+    ports:
+      - "8087:80"
+      - "8088:443"
+    volumes:
+      - ../..:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    extra_hosts:
+      - "dpm.local:127.0.0.1"
+    environment:
+      DEV_USERNAME: "${DEVELOPPER:-developer}"  # Utilise une valeur par défaut si non défini
+    networks:
+      default9dpm:
+        ipv4_address: 10.30.6.4
+
+  phpmyadmin-dpm:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-dpm-dev
+    ports:
+      - "8885:80"
+    environment:
+      PMA_HOST: 10.30.6.2
+      PMA_PORT: 3306
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+    networks:
+      default9dpm:
+        ipv4_address: 10.30.6.5
+
+networks:
+  default9dpm:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.30.6.0/24
+          gateway: 10.30.6.1

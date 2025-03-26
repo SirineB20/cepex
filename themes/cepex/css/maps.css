@@ -1,0 +1,178 @@
+
+.bloc-bureaux {
+  background-image: linear-gradient(to left, #ceced2, #d2d2d6, #d7d7da, #dbdbde, #e0e0e2, #e0e0e2, #e0e0e2, #e0e0e2, #dbdbde, #d7d7da, #d2d2d6, #ceced2);
+  padding: 30px 0;
+}
+#chartdiv {
+  height: 100vh;
+}
+.flexbox-maps {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boxmaps {
+  width: 50%;
+}
+
+.detailsmaps {
+  width: 50%;
+}
+
+.contenu-pays {
+  display: flex;
+  flex-direction: column;
+}
+
+.maps-details {
+  display: none;
+}
+
+.maps-details.contenu-pays-open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.titlecontenu {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.titlecontenu span {
+  display: inline-block;
+  color: #3f3f3f;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.titlecontenu span.colorred {
+  color: #cb043d;
+}
+.image-bureau {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  height: 350px;
+}
+
+.img-bureau {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contenu-sociaux-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.flexbox-sociaux-maps {
+  background: #232c33;
+  opacity: 0.60;
+  padding: 10px 0;
+}
+
+.ul-sociaux {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.ul-sociaux li {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.ul-sociaux li:first-child {
+  margin-left: 0;
+}
+
+.ul-sociaux li a {
+  color: #232c33;
+}
+
+.name-network {
+  position: relative;
+  overflow: hidden;
+}
+
+.name-network span {
+  display: inline-block;
+  background: #fff;
+  color: #232c33;
+  font-size: 20px;
+  padding: 6px 15px;
+  font-weight: 600;
+}
+.details-adr {
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+.title-adr {
+  display: block;
+  color: #aa3c3c;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.boxadr {
+  margin: 10px 0 0;
+}
+
+.boxadr span {
+  color: #3c3c3c;
+  font-size: 16px;
+}
+
+.boxadr span.strong {
+  font-weight: 600;
+  padding-right: 5px;
+}
+
+@media screen and (max-width: 992px) {
+  .boxmaps {
+    width: 100%;
+}
+.detailsmaps {
+  width: 100%;
+  margin-top: 30px;
+}
+.image-bureau {
+  height: 280px;
+}
+.titlecontenu {
+  margin-bottom: 15px;
+}
+}
+@media screen and (max-width: 768px) {
+  #chartdiv {
+    height: 450px;
+}
+}
+
+@media screen and (max-width: 480px) {
+  #chartdiv {
+    height: 350px;
+}
+.titlecontenu span {
+  font-size: 20px;
+}
+}

@@ -1,0 +1,355 @@
+.banner-interne.banner-decouvrir {
+    background: transparent;
+}
+
+.img-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 375px;
+    width: 100%;
+}
+
+.banner-decouvrir .title-interne .titlewhite {
+    color: #fff;
+}
+
+.banner-decouvrir .box-foprodex p {
+    color: #fff;
+}
+
+.banner-decouvrir .box-fil-ariane ul li {
+    color: #fff;
+}
+
+.banner-decouvrir .box-fil-ariane ul li a:hover {
+    color: #fff;
+}
+.images-banner {
+    width: 100%;
+    height: 375px;
+    object-fit: cover;
+}
+.chiffres-tunisie {
+    padding: 50px 0 30px;
+    background: #f5f5f5;
+}
+
+.flexboxchiffres {
+    width: 75%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.title-tunisie-chiffre {
+    font-size: 36px;
+    color: #cb043d;
+    display: block;
+    font-weight: 700;
+    line-height: 43px;
+    margin: 0 0 25px;
+}
+
+.flexboxchiffres p {
+    font-size: 16px;
+    color: #000;
+    line-height: 28px;
+    text-align: center;
+}
+
+.boxflex-chiffres-tunisie {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-chiffre-tunisie {
+    width: 25%;
+    padding: 60px 20px 20px;
+}
+
+.flex-chiffre-tunisie {
+    display: flex;
+    align-items: center;
+}
+
+.icon-chiffre-tunisie {
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-decouvrir-tunisie {
+    width: 40px;
+    height: auto;
+    display: block;
+}
+
+.flex-chiffre-tunisie .counter {
+    padding-left: 5px;
+    font-size: 46px;
+    font-weight: 700;
+    color: #4d4d4d;
+    line-height: 46px;
+}
+
+.flex-chiffre-tunisie .plus {
+    font-size: 36px;
+    color: #cb043d;
+}
+
+.txt-chiffre-tunisie {
+    display: block;
+    color: #cb043d;
+    font-weight: 500;
+    font-size: 17px;
+    margin: 15px 0 0;
+    line-height: 24px;
+}
+/****** Maps ***********/
+
+path#region-9 {
+    fill: #092e72;
+}
+
+.region-content h5 span {
+    text-transform: math-auto;
+}
+
+.detail-tun {
+    background: #f5f5f5;
+    padding: 30px;
+}
+
+#tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 17px;
+
+    h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+svg {
+    width: 75%;
+    height: auto;
+}
+
+.maps-tun path {
+    fill: #de0045;
+    transition: fill 0.3s
+}
+
+.maps-tun path:hover {
+    fill: #ccc !important;
+    transition: fill 0.3s;
+    cursor: pointer;
+}
+
+path#region-12 {
+    fill: #17345f;
+}
+
+path#region-1 {
+    fill: #e54d5e;
+}
+path#region-12 {
+    fill: #e54d5e;
+}
+path#region-2,
+path#region-3,
+path#region-4,
+path#region-6,
+path#region-8,
+path#region-9,
+path#region-10,
+path#region-7,
+path#region-22,
+path#region-23,
+path#region-18,
+path#region-19 {
+    fill: #a72339;
+}
+
+path#region-5,
+path#region-11,
+path#region-13,
+path#region-15,
+path#region-20 {
+    fill: #de0045;
+}
+
+path#region-14,
+path#region-16,
+path#region-17,
+path#region-21 {
+    fill: #ecb1bc;
+}
+
+
+.flexbox-maps-decouvrir {
+    display: flex;
+    flex-wrap: wrap;
+}
+.maps-decouvrir-tunisie {
+    position: inherit;
+    padding: 60px 0;
+}
+
+.maps-tun path {
+    stroke: rgb(255, 255, 255);
+    opacity: 1;
+    stroke-opacity: 1;
+    stroke-width: 1.75;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+}
+.title-select-region {
+    font-size: 16px;
+    display: inline-block;
+    color: #434444;
+    font-weight: 500;
+}
+
+.maps-tun {
+    padding: 0 15px;
+}
+.title-details-region {
+    font-size: 36px;
+    color: #cb043d;
+    display: block;
+    font-weight: 700;
+    line-height: 43px;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.detail-tun p {
+    color: #363636;
+    font-size: 17px;
+    text-align: justify;
+    line-height: 30px;
+}
+.progress-decouvrir .item_bar {
+	position: relative;
+	background: transparent;
+	border: 2px solid #848484;
+	border-radius: 0;
+	height: 15px;
+}
+
+.progress-decouvrir  .progress {
+	background: #db0f3b;
+	border-radius: 0;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	width: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 0;
+	transition: width 100ms ease;
+}
+.progress-decouvrir {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background: transparent;
+    border: 2px solid #db0f3b;
+    padding: 10px 30px;
+    border-radius: 25px;
+    width: calc(100% - 135px);
+    margin-left: -15px;
+}
+
+.flex-decouvrir-pourcentage {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 30px 0 0;
+}
+
+.pourcentage-progress {
+    width: 150px;
+    background: #db0f3b;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 20px 15px;
+}
+.title-progress {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+    display: block;
+    margin: 0 0 5px;
+}
+.details-contenu-decouvrir {
+    background: #e4e4e4;
+    padding: 30px;
+    margin: 35px 0 0;
+    border-radius: 15px;
+}
+
+.title-contenu-decouvrir {
+    display: block;
+    font-size: 20px;
+    color: #363636;
+    font-weight: 600;
+}
+
+.details-contenu-decouvrir p {
+    color: #363636;
+    font-size: 16px;
+    margin: 15px 0 0;
+}
+
+@media screen and (max-width: 992px) {
+.col-chiffre-tunisie {
+    width: 33.333%;
+}
+.flexboxchiffres {
+    width: 100%;
+}
+.title-tunisie-chiffre, .title-details-region {
+    font-size: 30px;
+}
+}
+@media screen and (max-width: 768px) {
+.col-chiffre-tunisie {
+    width: 50%;
+}
+.detail-tun {
+    background: #f5f5f5;
+    padding: 30px 15px;
+}
+}
+@media screen and (max-width: 550px) {
+.col-chiffre-tunisie {
+    width: 100%;
+    padding: 20px 0px;
+}
+.pourcentage-progress {
+    width: 110px;
+    border-radius: 25px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 15px;
+}
+.progress-decouvrir {
+    width: calc(100% - 95px);
+    margin-left: -15px;
+}
+}

@@ -1,0 +1,7 @@
+services:
+    entity_model.argument_resolver:
+        class: Drupal\entity_model\Controller\ArgumentResolver\ModelValueResolver
+
+    plugin.manager.entity_model.model:
+        class: Drupal\entity_model\ModelPluginManager
+        parent: default_plugin_manager

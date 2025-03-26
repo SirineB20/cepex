@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Template for rendering Better Exposed Filters (BEF) links with nesting.
+ *
+ * Available variables:
+ * - classes: Array of CSS classes to apply to the container.
+ * - is_nested: Boolean indicating if the links are nested.
+ * - hiddens: Array of hidden input elements.
+ * - attributes: HTML attributes for the container element.
+ * - children: Array of child elements to render.
+ * - element: The parent element containing the children.
+ * - selected: Array of selected child elements.
+ * - depth: Array indicating the depth of each child element.
+ */
+#}
+
+{# Définition des classes CSS pour le conteneur #}
+{%
+  set classes = [
+    'bef-links',
+    'border-top',
+    is_nested ? 'bef-nested'  # Ajoute 'bef-nested' si is_nested est vrai
+  ]
+%}
+
+{# Définition de la variable is_nested à vrai #}
+{% set is_nested = true %}
+
+{# Boucle sur les éléments cachés pour les rendre en tant que champs cachés #}
+{% for name, value in hiddens %}
+  <input type="hidden" name="{{ name }}" value="{{ value }}" />
+{% endfor %}
+
+{# Conteneur principal avec les classes et attributs appropriés #}
+<div{{ attributes.removeClass('form-select').addClass(classes) }}>
+  {# Initialisation du niveau de nesting actuel à 0 #}
+  {% set current_nesting_level = 0 %}
+
+  {# Boucle sur chaque enfant dans children #}
+  {% for child in children %}
+    {# Récupération de l'élément enfant #}
+    {% set item = attribute(element, child) %}
+
+    {# Vérification si l'enfant est sélectionné et mise à jour du niveau de nesting #}
+    {% if child in selected %}
+      {% set new_nesting_level = attribute(depth, child) ?? 0 %}
+    {% endif %}
+
+    {# Mise à jour du niveau de nesting pour l'enfant #}
+    {% set new_nesting_level = attribute(depth, child) ?? 0 %}
+
+    {# Inclusion du template pour rendre l'élément enfant #}
+    {% include '@better_exposed_filters/bef-nested-elements.html.twig' %}
+
+    {# Mise à jour du niveau de nesting actuel #}
+    {% set current_nesting_level = new_nesting_level %}
+  {% endfor %}
+</div>

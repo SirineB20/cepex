@@ -1,0 +1,352 @@
+.banner-interne.banner-interne-offre {
+    background: transparent;
+    height: 550px;
+}
+
+.image-banner {
+    height: 550px;
+}
+
+.image-banner .img-banner {
+    height: 550px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-banner:before {
+    content: "";
+    background: rgb(0 0 0 / 30%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.absolute-banner-offre {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.contenu-banner.banner-offre {
+    padding: 0;
+    flex-direction: column;
+    text-align: center;
+}
+
+.title-interne .colorwhite {
+    color: #fff;
+}
+
+.box-offre p {
+    background: rgb(255 255 255 / 70%);
+    width: 80%;
+    margin: 20px auto 0;
+    padding: 15px;
+    font-size: 16px;
+    color: #000;
+    line-height: 32px;
+}
+
+.boxflex-chiffres-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0 0;
+}
+
+.col-chiffre-banner {
+    width: 33.3333%;
+}
+
+.flex-chiffre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-chiffre .counter {
+    font-size: 44px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.flex-chiffre .plus {
+    color: #e0e0e0;
+    font-size: 45px;
+}
+
+.col-chiffre-banner .txt-chiffre {
+    color: #fff;
+    margin: 5px 0 0;
+    display: block;
+}
+
+.box-fil-ariane.fil-ariane-offre {
+    padding: 70px 0 20px;
+}
+
+.box-fil-ariane.fil-ariane-offre ul li {
+    color: #fff;
+}
+
+.box-fil-ariane.fil-ariane-offre ul li a {
+    color: #fff;
+}
+
+.section-offre {
+    padding: 80px 0 0;
+}
+
+.flexbox-service-offre {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexbox-service-offre .nav {
+    border: 0;
+}
+
+.flexbox-service-offre .nav li a {
+    border: 0;
+    color: #000;
+}
+
+.flexbox-service-offre .nav li  .title-services {
+    width: 100%;
+    font-size: 18px;
+}
+
+.flexbox-service-offre .nav li .icone-service img {
+    height: 40px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.flexbox-service-offre .nav li .icone-service {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardbox-offre .card-services {
+    padding: 50px 20px 10px 20px;
+}
+
+.flexbox-service-offre .nav li .nav-link.active .card-services {
+    background: #cb043d;
+    color: #fff;
+}
+.title-dossier.titlecolor {
+    text-transform: uppercase;
+    color: #686868;
+}
+
+.details-offre {
+    background: #f3f3f5;
+}
+
+.img-textille {
+    width: 100%;
+    height: 415px;
+    object-fit: cover;
+}
+
+.details-offre .boxflex-dossier {
+    align-items: flex-start;
+}
+
+.boxcontenu-offre {
+    margin: 35px 0 0;
+}
+
+.boxcontenu-offre p {
+    color: #4e4e4e;
+    font-size: 15px;
+    line-height: 28px;
+    text-align: justify;
+    margin: 0;
+}
+.boxvideo {
+    position: relative;
+    overflow: hidden;
+    margin: 50px 0 0;
+}
+.title-video {
+    color: #686868;
+    display: block;
+    font-size: 36px;
+    font-weight: 600;
+    padding: 0px 0 15px;
+    text-align: center;
+}
+.subtitle-presenation {
+    display: inline-block;
+    background: #cb043d;
+    clip-path: polygon(70% 0%, 85% 50%, 70% 100%, 0% 100%, 10% 50%, 0% 0%);
+    padding: 5px 65px 5px 30px;
+    color: #fff;
+    font-size: 17px;
+    margin: 0 0 15px;
+}
+/***************** Swiper ***************/
+#tranding .tranding-slider {
+    height: 530px;
+    padding: 2rem 0;
+    position: relative;
+  }
+  
+  @media (max-width:500px) {
+    #tranding .tranding-slider {
+      height: 31.5rem;
+    }
+  }
+  
+  .tranding-slide {
+    width: 550px;
+    height: 400px;
+    position: relative;
+  }
+  
+  @media (max-width:500px) {
+    .tranding-slide {
+      width: 19.6rem !important;
+      height: 25.2rem !important;
+    }
+    .tranding-slide .tranding-slide-img img {
+      width: 19.6rem !important;
+      height: 25.2rem !important;
+    }
+  }
+  
+  .tranding-slide .tranding-slide-img img {
+    width: 550px;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .tranding-slide .tranding-slide-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .tranding-slide-content .food-price {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: #fff;
+  }
+  
+  .tranding-slide-content .tranding-slide-content-bottom {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    color: #fff;
+  }
+  
+  .food-rating {
+    padding-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .rating ion-icon {
+    color: #000;
+  }
+  
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right {
+    display: none;
+  }
+  
+  .tranding-slider-control {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tranding-slider-control .slider-arrow ion-icon {
+    font-size: 2rem;
+    color: #222224;
+  }
+  
+  .tranding-slider-control .slider-arrow::after {
+    content: '';
+  }
+  
+  .tranding-slider-control .swiper-pagination {
+    position: relative;
+    width: 100%;
+    bottom: 20px;
+  }
+  
+  .tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 1px solid #cb033d;
+    opacity: 1;
+  }
+  
+  .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+    background: #cb033d;
+  }
+  .tranding-slide-img .fancybox-videos i {
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 60px;
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+.box-offre p {
+    width: 100%;
+    margin: 0;
+}
+}
+@media screen and (max-width: 768px) {
+.col-chiffre-banner {
+    width: 100%;
+}
+.absolute-banner-offre {
+    top: 30px;
+}
+.image-banner .img-banner {
+    height: 630px;
+}
+.banner-interne.banner-interne-offre {
+    background: transparent;
+    height: auto;
+}
+.image-banner {
+    height: auto;
+}
+.box-offre p {
+    height: 88px;
+    overflow: hidden;
+}
+.flexbox-service-offre .nav-item {
+    width: 50%;
+}
+}
+
+@media screen and (max-width: 550px) {
+.flexbox-service-offre .nav-item {
+    width: 100%;
+}
+}
