@@ -13,6 +13,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\file\FileRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\user\Entity\User;
 
 
 /**
@@ -346,7 +347,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
         // After checking all fields, see if we have both required values
         if ($found_email && $found_matricule) {
           // Generate a random password
-          $password = 123;  // 16 characters length password
+          $password = bin2hex(random_bytes(8));  // 16 characters length password
           
           // Create user
           $user = User::create([
