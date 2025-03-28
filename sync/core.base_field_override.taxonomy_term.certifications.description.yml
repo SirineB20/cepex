@@ -1,0 +1,21 @@
+uuid: 395f15b7-823d-48ca-be4e-c5562933b8dd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.certifications
+  module:
+    - text
+id: taxonomy_term.certifications.description
+field_name: description
+entity_type: taxonomy_term
+bundle: certifications
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

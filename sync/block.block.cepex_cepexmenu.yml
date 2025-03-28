@@ -1,0 +1,20 @@
+uuid: 20ac6176-34a1-4a7a-8032-2dc98e73b52c
+langcode: en
+status: false
+dependencies:
+  module:
+    - tb_megamenu
+  theme:
+    - cepex
+id: cepex_cepexmenu
+theme: cepex
+region: header_bottom
+weight: -7
+provider: null
+plugin: 'tb_megamenu_menu_block:cepexmenu'
+settings:
+  id: 'tb_megamenu_menu_block:cepexmenu'
+  label: cepexMenu
+  label_display: visible
+  provider: tb_megamenu
+visibility: {  }

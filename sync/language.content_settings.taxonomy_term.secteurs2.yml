@@ -1,0 +1,11 @@
+uuid: 1fa2e5bd-8f27-41dd-9143-bf87dd8fab8f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.secteurs2
+id: taxonomy_term.secteurs2
+target_entity_type_id: taxonomy_term
+target_bundle: secteurs2
+default_langcode: site_default
+language_alterable: false

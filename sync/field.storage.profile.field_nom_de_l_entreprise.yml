@@ -1,0 +1,21 @@
+uuid: 8f2d3a3b-e1b1-4bdf-9ab9-ae3329a343a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_nom_de_l_entreprise
+field_name: field_nom_de_l_entreprise
+entity_type: profile
+type: string
+settings:
+  max_length: 55
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

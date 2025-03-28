@@ -1,0 +1,22 @@
+uuid: 638d32b6-0713-4727-882a-2a0bcaca3e3f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.temoignage
+id: node.temoignage.promote
+field_name: promote
+entity_type: node
+bundle: temoignage
+label: "Promu en page d'accueil"
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

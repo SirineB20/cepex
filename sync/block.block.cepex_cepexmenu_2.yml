@@ -1,0 +1,25 @@
+uuid: 3ba1e608-2d8b-48af-a844-751fa92d6dbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.cepexmenu
+  module:
+    - system
+  theme:
+    - cepex
+id: cepex_cepexmenu_2
+theme: cepex
+region: header_bottom
+weight: 0
+provider: null
+plugin: 'system_menu_block:cepexmenu'
+settings:
+  id: 'system_menu_block:cepexmenu'
+  label: cepexMenu
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

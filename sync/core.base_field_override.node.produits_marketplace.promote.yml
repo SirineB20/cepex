@@ -1,0 +1,22 @@
+uuid: d5fc1376-8b58-429e-9c3c-d1d5b6938f78
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.promote
+field_name: promote
+entity_type: node
+bundle: produits_marketplace
+label: "Promu en page d'accueil"
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

@@ -1,0 +1,13 @@
+uuid: c2c603f6-09f3-464a-9af5-42a69fd6c7ee
+langcode: en
+status: true
+dependencies: {  }
+id: profile_exportateur
+label: 'profile exportateur'
+display_label: ''
+multiple: false
+registration: true
+roles:
+  exportateur: exportateur
+allow_revisions: false
+new_revision: false

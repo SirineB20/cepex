@@ -1,0 +1,18 @@
+uuid: 11a91af2-4897-43fe-bfb9-6a181b11e02c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.title
+field_name: title
+entity_type: node
+bundle: produits_marketplace
+label: Titre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

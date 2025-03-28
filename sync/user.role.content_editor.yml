@@ -1,5 +1,5 @@
 uuid: e3073583-fdb1-4015-8909-e0d1a67188cf
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -18,7 +18,7 @@ dependencies:
 _core:
   default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
 id: content_editor
-label: 'Content editor'
+label: 'Éditeur de contenu'
 weight: 2
 is_admin: false
 permissions:

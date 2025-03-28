@@ -1,0 +1,57 @@
+uuid: a65c4374-ae3a-4d41-82e0-e86cd1b04022
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.temoignage.field_description
+    - field.field.node.temoignage.field_image_temoignage
+    - field.field.node.temoignage.field_titre_temoignage
+    - field.field.node.temoignage.field_video_temoignage
+    - node.type.temoignage
+  module:
+    - file
+    - image
+    - text
+    - user
+id: node.temoignage.default
+targetEntityType: node
+bundle: temoignage
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_image_temoignage:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_titre_temoignage:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_video_temoignage:
+    type: file_url_plain
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,8 @@
+uuid: ddd0a947-a5d4-4fb0-b48a-862d4ea323dc
+langcode: en
+status: true
+dependencies: {  }
+id: recherche-global
+label: contactez_nous
+description: "allez vers formulaire de contact(information sur l'entreprise)"
+locked: false

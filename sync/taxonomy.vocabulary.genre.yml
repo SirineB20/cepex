@@ -1,9 +1,0 @@
-uuid: e64ff051-ddd1-49d0-ac2b-3da1bba3d0ca
-langcode: en
-status: true
-dependencies: {  }
-name: genre
-vid: genre
-description: null
-weight: 2
-new_revision: false

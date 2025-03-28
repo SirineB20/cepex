@@ -1,0 +1,18 @@
+uuid: bfe42d71-df25-4116-a16c-587562616ead
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.banniere
+id: paragraph.banniere.created
+field_name: created
+entity_type: paragraph
+bundle: banniere
+label: 'Écrit le'
+description: 'Heure de création du paragraphe.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

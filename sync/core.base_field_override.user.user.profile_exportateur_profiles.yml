@@ -1,0 +1,24 @@
+uuid: c05117d3-4e5d-4ba7-a688-81268a09e331
+langcode: fr
+status: true
+dependencies:
+  config:
+    - profile.type.profile_exportateur
+  module:
+    - user
+id: user.user.profile_exportateur_profiles
+field_name: profile_exportateur_profiles
+entity_type: user
+bundle: user
+label: 'profile exportateur profiles'
+description: 'User profiles.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings:
+    target_bundles:
+      profile_exportateur: profile_exportateur
+field_type: entity_reference

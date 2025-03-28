@@ -1,0 +1,19 @@
+uuid: cea3450c-cedc-4e3a-8094-4f6fd3746ba3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_matricule_fiscale
+    - profile.type.profile_exportateur
+id: profile.profile_exportateur.field_matricule_fiscale
+field_name: field_matricule_fiscale
+entity_type: profile
+bundle: profile_exportateur
+label: 'matricul fiscale'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

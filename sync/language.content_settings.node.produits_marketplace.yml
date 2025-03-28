@@ -1,0 +1,18 @@
+uuid: 0d7ec6a9-33e7-4488-aeaa-ffcab76c0354
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.produits_marketplace
+target_entity_type_id: node
+target_bundle: produits_marketplace
+default_langcode: site_default
+language_alterable: true

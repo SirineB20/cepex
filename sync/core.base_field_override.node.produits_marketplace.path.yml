@@ -1,0 +1,20 @@
+uuid: 2a85ac20-9ede-424e-8fb4-f5b9e29ef8fa
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+  module:
+    - path
+id: node.produits_marketplace.path
+field_name: path
+entity_type: node
+bundle: produits_marketplace
+label: "Alias d'URL"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

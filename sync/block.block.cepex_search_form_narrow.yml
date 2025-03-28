@@ -1,6 +1,6 @@
 uuid: eb018148-e351-4545-83b6-da5015b99991
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - search
@@ -10,8 +10,8 @@ _core:
   default_config_hash: _nZjxxdypO6xrOAJkCYD81v0L7wh2zbCAVO7_C-UKIc
 id: cepex_search_form_narrow
 theme: cepex
-region: primary_menu
-weight: -4
+region: header
+weight: -7
 provider: null
 plugin: search_form_block
 settings:

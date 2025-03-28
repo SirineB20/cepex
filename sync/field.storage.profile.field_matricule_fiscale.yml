@@ -1,0 +1,21 @@
+uuid: afc7c9b8-73e3-4e10-bc80-c104bd1243f6
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_matricule_fiscale
+field_name: field_matricule_fiscale
+entity_type: profile
+type: string
+settings:
+  max_length: 13
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

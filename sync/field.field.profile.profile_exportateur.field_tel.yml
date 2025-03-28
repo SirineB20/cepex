@@ -1,0 +1,21 @@
+uuid: a6e1f46a-2631-4c4b-ba9e-38af58f7f1a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_tel
+    - profile.type.profile_exportateur
+  module:
+    - telephone
+id: profile.profile_exportateur.field_tel
+field_name: field_tel
+entity_type: profile
+bundle: profile_exportateur
+label: téléphone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

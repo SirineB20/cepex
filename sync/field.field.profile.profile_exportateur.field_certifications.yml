@@ -1,0 +1,29 @@
+uuid: 76d6f998-257e-49d5-98e7-b69895641202
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_certifications
+    - profile.type.profile_exportateur
+    - taxonomy.vocabulary.certifications
+id: profile.profile_exportateur.field_certifications
+field_name: field_certifications
+entity_type: profile
+bundle: profile_exportateur
+label: Certifications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      certifications: certifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

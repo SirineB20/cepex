@@ -1,0 +1,9 @@
+uuid: c320ca1d-6f4a-4497-b688-401438e87a22
+langcode: fr
+status: true
+dependencies: {  }
+name: certifications
+vid: certifications
+description: 'les certifications de marketplace'
+weight: 0
+new_revision: false

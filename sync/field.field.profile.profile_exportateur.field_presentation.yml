@@ -1,0 +1,24 @@
+uuid: 6290e92b-bbac-4c72-88bf-24c8785511e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_presentation
+    - filter.format.full_html
+    - profile.type.profile_exportateur
+  module:
+    - text
+id: profile.profile_exportateur.field_presentation
+field_name: field_presentation
+entity_type: profile
+bundle: profile_exportateur
+label: Présentation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

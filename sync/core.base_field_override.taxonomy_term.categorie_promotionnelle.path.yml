@@ -1,0 +1,20 @@
+uuid: 6b795f35-4433-4100-838b-75a2975d8b3c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_promotionnelle
+  module:
+    - path
+id: taxonomy_term.categorie_promotionnelle.path
+field_name: path
+entity_type: taxonomy_term
+bundle: categorie_promotionnelle
+label: "Alias d'URL"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

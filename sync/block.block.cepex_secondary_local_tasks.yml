@@ -9,7 +9,7 @@ _core:
 id: cepex_secondary_local_tasks
 theme: cepex
 region: header
-weight: -2
+weight: -8
 provider: null
 plugin: local_tasks_block
 settings:

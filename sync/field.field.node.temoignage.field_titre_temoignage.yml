@@ -1,0 +1,19 @@
+uuid: c9f292ba-8d64-4cbc-a4da-68600714f9f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_titre_temoignage
+    - node.type.temoignage
+id: node.temoignage.field_titre_temoignage
+field_name: field_titre_temoignage
+entity_type: node
+bundle: temoignage
+label: titre_témoignage
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 12abd918-2721-460c-8ba5-a126f6b38752
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_titre
+    - paragraphs.paragraphs_type.banniere
+id: paragraph.banniere.field_titre
+field_name: field_titre
+entity_type: paragraph
+bundle: banniere
+label: titre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

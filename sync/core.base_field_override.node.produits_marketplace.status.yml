@@ -1,0 +1,22 @@
+uuid: 55aec65f-e439-4fd2-8030-3cde0240fe1c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.status
+field_name: status
+entity_type: node
+bundle: produits_marketplace
+label: Publié
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

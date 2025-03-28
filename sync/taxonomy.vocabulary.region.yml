@@ -1,0 +1,9 @@
+uuid: 086d9844-a200-4930-9ae8-63533d47f9ed
+langcode: fr
+status: true
+dependencies: {  }
+name: region
+vid: region
+description: 'filter region pour Annuaire des exportateurs'
+weight: 0
+new_revision: false

@@ -1,0 +1,20 @@
+uuid: 2b4fc698-f35e-4479-a5d6-486d65f03785
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.uid
+field_name: uid
+entity_type: node
+bundle: produits_marketplace
+label: 'Écrit par'
+description: "Le nom d'utilisateur de l'auteur du contenu."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

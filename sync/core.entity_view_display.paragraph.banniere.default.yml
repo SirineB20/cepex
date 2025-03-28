@@ -1,0 +1,31 @@
+uuid: 79888931-6508-40df-bd9f-0e79cb389eba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banniere.field_body
+    - field.field.paragraph.banniere.field_titre
+    - paragraphs.paragraphs_type.banniere
+  module:
+    - text
+id: paragraph.banniere.default
+targetEntityType: paragraph
+bundle: banniere
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_titre:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

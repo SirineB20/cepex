@@ -1,0 +1,18 @@
+uuid: c4676a5a-05a2-41fd-ba54-a56a3c79ecb4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.page_actualite
+id: node.page_actualite.title
+field_name: title
+entity_type: node
+bundle: page_actualite
+label: Titre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

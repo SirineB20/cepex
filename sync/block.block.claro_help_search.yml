@@ -1,5 +1,5 @@
 uuid: ded58ff4-2042-4587-b74b-de8f2dc4aa35
-langcode: en
+langcode: fr
 status: true
 dependencies:
   module:
@@ -20,7 +20,7 @@ provider: null
 plugin: search_form_block
 settings:
   id: search_form_block
-  label: 'Search help'
+  label: "Rechercher dans l'aide"
   label_display: visible
   provider: search
   page_id: help_search

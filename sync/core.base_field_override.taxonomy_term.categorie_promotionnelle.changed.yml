@@ -1,0 +1,18 @@
+uuid: cacd1c55-84eb-488c-b673-527a287d5201
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_promotionnelle
+id: taxonomy_term.categorie_promotionnelle.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: categorie_promotionnelle
+label: Modifié
+description: 'Le moment auquel le terme a été modifié pour la dernière fois.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

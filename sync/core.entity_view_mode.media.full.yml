@@ -1,0 +1,13 @@
+uuid: cdc722b5-22d3-4806-a93c-622d9cdf06ff
+langcode: fr
+status: false
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: dTfAUHooYV0uOVPO3saGpgv-c5PppJXDwxvwRTJOycM
+id: media.full
+label: 'Contenu complet'
+description: ''
+targetEntityType: media
+cache: true

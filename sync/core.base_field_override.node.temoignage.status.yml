@@ -1,0 +1,22 @@
+uuid: f2661358-7671-4105-9e75-4830d741dd25
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.temoignage
+id: node.temoignage.status
+field_name: status
+entity_type: node
+bundle: temoignage
+label: Publié
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

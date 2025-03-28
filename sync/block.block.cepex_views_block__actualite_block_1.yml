@@ -1,0 +1,24 @@
+uuid: 3a6030cc-46cb-47a5-b8f2-1c2f7fe35f94
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.actualite
+  module:
+    - views
+  theme:
+    - cepex
+id: cepex_views_block__actualite_block_1
+theme: cepex
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:actualite-block_1'
+settings:
+  id: 'views_block:actualite-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility: {  }

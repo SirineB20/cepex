@@ -1,0 +1,18 @@
+uuid: 4b0b453c-6c68-44a8-95ce-219b7a3cbd13
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.page_actualite
+id: node.page_actualite.created
+field_name: created
+entity_type: node
+bundle: page_actualite
+label: 'Écrit le'
+description: "La date et l'heure auxquelles le contenu a été créé."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

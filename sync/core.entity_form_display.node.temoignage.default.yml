@@ -1,0 +1,97 @@
+uuid: 5080ac9b-f9e9-45e0-b2b0-dd86b59cf6ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.temoignage.field_description
+    - field.field.node.temoignage.field_image_temoignage
+    - field.field.node.temoignage.field_titre_temoignage
+    - field.field.node.temoignage.field_video_temoignage
+    - image.style.thumbnail
+    - node.type.temoignage
+  module:
+    - file
+    - image
+    - path
+    - text
+id: node.temoignage.default
+targetEntityType: node
+bundle: temoignage
+mode: default
+content:
+  field_description:
+    type: text_textarea_with_summary
+    weight: 4
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_image_temoignage:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_titre_temoignage:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_video_temoignage:
+    type: file_generic
+    weight: 27
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  title: true
+  uid: true

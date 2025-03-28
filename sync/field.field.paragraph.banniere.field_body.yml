@@ -1,0 +1,26 @@
+uuid: 8c14152f-2ab6-452e-8f04-17cbd1a32848
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.banniere
+  module:
+    - text
+id: paragraph.banniere.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: banniere
+label: body
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - full_html
+field_type: text_with_summary

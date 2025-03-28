@@ -1,0 +1,20 @@
+uuid: 247dfcb7-8b41-46c6-b264-18280dad81ef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.actualite
+id: node.actualite.uid
+field_name: uid
+entity_type: node
+bundle: actualite
+label: 'Écrit par'
+description: "Le nom d'utilisateur de l'auteur du contenu."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,22 @@
+uuid: 9b5c6ada-6c28-4419-9a4e-655b5894603d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.actualites
+id: taxonomy_term.actualites.status
+field_name: status
+entity_type: taxonomy_term
+bundle: actualites
+label: Publié
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

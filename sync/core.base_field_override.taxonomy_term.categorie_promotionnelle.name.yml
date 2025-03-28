@@ -1,0 +1,18 @@
+uuid: 194994a8-6877-42b3-bc72-da232fcfaacb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_promotionnelle
+id: taxonomy_term.categorie_promotionnelle.name
+field_name: name
+entity_type: taxonomy_term
+bundle: categorie_promotionnelle
+label: Nom
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

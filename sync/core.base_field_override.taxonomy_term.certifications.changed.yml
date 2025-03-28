@@ -1,0 +1,18 @@
+uuid: 936d0b0e-577b-48fd-a428-8a76de231396
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.certifications
+id: taxonomy_term.certifications.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: certifications
+label: Modifié
+description: 'Le moment auquel le terme a été modifié pour la dernière fois.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

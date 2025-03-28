@@ -1,0 +1,18 @@
+uuid: 2fdcd24c-2d4d-4421-ba40-22b89a942cd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.temoignage
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.temoignage
+target_entity_type_id: node
+target_bundle: temoignage
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,8 @@
+uuid: bf2baecd-ced9-4e89-a2a2-8b1ab277a246
+langcode: en
+status: true
+dependencies: {  }
+id: cepexmenu
+label: cepexMenu
+description: 'Menu de cepex'
+locked: false

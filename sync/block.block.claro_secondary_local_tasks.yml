@@ -1,5 +1,5 @@
 uuid: 7196779e-0539-4d38-af4a-83f704cc09b4
-langcode: en
+langcode: fr
 status: true
 dependencies:
   theme:
@@ -14,7 +14,7 @@ provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Secondary tabs'
+  label: 'Onglets secondaires'
   label_display: '0'
   provider: core
   primary: false

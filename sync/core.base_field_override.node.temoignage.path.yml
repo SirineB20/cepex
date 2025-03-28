@@ -1,0 +1,20 @@
+uuid: e313848b-1d53-4bfd-bf3a-0491aaa44aa4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.temoignage
+  module:
+    - path
+id: node.temoignage.path
+field_name: path
+entity_type: node
+bundle: temoignage
+label: "Alias d'URL"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

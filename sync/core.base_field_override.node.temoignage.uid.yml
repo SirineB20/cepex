@@ -1,0 +1,20 @@
+uuid: 8c9595e4-4f82-492e-a947-a31d36f1b4a1
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.temoignage
+id: node.temoignage.uid
+field_name: uid
+entity_type: node
+bundle: temoignage
+label: 'Écrit par'
+description: "Le nom d'utilisateur de l'auteur du contenu."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

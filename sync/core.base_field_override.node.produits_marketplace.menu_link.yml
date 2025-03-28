@@ -1,0 +1,20 @@
+uuid: 53ea7ffb-08be-46cd-a127-47b7cd303dd5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.menu_link
+field_name: menu_link
+entity_type: node
+bundle: produits_marketplace
+label: 'Lien du menu'
+description: "Lien de menu calculé pour le nœud (disponible uniquement pendant l'enregistrement du nœud)."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

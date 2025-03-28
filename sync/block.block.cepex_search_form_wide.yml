@@ -10,8 +10,8 @@ _core:
   default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
 id: cepex_search_form_wide
 theme: cepex
-region: secondary_menu
-weight: -5
+region: header_top
+weight: 2
 provider: null
 plugin: search_form_block
 settings:

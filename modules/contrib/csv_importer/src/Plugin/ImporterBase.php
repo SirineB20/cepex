@@ -14,7 +14,9 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\file\FileRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\Entity\User;
-
+use Drupal\taxonomy\Entity\Term;
+use Drupal\node\Entity\Node;
+use Drupal\file\FileUsage\FileUsageInterface;
 
 /**
  * Provides a base class for ImporterBase plugins.
@@ -184,6 +186,56 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
   /**
    * {@inheritdoc}
    */
+  // Method to create or get existing taxonomy term
+  protected function createOrGetTaxonomyTerm($term_name, $vocabulary, $parent_tid = NULL) {
+    if (empty($term_name)) {
+      return NULL;
+    }
+
+    // Try to find existing term first
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+      'name' => $term_name,
+      'vid' => $vocabulary,
+    ]);
+
+    // If term exists, return its ID
+    if (!empty($terms)) {
+      $term = reset($terms);
+      
+      // Check if parent matches if parent is specified
+      if ($parent_tid && $term->parent->target_id != $parent_tid) {
+        // Create a new term with the correct parent
+        return $this->createTaxonomyTerm($term_name, $vocabulary, $parent_tid);
+      }
+      
+      return $term->id();
+    }
+
+    // Create new term
+    return $this->createTaxonomyTerm($term_name, $vocabulary, $parent_tid);
+  }
+
+  protected function createTaxonomyTerm($term_name, $vocabulary, $parent_tid = NULL) {
+    $term = \Drupal\taxonomy\Entity\Term::create([
+      'name' => $term_name,
+      'vid' => $vocabulary,
+      'parent' => $parent_tid ? [$parent_tid] : [],
+    ]);
+
+    try {
+      $term->save();
+      \Drupal::logger('importer_csv')->notice('Terme de taxonomie créé : @name dans le vocabulaire @vocab', [
+        '@name' => $term_name,
+        '@vocab' => $vocabulary
+      ]);
+      return $term->id();
+    } catch (\Exception $e) {
+      \Drupal::logger('importer_csv')->error('Erreur lors de la création du terme : @error', [
+        '@error' => $e->getMessage()
+      ]);
+      return NULL;
+    }
+  }
   public function add($contents, array &$context) {
     \Drupal::logger('importer_csv')->notice('Début du processus d\'importation');
     if (!$contents) {
@@ -212,6 +264,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
       '%index' => $current_index + 1,
       '%max' => $context['sandbox']['max'],
     ]);
+    
   
     $entity_type = $this->configuration['entity_type'];
     $entity_type_bundle = $this->configuration['entity_type_bundle'];
@@ -230,7 +283,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
   
     /** @var \Drupal\Core\Entity\Sql\SqlContentEntityStorage $entity_storage */
     $entity_storage = $this->entityTypeManager->getStorage($this->configuration['entity_type']);
-  
+    
     try {
       $entity = NULL;
       if (!empty($content[$entity_definition->getKey('id')])) {
@@ -291,13 +344,11 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
         $Telephone = '';
         $Fax = '';
         $Site_web = '';
-        $found_Site_web = false;
-        $found_Nom_entreprise = false;
-        $found_Directeur_general = false;
-        $found_Telephone = false;
-        $found_Fax = false;
         $found_email = false;
         $found_matricule = false;
+        $secteur_name = '';
+        $filiere_name = '';
+        $produit_name = '';
         
         // First pass: Scan for email and matricule fiscal
         foreach ($content as $field => $value) {
@@ -320,32 +371,74 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
 
         if (str_contains($field, 'Nom entreprise')) {
           $Nom_entreprise = $value;
-          $found_Nom_entreprise = true;
           \Drupal::logger('importer_csv')->notice('Champ : @field, Valeur : @value', ['@field' => $field, '@value' => $value]);
         }
         if (str_contains($field, 'Directeur général')) {
           $Directeur_general = $value;
-          $found_Directeur_general = true;
           \Drupal::logger('importer_csv')->notice('Champ : @field, Valeur : @value', ['@field' => $field, '@value' => $value]);
         }
         if (str_contains($field, 'Téléphone')) {
           $Telephone = $value;
-          $found_Telephone = true;
           \Drupal::logger('importer_csv')->notice('Champ : @field, Valeur : @value', ['@field' => $field, '@value' => $value]);
         }
         if (str_contains($field, 'FAX')) {
           $Fax = $value;
-          $found_Fax = true;
           \Drupal::logger('importer_csv')->notice('Champ : @field, Valeur : @value', ['@field' => $field, '@value' => $value]);
         }
         if (str_contains($field, 'Site web')) {
           $Site_web = $value;
-          $found_Site_web = true;
           \Drupal::logger('importer_csv')->notice('Champ : @field, Valeur : @value', ['@field' => $field, '@value' => $value]);
         }
-      } 
+        if (str_contains($field, 'SECTEUR')) {
+          $secteur_name = trim($value);
+        }
+        if (str_contains($field, 'Filières')) {
+          $filiere_name = trim($value);
+        }
+        if (str_contains($field, 'Produit D.A')) {
+          $produit_name = trim($value);
+        }
+      }
+        // Create taxonomy terms hierarchy
+      $secteur_tid = NULL;
+      $filiere_tid = NULL;
+      $produit_tid = NULL;
+
+      // Create or get Secteur term
+      if (!empty($secteur_name)) {
+        $secteur_tid = $this->createOrGetTaxonomyTerm($secteur_name, 'secteurs2');
+      }
+
+      // Create or get Filière term under Secteur
+      if (!empty($filiere_name) && $secteur_tid) {
+        $filiere_tid = $this->createOrGetTaxonomyTerm($filiere_name, 'secteurs2', $secteur_tid);
+      }
+
+      // Create or get Produit term under Filière
+      if (!empty($produit_name) && $filiere_tid) {
+        $produit_tid = $this->createOrGetTaxonomyTerm($produit_name, 'secteurs2', $filiere_tid);
+      }
+
+      // Prepare term IDs for field_secteurs2
+      $term_ids = array_filter([$secteur_tid, $filiere_tid, $produit_tid]);
+
         // After checking all fields, see if we have both required values
         if ($found_email && $found_matricule) {
+          $existing_users = \Drupal::entityTypeManager()
+          ->getStorage('user')
+          ->loadByProperties([
+            'name' => $matricule_fiscal
+          ]);
+
+        // Si un utilisateur avec ce matricule fiscal existe déjà, utilisez son ID
+        if (!empty($existing_users)) {
+          \Drupal::logger('entity_importer')->notice('Utilisateur avec matricule fiscal @matricule existe déjà', [
+            '@matricule' => $matricule_fiscal
+          ]);
+          
+          $existing_user = reset($existing_users);
+          $user_id = $existing_user->id();
+        } else {
           // Generate a random password
           $password = bin2hex(random_bytes(8));  // 16 characters length password
           
@@ -372,7 +465,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
             $content['field_tel'] = $Telephone; // Set the telephone mapping to the title field
             $content['field_fax'] = $Fax; // Set the fax mapping to the title field
             $content['field_site_web'] = $Site_web; // Set the site web mapping to the title field
-        
+            $content['field_secteurs2'] = $term_ids; // Set the term IDs mapping to the title field
             $entity = $entity_storage->create($content);
             if ($entity->save()) {
               $id = $entity->id();
@@ -387,7 +480,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
           } else {
             \Drupal::logger('entity_importer')->error('Échec de création de l\'utilisateur bien que email et matricule fiscal soient présents');
           }
-        } else {
+        }} else {
           // Log what's missing
           if (!$found_email && !$found_matricule) {
             \Drupal::logger('entity_importer')->warning('Failed to create user: Missing email and matricule fiscal');

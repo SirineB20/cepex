@@ -1,0 +1,71 @@
+uuid: 0287d79d-c381-48c5-ab16-3583fc21d956
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+  module:
+    - content_moderation
+id: etat_produit
+label: 'workflow produit'
+type: content_moderation
+type_settings:
+  states:
+    depublie:
+      label: Dépublié
+      weight: 4
+      published: false
+      default_revision: true
+    draft:
+      label: 'Non traité'
+      weight: 0
+      published: false
+      default_revision: false
+    en_cours_inscription:
+      label: 'En cours inscription'
+      weight: 2
+      published: false
+      default_revision: true
+    en_cours_modification:
+      label: 'En cours modification'
+      weight: 3
+      published: true
+      default_revision: true
+    published:
+      label: Traité
+      weight: 1
+      published: true
+      default_revision: true
+  transitions:
+    create_new_draft:
+      label: 'Création produit'
+      from:
+        - draft
+      to: draft
+      weight: 0
+    en_cours_modification:
+      label: 'En cours modification'
+      from:
+        - en_cours_modification
+      to: en_cours_modification
+      weight: 3
+    en_cours_modification_inscription:
+      label: 'En cours modification inscription'
+      from:
+        - en_cours_inscription
+      to: en_cours_inscription
+      weight: 2
+    publish:
+      label: Traiter
+      from:
+        - depublie
+        - draft
+        - en_cours_inscription
+        - en_cours_modification
+        - published
+      to: published
+      weight: 1
+  entity_types:
+    node:
+      - produits_marketplace
+  default_moderation_state: draft

@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "drupal/address": "^2.0",
         "drupal/admin_toolbar": "^3.5",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/conditional_fields": "^4.0@alpha",
@@ -30,6 +31,7 @@
         "drupal/paragraphs": "^1.18",
         "drupal/profile": "^1.11",
         "drupal/shs": " ^2.0",
+        "drupal/structure_sync": "^2.0",
         "drupal/taxonomy_manager": "^2.0",
         "drupal/tb_megamenu": "^3.0@alpha",
         "drupal/token": "^1.15",

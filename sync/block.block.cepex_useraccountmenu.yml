@@ -1,0 +1,25 @@
+uuid: 84815b13-2d66-494b-b7b4-375b691aabbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - cepex
+id: cepex_useraccountmenu
+theme: cepex
+region: header_top
+weight: 3
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

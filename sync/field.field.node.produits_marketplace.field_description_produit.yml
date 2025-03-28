@@ -1,0 +1,19 @@
+uuid: 7ee768fd-c88f-4a02-abae-6d624d76e801
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description_produit
+    - node.type.produits_marketplace
+id: node.produits_marketplace.field_description_produit
+field_name: field_description_produit
+entity_type: node
+bundle: produits_marketplace
+label: 'Description produit'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

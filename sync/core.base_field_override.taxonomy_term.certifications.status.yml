@@ -1,0 +1,22 @@
+uuid: 6f01848c-b92a-40c3-92d1-b281645802f4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.certifications
+id: taxonomy_term.certifications.status
+field_name: status
+entity_type: taxonomy_term
+bundle: certifications
+label: Publié
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

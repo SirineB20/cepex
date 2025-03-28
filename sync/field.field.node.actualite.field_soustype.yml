@@ -12,12 +12,12 @@ entity_type: node
 bundle: actualite
 label: soustype
 description: ''
-required: true
-translatable: false
+required: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
       categorie_promotionnelle: categorie_promotionnelle

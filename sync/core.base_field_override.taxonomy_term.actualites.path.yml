@@ -1,0 +1,20 @@
+uuid: 68cbccf9-bac7-46d2-a456-44b48a22c97c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.actualites
+  module:
+    - path
+id: taxonomy_term.actualites.path
+field_name: path
+entity_type: taxonomy_term
+bundle: actualites
+label: "Alias d'URL"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

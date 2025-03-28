@@ -1,0 +1,10 @@
+uuid: 5b4e3e78-0f7b-4ffc-bb1a-c8d8aa9ef9c8
+langcode: en
+status: true
+dependencies: {  }
+id: banniere
+label: Banniere
+icon_uuid: null
+icon_default: null
+description: 'banniere pour page actualité'
+behavior_plugins: {  }

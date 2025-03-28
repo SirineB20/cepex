@@ -1,0 +1,29 @@
+uuid: 00c249e1-0a65-4e91-b5cb-c57bb5fe19da
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_secteurs2
+    - node.type.produits_marketplace
+    - taxonomy.vocabulary.secteurs2
+id: node.produits_marketplace.field_secteurs2
+field_name: field_secteurs2
+entity_type: node
+bundle: produits_marketplace
+label: secteurs2
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      secteurs2: secteurs2
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

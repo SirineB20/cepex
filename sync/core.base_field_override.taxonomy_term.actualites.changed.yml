@@ -1,0 +1,18 @@
+uuid: ddf7ee66-4417-4d71-9751-79d285a463db
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.actualites
+id: taxonomy_term.actualites.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: actualites
+label: Modifié
+description: 'Le moment auquel le terme a été modifié pour la dernière fois.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,6 +1,6 @@
 _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
-langcode: en
+langcode: fr
 uuid: 83297cc2-e175-411d-8831-48278b9dccfc
 name: CEPEX
 mail: bellaajsirine45@gmail.com
@@ -11,5 +11,5 @@ page:
   front: /node
 admin_compact_mode: false
 weight_select_max: 100
-default_langcode: en
-mail_notification: null
+default_langcode: fr
+mail_notification: ''

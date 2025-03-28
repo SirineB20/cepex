@@ -1,0 +1,25 @@
+uuid: c3b6c870-0e17-474f-b40b-32cc54a5aa4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.recherche-global
+  module:
+    - system
+  theme:
+    - cepex
+id: cepex_contactez_nous
+theme: cepex
+region: header_top
+weight: 1
+provider: null
+plugin: 'system_menu_block:recherche-global'
+settings:
+  id: 'system_menu_block:recherche-global'
+  label: contactez_nous
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

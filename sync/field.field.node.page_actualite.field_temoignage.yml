@@ -1,0 +1,32 @@
+uuid: 71a9c5d9-2715-4a14-b8ae-96056e4b4716
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_temoignage
+    - node.type.page_actualite
+  module:
+    - viewsreference
+id: node.page_actualite.field_temoignage
+field_name: field_temoignage
+entity_type: node
+bundle: page_actualite
+label: témoignage
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  plugin_types:
+    block: block
+  preselect_views:
+    temoignage: temoignage
+  enabled_settings:
+    argument: argument
+    header: header
+field_type: viewsreference

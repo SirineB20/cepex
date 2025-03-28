@@ -12,8 +12,8 @@ _core:
   default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
 id: cepex_content
 theme: cepex
-region: content
-weight: 0
+region: featured
+weight: -6
 provider: null
 plugin: system_main_block
 settings:

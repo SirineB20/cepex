@@ -1,0 +1,18 @@
+uuid: 0d5d23e0-6b62-4910-8088-5f31131c3053
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.certifications
+id: taxonomy_term.certifications.name
+field_name: name
+entity_type: taxonomy_term
+bundle: certifications
+label: Nom
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

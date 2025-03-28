@@ -1,0 +1,19 @@
+uuid: 1fec5ef0-7729-4f72-bf5f-4b21954214a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_directeur_general
+    - profile.type.profile_exportateur
+id: profile.profile_exportateur.field_directeur_general
+field_name: field_directeur_general
+entity_type: profile
+bundle: profile_exportateur
+label: 'Directeur général'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

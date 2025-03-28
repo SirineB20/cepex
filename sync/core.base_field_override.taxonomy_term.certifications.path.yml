@@ -1,0 +1,20 @@
+uuid: 4d035ae4-f864-4541-bcae-1ed1dbe4a11e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.certifications
+  module:
+    - path
+id: taxonomy_term.certifications.path
+field_name: path
+entity_type: taxonomy_term
+bundle: certifications
+label: "Alias d'URL"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

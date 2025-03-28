@@ -1,0 +1,18 @@
+uuid: e80f5aac-d04f-4f52-a54f-670e55ff1d49
+langcode: fr
+status: true
+dependencies:
+  config:
+    - media.type.document
+id: media.document.changed
+field_name: changed
+entity_type: media
+bundle: document
+label: Modifié
+description: 'Date à laquelle cet élément de média a été modifié.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

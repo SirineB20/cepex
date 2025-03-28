@@ -1,0 +1,34 @@
+uuid: d4bef84c-3abb-4ef2-838b-aa45e2fd44e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+    - workflows.workflow.etat_produit
+  module:
+    - conditional_fields
+    - content_moderation
+    - csv_importer
+    - node
+    - profile
+id: exportateur
+label: exportateur
+weight: 4
+is_admin: false
+permissions:
+  - 'access csv importer'
+  - 'create produits_marketplace content'
+  - 'delete conditional fields'
+  - 'delete own produits_marketplace content'
+  - 'delete own profile_exportateur profile'
+  - 'delete produits_marketplace revisions'
+  - 'edit conditional fields'
+  - 'edit own produits_marketplace content'
+  - 'revert produits_marketplace revisions'
+  - 'update own profile_exportateur profile'
+  - 'use etat_produit transition create_new_draft'
+  - 'use etat_produit transition en_cours_modification'
+  - 'use etat_produit transition en_cours_modification_inscription'
+  - 'view conditional fields'
+  - 'view own profile_exportateur profile'
+  - 'view produits_marketplace revisions'

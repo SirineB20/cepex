@@ -1,0 +1,18 @@
+uuid: 10139d59-bf78-439b-9840-0c79d335c230
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.region
+id: taxonomy_term.region.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: region
+label: Modifié
+description: 'Le moment auquel le terme a été modifié pour la dernière fois.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

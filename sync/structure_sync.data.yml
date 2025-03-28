@@ -1,0 +1,998 @@
+blocks:
+  -
+    info: 'footer left'
+    langcode: en
+    uuid: 4a6dadd7-5a26-4573-867f-da8b3ab8830f
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: '<p>pour logo , description&nbsp;</p>'
+          summary: ''
+          format: basic_html
+  -
+    info: 'social media'
+    langcode: en
+    uuid: 2fa9ba1a-7478-4e65-81ac-21df3c47818c
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body: {  }
+menus:
+  -
+    menu_name: admin
+    title: 'Gestion Contenu Cepex'
+    parent: system.admin
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 2
+    langcode: fr
+    uuid: cd88b413-e1c2-452d-b40f-a07edff96ed2
+    options: {  }
+  -
+    menu_name: admin
+    title: 'Gestion exportateur'
+    parent: 'menu_link_content:cd88b413-e1c2-452d-b40f-a07edff96ed2'
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: fr
+    uuid: 859ed276-94ef-4c50-9cfd-e1477d84c0c0
+    options: {  }
+  -
+    menu_name: admin
+    title: 'Gestion Produits'
+    parent: 'menu_link_content:cd88b413-e1c2-452d-b40f-a07edff96ed2'
+    uri: 'internal:/fr/admin/gestionProfile'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: fr
+    uuid: e8db6e60-a173-4fd9-bb02-08660036dfe2
+    options: {  }
+  -
+    menu_name: account
+    title: 'se connecter'
+    parent: null
+    uri: 'internal:/user/login/#'
+    link_title: ''
+    description: null
+    enabled: false
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: 94f9906a-59b9-48b8-8c81-63f48d14b1c5
+    options: {  }
+  -
+    menu_name: recherche-global
+    title: contactez-nous
+    parent: null
+    uri: 'internal:/form/contact/#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: 170cc262-d615-4f6c-a2a2-02c1347ca943
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Accueil
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -1
+    langcode: en
+    uuid: 27eef0c7-871a-410f-9a3b-ff2e9854fa5a
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: 'Tunisia Export'
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 1
+    langcode: en
+    uuid: 32508225-9f7b-4313-b03d-fdf7320f12de
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Présentation
+    parent: 'menu_link_content:32508225-9f7b-4313-b03d-fdf7320f12de'
+    uri: 'internal:/tunisia-export#presentation'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: a0103a78-5d14-4a4c-bbb1-bca465399a98
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Services
+    parent: 'menu_link_content:32508225-9f7b-4313-b03d-fdf7320f12de'
+    uri: 'internal:/tunisia-export#services'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 1
+    langcode: en
+    uuid: a5292803-787a-4d91-83c0-782fca460239
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: 'Bureau régionaux'
+    parent: 'menu_link_content:32508225-9f7b-4313-b03d-fdf7320f12de'
+    uri: 'internal:/tunisia-export#bureau-regionaux'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 2
+    langcode: en
+    uuid: 55451bd8-ad70-41d5-9beb-b5eea5882ef7
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: "Bureaux à l'étranger"
+    parent: 'menu_link_content:32508225-9f7b-4313-b03d-fdf7320f12de'
+    uri: 'internal:/tunisia-export#bureau-etranger'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 3
+    langcode: en
+    uuid: de1bda1a-f5e4-416b-b10d-24dabca34d1c
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: "Maison de l'exportateur"
+    parent: 'menu_link_content:32508225-9f7b-4313-b03d-fdf7320f12de'
+    uri: 'internal:/tunisia-export#maison-exportateur'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 4
+    langcode: en
+    uuid: 60c00e4a-fba3-4693-80c5-bc4cda4f07b2
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Actualités
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 2
+    langcode: en
+    uuid: c1dcc032-7855-4332-88d6-7b488abee614
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: témoignages
+    parent: 'menu_link_content:c1dcc032-7855-4332-88d6-7b488abee614'
+    uri: 'internal:/actualites#temoignages'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: 951ee5f9-cbc9-496d-b581-41cfed02a768
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: 'Annuaire des exportateurs'
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 3
+    langcode: en
+    uuid: 33e4a973-6af7-41b9-b512-8985c073d239
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Gouvernance
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 5
+    langcode: en
+    uuid: 7f0bf671-db3d-4f39-b2a7-363e38ecc2e2
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: Média
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 6
+    langcode: en
+    uuid: bf9a2b23-c142-4e6d-a005-2b31bc824e9f
+    options: {  }
+  -
+    menu_name: cepexmenu
+    title: 'Découvrir la Tunisie'
+    parent: null
+    uri: 'internal:#'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 4
+    langcode: en
+    uuid: 993e6a0f-e178-426a-9608-98086701d959
+    options: {  }
+  -
+    menu_name: menu
+    title: menulink
+    parent: null
+    uri: 'internal:/menu'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: 327fa53d-cef3-4948-bb98-2c1460add774
+    options: {  }
+taxonomies:
+  actualites:
+    -
+      vid: actualites
+      tid: '9'
+      langcode: en
+      name: 'Actualités institutionnelles'
+      description__value: '<p>Actualités institutionnelles</p>'
+      description__format: basic_html
+      weight: '0'
+      parent: '0'
+      uuid: fcaf1086-1d31-4413-ba35-5fdba8d708df
+    -
+      vid: actualites
+      tid: '10'
+      langcode: en
+      name: 'Actualités promotionnelles'
+      description__value: '<p>Actualités promotionnelles</p>'
+      description__format: basic_html
+      weight: '1'
+      parent: '0'
+      uuid: 5928c29b-93d8-4c9f-b6ec-d63ed66f10d2
+  categorie_promotionnelle:
+    -
+      vid: categorie_promotionnelle
+      tid: '20'
+      langcode: en
+      name: 'Accompagnement aux Salons et Foires'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '0'
+      uuid: 08ce2a2b-cb3e-4f90-87e9-b2ebdbfe34b4
+    -
+      vid: categorie_promotionnelle
+      tid: '21'
+      langcode: en
+      name: 'Actions de Promotion'
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '0'
+      uuid: 9d362849-c873-472a-8876-a6e580541744
+    -
+      vid: categorie_promotionnelle
+      tid: '19'
+      langcode: en
+      name: Annonces
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 14c56f4f-9691-4f0a-a541-33fcaedb87eb
+    -
+      vid: categorie_promotionnelle
+      tid: '22'
+      langcode: en
+      name: Programmes
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '0'
+      uuid: e274ba8f-bd56-423b-a422-80e4ec3e68b8
+    -
+      vid: categorie_promotionnelle
+      tid: '24'
+      langcode: en
+      name: 'Ressources et Outils'
+      description__value: null
+      description__format: null
+      weight: '5'
+      parent: '0'
+      uuid: b31638c6-1061-4591-867c-071c00cb1c03
+    -
+      vid: categorie_promotionnelle
+      tid: '23'
+      langcode: en
+      name: 'Témoignages et Succès'
+      description__value: null
+      description__format: null
+      weight: '4'
+      parent: '0'
+      uuid: 51a3714d-d5ed-4a28-86f5-734fa549b3da
+  certifications:
+    -
+      vid: certifications
+      tid: '172'
+      langcode: fr
+      name: '1998-1999 : Mise en place du système concurrentiel ISO 9002.'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 143ef416-a570-414a-84dd-baa34ded9e50
+    -
+      vid: certifications
+      tid: '173'
+      langcode: fr
+      name: '2002 : Mise en place du système qualité ISO 9001.'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: fb5e02a5-8cfc-4768-844a-8419715abb7b
+    -
+      vid: certifications
+      tid: '174'
+      langcode: fr
+      name: '2007 : Mise en place de l’ISO 22000'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 272714d2-7f7c-4c6b-b1f6-488c287013a4
+    -
+      vid: certifications
+      tid: '175'
+      langcode: fr
+      name: '2008 : Obtention du grand prix tunisien de la promotion de la qualité. Obtention des certificats ISO 9001 version 2008 et ISO 22000 version 2005.'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: e615c1af-da5e-4e03-85d2-55535fe85b81
+    -
+      vid: certifications
+      tid: '176'
+      langcode: fr
+      name: '2018 :Obtention des certificats ISO 9001 version 2015 et ISO 22000 version 2005.'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: a85a0c25-7966-4ff2-9025-1ccd96616af4
+    -
+      vid: certifications
+      tid: '177'
+      langcode: fr
+      name: "2021 :Maintien du certificat ISO 9001 version 2015 et Migration vers l'ISO 22000 version 2018"
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 3b9fe112-03d7-4897-b4ec-0ec7c07a91b1
+  region:
+    -
+      vid: region
+      tid: '149'
+      langcode: fr
+      name: Ariana
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '0'
+      uuid: a8065f31-9d80-406b-a39c-c88d2ddce148
+    -
+      vid: region
+      tid: '158'
+      langcode: fr
+      name: Beja
+      description__value: null
+      description__format: null
+      weight: '10'
+      parent: '0'
+      uuid: 3d751269-5c49-4f6a-a92f-2d54624953bf
+    -
+      vid: region
+      tid: '150'
+      langcode: fr
+      name: 'Ben Arous'
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '0'
+      uuid: 360573f6-1760-4999-aab5-b5570f83dce5
+    -
+      vid: region
+      tid: '152'
+      langcode: fr
+      name: Bizerte
+      description__value: null
+      description__format: null
+      weight: '4'
+      parent: '0'
+      uuid: 64616e1f-f2d3-4538-b07e-754dd380d5be
+    -
+      vid: region
+      tid: '168'
+      langcode: fr
+      name: Gabes
+      description__value: null
+      description__format: null
+      weight: '20'
+      parent: '0'
+      uuid: 2dd6ce0b-0fc1-4302-8f0a-f2d37335c96a
+    -
+      vid: region
+      tid: '165'
+      langcode: fr
+      name: Gafsa
+      description__value: null
+      description__format: null
+      weight: '17'
+      parent: '0'
+      uuid: 13c6f3c7-92c2-41bc-acdd-7f64c5009cfc
+    -
+      vid: region
+      tid: '156'
+      langcode: fr
+      name: Jendouba
+      description__value: null
+      description__format: null
+      weight: '8'
+      parent: '0'
+      uuid: bd9850f9-f70e-485b-a7f5-5467621d3f6b
+    -
+      vid: region
+      tid: '162'
+      langcode: fr
+      name: Kairouan
+      description__value: null
+      description__format: null
+      weight: '14'
+      parent: '0'
+      uuid: f36b9a32-70e3-46cb-bc95-6d2c614255a8
+    -
+      vid: region
+      tid: '163'
+      langcode: fr
+      name: Kasserine
+      description__value: null
+      description__format: null
+      weight: '15'
+      parent: '0'
+      uuid: 52720edd-c382-4c61-8de6-534e024fdaa4
+    -
+      vid: region
+      tid: '169'
+      langcode: fr
+      name: Kebili
+      description__value: null
+      description__format: null
+      weight: '21'
+      parent: '0'
+      uuid: 1a658a64-784b-4deb-9411-adb26d71d0c1
+    -
+      vid: region
+      tid: '155'
+      langcode: fr
+      name: Kef
+      description__value: null
+      description__format: null
+      weight: '7'
+      parent: '0'
+      uuid: 8e73b619-3c3d-4cfa-8d42-fcd7a4902e9c
+    -
+      vid: region
+      tid: '161'
+      langcode: fr
+      name: Mahdia
+      description__value: null
+      description__format: null
+      weight: '13'
+      parent: '0'
+      uuid: 9de71355-e542-4990-b233-f73e1edb7ffa
+    -
+      vid: region
+      tid: '151'
+      langcode: fr
+      name: Manouba
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '0'
+      uuid: c0dfcad2-306a-4503-bc69-e6d5a37a3d11
+    -
+      vid: region
+      tid: '170'
+      langcode: fr
+      name: Medenine
+      description__value: null
+      description__format: null
+      weight: '22'
+      parent: '0'
+      uuid: 37697972-7bd4-4065-8a61-275fc40ded45
+    -
+      vid: region
+      tid: '160'
+      langcode: fr
+      name: Monastir
+      description__value: null
+      description__format: null
+      weight: '12'
+      parent: '0'
+      uuid: 5aa00199-22ad-41e0-a460-6af37663ffd5
+    -
+      vid: region
+      tid: '153'
+      langcode: fr
+      name: Nabeul
+      description__value: null
+      description__format: null
+      weight: '5'
+      parent: '0'
+      uuid: f11530b6-4614-4580-8355-95901f0d5a6a
+    -
+      vid: region
+      tid: '164'
+      langcode: fr
+      name: Sfax
+      description__value: null
+      description__format: null
+      weight: '16'
+      parent: '0'
+      uuid: 604f35d6-2eb4-4cf8-9efb-9d59869e19be
+    -
+      vid: region
+      tid: '167'
+      langcode: fr
+      name: 'Sidi Bouzid'
+      description__value: null
+      description__format: null
+      weight: '19'
+      parent: '0'
+      uuid: 004db063-4ec1-4858-9e9b-269634a617c1
+    -
+      vid: region
+      tid: '157'
+      langcode: fr
+      name: Siliana
+      description__value: null
+      description__format: null
+      weight: '9'
+      parent: '0'
+      uuid: cba0026c-9c59-4a95-9e45-49f9e6bfba95
+    -
+      vid: region
+      tid: '159'
+      langcode: fr
+      name: Sousse
+      description__value: null
+      description__format: null
+      weight: '11'
+      parent: '0'
+      uuid: 839b5094-dffd-4f00-990d-5c16df8a798f
+    -
+      vid: region
+      tid: '171'
+      langcode: fr
+      name: Tataouine
+      description__value: null
+      description__format: null
+      weight: '23'
+      parent: '0'
+      uuid: ed53e037-5434-46e2-936d-b6f172e248e4
+    -
+      vid: region
+      tid: '166'
+      langcode: fr
+      name: Tozeur
+      description__value: null
+      description__format: null
+      weight: '18'
+      parent: '0'
+      uuid: b484ea92-306f-47df-9758-f72129c26cc3
+    -
+      vid: region
+      tid: '148'
+      langcode: fr
+      name: Tunis
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6602320a-3466-434d-be5e-bccf94371a26
+    -
+      vid: region
+      tid: '154'
+      langcode: fr
+      name: Zaghouan
+      description__value: null
+      description__format: null
+      weight: '6'
+      parent: '0'
+      uuid: 7b063838-9828-45d1-986b-d143f212d6a9
+  secteurs2:
+    -
+      vid: secteurs2
+      tid: '295'
+      langcode: fr
+      name: Agroalimentaire
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: bd391948-4564-46b5-9e7c-a9b676a416b5
+    -
+      vid: secteurs2
+      tid: '315'
+      langcode: fr
+      name: 'Art de la table et articles décoratifs'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '314'
+      uuid: 298af038-e177-41cc-bdda-7363752685fd
+    -
+      vid: secteurs2
+      tid: '314'
+      langcode: fr
+      name: Artisanat
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 70fea658-6caa-4554-b22e-54187b20dc6f
+    -
+      vid: secteurs2
+      tid: '306'
+      langcode: fr
+      name: 'Autres légumes'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '300'
+      uuid: b98726fb-efec-43a4-aa14-620c0039eef5
+    -
+      vid: secteurs2
+      tid: '297'
+      langcode: fr
+      name: Confiserie
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '296'
+      uuid: 9c9eb593-3dcc-4aa1-a209-6d8547af62df
+    -
+      vid: secteurs2
+      tid: '304'
+      langcode: fr
+      name: 'Conserves Alimentaires'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '295'
+      uuid: 6033e637-9226-400c-bdd3-9c0a617f7d9b
+    -
+      vid: secteurs2
+      tid: '301'
+      langcode: fr
+      name: 'Conserves de fruits'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '300'
+      uuid: cfdee41c-1531-42a4-a368-395daff22ed2
+    -
+      vid: secteurs2
+      tid: '305'
+      langcode: fr
+      name: 'conserves de tomate'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '304'
+      uuid: 32472837-46d4-46db-8c50-8fd66dd73364
+    -
+      vid: secteurs2
+      tid: '312'
+      langcode: fr
+      name: Emballage
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '311'
+      uuid: 1eac0f34-1187-4c22-8e20-85e0c094b143
+    -
+      vid: secteurs2
+      tid: '313'
+      langcode: fr
+      name: 'Emballage alimentaire'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '312'
+      uuid: 43d995f6-304f-4b83-bb65-b738b9312ebe
+    -
+      vid: secteurs2
+      tid: '318'
+      langcode: fr
+      name: "fruit d'été / autre legumes"
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '300'
+      uuid: 212294aa-2755-4d35-b9b2-1b9868ebbcce
+    -
+      vid: secteurs2
+      tid: '300'
+      langcode: fr
+      name: 'Fruits & Légumes'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '295'
+      uuid: 2bc13df4-1405-48ee-8f11-7260045de7d1
+    -
+      vid: secteurs2
+      tid: '293'
+      langcode: fr
+      name: 'Industrie mécanique'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '290'
+      uuid: fb955309-cc91-4054-9e23-95e068385db7
+    -
+      vid: secteurs2
+      tid: '294'
+      langcode: fr
+      name: 'Industrie mécanique'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '293'
+      uuid: d49f5815-1082-463e-93eb-7d47f6504607
+    -
+      vid: secteurs2
+      tid: '311'
+      langcode: fr
+      name: 'Industries Diverses'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 59bbccd9-7e58-4d18-9347-0ecfe5496841
+    -
+      vid: secteurs2
+      tid: '290'
+      langcode: fr
+      name: 'Industries mécaniques & Electriques'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 56dcc9c1-a189-4484-a69c-346e12d5a303
+    -
+      vid: secteurs2
+      tid: '307'
+      langcode: fr
+      name: 'Lingerie & Balnéaire'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '287'
+      uuid: c7835b84-7ab2-46f3-b390-45c19e454328
+    -
+      vid: secteurs2
+      tid: '308'
+      langcode: fr
+      name: 'Lingerie & Vêtements de dessous'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '307'
+      uuid: 09c1afb9-8762-4639-8ad1-d019eb916220
+    -
+      vid: secteurs2
+      tid: '316'
+      langcode: fr
+      name: 'Meuble artisanal'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '315'
+      uuid: f8c1520b-acc2-45d5-aad6-6e9b5a683088
+    -
+      vid: secteurs2
+      tid: '317'
+      langcode: fr
+      name: 'Pantalons, robes & jupes'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '288'
+      uuid: cdec0d12-1fdd-4620-9e42-2f9d3dd3c0f6
+    -
+      vid: secteurs2
+      tid: '302'
+      langcode: fr
+      name: 'Pâtes alimentaires'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '295'
+      uuid: f2e7638f-a5bc-4662-b77c-a4028297fad0
+    -
+      vid: secteurs2
+      tid: '303'
+      langcode: fr
+      name: 'pâtes, couscous'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '302'
+      uuid: 60d439e2-c48b-4e94-bd4a-2376cb701e39
+    -
+      vid: secteurs2
+      tid: '288'
+      langcode: fr
+      name: 'Prêt à porter & maille'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '287'
+      uuid: 1ce365bf-febe-4ffd-84da-e34b97926d7b
+    -
+      vid: secteurs2
+      tid: '291'
+      langcode: fr
+      name: 'Produits électriques (interrupteurs, transformateurs, compteurs)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '290'
+      uuid: 444525e2-3ccf-4f8b-b83f-f9111259f296
+    -
+      vid: secteurs2
+      tid: '292'
+      langcode: fr
+      name: 'Produits électriques (interrupteurs, transformateurs, compteurs)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '291'
+      uuid: bd0aacbd-bcce-4091-ac05-eebe9b6d6c93
+    -
+      vid: secteurs2
+      tid: '310'
+      langcode: fr
+      name: 'Produits pharmaceutiques'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '309'
+      uuid: 04ff50ce-96ab-4d2a-9cad-cca9862b68ef
+    -
+      vid: secteurs2
+      tid: '309'
+      langcode: fr
+      name: 'Produits pharmaceutiques et parapharmaceutiques'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '290'
+      uuid: c9bca6ac-3cd6-49a1-a54f-9ed2d18df2d7
+    -
+      vid: secteurs2
+      tid: '296'
+      langcode: fr
+      name: 'Produits sucrés'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '295'
+      uuid: 01f0d8d2-f707-42b8-acda-0fe3bc23e553
+    -
+      vid: secteurs2
+      tid: '289'
+      langcode: fr
+      name: 'T-shirts & polos'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '288'
+      uuid: 8219fd16-f300-48ec-a389-e8668ccc85bf
+    -
+      vid: secteurs2
+      tid: '287'
+      langcode: fr
+      name: 'Textile & Habillement/ Cuir & Chaussures'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 66fe435e-be4f-4f34-bf58-e956e7d21c29
+    -
+      vid: secteurs2
+      tid: '299'
+      langcode: fr
+      name: 'vêtements de protection'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '298'
+      uuid: bfcd5dda-b309-43a2-a797-c4afff1054ec
+    -
+      vid: secteurs2
+      tid: '298'
+      langcode: fr
+      name: 'Vêtements professionnels'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '287'
+      uuid: cee3c74d-3fa6-43f8-b0f7-18fc96b29246
+  tags:
+    -
+      vid: tags
+      tid: '5'
+      langcode: en
+      name: tag1
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 0b497cab-6c82-4b7a-a350-5131f0864673
+    -
+      vid: tags
+      tid: '6'
+      langcode: en
+      name: tag2
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: b72144e8-1d05-4455-b351-64b059787a78

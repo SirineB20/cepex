@@ -1,6 +1,6 @@
 uuid: e89c4808-95e8-4e9a-b60e-2d9cba333f4e
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.menu
@@ -12,7 +12,7 @@ dependencies:
 id: cepex_menu
 theme: cepex
 region: header
-weight: 0
+weight: -4
 provider: null
 plugin: 'system_menu_block:menu'
 settings:

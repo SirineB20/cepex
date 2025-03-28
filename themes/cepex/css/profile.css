@@ -192,7 +192,7 @@
   height: auto;
   object-fit: cover;
 }
-.button {
+.button-add {
   background: #cd0b47;
   color: #fff;
   border: 1px solid #cd0b47;
@@ -209,13 +209,13 @@
   gap: 8px; /* Espacement entre l'icône et le texte */
 }
 
-.button::before {
+.button-add::before {
   content: "\002B"; /* Code Unicode pour "+" */
   font-size: 18px;
   font-weight: bold;
 }
 
-.button:hover {
+.button-add:hover {
   background: #b00a3d;
 }
 

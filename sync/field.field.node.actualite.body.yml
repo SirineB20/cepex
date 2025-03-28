@@ -13,9 +13,9 @@ field_name: body
 entity_type: node
 bundle: actualite
 label: body
-description: "titre: Invitation à participer au salon COMOPROF 2025 à Bologne, Italie\r\nDescription:Invitation à participer à Lisbon Food Affair, Portugal\r\n\r\nDates :Du 10 au 12 FEVRIER  2025 | Lieu : Lisbonne , Portugal | Espace : pavillon national | Salon : www.lisbonfoodaffair.fil.pt/\r\n\r\n \r\n\r\nNe manquez pas cette opportunité unique de promouvoir vos produits et de développer vos affaires en Portugal !\r\n\r\n   Dans le cadre de la prospection dumarché portugais, l’Ambassade de la Tunisie en Portugal, met à la disposition des sociétés tunisiennes opérant dans le secteur de l’agroalimentaire un stand à la 3 ème édition de l’événement intégré, réunissant tous les secteurs de la chaîne d'approvisionnement ayant trait à l’industrie de l’agroalimentaire (Lisbon Food Affair ), qui se tiendra à Lisbonne, Portugal, du 10 au 12 Février  2025.\r\n\r\n Pourquoi participer ?\r\n\r\nMettre en avant vos produits et services: L’événement offre une plateforme stratégique pour valoriser le savoir-faire tunisien dans le secteur de l’agroalimentaire.\r\nNouer des relations d’affaires: Rencontrez des opérateurs économiques portugais et européens et explorez des opportunités de partenariats dans un marché en pleine expansion.\r\nInscrivez-vous dès maintenant !\r\n\r\nLes places étant limitées (principe du premier arrivé, premier servi), nous vous invitons à manifester votre intérêt à envoyer vos échantillons auplus tard le 21 Janvier 2025.\r\n\r\nPour vous inscrire :\r\n\r\nRemplissez le formulaire de participation, ci-joint.\r\nEnvoyez-le par e-mail aux adresses suivantes :\r\nMme Sonia AROUSSI (Chef service principal à la Direction Centrale de la Promotion)  : saroussi@tunisiaexport.tn\r\nMme Sourour Telmoudi (Counselor Political and Economic affairs Embassy of the Republic of Tunisia Lisbon) s.telmoudi@diplomatie.gov.tn; sstelmoudi@gmail.com\r\nNB. Cette mission est éligible à la subvention Foprodex."
+description: ''
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

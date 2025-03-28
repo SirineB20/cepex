@@ -1,0 +1,9 @@
+uuid: 2f530ca0-09b0-4556-bb1d-8eaec0498cec
+langcode: fr
+status: true
+dependencies: {  }
+name: secteurs2
+vid: secteurs2
+description: essai
+weight: 0
+new_revision: false

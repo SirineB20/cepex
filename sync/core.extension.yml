@@ -1,7 +1,9 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
+  address: 0
   admin_toolbar: 0
+  advanced_language_selector: 0
   announcements_feed: 0
   automated_cron: 0
   better_exposed_filters: 0
@@ -13,13 +15,19 @@ module:
   comment: 0
   conditional_fields: 0
   config: 0
+  config_translation: 0
   contact: 0
+  content_moderation: 0
   contextual: 0
+  csv_importer: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
+  entity: 0
+  entity_model: 0
+  entity_reference_revisions: 0
   field: 0
   field_ui: 0
   file: 0
@@ -27,27 +35,46 @@ module:
   help: 0
   history: 0
   image: 0
+  jquery_ui: 0
   language: 0
   link: 0
+  locale: 0
+  media: 0
+  media_library: 0
   menu_link_content: 0
   menu_ui: 0
   mysql: 0
   node: 0
   options: 0
   page_cache: 0
+  paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
+  profile: 0
   search: 0
   shortcut: 0
+  shs: 0
+  social_media: 0
+  social_media_links: 0
+  social_media_links_field: 0
+  structure_sync: 0
   system: 0
   taxonomy: 0
+  taxonomy_manager: 0
+  tb_megamenu: 0
   telephone: 0
   text: 0
+  token: 0
   toolbar: 0
+  twig_tweak: 0
   update: 0
   user: 0
   views_ui: 0
+  viewsreference: 0
+  workflows: 0
+  content_translation: 10
   views: 10
+  paragraphs: 11
   standard: 1000
 theme:
   olivero: 0

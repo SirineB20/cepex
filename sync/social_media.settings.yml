@@ -1,0 +1,86 @@
+_core:
+  default_config_hash: LsWrZ6JUlkn4OUc8Vrz1akQUn2dUJ_uFKduY7N5C2Yg
+langcode: fr
+social_media:
+  facebook_share:
+    enable: 1
+    text: Facebook
+    api_url: 'https://www.facebook.com/share.php?u=[current-page:url]&title=[current-page:title]'
+    api_event: href
+    default_img: 1
+    weight: 1
+    attributes: |-
+      target|_blank
+      class|facebook-share
+      rel|noopener noreferrer
+  facebook_msg:
+    enable: 1
+    text: 'Facebook messenger'
+    api_url: "FB.ui({method: 'send',link: '[current-page:url]'})"
+    api_event: onclick
+    default_img: 1
+    weight: 2
+    attributes: |-
+      target|_blank
+      class|facebook-msg
+      rel|noopener noreferrer
+    drupalSettings: 'application_id|Your Application ID'
+    library: social_media/facebook
+  linkedin:
+    enable: 1
+    text: LinkedIn
+    api_url: 'https://www.linkedin.com/shareArticle?mini=true&url=[current-page:url]&title=[current-page:title]&source=[current-page:url]'
+    api_event: href
+    default_img: 1
+    weight: 3
+    attributes: |-
+      target|_blank
+      class|linkedin
+      rel|noopener noreferrer
+  twitter:
+    enable: 1
+    text: Twitter
+    api_url: 'https://twitter.com/intent/tweet?url=[current-page:url]&url=[current-page:url]&hashtags=Hashtag'
+    api_event: href
+    default_img: 1
+    weight: 4
+    attributes: |-
+      target|_blank
+      class|twitter
+      rel|noopener noreferrer
+  pinterest:
+    enable: 1
+    text: Pinterest
+    api_url: 'https://www.pinterest.com/pin/create/button/?url=[current-page:url]&description=[current-page:title]'
+    api_event: href
+    default_img: 1
+    weight: 5
+    attributes: |-
+      target|_blank
+      class|pinterest
+      rel|noopener noreferrer
+  whatsapp:
+    enable: 0
+    api_url: 'https://wa.me/?text=[current-page:url]'
+    api_event: href
+    default_img: 1
+    weight: 6
+    attributes: |-
+      class|whatsapp show-for-small-only
+      data-action|share/whatsapp/share
+  email:
+    enable: 1
+    text: Courriel
+    api_url: 'mailto:?subject=[current-page:title]&body=Check out this site [current-page:url]'
+    api_event: href
+    default_img: 1
+    weight: 7
+    attributes: class|email
+  print:
+    enable: 0
+    text: Imprimer
+    api_url: window.print()
+    api_event: onclick
+    default_img: 1
+    weight: 8
+    attributes: class|print

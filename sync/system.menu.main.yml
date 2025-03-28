@@ -1,10 +1,10 @@
 uuid: 22150eb1-e788-4a5f-955b-e18052f2fb81
-langcode: en
+langcode: fr
 status: true
 dependencies: {  }
 _core:
   default_config_hash: Q2Ra3jfoIVk0f3SjxJX61byRQFVBAbpzYDQOiY-kno8
 id: main
-label: 'Main navigation'
-description: 'Site section links'
+label: 'Navigation principale'
+description: 'Liens de section du site'
 locked: true

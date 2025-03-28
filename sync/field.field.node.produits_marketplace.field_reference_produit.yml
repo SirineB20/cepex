@@ -1,0 +1,19 @@
+uuid: be6d83e0-bd37-413d-b31e-af7b11f30db9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reference_produit
+    - node.type.produits_marketplace
+id: node.produits_marketplace.field_reference_produit
+field_name: field_reference_produit
+entity_type: node
+bundle: produits_marketplace
+label: 'référence produit'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

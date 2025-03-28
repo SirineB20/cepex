@@ -1,0 +1,19 @@
+uuid: d32bc16e-884d-4fbd-8dee-6903c033a8e7
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - text
+id: profile.field_presentation
+field_name: field_presentation
+entity_type: profile
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

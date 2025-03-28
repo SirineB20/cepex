@@ -1,0 +1,22 @@
+uuid: b3824733-9cf8-4888-aa55-191c8101a9e7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_promotionnelle
+id: taxonomy_term.categorie_promotionnelle.status
+field_name: status
+entity_type: taxonomy_term
+bundle: categorie_promotionnelle
+label: Publié
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

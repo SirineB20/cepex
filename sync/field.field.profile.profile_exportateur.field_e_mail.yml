@@ -1,0 +1,19 @@
+uuid: e1e84266-2730-4c5e-8381-278eb471dac9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_e_mail
+    - profile.type.profile_exportateur
+id: profile.profile_exportateur.field_e_mail
+field_name: field_e_mail
+entity_type: profile
+bundle: profile_exportateur
+label: E-mail
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

@@ -1,0 +1,21 @@
+uuid: ee795a61-b98d-4bb6-a594-e03f3d66ce11
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.actualites
+  module:
+    - text
+id: taxonomy_term.actualites.description
+field_name: description
+entity_type: taxonomy_term
+bundle: actualites
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

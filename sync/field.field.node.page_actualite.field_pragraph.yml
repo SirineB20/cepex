@@ -1,0 +1,31 @@
+uuid: dd270cb9-2de0-4da2-b404-6b3cf49ba1c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pragraph
+    - node.type.page_actualite
+    - paragraphs.paragraphs_type.banniere
+  module:
+    - entity_reference_revisions
+id: node.page_actualite.field_pragraph
+field_name: field_pragraph
+entity_type: node
+bundle: page_actualite
+label: pragraph
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      banniere: banniere
+    negate: 0
+    target_bundles_drag_drop:
+      banniere:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

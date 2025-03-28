@@ -1,0 +1,18 @@
+uuid: a3839772-145d-411a-84e0-144de11d97b6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.produits_marketplace
+id: node.produits_marketplace.created
+field_name: created
+entity_type: node
+bundle: produits_marketplace
+label: 'Écrit le'
+description: "La date et l'heure auxquelles le contenu a été créé."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,111 @@
+uuid: 0b12d715-25ad-498b-8db6-1791b8d425ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.profile_exportateur.field_adresse
+    - field.field.profile.profile_exportateur.field_certifications
+    - field.field.profile.profile_exportateur.field_directeur_general
+    - field.field.profile.profile_exportateur.field_e_mail
+    - field.field.profile.profile_exportateur.field_fax
+    - field.field.profile.profile_exportateur.field_matricule_fiscale
+    - field.field.profile.profile_exportateur.field_nom_de_l_entreprise
+    - field.field.profile.profile_exportateur.field_presentation
+    - field.field.profile.profile_exportateur.field_secteurs2
+    - field.field.profile.profile_exportateur.field_site_web
+    - field.field.profile.profile_exportateur.field_tel
+    - profile.type.profile_exportateur
+  module:
+    - telephone
+    - text
+id: profile.profile_exportateur.default
+targetEntityType: profile
+bundle: profile_exportateur
+mode: default
+content:
+  field_adresse:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_certifications:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_directeur_general:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_e_mail:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_fax:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_matricule_fiscale:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_nom_de_l_entreprise:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_presentation:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_secteurs2:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_site_web:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_tel:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }
