@@ -16,6 +16,7 @@ dependencies:
     - field.field.profile.profile_exportateur.field_tel
     - profile.type.profile_exportateur
   module:
+    - shs
     - telephone
     - text
 id: profile.profile_exportateur.default
@@ -85,7 +86,7 @@ content:
     weight: 0
     region: content
   field_secteurs2:
-    type: entity_reference_label
+    type: entity_reference_shs
     label: above
     settings:
       link: true

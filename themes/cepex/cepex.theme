@@ -40,4 +40,32 @@ function cepex_theme_suggestions_views_view_table_alter(array &$suggestions, arr
   $suggestions[] = 'views_view_table__' . $view_id . '__' . $display_id;
 }
 
-
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function cepex_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#id'])) {
+    $form_id = $variables['element']['#id'];
+    
+    // Ajouter une suggestion pour les formulaires de filtres exposés de vue
+    if (strpos($form_id, 'views-exposed-form') !== FALSE) {
+      // Récupérer le nom de la vue et de l'affichage
+      $view_id = $variables['element']['#id'];
+      $view_parts = explode('-', $view_id);
+      
+      if (isset($view_parts[3]) && isset($view_parts[4])) {
+        $view_name = $view_parts[3];
+        $display_id = $view_parts[4];
+        
+        // Ajouter des suggestions spécifiques pour cette vue
+        $suggestions[] = 'form__views_exposed_form__' . $view_name;
+        $suggestions[] = 'form__views_exposed_form__' . $view_name . '__' . $display_id;
+        
+        // Suggestion spécifique pour gestion-produit-par-exportateur-page-1
+        if ($view_name == 'gestion_produit_par_exportateur' && $display_id == 'page_1') {
+          $suggestions[] = 'form__views_exposed_form__gestion_produit_par_exportateur__page_1';
+        }
+      }
+    }
+  }
+}

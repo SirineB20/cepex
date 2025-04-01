@@ -24,7 +24,7 @@
     padding: 15px 35px;
     font-weight: 500;
   }
-  
+
   .menu-categ-maketplace ul {
     /* by default hide all sub menus */
     display: none;
@@ -38,7 +38,7 @@
   }
   li.have-children  {
     position: relative;
-  
+
   }
   li.have-children:after {
     left: 10px;
@@ -67,23 +67,27 @@
   .box-fil-ariane.fil-ariane-marketplace {
       padding: 25px 0 70px;
   }
-  
+
   .filtre-maketplace {
-      margin-top: -45px;
+      margin-top: 45px;
       overflow: visible;
   }
-  
+
   .flex-filtre-maketplace {
-      display: flex;
-      align-items: center;
-      border: 1px solid #bcbcbc;
-      border-radius: 45px;
-      background: #fff;
-      width: 85%;
-      margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1px;
+    border: 1px solid;
+    border-radius: 41px;
+    display: flex;
+    background: white;
   }
-  
-  .click-all-categ {
+
+  #edit-field-certifications-target-id ul li:first-child {
+    display: none;
+}
+
+  .click-all-categ , #edit-field-certifications-target-id{
       cursor: pointer;
       font-size: 18px;
       color: #5f5f5f;
@@ -99,8 +103,14 @@
       z-index: 22;
       border-right: 1px solid #5f5f5f;
   }
-  
-  .click-all-categ:after {
+  #edit-field-certifications-target-id
+  {
+    border-radius: unset;
+    width: 300px;
+    padding: 20px 30px 20px 20px;
+  }
+
+  .click-all-categ:after, .form-item-field-certifications-target-id:after{
       right: 15px;
       top: 15px;
       border: solid transparent;
@@ -111,8 +121,48 @@
       font-family: 'FontAwesome';
       font-size: 18px;
       transform: rotate(90deg);
+      z-index: 22;
   }
-  
+
+.form-item-field-certifications-target-id {
+    position: relative;
+    margin: 0;
+}
+#edit-field-certifications-target-id ul {
+    list-style: none;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 67px;
+    border: 1px solid #000;
+    padding-top: 0;
+    border-top: 0;
+    z-index: 2;
+    width: 300px;
+    left: 0;
+}
+
+#edit-field-certifications-target-id ul.open {
+    display: block;
+}
+
+#edit-field-certifications-target-id ul li a {
+    position: relative;
+    display: block;
+    color: #505050;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-weight: 500;
+}
+#edit-field-certifications-target-id ul li::after {
+    display: none;
+}
+#edit-field-certifications-target-id ul li a:hover {
+    background: #cd0b47;
+    color: #fff;
+}
   .input-mot-cle {
       width: 55%;
       border: 0;
@@ -129,7 +179,7 @@
       border-radius: 45px;
       width: 20%;
   }
-  
+
   li.have-children:hover:after {
       color: #fff
   }
@@ -165,11 +215,11 @@
 .slider-marketplace .swiper-container {
     padding-bottom: 50px;
   }
-  
+
   .swiper-scrollbar {
     background: #d6d6d6;
   }
-  
+
   .swiper-container-horizontal > .swiper-scrollbar {
     border-radius: 2px;
     height: 2px;
@@ -178,7 +228,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .swiper-wrapper img {
     width: 100%;
   }
@@ -195,7 +245,9 @@
     padding: 20px;
     background: #fff;
 }
-
+.slider-marketplace .swiper-slide a {
+    text-decoration: none;
+}
 .slider-marketplace .swiper-slide img {
     display: block;
     max-width: 100%;
@@ -266,18 +318,18 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .boximg {
     position: relative;
     overflow: hidden;
   }
-  
+
   .img-mission {
     width: 100%;
     height: 400px;
     object-fit: cover;
   }
-  
+
   .absolute-details-mission {
     position: absolute;
     z-index: 0;
@@ -293,7 +345,7 @@
     right: 0;
     clip-path: polygon(0% 0%, 100% 0, 100% 100%, 15% 100%);
   }
- 
+
   .flexboxdetails-mission {
     position: relative;
     z-index: 2;
@@ -308,7 +360,7 @@
     font-weight: 300;
     color: #fff;
   }
-  
+
   .title-mission {
     display: block;
     font-size: 32px;
@@ -317,12 +369,12 @@
     margin: 5px 0 0;
     line-height: 38px;
   }
-  
+
   .flexboxdetails-mission p {
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     text-align: justify;
-    margin: 20px 0 0;
+    margin: 15px 0 0;
   }
   .flexfiltrage-prod {
     width: 76%;
@@ -439,10 +491,11 @@
 .input-mot-cle.input-nopadding {
     width: 75%;
     padding: 5px 10px;
+    margin-left: 5px;
 }
 .boxlisteprod-marketplace {
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
     margin: 30px 0 0;
 }
 
@@ -528,6 +581,9 @@
     height: 400px;
     display: block;
     margin: auto;
+    padding-left: 155px;
+    object-fit: cover;
+    padding-right: 70px;
 }
 
 .listesimgs {
@@ -552,6 +608,8 @@
     max-width: 100%;
     height: 115px;
     display: block;
+    object-fit: contain;
+    padding: 15px;
 }
 
 .imgliste:hover {
@@ -645,10 +703,23 @@
     text-align: justify;
     margin: 5px 0 0;
 }
-
+.flex-btndetail {
+    display: flex;
+    justify-content: flex-end;
+}
+.flex-btndetail .btn-devis {
+    margin: 20px 0px 0 15px;
+}
 .btn-devis {
     margin: 20px 0;
     float: right;
+}
+.flex-btndetail {
+    display: flex;
+}
+
+.flex-btndetail .btn-devis {
+    margin: 20px 0 0px 15px;
 }
 .caract-details-marketplace {
     position: relative;
@@ -676,6 +747,7 @@
     border-radius: 10px;
     padding: 10px 20px;
     font-weight: 500;
+    margin-top: 10px;
 }
 
 .nav-tabs-details-marketplace .nav-link.active {
@@ -735,6 +807,7 @@
     overflow: hidden;
     padding: 10px;
     margin: 0 0 10px;
+    width: 100%;
 }
 
 .bgwhite-entreprise {
@@ -805,6 +878,7 @@
 .boxcontenu-company {
     position: relative;
     overflow: hidden;
+    padding-left: 15px;
 }
 
 .img-company-marketplace {
@@ -882,7 +956,6 @@
     align-items: center;
     margin-left: 20px;
     flex-wrap: wrap;
-    margin-: 10px;
 }
 
 .flexbox-categ-company span {
@@ -907,14 +980,19 @@
     width: 40%;
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
 }
-
+.box-certif {
+    width: 33.3333%;
+    padding: 0 10px;
+}
 .img-certification-marketplace {
     max-width: 100%;
-    height: 350px;
+    height: auto;
     display: block;
     margin-right: 10px;
     object-fit: cover;
+    max-height: 350px;
 }
 
 .details-certification {
@@ -936,27 +1014,92 @@
 .slider-produit-marketplace .slick-dots li.slick-active button {
     background-color: #cb033d;
   }
-  
+
   .slider-produit-marketplace .slick-dots li button {
     border: 1px solid #cb033d;
     border-radius: 50%;
     text-indent: -9999px;
   }
+  .flex-filtre-maketplace .form-item-filiere {
+    width: auto;
+    margin: 0;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix .form-item-filiere {
+    margin: 0;
+}
+.boximgprod .img-prod-marketplace {
+    max-width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: contain;
+}
+
+
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix #edit-reset {
+    border: 0;
+    background: #3f3f3f;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 10px;
+    border-radius: 32px;
+    width: 50px;
+    height: 50px;
+}
+
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix #edit-actions {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .js-form-item.form-item.js-form-type-textfield.form-type-textfield.js-form-item-titre-filiere.form-item-titre-filiere {
+    width: 100%;
+    margin: 0;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix .form-item-filiere {
+    margin: 0;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix {
+    border: 1px solid;
+    border-radius: 40px;
+    display: flex;
+    background: white;
+    align-items: center;
+    padding: 5px 0;
+}
+
 /********* Responsive ************/
 @media screen and (max-width: 1366px) {
 .menu-categ-maketplace {
     max-width: 347px;
+}
+.flex-btndetail .btn-devis {
+    font-size: 14px;
+    text-align: center;
+}
+.img-mission {
+    height: 500px;
+}
+}
+@media screen and (max-width: 1280px) {
+.flex-filtre-maketplace {
+    width: 100%;
+}
+.input-mot-cle.input-nopadding {
+    width: 60%;
 }
 }
 @media screen and (max-width: 1024px) {
 .img-certification-marketplace {
     height: 250px;
 }
+.flex-btndetail .btn-devis {
+    padding: 10px 10px;
+}
 .flex-filtre-maketplace {
     width: 100%;
 }
 .click-all-categ {
-    width: 414px;
+    width: 285px;
 }
 .title-marketplace {
     font-size: 22px;
@@ -1002,11 +1145,36 @@
 }
 }
 @media screen and (max-width: 768px) {
+.flexprod-prix-categ {
+    align-items: flex-start !important;
+    flex-direction: column;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix .form-item-filiere {
+    width: 100%;
+}
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix {
+    flex-direction: column;
+    border: 0 !important;
+    background: transparent !important;
+}
+input#edit-titre-filiere {
+    display: none;
+}
+input#edit-submit-gestion-produit-par-exportateur {
+    margin: 10px 0 0 !important;
+}
 .click-all-categ {
     width: 100%;
     border: 1px solid #bcbcbc;
     border-top-right-radius: 45px;
     border-bottom-right-radius: 45px;
+}
+.flex-filtre-maketplace .form-item-filiere {
+    width: 100% !important;;
+}
+.box-certif {
+    display: flex;
+    justify-content: center;
 }
 .flex-filtre-maketplace {
     width: 100%;
@@ -1085,6 +1253,7 @@
 }
 .boxcontenu-company {
     width: 100%;
+    padding-left: 0;
 }
 .boxdetails-company {
     flex-wrap: wrap;
@@ -1095,9 +1264,28 @@
 }
 }
 @media screen and (max-width: 550px) {
+.flex-btndetail {
+    display: inline-flex;
+    flex-direction: column;
+}
+.flex-btndetail .btn-devis {
+    padding: 15px 20px;
+    margin: 10px 0 0;
+    font-size: 15px;
+}
+input#edit-submit-gestion-produit-par-exportateur {
+    margin: 10px 0 0 !important;
+}
 .absolute-details-mission {
     padding: 20px 30px 20px 50px;
     width: 100%;
+}
+.box-certif {
+    width: 100%;
+    padding: 10px 0;
+}
+.img-details-marketplace {
+    padding-left: 0;
 }
 .flexbox-recheche-marketplace {
     padding: 0;
@@ -1130,7 +1318,7 @@
     font-size: 22px;
 }
 .boxprod-marketplace {
-    padding: 0;
+    padding: 0 10px;
     margin: 0 0 20px;
 }
 .nav-tabs-details-marketplace {
@@ -1169,4 +1357,251 @@
     text-align: center;
     justify-content: center;
 }
+}
+input#edit-type-contenu-2, input#edit-type-contenu-1 {
+  opacity: 0;
+  position: absolute;
+}
+.flexbox-recheche-marketplace input:focus {
+    outline: none;
+}
+.bouton-filtre .js-form-item {
+    margin: 0;
+}
+.filtre-maketplace .bouton-filtre:hover {
+  background: #cd1b4d;
+  color: #fff;
+  border: 1px solid #cd1b4d;
+}
+.filtre-maketplace .bouton-filtre.active-filter {
+  background: #cd1b4d;
+  color: #fff;
+  border: 1px solid #cd1b4d;
+}
+.filtre-maketplace .bouton-filtre {
+  border: 1px solid #aaaaaa;
+  background: #fff;
+  border-radius: 45px;
+  padding: 10px 35px;
+  margin: 0 10px;
+}
+.form-item-sous-categorie,#edit-titre{
+  display: none;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    display: none;
+}
+
+input#edit-titre-filiere {
+    /* width: 100%; */
+    position: relative;
+    /* height: unset; */
+    padding: 19px;
+    border: unset;
+}
+
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix {
+    border: 1px solid;
+    border-radius: 41px;
+    display : flex;
+    background: white;
+    padding:1px;
+}
+
+
+#views-exposed-form-gestion-produit-par-exportateur-page-1 .js-form-item.form-item.js-form-type-textfield.form-type-textfield.js-form-item-titre-filiere.form-item-titre-filiere {
+    width: 100%;
+}
+
+input#edit-submit-gestion-produit-par-exportateur {
+    padding: 15px 40px;
+    border-radius: 32px;
+    bottom: 0;
+    position: relative;
+    background: #cd0b47;
+    border: #cd0b47;
+    margin-right: 5px;
+    margin: 0;
+}th
+
+
+.slider-marketplace a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 550px)
+{
+    #views-exposed-form-gestion-produit-par-exportateur-page-1 .form--inline.clearfix {
+        border: unset;
+        border-radius: 41px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input#edit-titre-filiere {
+        position: relative;
+        padding: 19px;
+        border: 1px solid;
+        border-radius: 20px;
+    }
+
+}
+
+
+/******* Arrows Mission ********/
+.bloc-missions .slick-arrow {
+    top: 50%;
+    width: 45px;
+    height: 45px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 2;
+}
+
+.bloc-missions .slick-prev {
+    left: 15px;
+}
+.bloc-missions .slick-next {
+    right: 15px;
+}
+
+.bloc-missions .slick-prev:before {
+    content: "\f053";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.bloc-missions .slick-next:before {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+
+.banner-marketplace .banner-interne .box-fil-ariane {
+    padding: 25px 0 60px;
+}
+
+#edit-filiere-all {
+  display: none;
+}
+
+.nom-categ-details {
+    display: inline-block;
+    background: #d01a4e;
+    border: 0;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.flexprod-prix-categ {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxprix-prod {
+    display: flex;
+}
+
+.boxprix-prod .nom-categ-details {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.boxprix-prod .nom-categ-details dd {
+    margin: 0;
+    margin-left: 3px;
+}
+.title-faq-marketplace {
+    display: block;
+    font-size: 24px;
+    color: #3f3f3f;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.faq-details-marketplace {
+    margin: 25px 0 0;
+}
+
+.faq-details-marketplace .accordion-item {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 0px 0 20px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.faq-details-marketplace .accordion-button {
+    background: #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 0;
+    box-shadow: none;
+}
+
+.faq-details-marketplace .accordion {
+    border-radius: 10px;
+    border: 0;
+}
+
+
+.form-item-id-produit, .form-item-id-service {
+    display: none;
+}
+
+
+/* exportateur */
+
+.view-produit-par-exportateur .table-wrapper {
+    min-height: 300px;
+}
+
+.user-dashboards details.webform-submission-information.card {
+    display: none;
+}
+
+.webform-submission-contact-fournisseur2-form .form-item-mail-exportateur {
+    display: none;
+}
+.webform-submission-contact-prestataire-form .form-item-mail-exportateur {
+    display: none;
+}
+.field--name-field-certifications a, .field--name-field-option-livraison a {
+    color: #000;
+    text-decoration: none;
+  }
+  .field--name-field-pays-exportation-entrepris {
+    font-size: 16px;
+    color: #858585;
+    line-height: 28px;
+    margin: 10px 0 0;
+    font-weight: 400;
+}
+
+.field--name-field-certifications-entreprise a {
+    font-size: 16px;
+    color: #858585;
+    line-height: 28px;
+    margin: 10px 0 0;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+/* opportunités */
+
+.expired
+{
+    pointer-events: none;
 }

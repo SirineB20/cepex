@@ -1,4 +1,4 @@
-uuid: 1fa2e5bd-8f27-41dd-9143-bf87dd8fab8f
+uuid: c76ff708-4fb1-4de7-9da2-cd505423d3ae
 langcode: fr
 status: true
 dependencies:
@@ -7,5 +7,5 @@ dependencies:
 id: taxonomy_term.secteurs2
 target_entity_type_id: taxonomy_term
 target_bundle: secteurs2
-default_langcode: site_default
+default_langcode: fr
 language_alterable: false

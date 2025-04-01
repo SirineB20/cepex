@@ -30,13 +30,10 @@ content:
     weight: 103
     region: content
   field_image_produit:
-    type: image
+    type: image_url
     label: above
     settings:
-      image_link: ''
       image_style: ''
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 101
     region: content
@@ -62,7 +59,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 106
+    weight: 105
     region: content
   links:
     settings: {  }

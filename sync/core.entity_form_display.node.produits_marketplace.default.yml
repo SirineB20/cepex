@@ -15,6 +15,7 @@ dependencies:
     - content_moderation
     - image
     - path
+    - shs
 id: node.produits_marketplace.default
 targetEntityType: node
 bundle: produits_marketplace
@@ -59,14 +60,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_secteurs2:
-    type: entity_reference_autocomplete
-    weight: 126
+    type: options_shs
+    weight: 125
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
     third_party_settings: {  }
   langcode:
     type: language_select
