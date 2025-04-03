@@ -24,12 +24,13 @@ global:
       css/profile-form.css: {}
       css/programme.css: {}
       css/marketplace.css: {}
+      css/marketplace-filters.css: {}
       css/maps.css: {}
       css/header.css: {}
       css/banner.css: {}
       css/filtre.css: {}
       css/intelligence.css: {}
-      css/opportunites.css: {}
+      css/profiledit.css: {}
       css/details-actualites.css: {}
       css/jquery.fancybox.min.css: {}
       https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css: { type: external }
@@ -56,6 +57,7 @@ global:
     js/slick-temoingane.js: {}
     js/profile.js: {}
     js/temoignage.js: {}
+    js/marketplace.js: {}
     https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js: { type: external, attributes: { defer: true } }
   dependencies:
     - core/jquery

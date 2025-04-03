@@ -153,7 +153,7 @@ display:
           entity_type: node
           entity_field: uid
           plugin_id: field
-          label: Owner
+          label: Exploitant
           exclude: false
           alter:
             alter_text: false
@@ -454,50 +454,6 @@ display:
           break_phrase: false
           not: false
       filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: 'Statut de publication'
-            description: ''
-            use_operator: false
-            operator: status_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: status
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         type:
           id: type
           table: node_field_data
@@ -507,55 +463,6 @@ display:
           plugin_id: bundle
           value:
             produits_marketplace: produits_marketplace
-        field_secteurs2_target_id:
-          id: field_secteurs2_target_id
-          table: node__field_secteurs2
-          field: field_secteurs2_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_secteurs2_target_id_op
-            label: secteurs
-            description: ''
-            use_operator: false
-            operator: field_secteurs2_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_secteurs2_target_id
-            required: false
-            remember: true
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              administrator: administrator
-              exportateur: exportateur
-              anonymous: '0'
-              content_editor: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          vid: secteurs2
-          type: shs
-          hierarchy: false
-          limit: true
-          error_message: true
         title:
           id: title
           table: node_field_data
@@ -572,7 +479,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: ''
+            label: Titre
             description: ''
             use_operator: false
             operator: title_op
@@ -601,6 +508,57 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        term_node_tid_depth_1:
+          id: term_node_tid_depth_1
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_1_op
+            label: Secteur
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: term_node_tid_depth_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              administrator: administrator
+              exportateur: exportateur
+              anonymous: '0'
+              content_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: secteurs2
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: false
+          depth: 1
       style:
         type: table
         options:
@@ -739,75 +697,7 @@ display:
             roles: {  }
           break_phrase: false
           not: false
-      defaults:
-        arguments: false
-        filters: true
-        filter_groups: true
-      display_extenders: {  }
-      path: dashboard/gestion-produits
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-        - 'user.node_grants:view'
-        - user.roles
-      tags: {  }
-  page_2:
-    id: page_2
-    display_title: Page
-    display_plugin: page
-    position: 1
-    display_options:
-      arguments: {  }
       filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          operator: '='
-          value: All
-          group: 1
-          exposed: true
-          expose:
-            operator_id: ''
-            label: 'Statut de publication'
-            description: ''
-            use_operator: false
-            operator: status_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: status
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         type:
           id: type
           table: node_field_data
@@ -817,55 +707,6 @@ display:
           plugin_id: bundle
           value:
             produits_marketplace: produits_marketplace
-        field_secteurs2_target_id:
-          id: field_secteurs2_target_id
-          table: node__field_secteurs2
-          field: field_secteurs2_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_secteurs2_target_id_op
-            label: secteurs
-            description: ''
-            use_operator: false
-            operator: field_secteurs2_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_secteurs2_target_id
-            required: false
-            remember: true
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              administrator: administrator
-              exportateur: exportateur
-              anonymous: '0'
-              content_editor: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          vid: secteurs2
-          type: shs
-          hierarchy: false
-          limit: true
-          error_message: true
         title:
           id: title
           table: node_field_data
@@ -882,7 +723,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Titre
+            label: ''
             description: ''
             use_operator: false
             operator: title_op
@@ -894,11 +735,11 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+              administrator: administrator
+              exportateur: exportateur
               anonymous: '0'
               content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-            placeholder: ''
+            placeholder: 'chercher le produit par son titre'
           is_grouped: false
           group_info:
             label: ''
@@ -911,6 +752,57 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: term_node_tid_depth
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: secteurs2
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+          depth: 3
       filter_groups:
         operator: AND
         groups:
@@ -919,12 +811,36 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+      rendering_language: fr
+      display_extenders: {  }
+      path: dashboard/gestion-produits
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.roles
+      tags: {  }
+  page_2:
+    id: page_2
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      arguments: {  }
+      defaults:
+        arguments: false
+        filters: true
+        filter_groups: true
+      rendering_language: fr
       display_extenders: {  }
       path: admin/gestion-produits
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args

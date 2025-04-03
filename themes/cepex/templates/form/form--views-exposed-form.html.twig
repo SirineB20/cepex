@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="form--inline clearfix">
+  {# The form is wrapped in a div with the class "form--inline clearfix" to ensure proper styling and layout. #}
+  {# The form element itself is generated with the attributes passed to it, and the children elements are rendered within the form. #}
+  <form{{ attributes }} style="display: flex;">
+    {{ children }}
+  </form>
+</div>
+{# The form is wrapped in a div with the class "form--inline clearfix" to ensure proper styling and layout. #}
+{# The form element itself is generated with the attributes passed to it, and the children elements are rendered within the form. #}

@@ -18,54 +18,216 @@ function cepex_preprocess_html(array &$variables): void {
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
 function cepex_preprocess_page(array &$variables): void {
-
+  // Obtenir l'utilisateur actuel
+  $current_user = \Drupal::currentUser();
+  
+  // Vérifier si l'utilisateur est connecté (ID > 0)
+  if ($current_user->id() > 0) {
+    // Charger l'objet utilisateur complet pour avoir accès à toutes ses propriétés
+    $user = \Drupal\user\Entity\User::load($current_user->id());
+    
+    // Ajouter les variables de l'utilisateur connecté au tableau $variables
+    $variables['user_logged_in'] = TRUE;
+    $variables['user_name'] = $user->getDisplayName();
+    $variables['user_id'] = $user->id();
+    $variables['user_roles'] = $user->getRoles();
+    
+    // Charger le profil exportateur associé à cet utilisateur
+    $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+    $profiles = $profile_storage->loadByProperties([
+      'uid' => $user->id(),
+      'type' => 'profile_exportateur', // Le type de profile
+    ]);
+    
+    if (!empty($profiles)) {
+      $profile = reset($profiles);
+      if ($profile->hasField('field_nom_de_l_entreprise') && !$profile->get('field_nom_de_l_entreprise')->isEmpty()) {
+        $variables['entreprise_name'] = $profile->get('field_nom_de_l_entreprise')->value;
+      } else {
+        $variables['entreprise_name'] = $user->getDisplayName();
+      }
+    } else {
+      $variables['entreprise_name'] = $user->getDisplayName();
+    }
+  }
+  else {
+    // Si l'utilisateur n'est pas connecté
+    $variables['user_logged_in'] = FALSE;
+  }
 }
-
 /**
- * Implements hook_preprocess_HOOK() for node.html.twig.
+ * Implements hook_preprocess_views_exposed_form().
  */
-function cepex_preprocess_node(array &$variables): void {
-
+function cepex_preprocess_views_exposed_form(&$variables) {
+  // Cibler spécifiquement le formulaire exposé "gestion-produit-par-exportateur-page-1"
+  if ($variables['form']['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
+    // Ajouter des classes pour le conteneur principal
+    $variables['form']['#attributes']['class'][] = 'marketplace-filter-container';
+    $variables['form']['#attributes']['class'][] = 'filter-flex-container';
+    
+    // Modifier les attributs du bouton de recherche
+    if (isset($variables['form']['actions']['submit'])) {
+      $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn';
+      $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+      $variables['form']['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
+    }
+    
+    // Améliorer le champ de recherche
+    if (isset($variables['form']['title'])) {
+      $variables['form']['title']['#attributes']['placeholder'] = t('Chercher le produit par son titre');
+      $variables['form']['title']['#attributes']['class'][] = 'form-control';
+      $variables['form']['title']['#attributes']['class'][] = 'search-input-styled';
+     
+    }
+    
+    // Améliorer le sélecteur de catégories
+    if (isset($variables['form']['field_secteurs2_target_id'])) {
+      $variables['form']['field_secteurs2_target_id']['#attributes']['class'][] = 'category-select';
+      $variables['form']['field_secteurs2_target_id']['#attributes']['class'][] = 'form-select-styled';
+      // Wrapper pour le sélecteur
+      
+    }
+    
+    // Support pour le select hiérarchique (SHS) si présent
+    if (isset($variables['form']['term_node_tid_depth'])) {
+      $variables['form']['term_node_tid_depth']['#attributes']['class'][] = 'category-select';
+      $variables['form']['term_node_tid_depth']['#attributes']['class'][] = 'form-select-styled';
+      // Wrapper pour le sélecteur
+     
+    }
+    
+    // Joindre la bibliothèque CSS/JS pour ce formulaire
+    $variables['#attached']['library'][] = 'cepex/marketplace';
+  }
 }
 
 /**
- * Implémente hook_theme_suggestions_HOOK_alter() pour les vues en table.
+ * Implements hook_form_alter().
  */
-function cepex_theme_suggestions_views_view_table_alter(array &$suggestions, array $variables) {
-  $view = $variables['view'];
-  $view_id = $view->id();
-  $display_id = $view->current_display;
+function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
+    // Ajouter un conteneur flex pour aligner les éléments.
+    $form['#attributes']['class'][] = 'filter-flex-container';
 
-  // Ajoute une suggestion de template spécifique à la vue et à l'affichage.
-  $suggestions[] = 'views_view_table__' . $view_id . '__' . $display_id;
+    // Pour le champ secteurs.
+    if (isset($form['field_secteurs2_target_id'])) {
+      $form['field_secteurs2_target_id']['#title'] = t('Filtrer par secteur');
+      $form['field_secteurs2_target_id']['#title_display'] = 'before';
+      $form['field_secteurs2_target_id']['#attributes']['class'][] = 'select-full-width';
+    }
+
+    // Support pour le format SHS si utilisé.
+    if (isset($form['term_node_tid_depth'])) {
+      $form['term_node_tid_depth']['#title'] = t('Filtrer par secteur');
+      $form['term_node_tid_depth']['#title_display'] = 'before';
+      $form['term_node_tid_depth']['#attributes']['class'][] = 'select-full-width';
+    }
+
+    // Grouper les éléments de filtre.
+    $form['filter_group'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['filter-elements-group', 'flex-aligned'],
+      ],
+      '#weight' => -10,
+    ];
+
+    // Déplacer le champ "title" dans le groupe en affichant son label.
+    if (isset($form['title'])) {
+      // Attribuer le texte du label et forcer son affichage avant l'élément.
+      $form['title']['#title'] = t('Mot clé');
+      $form['title']['#title_display'] = 'before';
+      $form['filter_group']['title'] = $form['title'];
+      unset($form['title']);
+    }
+
+    // Déplacer le champ secteurs dans le groupe.
+    if (isset($form['field_secteurs2_target_id'])) {
+      $form['filter_group']['field_secteurs2_target_id'] = $form['field_secteurs2_target_id'];
+      unset($form['field_secteurs2_target_id']);
+    }
+
+    if (isset($form['term_node_tid_depth'])) {
+      $form['filter_group']['term_node_tid_depth'] = $form['term_node_tid_depth'];
+      unset($form['term_node_tid_depth']);
+    }
+
+    // Personnaliser le conteneur des actions.
+    if (isset($form['actions'])) {
+      $form['actions']['#attributes']['class'][] = 'form-actions-centered';
+      $form['actions']['submit']['#attributes']['class'][] = 'btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+      $form['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
+    }
+
+    // Ajouter un traitement après la construction du formulaire.
+    $form['#after_build'][] = 'cepex_filter_form_after_build';
+  }
+}
+
+
+/**
+ * After build callback pour le formulaire de filtres.
+ */
+function cepex_filter_form_after_build($form, &$form_state) {
+  // Ajouter des attributs supplémentaires une fois le formulaire construit
+  if (isset($form['filter_group'])) {
+    $form['filter_group']['#attributes']['class'][] = 'filter-group-processed';
+  }
+  
+  return $form;
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * Implements hook_theme_suggestions_HOOK_alter() for form.
  */
 function cepex_theme_suggestions_form_alter(array &$suggestions, array $variables) {
-  if (isset($variables['element']['#id'])) {
-    $form_id = $variables['element']['#id'];
+  if (isset($variables['element']['#form_id'])) {
+    $form_id = $variables['element']['#form_id'];
     
-    // Ajouter une suggestion pour les formulaires de filtres exposés de vue
-    if (strpos($form_id, 'views-exposed-form') !== FALSE) {
-      // Récupérer le nom de la vue et de l'affichage
-      $view_id = $variables['element']['#id'];
-      $view_parts = explode('-', $view_id);
-      
-      if (isset($view_parts[3]) && isset($view_parts[4])) {
-        $view_name = $view_parts[3];
-        $display_id = $view_parts[4];
-        
-        // Ajouter des suggestions spécifiques pour cette vue
-        $suggestions[] = 'form__views_exposed_form__' . $view_name;
-        $suggestions[] = 'form__views_exposed_form__' . $view_name . '__' . $display_id;
-        
-        // Suggestion spécifique pour gestion-produit-par-exportateur-page-1
-        if ($view_name == 'gestion_produit_par_exportateur' && $display_id == 'page_1') {
-          $suggestions[] = 'form__views_exposed_form__gestion_produit_par_exportateur__page_1';
-        }
-      }
+    // Suggestions de template pour tous les formulaires
+    $suggestions[] = 'form__' . str_replace('-', '_', $form_id);
+    
+    // Pour le formulaire de gestion des produits spécifiquement
+    if ($form_id == 'views_exposed_form' && isset($variables['element']['#id']) && 
+        $variables['element']['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
+      $suggestions[] = 'form__marketplace_filters';
+      $suggestions[] = 'form__gestion_produit_marketplace';
     }
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for container.
+ */
+function cepex_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#id']) && $variables['element']['#id'] == 'edit-actions') {
+    $suggestions[] = 'container__actions';
+    $suggestions[] = 'container__filter_actions';
+  }
+  
+  if (isset($variables['element']['#attributes']['class']) && 
+      in_array('filter-elements-group', $variables['element']['#attributes']['class'])) {
+    $suggestions[] = 'container__filter_group';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for select element.
+ */
+function cepex_theme_suggestions_select_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#id'])) {
+    // Sélecteur pour secteurs
+    if ($variables['element']['#id'] == 'edit-field-secteurs2-target-id' || 
+        strpos($variables['element']['#id'], 'edit-field-secteurs2-target-id-shs') === 0) {
+      $suggestions[] = 'select__category_filter';
+    }
+    
+    // Support pour le format SHS si utilisé
+    if ($variables['element']['#id'] == 'edit-term-node-tid-depth' || 
+        strpos($variables['element']['#id'], 'edit-term-node-tid-depth-shs') === 0) {
+      $suggestions[] = 'select__category_filter';
+    }
+  }
+}
+

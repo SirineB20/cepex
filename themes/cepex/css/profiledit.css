@@ -1,0 +1,152 @@
+/* Profile Edit Form Styling */
+
+/* Form container */
+.profile-profile-exportateur-edit-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+  
+  /* Form labels */
+  .profile-profile-exportateur-edit-form label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  /* Form field containers */
+  .form-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Text inputs */
+  .form-text, 
+  .form-email, 
+  .form-textarea,
+  .form-select,
+  #edit-field-tel-0-value
+   {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-text:focus, 
+  .form-email:focus, 
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: #cb043d;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(203, 4, 61, 0.2);
+  }
+  
+  /* Checkboxes */
+  .form-checkbox {
+    margin-right: 10px;
+  }
+  
+  .form-checkbox + label {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  /* Fieldsets */
+  fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  legend {
+    padding: 0 10px;
+    color: #cb043d;
+    font-weight: 600;
+  }
+  
+  /* Save button */
+  #edit-submit {
+    background: #cd0b47;
+    color: #fff;
+    border: 1px solid #cd0b47;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  #edit-submit::before {
+    content: "\1F4BE"; /* Unicode for save icon (💾) */
+    font-size: 18px;
+  }
+  
+  #edit-submit:hover {
+    background: #b00a3d;
+  }
+  
+  /* Delete button */
+  #edit-delete {
+    background: #fae5eb;
+    color: #cb043d;
+    border: 1px solid #fae5eb;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    margin-left: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  #edit-delete::before {
+    content: "\1F5D1"; /* Unicode for trash icon (🗑️) */
+    font-size: 18px;
+  }
+  
+  #edit-delete:hover {
+    background: #f6d0da;
+  }
+  
+  /* Form actions container */
+  .form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  /* SHS select widget styling */
+  .shs-container {
+    margin-bottom: 15px;
+  }
+  
+  .shs-widget-container {
+    margin-bottom: 10px;
+  }
+  
+  /* Disabled fields */
+  .form-disabled textarea,
+  .form-disabled input {
+    background-color: #f9f9f9;
+    color: #777;
+    border: 1px solid #ddd;
+  }

@@ -87,7 +87,12 @@
   border-radius: 25px;
   width: 100%;
 }
+.titre-form{
+  margin: 50px 20px 0;
+  position: relative;
+  overflow: hidden;
 
+}
 .search-bar button {
   margin-left: 10px;
   padding: 2px 7px;
@@ -111,7 +116,24 @@
 }
 
 .content .navbar ul li:last-child {
-  border-right: 0px;
+  border-right: none;
+}
+/* Style spécifique pour l'élément profil */
+.user-profile a {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.user-profile i {
+  font-size: 1.2rem; /* Taille de l'icône */
+}
+
+.f {
+  font-weight: 500; /* Semi-gras pour le nom d'utilisateur */
+  margin: 0; /* Supprime les marges par défaut des paragraphes */
+  padding: 0;
+  display: inline; /* Pour s'assurer que c'est sur la même ligne que l'icône */
 }
 
 .content .navbar ul {
@@ -206,7 +228,8 @@
   margin-left: 20px;
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Espacement entre l'icône et le texte */
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .button-add::before {
@@ -343,8 +366,6 @@ tbody:before {
 }
 .table-wrapper {
   max-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
   margin-left: 20px;
 }
 .content .breadcrumb a {

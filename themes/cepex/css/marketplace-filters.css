@@ -1,0 +1,185 @@
+/* Améliorations de la mise en page du formulaire */
+.filter-flex-container {
+  margin: 0 auto 30px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.form--inline.clearfix {
+  align-items: center;
+  background: white;
+  border-radius: 40px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+/* Groupe de filtres amélioré */
+.filter-elements-group {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Style amélioré pour le champ de recherche */
+
+input#edit-title {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f7f7f7;
+  background-position: right 15px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  font-size: 15px;
+  height: 50px;
+  padding: 10px 20px;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 0;
+}
+
+input#edit-title:focus {
+  background-color: #fff;
+  border-color: #cd0b47;
+  box-shadow: 0 0 0 3px rgba(205, 11, 71, 0.1);
+  outline: none;
+}
+
+/* Style amélioré pour le sélecteur de catégories */
+
+#edit-field-secteurs2-target-id{
+  display:none;
+}
+
+#edit-field-secteurs2-target-id,
+.shs-widget-container select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f7f7f7;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-position: right 15px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  font-size: 15px;
+  height: 50px;
+  padding: 10px 20px;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+#edit-field-secteurs2-target-id:focus,
+.shs-widget-container select:focus {
+  background-color: #fff;
+  border-color: #cd0b47;
+  box-shadow: 0 0 0 3px rgba(205, 11, 71, 0.1);
+  outline: none;
+}
+
+/* Corrections pour le SHS widget */
+.shs-container {
+  width: 100%;
+}
+
+.shs-widget-container {
+  margin-bottom: 0;
+}
+
+/* Style amélioré pour le bouton de recherche */
+.form-actions-centered {
+  align-items: center;
+  display: flex;
+  margin-left: 20px;
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Alternative avec une image SVG au lieu du Font Awesome */
+input#edit-submit-gestion-produit-par-exportateur {
+  align-items: center;
+  background: #cd0b47 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") center center no-repeat;
+  background-size: 18px;
+  border-radius: 25px;
+  border: none;
+  color: transparent; /* Cacher le texte */
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0; /* Cacher le texte */
+  font-weight: 600;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  justify-content: center;
+}
+
+/* Supprimer le pseudo-élément before qui pourrait causer des conflits */
+input#edit-submit-gestion-produit-par-exportateur::before {
+  content: none;
+}
+
+input#edit-submit-gestion-produit-par-exportateur:hover {
+  background-color: #b0083c;
+  box-shadow: 0 6px 12px rgba(205, 11, 71, 0.4);
+  transform: translateY(-2px);
+}
+
+input#edit-submit-gestion-produit-par-exportateur:active {
+  transform: translateY(0);
+}
+
+/* Correction pour le conteneur du select hierarchique (SHS) */
+.shs-field-container {
+  width: 100%;
+  display: flex !important;
+}
+
+/* Styles responsifs améliorés */
+@media (max-width: 992px) {
+  .form--inline.clearfix {
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .filter-elements-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-actions-centered {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  input#edit-submit-gestion-produit-par-exportateur {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  input#edit-title,
+  #edit-field-secteurs2-target-id,
+  .shs-widget-container select,
+  input#edit-submit-gestion-produit-par-exportateur {
+    font-size: 14px;
+    height: 45px;
+  }
+}
+
