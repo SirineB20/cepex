@@ -18,7 +18,7 @@ global:
       css/details-ouvrage.css: {}
       css/een.css: {}
       css/from-contact.css: {}
-      css/guichet-unique.css: {}
+      css/footer.css: {}
       css/slick.css: {}
       css/profile.css: {}
       css/profile-form.css: {}

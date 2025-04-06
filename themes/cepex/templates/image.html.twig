@@ -1,7 +1,15 @@
 {#
 /**
  * @file
- * Implémentation par défaut d'une image.
+ * Default theme implementation of an image.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the img tag.
+ * - style_name: (optional) The name of the image style applied.
+ *
+ * @see template_preprocess_image()
+ *
+ * @ingroup themeable
  */
 #}
-<img src="/themes/cepex/logo.png" alt="Logo" class="img-responsive logo-header" />
+<img class="img-responsive logo-header"{{ attributes }} />

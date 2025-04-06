@@ -19,10 +19,7 @@
     margin-bottom: 8px;
   }
   
-  /* Form field containers */
-  .form-item {
-    margin-bottom: 20px;
-  }
+  
   
   /* Text inputs */
   .form-text, 
@@ -127,16 +124,14 @@
   
   /* Form actions container */
   .form-actions {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+    
     display: flex;
     justify-content: flex-start;
   }
   
   /* SHS select widget styling */
   .shs-container {
-    margin-bottom: 15px;
+    margin-bottom: -15px;
   }
   
   .shs-widget-container {

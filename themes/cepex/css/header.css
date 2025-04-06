@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content: space-between;
     padding: 20px 50px 15px;
     transition: 0.5s ease all;
 }
@@ -541,6 +541,9 @@ body {
     width: 100%;
     z-index: 99;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
+}
+#search-block-form{
+    display:flex;
 }
 
 .header.sticky .logo {

@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ path('user.logout') }}" class="logout-link">
                         <i class="fa-solid fa-circle-arrow-left"></i>
                         se déconnecter
                     </a>
@@ -95,12 +95,6 @@
     </div>
     <div class="content">
         <nav class="navbar">
-            <div class="search-bar" id="search-bar">
-                <input type="text" placeholder="Lancer ma recherche">
-                <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
             <ul>
                 <li>
                     <a href="#">
@@ -124,6 +118,10 @@
                 </li>
             </ul>
         </nav>
+        <div class="titre-form">
+           <div class="left">
+          <h3 class="red"><span>Modifier le Profile</span></h3>
+      </div>
       
          {{ page.content }}
     </div>
@@ -131,23 +129,30 @@
     </div>
   </div>
 </main>
+<footer class="footer site-footer">
+  <div class="footer-wrapper d-flex justify-content-between container">
+    {% if page.footer_left %}
+      <div class="footer-block col-md-5 col-sm-12 col-12">
+        {{ page.footer_left }}
+      </div>
+    {% endif %}
 
-{% if page.footer %}
-<footer class="site-footer">
-  <div class="footer-wrapper d-flex justify-content-between container ">{# b5_top_container #}
-    <div class="footer-block col-md-5 col-sm-12 col-12">
-    {{ page.footer-left }}
-    </div>
-    <div class="footer-block col-md-4 col-sm-12 col-12">
-    {{ page.footer-center }}
-    </div>
-    <div class="footer-block col-md-3 col-sm-12 col-12">
-    {{ page.footer-right }}
-    </div>
+    {% if page.footer_middle %}
+      <div class="footer-block col-md-4 col-sm-12 col-12">
+        {{ page.footer_middle }}
+      </div>
+    {% endif %}
+
+    {% if page.footer_right %}
+      <div class="footer-block col-md-3 col-sm-12 col-12">
+        {{ page.footer_right }}
+      </div>
+    {% endif %}
   </div>
-  <div class="footer-block copyright">
-    {{ page.footer }}
-  </div>
+  
+  {% if page.footer %}
+    <div class="footer-block copyright">
+      {{ page.footer }}
+    </div>
+  {% endif %}
 </footer>
-{% endif %}
-

@@ -329,18 +329,6 @@
     margin-top: 20px;
   }
   
-  /* Footer */
-  footer.site-footer {
-    background: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 2rem 0 1rem;
-    margin: 60px 0 0;
-    overflow: hidden;
-}
-
-footer .region-footer {
-  display: flex;
-  flex-direction: column;
-}
+  
   
   

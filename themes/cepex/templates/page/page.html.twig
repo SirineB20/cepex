@@ -70,23 +70,30 @@
     </div>
   </div>
 </main>
+<footer class="footer site-footer">
+  <div class="footer-wrapper d-flex justify-content-between container">
+    {% if page.footer_left %}
+      <div class="footer-block col-md-5 col-sm-12 col-12">
+        {{ page.footer_left }}
+      </div>
+    {% endif %}
 
-{% if page.footer %}
-<footer class="site-footer">
-  <div class="footer-wrapper d-flex justify-content-between container ">{# b5_top_container #}
-    <div class="footer-block col-md-5 col-sm-12 col-12">
-    {{ page.footer-left }}
-    </div>
-    <div class="footer-block col-md-4 col-sm-12 col-12">
-    {{ page.footer-center }}
-    </div>
-    <div class="footer-block col-md-3 col-sm-12 col-12">
-    {{ page.footer-right }}
-    </div>
+    {% if page.footer_middle %}
+      <div class="footer-block col-md-4 col-sm-12 col-12">
+        {{ page.footer_middle }}
+      </div>
+    {% endif %}
+
+    {% if page.footer_right %}
+      <div class="footer-block col-md-3 col-sm-12 col-12">
+        {{ page.footer_right }}
+      </div>
+    {% endif %}
   </div>
-  <div class="footer-block copyright">
-    {{ page.footer }}
-  </div>
+  
+  {% if page.footer %}
+    <div class="footer-block copyright">
+      {{ page.footer }}
+    </div>
+  {% endif %}
 </footer>
-{% endif %}
-
