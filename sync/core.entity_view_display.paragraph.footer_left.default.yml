@@ -1,0 +1,32 @@
+uuid: d42b2d00-bc73-432d-95c7-ced6ede21fc0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.footer_left.field_description
+    - field.field.paragraph.footer_left.field_logo_footer
+    - paragraphs.paragraphs_type.footer_left
+  module:
+    - image
+    - text
+id: paragraph.footer_left.default
+targetEntityType: paragraph
+bundle: footer_left
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_logo_footer:
+    type: image_url
+    label: above
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

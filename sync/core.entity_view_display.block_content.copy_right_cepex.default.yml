@@ -1,0 +1,23 @@
+uuid: 6493c43e-5a8f-449c-8eaf-d5ff14e2a94b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.copy_right_cepex
+    - field.field.block_content.copy_right_cepex.field_copyright_cepex
+  module:
+    - text
+id: block_content.copy_right_cepex.default
+targetEntityType: block_content
+bundle: copy_right_cepex
+mode: default
+content:
+  field_copyright_cepex:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,36 @@
+uuid: 336b95e1-2364-4a14-8735-d95a5b8167c4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.footer_left.field_description
+    - field.field.paragraph.footer_left.field_logo_footer
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.footer_left
+  module:
+    - image
+    - text
+id: paragraph.footer_left.default
+targetEntityType: paragraph
+bundle: footer_left
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_logo_footer:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

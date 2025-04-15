@@ -1,0 +1,8 @@
+uuid: f2273c8b-f80e-4fb6-abfc-35126c45782f
+langcode: fr
+status: true
+dependencies: {  }
+id: cepex_descriptioncepex
+label: cepex-descriptioncepex
+revision: false
+description: 'le type de footer left'

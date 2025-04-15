@@ -1,0 +1,33 @@
+uuid: 3f52f61e-5a6d-40a7-810e-886808adc33b
+langcode: fr
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
+  module:
+    - block_content
+    - language
+  theme:
+    - cepex
+id: cepex_descriptioncepex
+theme: cepex
+region: footer_left
+weight: 0
+provider: null
+plugin: 'block_content:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
+settings:
+  id: 'block_content:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
+  label: Description
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

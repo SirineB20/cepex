@@ -1,0 +1,38 @@
+uuid: 0b304ea0-5b73-4631-b76d-089241b784f0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.copy_right_cepex
+    - field.field.block_content.copy_right_cepex.field_copyright_cepex
+  module:
+    - text
+id: block_content.copy_right_cepex.default
+targetEntityType: block_content
+bundle: copy_right_cepex
+mode: default
+content:
+  field_copyright_cepex:
+    type: text_textarea
+    weight: 26
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,33 @@
+uuid: 58453e45-59ba-45c8-b9c3-434d1668ec01
+langcode: fr
+status: true
+dependencies:
+  content:
+    - 'block_content:info_footer:e4dcf788-3fec-49b9-8165-9fa61dc317f2'
+  module:
+    - block_content
+    - language
+  theme:
+    - cepex
+id: cepex_contact
+theme: cepex
+region: footer_right
+weight: 0
+provider: null
+plugin: 'block_content:e4dcf788-3fec-49b9-8165-9fa61dc317f2'
+settings:
+  id: 'block_content:e4dcf788-3fec-49b9-8165-9fa61dc317f2'
+  label: Contact
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

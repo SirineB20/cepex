@@ -8,226 +8,185 @@ declare(strict_types=1);
  */
 
 /**
- * Implements hook_preprocess_HOOK() for html.html.twig.
+ * Check if language is available before using it.
+ */
+function cepex_get_language_code() {
+  if (\Drupal::hasService('language_manager')) {
+    $language = \Drupal::languageManager()->getCurrentLanguage();
+    return $language ? $language->getId() : 'fr'; // Default to 'fr' if not available
+  }
+  return 'fr';
+}
+
+/**
+ * Implements hook_preprocess_html().
  */
 function cepex_preprocess_html(array &$variables): void {
-
-}
-
-/**
- * Implements hook_preprocess_HOOK() for page.html.twig.
- */
-function cepex_preprocess_page(array &$variables): void {
-  // Obtenir l'utilisateur actuel
-  $current_user = \Drupal::currentUser();
+  // Ensure language code is available
+  $variables['language_code'] = cepex_get_language_code();
   
-  // Vérifier si l'utilisateur est connecté (ID > 0)
+  // Add classes for authenticated users
+  $current_user = \Drupal::currentUser();
   if ($current_user->id() > 0) {
-    // Charger l'objet utilisateur complet pour avoir accès à toutes ses propriétés
-    $user = \Drupal\user\Entity\User::load($current_user->id());
-    
-    // Ajouter les variables de l'utilisateur connecté au tableau $variables
-    $variables['user_logged_in'] = TRUE;
-    $variables['user_name'] = $user->getDisplayName();
-    $variables['user_id'] = $user->id();
-    $variables['user_roles'] = $user->getRoles();
-    
-    // Charger le profil exportateur associé à cet utilisateur
-    $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
-    $profiles = $profile_storage->loadByProperties([
-      'uid' => $user->id(),
-      'type' => 'profile_exportateur', // Le type de profile
-    ]);
-    
-    if (!empty($profiles)) {
-      $profile = reset($profiles);
-      if ($profile->hasField('field_nom_de_l_entreprise') && !$profile->get('field_nom_de_l_entreprise')->isEmpty()) {
-        $variables['entreprise_name'] = $profile->get('field_nom_de_l_entreprise')->value;
-      } else {
-        $variables['entreprise_name'] = $user->getDisplayName();
-      }
-    } else {
-      $variables['entreprise_name'] = $user->getDisplayName();
-    }
-  }
-  else {
-    // Si l'utilisateur n'est pas connecté
-    $variables['user_logged_in'] = FALSE;
+    $variables['attributes']['class'][] = 'user-logged-in';
+    $variables['attributes']['class'][] = 'user-' . $current_user->id();
   }
 }
+
 /**
- * Implements hook_preprocess_views_exposed_form().
+ * Implements hook_module_implements_alter().
  */
-function cepex_preprocess_views_exposed_form(&$variables) {
-  // Cibler spécifiquement le formulaire exposé "gestion-produit-par-exportateur-page-1"
-  if ($variables['form']['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
-    // Ajouter des classes pour le conteneur principal
-    $variables['form']['#attributes']['class'][] = 'marketplace-filter-container';
-    $variables['form']['#attributes']['class'][] = 'filter-flex-container';
-    
-    // Modifier les attributs du bouton de recherche
-    if (isset($variables['form']['actions']['submit'])) {
-      $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn';
-      $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn-primary';
-      $variables['form']['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
+function cepex_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'entity_access') {
+    // Déplacer notre implémentation à la fin
+    if (isset($implementations['cepex'])) {
+      $group = $implementations['cepex'];
+      unset($implementations['cepex']);
+      $implementations['cepex'] = $group;
     }
-    
-    // Améliorer le champ de recherche
-    if (isset($variables['form']['title'])) {
-      $variables['form']['title']['#attributes']['placeholder'] = t('Chercher le produit par son titre');
-      $variables['form']['title']['#attributes']['class'][] = 'form-control';
-      $variables['form']['title']['#attributes']['class'][] = 'search-input-styled';
-     
-    }
-    
-    // Améliorer le sélecteur de catégories
-    if (isset($variables['form']['field_secteurs2_target_id'])) {
-      $variables['form']['field_secteurs2_target_id']['#attributes']['class'][] = 'category-select';
-      $variables['form']['field_secteurs2_target_id']['#attributes']['class'][] = 'form-select-styled';
-      // Wrapper pour le sélecteur
-      
-    }
-    
-    // Support pour le select hiérarchique (SHS) si présent
-    if (isset($variables['form']['term_node_tid_depth'])) {
-      $variables['form']['term_node_tid_depth']['#attributes']['class'][] = 'category-select';
-      $variables['form']['term_node_tid_depth']['#attributes']['class'][] = 'form-select-styled';
-      // Wrapper pour le sélecteur
-     
-    }
-    
-    // Joindre la bibliothèque CSS/JS pour ce formulaire
-    $variables['#attached']['library'][] = 'cepex/marketplace';
   }
+}
+
+/**
+ * Implements hook_entity_access().
+ */
+function cepex_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  // Pour le débogage
+  \Drupal::logger('cepex')->notice('Vérification d\'accès: @type, @bundle, @op', [
+    '@type' => $entity->getEntityTypeId(),
+    '@bundle' => method_exists($entity, 'bundle') ? $entity->bundle() : 'n/a',
+    '@op' => $operation,
+  ]);
+
+  // Si c'est un profil exportateur
+  if ($entity->getEntityTypeId() == 'profile' && $entity->bundle() == 'profile_exportateur') {
+    $uid = $entity->getOwnerId();
+    
+    // Si l'utilisateur est le propriétaire du profil OU a des droits d'administration
+    if ($uid == $account->id() || $account->hasPermission('administer users')) {
+      if ($operation == 'view') {
+        return \Drupal\Core\Access\AccessResult::allowed();
+      }
+      
+      if ($operation == 'update') {
+        return \Drupal\Core\Access\AccessResult::allowed();
+      }
+    }
+  }
+  
+  // Vérification pour les pages de profil
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'entity.profile.user_profile_form' || 
+      $route_name == 'entity.profile.canonical' ||
+      $route_name == 'profile.user_page' ||
+      strpos($route_name, 'profile_exportateur') !== FALSE) {
+      
+    $route_user_id = \Drupal::routeMatch()->getParameter('user');
+    if (is_object($route_user_id)) {
+      $route_user_id = $route_user_id->id();
+    }
+    
+    // Permettre à l'utilisateur d'accéder à son propre profil
+    if ($route_user_id && $account->id() == $route_user_id) {
+      \Drupal::logger('cepex')->notice('Accès accordé au profil pour uid @uid', ['@uid' => $account->id()]);
+      return \Drupal\Core\Access\AccessResult::allowed();
+    }
+  }
+
+  return \Drupal\Core\Access\AccessResult::neutral();
 }
 
 /**
  * Implements hook_form_alter().
  */
 function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
-    // Ajouter un conteneur flex pour aligner les éléments.
-    $form['#attributes']['class'][] = 'filter-flex-container';
-
-    // Pour le champ secteurs.
-    if (isset($form['field_secteurs2_target_id'])) {
-      $form['field_secteurs2_target_id']['#title'] = t('Filtrer par secteur');
-      $form['field_secteurs2_target_id']['#title_display'] = 'before';
-      $form['field_secteurs2_target_id']['#attributes']['class'][] = 'select-full-width';
-    }
-
-    // Support pour le format SHS si utilisé.
-    if (isset($form['term_node_tid_depth'])) {
-      $form['term_node_tid_depth']['#title'] = t('Filtrer par secteur');
-      $form['term_node_tid_depth']['#title_display'] = 'before';
-      $form['term_node_tid_depth']['#attributes']['class'][] = 'select-full-width';
-    }
-
-    // Grouper les éléments de filtre.
-    $form['filter_group'] = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['filter-elements-group', 'flex-aligned'],
-      ],
-      '#weight' => -10,
-    ];
-
-    // Déplacer le champ "title" dans le groupe en affichant son label.
-    if (isset($form['title'])) {
-      // Attribuer le texte du label et forcer son affichage avant l'élément.
-      $form['title']['#title'] = t('Mot clé');
-      $form['title']['#title_display'] = 'before';
-      $form['filter_group']['title'] = $form['title'];
-      unset($form['title']);
-    }
-
-    // Déplacer le champ secteurs dans le groupe.
-    if (isset($form['field_secteurs2_target_id'])) {
-      $form['filter_group']['field_secteurs2_target_id'] = $form['field_secteurs2_target_id'];
-      unset($form['field_secteurs2_target_id']);
-    }
-
-    if (isset($form['term_node_tid_depth'])) {
-      $form['filter_group']['term_node_tid_depth'] = $form['term_node_tid_depth'];
-      unset($form['term_node_tid_depth']);
-    }
-
-    // Personnaliser le conteneur des actions.
-    if (isset($form['actions'])) {
-      $form['actions']['#attributes']['class'][] = 'form-actions-centered';
-      $form['actions']['submit']['#attributes']['class'][] = 'btn';
-      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
-      $form['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
-    }
-
-    // Ajouter un traitement après la construction du formulaire.
-    $form['#after_build'][] = 'cepex_filter_form_after_build';
+  // Si c'est le formulaire de profil exportateur
+  if (strpos($form_id, 'profile_profile_exportateur_edit_form') !== FALSE) {
+    // Ajouter notre propre soumission
+    $form['#submit'][] = 'cepex_profile_form_submit';
+    
+    // Journaliser le form_id pour débogage
+    \Drupal::logger('cepex')->notice('Formulaire de profil détecté: @form_id', ['@form_id' => $form_id]);
   }
 }
 
-
 /**
- * After build callback pour le formulaire de filtres.
+ * Custom submit handler for profile exportateur form.
  */
-function cepex_filter_form_after_build($form, &$form_state) {
-  // Ajouter des attributs supplémentaires une fois le formulaire construit
-  if (isset($form['filter_group'])) {
-    $form['filter_group']['#attributes']['class'][] = 'filter-group-processed';
-  }
+function cepex_profile_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Log that our submit handler was called
+  \Drupal::logger('cepex')->notice('Formulaire de profil soumis');
   
-  return $form;
+  // Clear cache for the user to ensure updated profile info is displayed
+  $profile = $form_state->getFormObject()->getEntity();
+  if ($profile) {
+    $uid = $profile->getOwnerId();
+    \Drupal\Core\Cache\Cache::invalidateTags(['user:' . $uid]);
+  }
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for form.
+ * Implements hook_preprocess_HOOK() for page.html.twig.
  */
-function cepex_theme_suggestions_form_alter(array &$suggestions, array $variables) {
-  if (isset($variables['element']['#form_id'])) {
-    $form_id = $variables['element']['#form_id'];
-    
-    // Suggestions de template pour tous les formulaires
-    $suggestions[] = 'form__' . str_replace('-', '_', $form_id);
-    
-    // Pour le formulaire de gestion des produits spécifiquement
-    if ($form_id == 'views_exposed_form' && isset($variables['element']['#id']) && 
-        $variables['element']['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
-      $suggestions[] = 'form__marketplace_filters';
-      $suggestions[] = 'form__gestion_produit_marketplace';
+function cepex_preprocess_page(array &$variables): void {
+  // Obtenir l'utilisateur actuellement connecté.
+  $current_user = \Drupal::currentUser();
+
+  // Vérifier si l'utilisateur est connecté (ID > 0).
+  if ($current_user->id() > 0) {
+    // Définir les variables liées à l'utilisateur connecté.
+    $variables['user_logged_in'] = TRUE;
+    $variables['user_id'] = $current_user->id();
+    $variables['user_roles'] = $current_user->getRoles();
+
+    try {
+      // Charger le profil de type "profile_exportateur" associé à l'utilisateur.
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profiles = $profile_storage->loadByProperties([
+        'uid' => $current_user->id(),
+        'type' => 'profile_exportateur',
+      ]);
+
+      // Récupérer le nom de l'entreprise depuis le profil si disponible.
+      if (!empty($profiles)) {
+        $profile = reset($profiles);
+
+        if (
+          $profile->hasField('field_nom_de_l_entreprise') &&
+          !$profile->get('field_nom_de_l_entreprise')->isEmpty()
+        ) {
+          $variables['entreprise_name'] = $profile->get('field_nom_de_l_entreprise')->value;
+        } else {
+          $variables['entreprise_name'] = $current_user->getDisplayName();
+        }
+      } else {
+        // Si aucun profil exportateur n'existe, fallback sur le nom d'utilisateur.
+        $variables['entreprise_name'] = $current_user->getDisplayName();
+      }
+    } 
+    catch (\Exception $e) {
+      // Log error but continue
+      \Drupal::logger('cepex')->error('Error loading profile: @message', ['@message' => $e->getMessage()]);
+      $variables['entreprise_name'] = $current_user->getDisplayName();
     }
+  } else {
+    // Si l'utilisateur n'est pas connecté.
+    $variables['user_logged_in'] = FALSE;
   }
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for container.
+ * Implements hook_theme_suggestions_HOOK_alter() for page.
  */
-function cepex_theme_suggestions_container_alter(array &$suggestions, array $variables) {
-  if (isset($variables['element']['#id']) && $variables['element']['#id'] == 'edit-actions') {
-    $suggestions[] = 'container__actions';
-    $suggestions[] = 'container__filter_actions';
-  }
+function cepex_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
   
-  if (isset($variables['element']['#attributes']['class']) && 
-      in_array('filter-elements-group', $variables['element']['#attributes']['class'])) {
-    $suggestions[] = 'container__filter_group';
-  }
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter() for select element.
- */
-function cepex_theme_suggestions_select_alter(array &$suggestions, array $variables) {
-  if (isset($variables['element']['#id'])) {
-    // Sélecteur pour secteurs
-    if ($variables['element']['#id'] == 'edit-field-secteurs2-target-id' || 
-        strpos($variables['element']['#id'], 'edit-field-secteurs2-target-id-shs') === 0) {
-      $suggestions[] = 'select__category_filter';
-    }
+  // Add template suggestions for profile pages
+  if (strpos($route_name, 'profile') !== FALSE) {
+    $suggestions[] = 'page__profile';
     
-    // Support pour le format SHS si utilisé
-    if ($variables['element']['#id'] == 'edit-term-node-tid-depth' || 
-        strpos($variables['element']['#id'], 'edit-term-node-tid-depth-shs') === 0) {
-      $suggestions[] = 'select__category_filter';
+    if (strpos($route_name, 'profile_exportateur') !== FALSE) {
+      $suggestions[] = 'page__profile__exportateur';
     }
   }
 }
-

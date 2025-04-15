@@ -33,6 +33,7 @@
         "drupal/shs": " ^2.0",
         "drupal/structure_sync": "^2.0",
         "drupal/taxonomy_manager": "^2.0",
+        "drupal/taxonomy_term_depth": "^3.0",
         "drupal/tb_megamenu": "^3.0@alpha",
         "drupal/token": "^1.15",
         "drupal/twig_tweak": "^3.4",

@@ -1,0 +1,8 @@
+uuid: 8070355a-c916-4089-91cf-db2286157948
+langcode: fr
+status: true
+dependencies: {  }
+id: copy_right_cepex
+label: 'copy right cepex'
+revision: false
+description: null

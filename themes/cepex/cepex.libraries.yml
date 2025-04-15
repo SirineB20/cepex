@@ -8,8 +8,6 @@ global:
       css/annuaire.css: {}
       css/bienvenue.css: {}
       css/boxservice.css: {}
-      css/calendrier.css: {}
-      css/chatbot.css: {}
       css/communique.css: {}
       css/decouvrir-tunisie.css: {}
       css/detail-event.css: {}
@@ -17,7 +15,7 @@ global:
       css/details-opportinutes.css: {}
       css/details-ouvrage.css: {}
       css/een.css: {}
-      css/from-contact.css: {}
+     
       css/footer.css: {}
       css/slick.css: {}
       css/profile.css: {}
@@ -43,9 +41,9 @@ global:
     https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js: { type: external }
     js/cepex.js: {}
     js/appui.js: {}
-    js/chatbot.js: {}
+  
     js/een.js: {}
-    js/calendrier.js: {}
+
     js/date.js: {}
     js/header.js: {}
     js/maketplace.js: {}

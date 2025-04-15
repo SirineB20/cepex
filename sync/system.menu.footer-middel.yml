@@ -1,0 +1,8 @@
+uuid: eb8abce6-89a0-47cb-b7e5-eb59a6a2cc0a
+langcode: fr
+status: true
+dependencies: {  }
+id: footer-middel
+label: 'footer middel'
+description: ''
+locked: false

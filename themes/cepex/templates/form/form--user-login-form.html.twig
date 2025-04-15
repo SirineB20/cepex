@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="login-form page-wrapper bg-light auth-forms">
+  <div class="container">
+    <div class="row p-20 justify-content-center">
+      <div class="col-md-6 text-center">
+        <div class="card card-outline-success text-center">
+          <div class="card-header">
+            <h4 class="m-b-0 text-white">Identifiez-vous</h4>
+          </div>
+          <div class="card-body">
+            <form{{ attributes }}>
+              <div class="row from-inputs">
+                <div class="col-lg-12 m-b-20">
+                  <h5 class="text-primary">Vous n'avez pas encore de compte ?</h5>
+                  <button class="btn submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Créer un compte</button>
+                  <div class="box-information-login">
+                    <span>
+                      Si vous avez un compte CEPEX, veuillez vous connecter avec vos identifiants.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  {{ children }}
+                </div>
+              </div>
+            </form>
+            <class="card-text pull-left m-t-5 text-align-left">
+            <a href="/user/password" class="class-lang">Mot de passe oublié ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+uuid: 8f84973c-0846-4de1-adf7-775c511a9883
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.cepex_descriptioncepex
+    - field.storage.block_content.field_body_left
+  module:
+    - entity_reference_revisions
+id: block_content.cepex_descriptioncepex.field_body_left
+field_name: field_body_left
+entity_type: block_content
+bundle: cepex_descriptioncepex
+label: 'body left'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      banniere:
+        weight: 2
+        enabled: false
+      footer_left:
+        weight: 3
+        enabled: false
+field_type: entity_reference_revisions

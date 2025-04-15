@@ -1,0 +1,22 @@
+uuid: 58f17294-8ca4-4f0c-8c34-3c58a9fca7a7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.copy_right_cepex
+    - field.storage.block_content.field_copyright_cepex
+  module:
+    - text
+id: block_content.copy_right_cepex.field_copyright_cepex
+field_name: field_copyright_cepex
+entity_type: block_content
+bundle: copy_right_cepex
+label: 'Copyright CEPEX'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

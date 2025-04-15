@@ -1,0 +1,19 @@
+uuid: b44a4a0e-29b7-4c4a-bea9-55842a3a86ff
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.info_footer
+    - field.storage.block_content.field_adresse
+id: block_content.info_footer.field_adresse
+field_name: field_adresse
+entity_type: block_content
+bundle: info_footer
+label: Adresse
+description: 'Centre Urbain Nord - BP 225 1080 Tunis Cedex'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

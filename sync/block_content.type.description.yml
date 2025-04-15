@@ -1,0 +1,8 @@
+uuid: d443e6f2-5d09-41c1-958a-531db8ba58ed
+langcode: fr
+status: true
+dependencies: {  }
+id: description
+label: Description
+revision: false
+description: 'description left'

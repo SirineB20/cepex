@@ -1,0 +1,81 @@
+uuid: 3522fcac-a7c3-4fd8-8501-72119f9cfdad
+langcode: fr
+status: true
+dependencies:
+  module:
+    - language
+    - social_media_links
+  theme:
+    - cepex
+id: cepex_socialmedialinks_3
+theme: cepex
+region: footer_left
+weight: 0
+provider: null
+plugin: social_media_links_block
+settings:
+  id: social_media_links_block
+  label: 'Social Media Links'
+  label_display: '0'
+  provider: social_media_links
+  platforms:
+    email:
+      value: ''
+      description: ''
+      weight: '-10'
+    facebook-f:
+      value: ''
+      description: ''
+      weight: '-9'
+    instagram:
+      value: ''
+      description: ''
+      weight: '-8'
+    linkedin-in:
+      value: ''
+      description: ''
+      weight: '-7'
+    tiktok:
+      value: ''
+      description: ''
+      weight: '-6'
+    x-twitter:
+      value: ''
+      description: ''
+      weight: '-5'
+    vimeo:
+      value: ''
+      description: ''
+      weight: '-4'
+    website:
+      value: ''
+      description: ''
+      weight: '-3'
+    whatsapp:
+      value: ''
+      description: ''
+      weight: '-2'
+    youtube:
+      value: ''
+      description: ''
+      weight: '-1'
+  appearance:
+    orientation: h
+    show_name: 0
+    suggestion: ''
+  link_attributes:
+    target: '<none>'
+    rel: '<none>'
+  iconset:
+    style: 'fontawesome:2x'
+    installed_iconsets:
+      fontawesome:
+        examples: ''
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

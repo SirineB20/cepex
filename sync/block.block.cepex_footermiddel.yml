@@ -1,0 +1,33 @@
+uuid: 3891a14d-625f-4131-8fb8-fe80560165f9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - system.menu.footer-middel
+  module:
+    - language
+    - system
+  theme:
+    - cepex
+id: cepex_footermiddel
+theme: cepex
+region: footer_middle
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-middel'
+settings:
+  id: 'system_menu_block:footer-middel'
+  label: Navigation
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

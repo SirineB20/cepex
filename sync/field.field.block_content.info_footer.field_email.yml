@@ -1,0 +1,22 @@
+uuid: b2036735-5fcc-49bc-b8b2-3edebc02c3e6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.info_footer
+    - field.storage.block_content.field_email
+  module:
+    - text
+id: block_content.info_footer.field_email
+field_name: field_email
+entity_type: block_content
+bundle: info_footer
+label: email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

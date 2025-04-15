@@ -1,0 +1,25 @@
+uuid: d9863b1c-130f-4ca0-8685-6a964c34cedc
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.description
+    - field.field.block_content.description.field_description
+  module:
+    - entity_reference_revisions
+id: block_content.description.default
+targetEntityType: block_content
+bundle: description
+mode: default
+content:
+  field_description:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

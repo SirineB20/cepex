@@ -1,0 +1,11 @@
+uuid: b34518c8-a8fb-4d0f-9c43-8204ee04a1cd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.copy_right_cepex
+id: block_content.copy_right_cepex
+target_entity_type_id: block_content
+target_bundle: copy_right_cepex
+default_langcode: site_default
+language_alterable: false

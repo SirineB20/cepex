@@ -1,0 +1,7 @@
+view own profile_exportateur:
+  title: 'View own exporter profile'
+  description: 'Allow users to view their own exporter profile'
+
+edit own profile_exportateur:
+  title: 'Edit own exporter profile'
+  description: 'Allow users to edit their own exporter profile'

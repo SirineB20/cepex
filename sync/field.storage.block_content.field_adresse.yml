@@ -1,0 +1,21 @@
+uuid: 6897f113-755c-4347-95eb-cadbc4144125
+langcode: fr
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.field_adresse
+field_name: field_adresse
+entity_type: block_content
+type: string
+settings:
+  max_length: 29
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,7 +1,7 @@
 <?php
 
 namespace Drupal\csv_importer\Plugin;
-
+use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -308,7 +308,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
           // Set field values on the translation
           foreach ($content as $field => $value) {
             if ($field !== 'langcode') {
-              $translation->set($field, $value);
+              $entity->set($field, $value);
             }
           }
           
@@ -325,7 +325,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
           // Handle non-translatable entities
           foreach ($content as $field => $value) {
             if ($field !== 'langcode') {
-              $entity->set($field, value: $value);
+              $entity->set($field, $value);
             }
           }
           
@@ -406,21 +406,21 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
 
       // Create or get Secteur term
       if (!empty($secteur_name)) {
-        $secteur_tid = $this->createOrGetTaxonomyTerm($secteur_name, 'secteurs2');
+        $secteur_tid = $this->createOrGetTaxonomyTerm($secteur_name, 'secteurs');
       }
 
       // Create or get Filière term under Secteur
       if (!empty($filiere_name) && $secteur_tid) {
-        $filiere_tid = $this->createOrGetTaxonomyTerm($filiere_name, 'secteurs2', $secteur_tid);
+        $filiere_tid = $this->createOrGetTaxonomyTerm($filiere_name, 'secteurs', $secteur_tid);
       }
 
       // Create or get Produit term under Filière
       if (!empty($produit_name) && $filiere_tid) {
-        $produit_tid = $this->createOrGetTaxonomyTerm($produit_name, 'secteurs2', $filiere_tid);
+        $produit_tid = $this->createOrGetTaxonomyTerm($produit_name, 'secteurs', $filiere_tid);
       }
 
       // Prepare term IDs for field_secteurs2
-      $term_ids = array_filter([$secteur_tid, $filiere_tid, $produit_tid]);
+      $term_ids = array_filter([$produit_tid]);
 
         // After checking all fields, see if we have both required values
         if ($found_email && $found_matricule) {
@@ -438,6 +438,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
           
           $existing_user = reset($existing_users);
           $user_id = $existing_user->id();
+          //update profile 
         } else {
           // Generate a random password
           $password = bin2hex(random_bytes(8));  // 16 characters length password
@@ -447,7 +448,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
             'name' => $matricule_fiscal,  // Username
             'mail' => $email,     // Email
             'pass' => $password,  // Random password
-            'status' => 0,        // 1 means active
+            'status' => 1,        // 1 means active
             'roles' => ['exportateur'],  // Assign role 'exportateur'
           ]);
           $user->set('field_password', $password); // Set the password field
@@ -465,7 +466,7 @@ abstract class ImporterBase extends PluginBase implements ImporterInterface {
             $content['field_tel'] = $Telephone; // Set the telephone mapping to the title field
             $content['field_fax'] = $Fax; // Set the fax mapping to the title field
             $content['field_site_web'] = $Site_web; // Set the site web mapping to the title field
-            $content['field_secteurs2'] = $term_ids; // Set the term IDs mapping to the title field
+            $content['field_secteur1'] = $term_ids; // Set the term IDs mapping to the title field
             $entity = $entity_storage->create($content);
             if ($entity->save()) {
               $id = $entity->id();

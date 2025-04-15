@@ -1,0 +1,56 @@
+uuid: ceba6838-229d-410b-8907-1d44c76b58c8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - block_content.type.info_footer
+    - field.field.block_content.info_footer.field_adresse
+    - field.field.block_content.info_footer.field_email
+    - field.field.block_content.info_footer.field_telephone
+  module:
+    - telephone
+    - text
+id: block_content.info_footer.default
+targetEntityType: block_content
+bundle: info_footer
+mode: default
+content:
+  field_adresse:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_email:
+    type: text_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_telephone:
+    type: telephone_default
+    weight: 28
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

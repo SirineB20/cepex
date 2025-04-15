@@ -1,0 +1,8 @@
+uuid: a4709d8b-a665-400c-bb13-396c41f57ba0
+langcode: fr
+status: true
+dependencies: {  }
+id: info_footer
+label: 'Info Footer'
+revision: false
+description: 'contact adresse mail  téléphone'

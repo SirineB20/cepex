@@ -1,0 +1,22 @@
+uuid: 2db50dcd-64d1-4123-81cc-823480aef6c8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.footer_left
+  module:
+    - text
+id: paragraph.footer_left.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: footer_left
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
