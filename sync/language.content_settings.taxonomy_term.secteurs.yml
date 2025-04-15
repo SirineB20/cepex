@@ -1,0 +1,11 @@
+uuid: d9db95fe-2ee5-474d-8019-a4fe177b124a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.secteurs
+id: taxonomy_term.secteurs
+target_entity_type_id: taxonomy_term
+target_bundle: secteurs
+default_langcode: site_default
+language_alterable: false

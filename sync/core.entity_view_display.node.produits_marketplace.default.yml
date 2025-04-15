@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.produits_marketplace.field_image_produit
     - field.field.node.produits_marketplace.field_nom_produit
     - field.field.node.produits_marketplace.field_reference_produit
-    - field.field.node.produits_marketplace.field_secteurs2
+    - field.field.node.produits_marketplace.field_secteur
     - node.type.produits_marketplace
   module:
     - image
@@ -20,14 +20,14 @@ content:
   content_moderation_control:
     settings: {  }
     third_party_settings: {  }
-    weight: -20
+    weight: 5
     region: content
   field_description_produit:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 103
+    weight: 2
     region: content
   field_image_produit:
     type: image_url
@@ -35,7 +35,7 @@ content:
     settings:
       image_style: ''
     third_party_settings: {  }
-    weight: 101
+    weight: 0
     region: content
   field_nom_produit:
     type: string
@@ -43,7 +43,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 102
+    weight: 1
     region: content
   field_reference_produit:
     type: string
@@ -51,20 +51,16 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 3
     region: content
-  field_secteurs2:
+  field_secteur:
     type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 105
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
+    weight: 6
     region: content
 hidden:
   langcode: true
+  links: true

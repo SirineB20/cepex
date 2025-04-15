@@ -1,0 +1,14 @@
+uuid: fd72fe61-fa8d-43d1-b380-0176b63e39d5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.homme_secteur
+  module:
+    - user
+id: user_add_role_action.homme_secteur
+label: 'Ajouter le rôle Homme secteur aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: homme_secteur

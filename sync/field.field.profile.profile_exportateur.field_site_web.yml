@@ -9,7 +9,7 @@ id: profile.profile_exportateur.field_site_web
 field_name: field_site_web
 entity_type: profile
 bundle: profile_exportateur
-label: 'site web'
+label: 'Site web'
 description: ''
 required: false
 translatable: false

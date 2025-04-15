@@ -1,4 +1,4 @@
-uuid: d9863b1c-130f-4ca0-8685-6a964c34cedc
+uuid: 61245263-9b28-43f0-9334-050bdf2e6d6d
 langcode: fr
 status: true
 dependencies:
@@ -14,7 +14,7 @@ mode: default
 content:
   field_description:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''

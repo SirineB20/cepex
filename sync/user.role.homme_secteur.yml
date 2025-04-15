@@ -1,0 +1,33 @@
+uuid: 60dde6a6-fd10-4e70-8c69-e813c9f82685
+langcode: fr
+status: true
+dependencies:
+  config:
+    - workflows.workflow.etat_produit
+    - workflows.workflow.workflow_profile
+  module:
+    - content_moderation
+    - contextual
+    - node
+    - profile
+id: homme_secteur
+label: 'Homme secteur'
+weight: 5
+is_admin: false
+permissions:
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access profile overview'
+  - 'create profile_exportateur profile'
+  - 'delete any profile_exportateur profile'
+  - 'delete own profile_exportateur profile'
+  - 'delete own profile_homme_secteur profile'
+  - 'update any profile_exportateur profile'
+  - 'update any profile_homme_secteur profile'
+  - 'update own profile_exportateur profile'
+  - 'update own profile_homme_secteur profile'
+  - 'use etat_produit transition publish'
+  - 'use workflow_profile transition create_new_draft'
+  - 'view any profile_exportateur profile'
+  - 'view own profile_exportateur profile'
+  - 'view own profile_homme_secteur profile'

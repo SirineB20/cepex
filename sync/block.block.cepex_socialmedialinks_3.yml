@@ -19,46 +19,46 @@ settings:
   label_display: '0'
   provider: social_media_links
   platforms:
+    x-twitter:
+      value: cepex
+      description: ''
+      weight: '-20'
+    facebook-f:
+      value: cepex
+      description: ''
+      weight: '-19'
     email:
       value: ''
       description: ''
-      weight: '-10'
-    facebook-f:
-      value: ''
-      description: ''
-      weight: '-9'
+      weight: '-18'
     instagram:
-      value: ''
+      value: cepex
       description: ''
-      weight: '-8'
+      weight: '-17'
     linkedin-in:
-      value: ''
+      value: cepex
       description: ''
-      weight: '-7'
+      weight: '-16'
     tiktok:
       value: ''
       description: ''
-      weight: '-6'
-    x-twitter:
-      value: ''
-      description: ''
-      weight: '-5'
+      weight: '-15'
     vimeo:
       value: ''
       description: ''
-      weight: '-4'
+      weight: '-14'
     website:
       value: ''
       description: ''
-      weight: '-3'
+      weight: '-13'
     whatsapp:
       value: ''
       description: ''
-      weight: '-2'
+      weight: '-12'
     youtube:
       value: ''
       description: ''
-      weight: '-1'
+      weight: '-11'
   appearance:
     orientation: h
     show_name: 0

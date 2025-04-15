@@ -1,0 +1,22 @@
+uuid: 743c2422-7a47-4bbf-8345-a68da3dc3997
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_paye
+    - profile.type.profile_homme_secteur
+  module:
+    - text
+id: profile.profile_homme_secteur.field_paye
+field_name: field_paye
+entity_type: profile
+bundle: profile_homme_secteur
+label: Pays
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

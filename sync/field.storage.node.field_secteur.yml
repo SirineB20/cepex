@@ -1,12 +1,12 @@
-uuid: bf43d952-0b7a-4a3f-b749-6a8b5d5738d6
+uuid: 2bbd42bc-35ee-4142-8957-50a291609b67
 langcode: fr
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_secteurs2
-field_name: field_secteurs2
+id: node.field_secteur
+field_name: field_secteur
 entity_type: node
 type: entity_reference
 settings:

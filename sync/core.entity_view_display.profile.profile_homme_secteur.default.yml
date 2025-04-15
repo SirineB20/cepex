@@ -1,0 +1,31 @@
+uuid: 1251242c-b0a9-448d-8299-648f8a638d7f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.profile.profile_homme_secteur.field_paye
+    - field.field.profile.profile_homme_secteur.field_secteur
+    - profile.type.profile_homme_secteur
+  module:
+    - text
+id: profile.profile_homme_secteur.default
+targetEntityType: profile
+bundle: profile_homme_secteur
+mode: default
+content:
+  field_paye:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_secteur:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

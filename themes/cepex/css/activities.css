@@ -303,8 +303,8 @@ body {
   margin-bottom: 35px;
 }
 .form--inline.clearfix {
-  display: flex;          /* Aligne en flex */
-  flex-wrap: wrap;        /* Passe à la ligne si nécessaire */
+           
+      
   align-items: center;    /* Centre verticalement */
   gap: 20px;              /* Espace entre les champs */
   margin-bottom: 20px;

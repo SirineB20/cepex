@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.info_footer.field_email
     - field.field.block_content.info_footer.field_telephone
   module:
+    - telephone
     - text
 id: block_content.info_footer.default
 targetEntityType: block_content
@@ -16,7 +17,7 @@ mode: default
 content:
   field_adresse:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -24,15 +25,16 @@ content:
     region: content
   field_email:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
   field_telephone:
-    type: basic_string
-    label: above
-    settings: {  }
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
     third_party_settings: {  }
     weight: 2
     region: content

@@ -9,6 +9,7 @@ dependencies:
     - contact
     - filter
     - media
+    - profile
     - search
     - system
 _core:
@@ -21,6 +22,7 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'create profile_exportateur profile'
   - 'search content'
   - 'use text format restricted_html'
   - 'view media'

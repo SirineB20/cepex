@@ -1,0 +1,13 @@
+uuid: 097e2f90-0cf3-492f-9c4d-89cde7b395cb
+langcode: fr
+status: true
+dependencies: {  }
+id: profile_homme_secteur
+label: 'Profile homme secteur'
+display_label: ''
+multiple: false
+registration: true
+roles:
+  homme_secteur: homme_secteur
+allow_revisions: false
+new_revision: false

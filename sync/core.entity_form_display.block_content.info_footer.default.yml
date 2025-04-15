@@ -17,7 +17,7 @@ mode: default
 content:
   field_adresse:
     type: string_textfield
-    weight: 26
+    weight: 0
     region: content
     settings:
       size: 60
@@ -25,7 +25,7 @@ content:
     third_party_settings: {  }
   field_email:
     type: text_textfield
-    weight: 27
+    weight: 1
     region: content
     settings:
       size: 60
@@ -33,24 +33,11 @@ content:
     third_party_settings: {  }
   field_telephone:
     type: telephone_default
-    weight: 28
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-  info:
-    type: string_textfield
-    weight: -5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  langcode:
-    type: language_select
     weight: 2
     region: content
     settings:
-      include_locked: true
+      placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  info: true
+  langcode: true

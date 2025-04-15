@@ -1,0 +1,14 @@
+uuid: 97e0ed9c-b5d4-4206-b583-98a9f23b8786
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.homme_secteur
+  module:
+    - user
+id: user_remove_role_action.homme_secteur
+label: 'Enlever le rôle Homme secteur des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: homme_secteur

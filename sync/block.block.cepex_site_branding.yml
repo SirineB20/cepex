@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - language
     - system
   theme:
     - cepex
@@ -22,4 +23,11 @@ settings:
   use_site_logo: true
   use_site_name: false
   use_site_slogan: false
-visibility: {  }
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

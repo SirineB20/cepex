@@ -1,9 +1,9 @@
-uuid: 3f52f61e-5a6d-40a7-810e-886808adc33b
+uuid: 88362736-c726-44f4-b111-4a9515e4486c
 langcode: fr
-status: false
+status: true
 dependencies:
   content:
-    - 'block_content:basic:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
+    - 'block_content:description:04cb0ece-e502-43c4-9f52-1e1dfb933264'
   module:
     - block_content
     - language
@@ -14,11 +14,11 @@ theme: cepex
 region: footer_left
 weight: 0
 provider: null
-plugin: 'block_content:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
+plugin: 'block_content:04cb0ece-e502-43c4-9f52-1e1dfb933264'
 settings:
-  id: 'block_content:d2da732c-8f37-4ab3-8a9d-2ae47f97e852'
-  label: Description
-  label_display: visible
+  id: 'block_content:04cb0ece-e502-43c4-9f52-1e1dfb933264'
+  label: DescriptionCepex
+  label_display: '0'
   provider: block_content
   status: true
   info: ''

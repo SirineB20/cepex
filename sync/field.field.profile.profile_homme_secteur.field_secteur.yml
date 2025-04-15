@@ -1,0 +1,29 @@
+uuid: 8da4dcab-8fc7-4a3d-ba6d-9c42ac947e80
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_secteur
+    - profile.type.profile_homme_secteur
+    - taxonomy.vocabulary.secteurs
+id: profile.profile_homme_secteur.field_secteur
+field_name: field_secteur
+entity_type: profile
+bundle: profile_homme_secteur
+label: Secteur
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      secteurs: secteurs
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -3,32 +3,107 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - media.type.image
+    - media.type.video
+    - node.type.page_actualite
     - node.type.produits_marketplace
+    - taxonomy.vocabulary.certifications
+    - taxonomy.vocabulary.secteurs
     - workflows.workflow.etat_produit
+    - workflows.workflow.workflow_profile
   module:
-    - conditional_fields
+    - block_content
+    - comment
     - content_moderation
-    - csv_importer
+    - content_translation
+    - contextual
+    - field_ui
+    - filter
+    - image
+    - language
+    - media
     - node
+    - paragraphs
+    - paragraphs_type_permissions
     - profile
+    - taxonomy
 id: exportateur
 label: exportateur
 weight: 4
 is_admin: false
 permissions:
-  - 'access csv importer'
+  - 'access comments'
+  - 'access contextual links'
+  - 'access profile overview'
+  - 'access user profiles'
+  - 'administer block_content display'
+  - 'administer comment display'
+  - 'administer content translation'
+  - 'administer filters'
+  - 'administer image styles'
+  - 'administer languages'
+  - 'administer media display'
+  - 'administer node display'
+  - 'administer paragraph display'
+  - 'administer profile display'
+  - 'administer profile form display'
+  - 'administer taxonomy_term display'
+  - 'administer user display'
+  - 'administer user form display'
+  - 'bypass paragraphs type content access'
+  - 'cancel account'
+  - 'change own username'
+  - 'create content translations'
+  - 'create image media'
+  - 'create paragraph content footer_left'
   - 'create produits_marketplace content'
-  - 'delete conditional fields'
+  - 'create terms in certifications'
+  - 'create terms in secteurs'
+  - 'delete content translations'
+  - 'delete own image media'
   - 'delete own produits_marketplace content'
   - 'delete own profile_exportateur profile'
-  - 'delete produits_marketplace revisions'
-  - 'edit conditional fields'
+  - 'delete own video media'
+  - 'delete page_actualite revisions'
+  - 'delete paragraph content footer_left'
+  - 'delete term revisions in certifications'
+  - 'delete term revisions in secteurs'
+  - 'delete terms in certifications'
+  - 'delete terms in secteurs'
+  - 'edit own comments'
+  - 'edit own image media'
   - 'edit own produits_marketplace content'
-  - 'revert produits_marketplace revisions'
+  - 'edit terms in certifications'
+  - 'edit terms in secteurs'
+  - 'post comments'
+  - 'revert term revisions in certifications'
+  - 'revert term revisions in secteurs'
+  - 'translate block_content'
+  - 'translate certifications taxonomy_term'
+  - 'translate comment'
+  - 'translate editable entities'
+  - 'update content translations'
   - 'update own profile_exportateur profile'
+  - 'update paragraph content footer_left'
   - 'use etat_produit transition create_new_draft'
   - 'use etat_produit transition en_cours_modification'
   - 'use etat_produit transition en_cours_modification_inscription'
-  - 'view conditional fields'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'use workflow_profile transition create_new_draft'
+  - 'use workflow_profile transition en_cours_modification'
+  - 'use workflow_profile transition en_cours_modification_inscription'
+  - 'use workflow_profile transition publish'
+  - 'view any unpublished content'
+  - 'view own profile'
   - 'view own profile_exportateur profile'
-  - 'view produits_marketplace revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view own unpublished profile'
+  - 'view paragraph content footer_left'
+  - 'view term revisions in certifications'
+  - 'view term revisions in secteurs'

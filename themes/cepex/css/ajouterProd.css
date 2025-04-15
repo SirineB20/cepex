@@ -1,0 +1,30 @@
+
+#profile-profile-homme-secteur-edit-form , #node-produits-marketplace-edit-form , #node-produits-marketplace-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 22px;
+    margin-bottom: 22px;
+
+}
+
+#edit-preview
+{
+    background: #fae5eb;
+    color: #cb043d;
+    border: 1px solid #fae5eb;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    margin-left: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}

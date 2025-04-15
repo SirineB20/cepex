@@ -1,8 +1,8 @@
-uuid: d443e6f2-5d09-41c1-958a-531db8ba58ed
+uuid: 0127f8f1-397c-4aed-8210-f182ef1d0600
 langcode: fr
 status: true
 dependencies: {  }
 id: description
 label: Description
 revision: false
-description: 'description left'
+description: 'block image + description'

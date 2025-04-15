@@ -9,7 +9,7 @@ id: profile.profile_exportateur.field_matricule_fiscale
 field_name: field_matricule_fiscale
 entity_type: profile
 bundle: profile_exportateur
-label: 'matricul fiscale'
+label: 'Matricul fiscale'
 description: ''
 required: false
 translatable: false

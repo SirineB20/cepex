@@ -1,0 +1,42 @@
+uuid: 03f4457d-f7dc-4f5b-9e90-49e130373fb6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.profile.profile_homme_secteur.field_paye
+    - field.field.profile.profile_homme_secteur.field_secteur
+    - profile.type.profile_homme_secteur
+  module:
+    - content_moderation
+    - text
+id: profile.profile_homme_secteur.default
+targetEntityType: profile
+bundle: profile_homme_secteur
+mode: default
+content:
+  field_paye:
+    type: text_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_secteur:
+    type: entity_reference_autocomplete
+    weight: 101
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  is_default: true

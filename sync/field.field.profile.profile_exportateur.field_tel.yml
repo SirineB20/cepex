@@ -11,7 +11,7 @@ id: profile.profile_exportateur.field_tel
 field_name: field_tel
 entity_type: profile
 bundle: profile_exportateur
-label: téléphone
+label: Téléphone
 description: ''
 required: false
 translatable: false

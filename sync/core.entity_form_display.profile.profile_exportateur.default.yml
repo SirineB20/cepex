@@ -11,11 +11,13 @@ dependencies:
     - field.field.profile.profile_exportateur.field_matricule_fiscale
     - field.field.profile.profile_exportateur.field_nom_de_l_entreprise
     - field.field.profile.profile_exportateur.field_presentation
-    - field.field.profile.profile_exportateur.field_secteurs2
+    - field.field.profile.profile_exportateur.field_secteur1
     - field.field.profile.profile_exportateur.field_site_web
     - field.field.profile.profile_exportateur.field_tel
     - profile.type.profile_exportateur
+    - workflows.workflow.workflow_profile
   module:
+    - content_moderation
     - shs
     - telephone
     - text
@@ -26,7 +28,7 @@ mode: default
 content:
   field_adresse:
     type: string_textarea
-    weight: 1
+    weight: 4
     region: content
     settings:
       rows: 5
@@ -34,7 +36,7 @@ content:
     third_party_settings: {  }
   field_certifications:
     type: options_buttons
-    weight: 2
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -48,7 +50,7 @@ content:
     third_party_settings: {  }
   field_e_mail:
     type: email_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder: ''
@@ -56,14 +58,14 @@ content:
     third_party_settings: {  }
   field_fax:
     type: telephone_default
-    weight: 5
+    weight: 7
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_matricule_fiscale:
     type: string_textfield
-    weight: 6
+    weight: 0
     region: content
     settings:
       size: 60
@@ -71,7 +73,7 @@ content:
     third_party_settings: {  }
   field_nom_de_l_entreprise:
     type: string_textfield
-    weight: 7
+    weight: 1
     region: content
     settings:
       size: 60
@@ -85,9 +87,9 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_secteurs2:
+  field_secteur1:
     type: options_shs
-    weight: 9
+    weight: 101
     region: content
     settings:
       display_node_count: false
@@ -105,16 +107,16 @@ content:
     third_party_settings: {  }
   field_tel:
     type: telephone_default
-    weight: 11
+    weight: 6
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-  is_default:
-    type: boolean_checkbox
-    weight: 0
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  is_default: true

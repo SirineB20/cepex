@@ -108,12 +108,19 @@
                     </a>
                 </li>
                   <li class="user-profile">
-  {% if user_logged_in and user_id is defined and user_id is not empty %}
-    <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_exportateur">
-      <i class="fa-regular fa-user"></i>
-      <span class="user-info">{{ entreprise_name }}</span>
-    </a>
-  {% endif %}
+              {% if user_logged_in and user_id is defined and user_id is not empty %}
+                {% if user_roles is defined and 'homme_secteur' in user_roles %}
+                  <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_homme_secteur">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="user-info">{{ entreprise_name }}</span>
+                  </a>
+                {% else %}
+                  <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_exportateur">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="user-info">{{ entreprise_name }}</span>
+                  </a>
+                {% endif %}
+              {% endif %}
 </li>
             </ul>
         </nav>

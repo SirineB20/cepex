@@ -1,16 +1,16 @@
-uuid: 2a56ef41-df90-47ea-a543-100c47464fba
+uuid: bf7e35aa-a746-41fe-8507-cc436faf5d20
 langcode: fr
 status: true
 dependencies:
   config:
-    - field.storage.node.field_secteurs2
+    - field.storage.node.field_secteur
     - node.type.produits_marketplace
-    - taxonomy.vocabulary.secteurs2
-id: node.produits_marketplace.field_secteurs2
-field_name: field_secteurs2
+    - taxonomy.vocabulary.secteurs
+id: node.produits_marketplace.field_secteur
+field_name: field_secteur
 entity_type: node
 bundle: produits_marketplace
-label: secteurs2
+label: Secteur
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
-      secteurs2: secteurs2
+      secteurs: secteurs
     sort:
       field: name
       direction: asc

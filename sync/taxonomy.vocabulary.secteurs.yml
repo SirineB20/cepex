@@ -1,9 +1,9 @@
-uuid: 6464938c-11e6-495c-94d5-5c2782160807
+uuid: 87135deb-af87-45d4-b7a1-efb613e405de
 langcode: fr
 status: true
 dependencies: {  }
-name: secteurs2
-vid: secteurs2
+name: secteurs
+vid: secteurs
 description: null
 weight: 0
 new_revision: false

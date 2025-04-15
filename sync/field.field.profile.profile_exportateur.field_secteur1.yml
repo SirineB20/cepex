@@ -1,16 +1,16 @@
-uuid: c5f2a0e1-e987-4358-9f11-d463f705b360
+uuid: 9b096c55-f082-4574-8f05-d3a2c526430a
 langcode: fr
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_secteurs2
+    - field.storage.profile.field_secteur1
     - profile.type.profile_exportateur
-    - taxonomy.vocabulary.secteurs2
-id: profile.profile_exportateur.field_secteurs2
-field_name: field_secteurs2
+    - taxonomy.vocabulary.secteurs
+id: profile.profile_exportateur.field_secteur1
+field_name: field_secteur1
 entity_type: profile
 bundle: profile_exportateur
-label: secteurs2
+label: Secteur
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
-      secteurs2: secteurs2
+      secteurs: secteurs
     sort:
       field: name
       direction: asc

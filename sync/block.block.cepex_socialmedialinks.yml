@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - language
     - social_media_links
   theme:
     - cepex
@@ -22,26 +23,10 @@ settings:
       value: ''
       description: ''
       weight: '-10'
-    facebook-f:
-      value: cepex
-      description: ''
-      weight: '2'
-    instagram:
-      value: cepex
-      description: ''
-      weight: '1'
-    linkedin-in:
-      value: cepex
-      description: ''
-      weight: '3'
     tiktok:
       value: ''
       description: ''
       weight: '-6'
-    x-twitter:
-      value: cepex
-      description: ''
-      weight: '0'
     vimeo:
       value: ''
       description: ''
@@ -58,6 +43,22 @@ settings:
       value: ''
       description: ''
       weight: '-1'
+    x-twitter:
+      value: cepex
+      description: ''
+      weight: '0'
+    instagram:
+      value: cepex
+      description: ''
+      weight: '1'
+    facebook-f:
+      value: cepex
+      description: ''
+      weight: '2'
+    linkedin-in:
+      value: cepex
+      description: ''
+      weight: '3'
   appearance:
     orientation: h
     show_name: 0
@@ -70,4 +71,11 @@ settings:
     installed_iconsets:
       fontawesome:
         examples: ''
-visibility: {  }
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

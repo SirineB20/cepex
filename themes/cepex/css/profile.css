@@ -28,8 +28,9 @@
 
 .sidebar .menu li {
   padding: 10px 20px;
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px;
   text-align: justify;
+  margin-top: 15px;
 }
 
 .sidebar .menu li a {
@@ -89,7 +90,7 @@
 }
 .titre-form{
   margin: 50px 20px 0;
-  position: relative;
+
   overflow: hidden;
 
 }
@@ -357,9 +358,10 @@ tbody:before {
 }
 
 .table-header {
-  margin: 50px 0 0;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .sidebar-wrapper {
  

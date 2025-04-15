@@ -26,7 +26,9 @@
   .form-email, 
   .form-textarea,
   .form-select,
-  #edit-field-tel-0-value
+  #edit-field-tel-0-value,
+  #edit-field-fax-0-value,
+  #edit-field-presentation-wrapper
    {
     width: 100%;
     padding: 10px;
@@ -94,7 +96,9 @@
   #edit-submit:hover {
     background: #b00a3d;
   }
-  
+  #edit-revision-information, #edit-advanced{
+    display: none;
+  }
   /* Delete button */
   #edit-delete {
     background: #fae5eb;
@@ -111,6 +115,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-top: 1px;
   }
   
   #edit-delete::before {

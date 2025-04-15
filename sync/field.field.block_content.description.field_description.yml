@@ -1,4 +1,4 @@
-uuid: 95bb9fd1-59c1-49a3-97d4-c30021642776
+uuid: 5125226a-5552-4a30-91d4-e5b96e932508
 langcode: fr
 status: true
 dependencies:
@@ -26,9 +26,9 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       banniere:
-        weight: 3
+        weight: 4
         enabled: false
       footer_left:
-        weight: 4
+        weight: 3
         enabled: true
 field_type: entity_reference_revisions

@@ -44,9 +44,7 @@
              
               {% for field in column.fields %}
                 {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
-                 <pre>
-                {{ dump(column.fields) }}
-              </pre>
+                 
               {% endfor %}
             {% endif %}
             <td{{ column.attributes.addClass(column_classes) }}>

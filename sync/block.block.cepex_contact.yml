@@ -18,7 +18,7 @@ plugin: 'block_content:e4dcf788-3fec-49b9-8165-9fa61dc317f2'
 settings:
   id: 'block_content:e4dcf788-3fec-49b9-8165-9fa61dc317f2'
   label: Contact
-  label_display: visible
+  label_display: '0'
   provider: block_content
   status: true
   info: ''
