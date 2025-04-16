@@ -3,8 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.produits_marketplace.field_certifications
     - field.field.node.produits_marketplace.field_description_produit
+    - field.field.node.produits_marketplace.field_fabriquant
     - field.field.node.produits_marketplace.field_image_produit
+    - field.field.node.produits_marketplace.field_ingredients
     - field.field.node.produits_marketplace.field_nom_produit
     - field.field.node.produits_marketplace.field_reference_produit
     - field.field.node.produits_marketplace.field_secteur
@@ -17,29 +20,46 @@ targetEntityType: node
 bundle: produits_marketplace
 mode: default
 content:
-  content_moderation_control:
-    settings: {  }
+  field_certifications:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
     weight: 5
     region: content
   field_description_produit:
     type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_fabriquant:
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 7
     region: content
   field_image_produit:
     type: image_url
-    label: above
+    label: hidden
     settings:
       image_style: ''
     third_party_settings: {  }
     weight: 0
     region: content
+  field_ingredients:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_nom_produit:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -51,7 +71,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_secteur:
     type: entity_reference_label
@@ -59,8 +79,9 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 6
+    weight: 4
     region: content
 hidden:
+  content_moderation_control: true
   langcode: true
   links: true

@@ -3,8 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.produits_marketplace.field_certifications
     - field.field.node.produits_marketplace.field_description_produit
+    - field.field.node.produits_marketplace.field_fabriquant
     - field.field.node.produits_marketplace.field_image_produit
+    - field.field.node.produits_marketplace.field_ingredients
     - field.field.node.produits_marketplace.field_nom_produit
     - field.field.node.produits_marketplace.field_reference_produit
     - field.field.node.produits_marketplace.field_secteur
@@ -20,15 +23,23 @@ targetEntityType: node
 bundle: produits_marketplace
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 2
+  field_certifications:
+    type: options_select
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_description_produit:
     type: string_textarea
-    weight: 8
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_fabriquant:
+    type: string_textarea
+    weight: 10
     region: content
     settings:
       rows: 5
@@ -36,15 +47,23 @@ content:
     third_party_settings: {  }
   field_image_produit:
     type: image_image
-    weight: 6
+    weight: 3
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+  field_ingredients:
+    type: string_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_nom_produit:
     type: string_textfield
-    weight: 7
+    weight: 4
     region: content
     settings:
       size: 60
@@ -52,7 +71,7 @@ content:
     third_party_settings: {  }
   field_reference_produit:
     type: string_textfield
-    weight: 9
+    weight: 5
     region: content
     settings:
       size: 60
@@ -60,7 +79,7 @@ content:
     third_party_settings: {  }
   field_secteur:
     type: options_shs
-    weight: 26
+    weight: 7
     region: content
     settings:
       display_node_count: false
@@ -70,13 +89,13 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 4
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 2
     region: content
     settings:
       display_label: true
@@ -89,23 +108,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  translation:
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 1
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
+  created: true
   langcode: true
   path: true
   promote: true
   sticky: true
+  translation: true
+  uid: true

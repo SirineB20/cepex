@@ -1,0 +1,29 @@
+uuid: f20f085a-48dd-4a97-9616-ec72933d62b3
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_certifications
+    - node.type.produits_marketplace
+    - taxonomy.vocabulary.certifications
+id: node.produits_marketplace.field_certifications
+field_name: field_certifications
+entity_type: node
+bundle: produits_marketplace
+label: certifications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      certifications: certifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

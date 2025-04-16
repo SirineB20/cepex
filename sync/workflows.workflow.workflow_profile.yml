@@ -68,4 +68,4 @@ type_settings:
   entity_types:
     profile:
       - profile_exportateur
-  default_moderation_state: published
+  default_moderation_state: draft

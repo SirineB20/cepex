@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ *
+ * Default theme implementation for profiles.
+ *
+ * Available variables:
+ * - content: Items for the content of the profile.
+ *   Use 'content' to print them all, or print a subset such as
+ *   'content.title'. Use the following code to exclude the
+ *   printing of a given child element:
+ *   @code
+ *   {{ content|without('title') }}
+ *   @endcode
+ * - attributes: HTML attributes for the wrapper.
+ * - view_mode: The profile view mode used.
+ * - profile: The profile object.
+ * - url: The profile URL, if available.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'profile',
+    'profile--' ~ profile.id,
+    'profile--type--' ~ profile.bundle|clean_class,
+    profile.isDefault() ? 'profile--is-default',
+    view_mode ? 'profile--view-mode--' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_suffix.contextual_links }}
+  
+  <section class="details-entreprise-marketplace">
+    <div class="container container-interne">
+      
+      {# Informations principales de l'entreprise #}
+      <div class="boxdetails-company">
+        <div class="boximg-company-marketplace">
+          {% if content.field_imageprofile %}
+          <pre>
+            {{ dump("field_imageprofile") }}
+          </pre>
+            {% set image_url = content.field_imageprofile.0['#markup'] %}
+            <img src={{ image_url }} class="img-company-marketplace" alt="Logo entreprise">
+          {% endif %}
+        </div>
+
+        <div class="boxcontenu-company">
+          <span class="name-company">{{ content.field_nom_de_l_entreprise }}</span>
+          <span class="activite-company">{{ content.field_directeur_general }}</span>
+          
+          <div class="company-contact-info">
+            {% if content.field_adresse %}<p>{{ content.field_adresse }}</p>{% endif %}
+            {% if content.field_tel %}<p>{{ content.field_tel }}</p>{% endif %}
+            {% if content.field_fax %}<p>{{ content.field_fax }}</p>{% endif %}
+            {% if content.field_e_mail %}<p>{{ content.field_e_mail }}</p>{% endif %}
+            {% if content.field_site_web %}<p>{{ content.field_site_web }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      {# Présentation de l'entreprise #}
+      {% if content.field_presentation %}
+        <div class="presentation-company">
+          <span class="titre-company">Présentation</span>
+          <p>{{ content.field_presentation }}</p>
+        </div>
+      {% endif %}
+
+      {# Catégories de produits #}
+      {% if content.field_secteur1 %}
+        <div class="categories-company">
+          <span class="titre-category-company">Catégories de produits</span>
+          <div class="flexbox-categ-company">
+            <span>{{ content.field_secteur1 }}</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {# Certifications #}
+      {% if content.field_certifications %}
+        <div class="presentation-company">
+          <span class="titre-company">Certifications</span>
+          <div class="flex-certification">
+            <div class="boxcertification-company">
+              <img src="/themes/cepex/images/certificat.png" class="img-certification-marketplace" alt="Certification">
+              <img src="/themes/cepex/images/certificat.png" class="img-certification-marketplace" alt="Certification">
+            </div>
+            <div class="details-certification">
+              <a>{{ content.field_certifications }}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="floating-action-button">
+      <a href="http://localhost:8087/fr/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}" title="Aller à la gestion des exportateurs" class="btn-fab">
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+    </div>
+  </section>
+</div>

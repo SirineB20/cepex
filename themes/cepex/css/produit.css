@@ -1,3 +1,37 @@
+.floating-action-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color:#cb043d;
+  box-shadow: 0 4px 12px rgba(203, 4, 61, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.floating-action-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.floating-action-button:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.05) rotate(5deg);
+}
+
+.floating-action-button i {
+  font-size: 20px;
+}
 .menu-categ-maketplace {
   list-style-type: none;
   list-style: none;
@@ -882,14 +916,12 @@ transform: translateY(0%);
   align-items: center;
   margin-left: 20px;
   flex-wrap: wrap;
-  margin-: 10px;
+ 
 }
 
 .flexbox-categ-company span {
   color: #282828;
   display: inline-block;
-  border: 1px solid #525252;
-  margin: 0 10px 10px;
   padding: 10px 20px;
   border-radius: 25px;
 }

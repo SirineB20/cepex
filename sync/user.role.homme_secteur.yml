@@ -8,6 +8,7 @@ dependencies:
   module:
     - content_moderation
     - contextual
+    - field_ui
     - node
     - profile
 id: homme_secteur
@@ -18,6 +19,11 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access profile overview'
+  - 'access user profiles'
+  - 'administer profile display'
+  - 'administer profile form display'
+  - 'cancel account'
+  - 'change own username'
   - 'create profile_exportateur profile'
   - 'delete any profile_exportateur profile'
   - 'delete own profile_exportateur profile'
@@ -28,6 +34,14 @@ permissions:
   - 'update own profile_homme_secteur profile'
   - 'use etat_produit transition publish'
   - 'use workflow_profile transition create_new_draft'
+  - 'use workflow_profile transition en_cours_modification'
+  - 'use workflow_profile transition en_cours_modification_inscription'
+  - 'use workflow_profile transition publish'
+  - 'view any profile'
   - 'view any profile_exportateur profile'
+  - 'view any profile_homme_secteur profile'
+  - 'view own profile'
   - 'view own profile_exportateur profile'
   - 'view own profile_homme_secteur profile'
+  - 'view own unpublished profile'
+  - 'view user email addresses'

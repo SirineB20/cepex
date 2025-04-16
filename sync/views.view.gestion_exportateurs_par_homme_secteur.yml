@@ -8,7 +8,6 @@ dependencies:
     - field.storage.profile.field_nom_de_l_entreprise
     - field.storage.profile.field_secteur1
     - profile.type.profile_exportateur
-    - taxonomy.vocabulary.secteurs
     - user.role.administrator
     - user.role.homme_secteur
   module:
@@ -33,6 +32,72 @@ display:
     display_options:
       title: 'Gestion exportateurs'
       fields:
+        profile_id:
+          id: profile_id
+          table: profile
+          field: profile_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: profile
+          entity_field: profile_id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_matricule_fiscale:
           id: field_matricule_fiscale
           table: profile__field_matricule_fiscale
@@ -361,7 +426,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a href=\"/node/{{ nid }}/delete\"><i class=\"fa-solid fa-trash\"></i></a>\r\n<a href=\"/node/{{ nid }}/edit\"><i class=\"fa-solid fa-pen\"></i></a>\r\n<a href=\"/node/{{ nid }}\"><i class=\"fa-solid fa-eye\"></i></a>"
+            text: "<a href=\"/fr/profile/{{ row._entity.id }}/delete\"><i class=\"fa-solid fa-trash\"></i></a>\r\n<a href=\"/fr/profile/{{ row._entity.id }}/edit\"><i class=\"fa-solid fa-pen\"></i></a>\r\n<a href=\"/fr/profile/{{ row._entity.id }}\"><i class=\"fa-solid fa-eye\"></i></a>"
             make_link: false
             path: ''
             absolute: false
@@ -652,8 +717,8 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      use_more: true
-      use_more_always: true
+      use_more: false
+      use_more_always: false
       use_more_text: more
       header:
         area_text_custom:
@@ -665,7 +730,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<a href="/fr/node/add/produits_marketplace" class="button-add button--action button--primary" data-drupal-link-system-path="/fr/node/add/produits_marketplace">Ajouter un exportateur </a>'
+          content: '<a href="/fr/admin/people/create" class="button-add button--action button--primary" data-drupal-link-system-path="/fr/admin/people/create">Ajouter un exportateur </a>'
           tokenize: false
       footer: {  }
       display_extenders: {  }
@@ -688,17 +753,501 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      arguments:
-        uid:
-          id: uid
+      fields:
+        profile_id:
+          id: profile_id
           table: profile
-          field: uid
+          field: profile_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: profile
-          entity_field: uid
-          plugin_id: entity_target_id
+          entity_field: profile_id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_matricule_fiscale:
+          id: field_matricule_fiscale
+          table: profile__field_matricule_fiscale
+          field: field_matricule_fiscale
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Matricul fiscale'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_nom_de_l_entreprise:
+          id: field_nom_de_l_entreprise
+          table: profile__field_nom_de_l_entreprise
+          field: field_nom_de_l_entreprise
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: "Nom d'entreprise"
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_directeur_general:
+          id: field_directeur_general
+          table: profile__field_directeur_general
+          field: field_directeur_general
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Directeur général'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_secteur1:
+          id: field_secteur1
+          table: profile__field_secteur1
+          field: field_secteur1
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Secteurs
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        moderation_state:
+          id: moderation_state
+          table: profile
+          field: moderation_state
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: profile
+          plugin_id: moderation_state_field
+          label: État
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: content_moderation_state
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        operations:
+          id: operations
+          table: profile
+          field: operations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: profile
+          plugin_id: entity_operations
+          label: Actions
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<a href=\"/fr/profile/{{ row.id }}/delete?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-trash\"></i></a>\r\n<a href=\"/fr/profile/{{ profile.id() }}/edit?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-pen\"></i></a>\r\n<a href=\"/fr/profile/{{ row._entity.id }}?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-eye\"></i></a>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          destination: false
+        operations_1:
+          id: operations_1
+          table: profile
+          field: operations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: profile
+          plugin_id: entity_operations
+          label: "Liens d'actions"
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          destination: false
+      arguments:
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
+          relationship: parent_target_id
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: parent
+          plugin_id: taxonomy
           default_action: default
           exception:
             value: all
@@ -729,9 +1278,114 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters:
+        type:
+          id: type
+          table: profile
+          field: type
+          entity_type: profile
+          entity_field: type
+          plugin_id: bundle
+          value:
+            profile_exportateur: profile_exportateur
+        field_matricule_fiscale_value:
+          id: field_matricule_fiscale_value
+          table: profile__field_matricule_fiscale
+          field: field_matricule_fiscale_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_matricule_fiscale_value_op
+            label: 'Matricul fiscale'
+            description: ''
+            use_operator: false
+            operator: field_matricule_fiscale_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_matricule_fiscale_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_nom_de_l_entreprise_value:
+          id: field_nom_de_l_entreprise_value
+          table: profile__field_nom_de_l_entreprise
+          field: field_nom_de_l_entreprise_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_nom_de_l_entreprise_value_op
+            label: "Nom d'entreprise"
+            description: ''
+            use_operator: false
+            operator: field_nom_de_l_entreprise_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_nom_de_l_entreprise_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       defaults:
         relationships: false
+        fields: false
         arguments: false
+        filters: false
+        filter_groups: false
       relationships:
         field_secteur1:
           id: field_secteur1
@@ -739,9 +1393,30 @@ display:
           field: field_secteur1
           relationship: none
           group_type: group
-          admin_label: 'field_secteur1 : Terme de taxonomie'
+          admin_label: exportateur
           plugin_id: standard
           required: false
+        reverse__profile__field_secteur:
+          id: reverse__profile__field_secteur
+          table: taxonomy_term_field_data
+          field: reverse__profile__field_secteur
+          relationship: field_secteur1
+          group_type: group
+          admin_label: field_secteur
+          entity_type: taxonomy_term
+          plugin_id: entity_reverse
+          required: false
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
+          relationship: field_secteur1
+          group_type: group
+          admin_label: Parent
+          entity_type: taxonomy_term
+          entity_field: parent
+          plugin_id: standard
+          required: true
       exposed_block: false
       display_extenders: {  }
       path: dashboard/gestion-exportateurs-par-homme-secteur
@@ -1229,64 +1904,16 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_secteur1_target_id:
-          id: field_secteur1_target_id
-          table: profile__field_secteur1
-          field: field_secteur1_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_secteur1_target_id_op
-            label: Secteur
-            description: ''
-            use_operator: false
-            operator: field_secteur1_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_secteur1_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-              homme_secteur: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: secteurs
-          type: select
-          hierarchy: true
-          limit: true
-          error_message: false
       filter_groups:
         operator: AND
         groups:
           1: AND
       defaults:
+        relationships: false
         fields: false
         filters: false
         filter_groups: false
+      relationships: {  }
       exposed_block: false
       display_extenders: {  }
       path: admin/gestion-exportateurs-par-homme-secteur

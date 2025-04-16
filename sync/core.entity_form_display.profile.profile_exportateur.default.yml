@@ -42,7 +42,7 @@ content:
     third_party_settings: {  }
   field_directeur_general:
     type: string_textfield
-    weight: 3
+    weight: 2
     region: content
     settings:
       size: 60
@@ -89,7 +89,7 @@ content:
     third_party_settings: {  }
   field_secteur1:
     type: options_shs
-    weight: 101
+    weight: 3
     region: content
     settings:
       display_node_count: false
@@ -114,7 +114,7 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

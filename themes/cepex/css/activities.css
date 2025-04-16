@@ -566,6 +566,7 @@ html[lang="ar"] .image-succes-storie {
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
+  justify-content: center;
 }
 
 .view-filters span {
