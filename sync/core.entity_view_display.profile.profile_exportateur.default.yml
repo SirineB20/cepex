@@ -8,6 +8,7 @@ dependencies:
     - field.field.profile.profile_exportateur.field_directeur_general
     - field.field.profile.profile_exportateur.field_e_mail
     - field.field.profile.profile_exportateur.field_fax
+    - field.field.profile.profile_exportateur.field_imageprofile
     - field.field.profile.profile_exportateur.field_matricule_fiscale
     - field.field.profile.profile_exportateur.field_nom_de_l_entreprise
     - field.field.profile.profile_exportateur.field_presentation
@@ -16,7 +17,7 @@ dependencies:
     - field.field.profile.profile_exportateur.field_tel
     - profile.type.profile_exportateur
   module:
-    - telephone
+    - image
     - text
 id: profile.profile_exportateur.default
 targetEntityType: profile
@@ -30,14 +31,14 @@ content:
     region: content
   field_adresse:
     type: basic_string
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 5
     region: content
   field_certifications:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -45,7 +46,7 @@ content:
     region: content
   field_directeur_general:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -53,18 +54,26 @@ content:
     region: content
   field_e_mail:
     type: basic_string
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 7
     region: content
   field_fax:
-    type: telephone_link
-    label: above
+    type: string
+    label: inline
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
     weight: 9
+    region: content
+  field_imageprofile:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_matricule_fiscale:
     type: string
@@ -76,7 +85,7 @@ content:
     region: content
   field_nom_de_l_entreprise:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -84,14 +93,14 @@ content:
     region: content
   field_presentation:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 6
     region: content
   field_secteur1:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -99,17 +108,17 @@ content:
     region: content
   field_site_web:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     weight: 10
     region: content
   field_tel:
-    type: telephone_link
-    label: above
+    type: string
+    label: inline
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
     weight: 8
     region: content

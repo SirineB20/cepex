@@ -21,6 +21,7 @@ dependencies:
     - content_translation
     - contextual
     - field_ui
+    - file
     - filter
     - image
     - language
@@ -36,7 +37,9 @@ weight: 4
 is_admin: false
 permissions:
   - 'access comments'
+  - 'access content overview'
   - 'access contextual links'
+  - 'access files overview'
   - 'access profile overview'
   - 'access user profiles'
   - 'administer block_content display'

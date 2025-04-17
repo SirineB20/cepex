@@ -61,69 +61,11 @@
   </div>
 </header>
 {% endif %}
-
-<main role="main">
-  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-  <div class="row g-0">
-    <div class="order-1 order-lg-2 {{ content_classes }}">
-      <div class="d-flex">
-    <div class="sidebar">
-        <div class="sidebar-wrapper">
-            <ul class="menu">
-             <img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
-
-                <li>
-                    <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_exportateur">
-                        <i class="fa-regular fa-user"></i>
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a  href="http://localhost:8087/fr/dashboard/gestion-produits">
-                        <i class="fa-solid fa-box-open"></i>
-                        Produits
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('user.logout') }}" class="logout-link">
-                        <i class="fa-solid fa-circle-arrow-left"></i>
-                        se déconnecter
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="content">
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-house"></i>
-                        Accueil
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-regular fa-bell"></i>
-                    </a>
-                </li>
-                    <li class="user-profile">
-                    <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_exportateur">
-                          {% if user_logged_in %}
-                            <i class="fa-regular fa-user"></i>
-                            <span class="user-info">{{ entreprise_name }}</span>
-                          {% endif %}
-                       
-                      </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="titre-form">
-           <div class="left">
-          <h3 class="red"><span>Modifier le Produit</span></h3>
-      </div>
-      
          {{ page.content }}
+
+   
+  </div>
+</div>
     </div>
 </div>
     </div>

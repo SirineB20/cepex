@@ -3,14 +3,30 @@ langcode: fr
 status: true
 dependencies:
   config:
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - media.type.image
+    - media.type.video
+    - node.type.page_actualite
+    - node.type.produits_marketplace
     - workflows.workflow.etat_produit
     - workflows.workflow.workflow_profile
   module:
+    - block_content
+    - comment
     - content_moderation
     - contextual
     - field_ui
+    - file
+    - filter
+    - image
+    - language
+    - media
     - node
+    - paragraphs
+    - paragraphs_type_permissions
     - profile
+    - taxonomy
 id: homme_secteur
 label: 'Homme secteur'
 weight: 5
@@ -18,21 +34,47 @@ is_admin: false
 permissions:
   - 'access content overview'
   - 'access contextual links'
+  - 'access files overview'
   - 'access profile overview'
   - 'access user profiles'
+  - 'administer block_content display'
+  - 'administer comment display'
+  - 'administer filters'
+  - 'administer image styles'
+  - 'administer languages'
+  - 'administer media display'
+  - 'administer node display'
+  - 'administer paragraph display'
   - 'administer profile display'
   - 'administer profile form display'
+  - 'administer taxonomy_term display'
+  - 'administer user display'
+  - 'administer user form display'
+  - 'bypass paragraphs type content access'
   - 'cancel account'
   - 'change own username'
+  - 'create image media'
+  - 'create paragraph content footer_left'
   - 'create profile_exportateur profile'
   - 'delete any profile_exportateur profile'
+  - 'delete own image media'
+  - 'delete own produits_marketplace content'
   - 'delete own profile_exportateur profile'
   - 'delete own profile_homme_secteur profile'
+  - 'delete own video media'
+  - 'delete page_actualite revisions'
+  - 'delete paragraph content footer_left'
+  - 'edit own comments'
+  - 'edit own image media'
+  - 'edit own produits_marketplace content'
   - 'update any profile_exportateur profile'
   - 'update any profile_homme_secteur profile'
   - 'update own profile_exportateur profile'
   - 'update own profile_homme_secteur profile'
+  - 'update paragraph content footer_left'
   - 'use etat_produit transition publish'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
   - 'use workflow_profile transition create_new_draft'
   - 'use workflow_profile transition en_cours_modification'
   - 'use workflow_profile transition en_cours_modification_inscription'
@@ -43,5 +85,8 @@ permissions:
   - 'view own profile'
   - 'view own profile_exportateur profile'
   - 'view own profile_homme_secteur profile'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
   - 'view own unpublished profile'
+  - 'view paragraph content footer_left'
   - 'view user email addresses'

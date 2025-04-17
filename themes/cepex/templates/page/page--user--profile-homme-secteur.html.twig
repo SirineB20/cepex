@@ -73,7 +73,7 @@
              <img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
 
                 <li>
-                    <a href="#">
+                   <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_homme_secteur">
                         <i class="fa-regular fa-user"></i>
                         Profile
                     </a>
@@ -87,7 +87,7 @@
                 <li>
                 <li>
                          <a href="{{ base_path }}fr/dashboard/gestion-produits-secteur/{{ id_secteur_homme_secteur }}">
-                <i class="fa-solid fa-box-open"></i>
+                <i class="fa-solid fa-user-tie"></i> 
                 Produits
             </a>
             </li>

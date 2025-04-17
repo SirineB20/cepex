@@ -1148,58 +1148,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a href=\"/fr/profile/{{ row.id }}/delete?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-trash\"></i></a>\r\n<a href=\"/fr/profile/{{ profile.id() }}/edit?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-pen\"></i></a>\r\n<a href=\"/fr/profile/{{ row._entity.id }}?destination=/fr/dashboard/gestion-exportateurs-par-homme-secteur/665\"><i class=\"fa-solid fa-eye\"></i></a>"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          destination: false
-        operations_1:
-          id: operations_1
-          table: profile
-          field: operations
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: profile
-          plugin_id: entity_operations
-          label: "Liens d'actions"
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
+            text: "<a href=\"/fr/profile/{{ profile_id }}/delete\"><i class=\"fa-solid fa-trash\"></i></a>\r\n<a href=\"/fr/profile/{{ profile_id }}/edit\"><i class=\"fa-solid fa-pen\"></i></a>\r\n<a href=\"/fr/profile/{{ profile_id }}\"><i class=\"fa-solid fa-eye\"></i></a>"
             make_link: false
             path: ''
             absolute: false

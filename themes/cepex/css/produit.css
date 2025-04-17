@@ -1215,19 +1215,12 @@ transform: translateY(0%);
 }
 
 /* Titre du produit */
-.left{
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* margin: 20px; */
-  margin-left: 20px;
-  margin-bottom: 20px;}
+
 
 .titre-form .left h3.red {
   color: #cd0b47;
-  font-size: 22px;
-  font-weight: 600;
-  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .titre-form .left h3.red span {
@@ -1315,5 +1308,93 @@ transform: translateY(0%);
   
   .node--produits-marketplace > div > div > div:last-child {
     font-size: 15px;
+  }
+}
+/* Style général pour la page de confirmation de suppression */
+.node-confirm-form , #profile-profile-exportateur-delete-form{
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Message d'avertissement */
+.node-confirm-form:before , #profile-profile-exportateur-delete-form:before {
+  content: "⚠️ Attention";
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #e63946;
+  margin-bottom: 15px;
+}
+
+/* Texte d'avertissement */
+.node-confirm-form p,
+.node-confirm-form .confirmation,
+#profile-profile-exportateur-delete-form p ,
+#profile-profile-exportateur-delete-form .confirmation {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Bouton d'annulation */
+#edit-cancel {
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icône pour le bouton Annuler */
+#edit-cancel::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Effet hover sur le bouton d'annulation */
+#edit-cancel:hover {
+  background: #e9ecef;
+}
+
+/* Style pour le message d'avertissement */
+.node-confirm-form .confirmation 
+#profile-profile-exportateur-delete-form .confirmation {
+  font-weight: 500;
+  padding: 15px;
+  background-color: #fff3f3;
+  border-left: 4px solid #e63946;
+  text-align: left;
+  margin: 20px 0;
+}
+
+/* Style responsive pour mobile */
+@media (max-width: 576px) {
+  #edit-actions {
+    flex-direction: column;
+  }
+  
+  #edit-submit, #edit-cancel {
+    width: 100%;
+    justify-content: center;
   }
 }

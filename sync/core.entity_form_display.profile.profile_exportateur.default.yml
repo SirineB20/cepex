@@ -8,16 +8,19 @@ dependencies:
     - field.field.profile.profile_exportateur.field_directeur_general
     - field.field.profile.profile_exportateur.field_e_mail
     - field.field.profile.profile_exportateur.field_fax
+    - field.field.profile.profile_exportateur.field_imageprofile
     - field.field.profile.profile_exportateur.field_matricule_fiscale
     - field.field.profile.profile_exportateur.field_nom_de_l_entreprise
     - field.field.profile.profile_exportateur.field_presentation
     - field.field.profile.profile_exportateur.field_secteur1
     - field.field.profile.profile_exportateur.field_site_web
     - field.field.profile.profile_exportateur.field_tel
+    - image.style.thumbnail
     - profile.type.profile_exportateur
     - workflows.workflow.workflow_profile
   module:
     - content_moderation
+    - image
     - shs
     - telephone
     - text
@@ -62,6 +65,14 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_imageprofile:
+    type: image_image
+    weight: 26
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   field_matricule_fiscale:
     type: string_textfield

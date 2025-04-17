@@ -364,5 +364,108 @@ function cepex_theme_suggestions_views_view_table_alter(array &$suggestions, arr
         $suggestions[] = 'views_view_table__produits_exportateur__' . $display_id;
       }
     }
+    if ($view_id == 'translations') {
+      $suggestions[] = 'views_view_table__translations';
+      
+      // Si vous avez besoin de suggestions encore plus spécifiques basées sur l'affichage
+      if ($display_id) {
+        $suggestions[] = 'views_view_table__translations' . $display_id;
+      }
+    }
+  }
+}
+/**
+ * Implements hook_theme_suggestions_table_alter().
+ */
+function THEMENAME_theme_suggestions_table_alter(array &$suggestions, array $variables) {
+  // Détecter si c'est un tableau de traduction basé sur le contenu ou le contexte
+  if (isset($variables['header']) && is_array($variables['header'])) {
+    // Vérifier si les en-têtes correspondent à ceux d'un tableau de traduction
+    $translation_headers = ['Langue', 'Traduction', 'État', 'Actions'];
+    $header_values = array_column($variables['header'], 0);
+    
+    // Si tous les en-têtes de traduction sont présents
+    if (count(array_intersect($translation_headers, $header_values)) >= 3) {
+      $suggestions[] = 'table__translation';
+      
+      // Ajouter une suggestion basée sur la route actuelle
+      $route_name = \Drupal::routeMatch()->getRouteName();
+      if ($route_name) {
+        $suggestions[] = 'table__translation__' . str_replace('.', '_', $route_name);
+      }
+      
+      // Ajouter une suggestion basée sur le type de contenu si disponible
+      $node = \Drupal::routeMatch()->getParameter('node');
+      if ($node && is_object($node)) {
+        $suggestions[] = 'table__translation__' . $node->getType();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_table().
+ */
+function THEMENAME_preprocess_table(&$variables) {
+  // Détecter si c'est un tableau de traduction
+  if (isset($variables['header']) && is_array($variables['header'])) {
+    $translation_headers = ['Langue', 'Traduction', 'État', 'Actions'];
+    $header_values = array_column($variables['header'], 0);
+    
+    if (count(array_intersect($translation_headers, $header_values)) >= 3) {
+      // Ajouter une classe pour le tableau de traduction
+      $variables['attributes']['class'][] = 'translation-table';
+      
+      // Vous pouvez également ajouter des classes à chaque ligne ou cellule si nécessaire
+      foreach ($variables['rows'] as $key => $row) {
+        $variables['rows'][$key]['attributes']->addClass('translation-row');
+        
+        // Ajouter des classes basées sur l'état de traduction
+        if (isset($row['cells'][2]['content']) && is_string($row['cells'][2]['content'])) {
+          $status = strtolower(strip_tags($row['cells'][2]['content']));
+          if (strpos($status, 'non traduit') !== false) {
+            $variables['rows'][$key]['attributes']->addClass('translation-missing');
+          } elseif (strpos($status, 'publié') !== false) {
+            $variables['rows'][$key]['attributes']->addClass('translation-published');
+          }
+        }
+      }
+    }
+  }
+}
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function cepex_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+  $view = $variables['view'];
+  
+  // Suggestions pour la vue gestion_exportateurs_par_homme_secteur
+  if ($view->id() == 'gestion_exportateurs_par_homme_secteur' && $view->current_display == 'page_1') {
+    $suggestions[] = 'views_view__' . $view->id();
+    $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
+    $suggestions[] = 'views_view__exportateurs_par_homme_secteur';
+    
+    // Ajouter des suggestions basées sur les arguments de la vue
+    if (!empty($view->args)) {
+      $suggestions[] = 'views_view__' . $view->id() . '__arg_' . $view->args[0];
+    }
+  }
+  
+  // Suggestions pour la vue les-produits-de-l-exportateur
+  if ($view->id() == 'les-produits-de-l-exportateur') {
+    $suggestions[] = 'views_view__' . $view->id();
+    
+    // Note: remplacer les tirets par des underscores pour la suggestion
+    $suggestions[] = 'views_view__les_produits_de_l_exportateur';
+    
+    // Suggestion avec le display actuel
+    if (!empty($view->current_display)) {
+      $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
+    }
+    
+    // Ajouter des suggestions basées sur les arguments de la vue
+    if (!empty($view->args)) {
+      $suggestions[] = 'views_view__' . $view->id() . '__arg_' . $view->args[0];
+    }
   }
 }
