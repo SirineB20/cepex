@@ -295,7 +295,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Secteurs
+          label: 'Sous catégories'
           exclude: false
           alter:
             alter_text: false
@@ -465,16 +465,18 @@ display:
           hide_alter_empty: true
           destination: false
       pager:
-        type: mini
+        type: full
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 10
+          items_per_page: 9
           total_pages: null
           id: 0
           tags:
             next: ››
             previous: ‹‹
+            first: '« Premier'
+            last: 'Dernier »'
           expose:
             items_per_page: false
             items_per_page_label: 'Éléments par page'
@@ -483,6 +485,7 @@ display:
             items_per_page_options_all_label: '- Tout -'
             offset: false
             offset_label: Décalage
+          quantity: 9
       exposed_form:
         type: bef
         options:
@@ -571,7 +574,7 @@ display:
           exposed: true
           expose:
             operator_id: field_matricule_fiscale_value_op
-            label: 'Matricul fiscale'
+            label: 'Matricul  fiscale'
             description: ''
             use_operator: false
             operator: field_matricule_fiscale_value_op
@@ -588,7 +591,7 @@ display:
               administrator: '0'
               exportateur: '0'
               homme_secteur: '0'
-            placeholder: ''
+            placeholder: 'Chercher par matricul fiscale'
           is_grouped: false
           group_info:
             label: ''
@@ -632,7 +635,7 @@ display:
               administrator: '0'
               exportateur: '0'
               homme_secteur: '0'
-            placeholder: ''
+            placeholder: "Chercher par nom d'enreprise"
           is_grouped: false
           group_info:
             label: ''
@@ -1017,7 +1020,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Secteurs
+          label: 'Sous catégories'
           exclude: false
           alter:
             alter_text: false
@@ -1227,114 +1230,12 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-      filters:
-        type:
-          id: type
-          table: profile
-          field: type
-          entity_type: profile
-          entity_field: type
-          plugin_id: bundle
-          value:
-            profile_exportateur: profile_exportateur
-        field_matricule_fiscale_value:
-          id: field_matricule_fiscale_value
-          table: profile__field_matricule_fiscale
-          field: field_matricule_fiscale_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: string
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_matricule_fiscale_value_op
-            label: 'Matricul fiscale'
-            description: ''
-            use_operator: false
-            operator: field_matricule_fiscale_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_matricule_fiscale_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-              homme_secteur: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        field_nom_de_l_entreprise_value:
-          id: field_nom_de_l_entreprise_value
-          table: profile__field_nom_de_l_entreprise
-          field: field_nom_de_l_entreprise_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: string
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_nom_de_l_entreprise_value_op
-            label: "Nom d'entreprise"
-            description: ''
-            use_operator: false
-            operator: field_nom_de_l_entreprise_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_nom_de_l_entreprise_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-              homme_secteur: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
       defaults:
         relationships: false
         fields: false
         arguments: false
-        filters: false
-        filter_groups: false
+        filters: true
+        filter_groups: true
       relationships:
         field_secteur1:
           id: field_secteur1

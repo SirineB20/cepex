@@ -99,13 +99,12 @@
         </div>
       {% endif %}
       <div class="floating-action-button">
-      <a href="http://localhost:8087/fr/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}" title="Aller à la gestion des exportateurs" class="btn-fab">
+      <a href="http://localhost:8087/fr/dashboard/gestion-exportateurs-par-homme-secteur/{{ id_secteur_homme_secteur }}" title="Aller à la gestion des exportateurs" class="btn-fab">
         <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
     </div>
-    
-    {{ drupal_view('produit', 'produitblock', profile_id) }}
+    {{ drupal_view('produit', 'produitblock') }}
   
   </section>
 </div>
