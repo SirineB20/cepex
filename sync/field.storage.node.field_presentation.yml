@@ -1,16 +1,15 @@
-uuid: ff76616d-6110-4d1d-9d4b-d1a8e998e38c
+uuid: d5ac8d5c-a5e4-4aaf-8429-21d8962a3e0a
 langcode: fr
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_certifications
-field_name: field_certifications
+id: node.field_presentation
+field_name: field_presentation
 entity_type: node
-type: entity_reference
+type: string_long
 settings:
-  target_type: taxonomy_term
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1

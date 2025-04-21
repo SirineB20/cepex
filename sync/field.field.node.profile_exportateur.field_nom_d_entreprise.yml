@@ -1,0 +1,19 @@
+uuid: 6c652b89-019a-4ccc-bec1-a3538dadaa88
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nom_d_entreprise
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_nom_d_entreprise
+field_name: field_nom_d_entreprise
+entity_type: node
+bundle: profile_exportateur
+label: "Nom d'entreprise"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

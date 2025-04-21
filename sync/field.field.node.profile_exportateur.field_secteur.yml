@@ -1,16 +1,16 @@
-uuid: e75b799e-fe8c-4eff-816a-063958bf529d
+uuid: 999e93a1-715d-4f42-b084-6ca543c67f79
 langcode: fr
 status: true
 dependencies:
   config:
-    - field.storage.node.field_certifications
-    - node.type.produits_marketplace
-    - taxonomy.vocabulary.certifications
-id: node.produits_marketplace.field_certifications
-field_name: field_certifications
+    - field.storage.node.field_secteur
+    - node.type.profile_exportateur
+    - taxonomy.vocabulary.secteurs
+id: node.profile_exportateur.field_secteur
+field_name: field_secteur
 entity_type: node
-bundle: produits_marketplace
-label: Certifications
+bundle: profile_exportateur
+label: Secteur
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
-      certifications: certifications
+      secteurs: secteurs
     sort:
       field: name
       direction: asc

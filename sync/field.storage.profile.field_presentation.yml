@@ -1,16 +1,16 @@
-uuid: d32bc16e-884d-4fbd-8dee-6903c033a8e7
-langcode: en
+uuid: c33b6c37-c44e-4852-bfa6-fffb57ab7dba
+langcode: fr
 status: true
 dependencies:
   module:
     - profile
-    - text
 id: profile.field_presentation
 field_name: field_presentation
 entity_type: profile
-type: text_long
-settings: {  }
-module: text
+type: string_long
+settings:
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

@@ -5,6 +5,7 @@ dependencies:
   config:
     - system.menu.account
   module:
+    - language
     - system
   theme:
     - cepex
@@ -16,10 +17,17 @@ provider: null
 plugin: 'system_menu_block:account'
 settings:
   id: 'system_menu_block:account'
-  label: 'User account menu'
+  label: 'User account'
   label_display: '0'
   provider: system
   level: 1
   depth: 0
   expand_all_items: true
-visibility: {  }
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fr: fr

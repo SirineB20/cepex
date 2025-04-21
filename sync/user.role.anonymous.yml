@@ -21,8 +21,11 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access profile overview'
   - 'access site-wide contact form'
-  - 'create profile_exportateur profile'
   - 'search content'
   - 'use text format restricted_html'
+  - 'view any profile'
+  - 'view any profile_exportateur profile'
+  - 'view any profile_homme_secteur profile'
   - 'view media'

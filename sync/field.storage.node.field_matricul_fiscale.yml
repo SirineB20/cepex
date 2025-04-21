@@ -1,16 +1,17 @@
-uuid: ff76616d-6110-4d1d-9d4b-d1a8e998e38c
+uuid: 74248335-ddd4-4069-a0f4-be3d07596a07
 langcode: fr
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_certifications
-field_name: field_certifications
+id: node.field_matricul_fiscale
+field_name: field_matricul_fiscale
 entity_type: node
-type: entity_reference
+type: string
 settings:
-  target_type: taxonomy_term
+  max_length: 13
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

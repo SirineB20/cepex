@@ -1,0 +1,11 @@
+uuid: b141a749-1a19-462e-bde1-85959485ad74
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.profile_exportateur
+id: node.profile_exportateur
+target_entity_type_id: node
+target_bundle: profile_exportateur
+default_langcode: site_default
+language_alterable: false

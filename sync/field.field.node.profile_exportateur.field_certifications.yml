@@ -1,15 +1,15 @@
-uuid: e75b799e-fe8c-4eff-816a-063958bf529d
+uuid: dc149a51-0c81-40f7-855f-d7b26ef96e55
 langcode: fr
 status: true
 dependencies:
   config:
     - field.storage.node.field_certifications
-    - node.type.produits_marketplace
+    - node.type.profile_exportateur
     - taxonomy.vocabulary.certifications
-id: node.produits_marketplace.field_certifications
+id: node.profile_exportateur.field_certifications
 field_name: field_certifications
 entity_type: node
-bundle: produits_marketplace
+bundle: profile_exportateur
 label: Certifications
 description: ''
 required: false

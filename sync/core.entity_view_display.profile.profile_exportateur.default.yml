@@ -18,7 +18,6 @@ dependencies:
     - profile.type.profile_exportateur
   module:
     - image
-    - text
 id: profile.profile_exportateur.default
 targetEntityType: profile
 bundle: profile_exportateur
@@ -92,11 +91,11 @@ content:
     weight: 2
     region: content
   field_presentation:
-    type: text_default
-    label: hidden
+    type: basic_string
+    label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 13
     region: content
   field_secteur1:
     type: entity_reference_label

@@ -1,0 +1,19 @@
+uuid: 8fb042d6-09b9-40b4-80a6-7814db0cef02
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_adresse
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_adresse
+field_name: field_adresse
+entity_type: node
+bundle: profile_exportateur
+label: Adresse
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

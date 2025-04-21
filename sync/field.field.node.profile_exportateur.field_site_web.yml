@@ -1,0 +1,19 @@
+uuid: a5137236-61db-440c-a4bd-58b0b3410fee
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_site_web
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_site_web
+field_name: field_site_web
+entity_type: node
+bundle: profile_exportateur
+label: 'Site web'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

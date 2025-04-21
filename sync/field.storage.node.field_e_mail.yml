@@ -1,16 +1,14 @@
-uuid: ff76616d-6110-4d1d-9d4b-d1a8e998e38c
+uuid: a5c9afa0-d720-410d-9e63-dc3237a776d1
 langcode: fr
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_certifications
-field_name: field_certifications
+id: node.field_e_mail
+field_name: field_e_mail
 entity_type: node
-type: entity_reference
-settings:
-  target_type: taxonomy_term
+type: email
+settings: {  }
 module: core
 locked: false
 cardinality: 1

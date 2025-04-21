@@ -1,0 +1,124 @@
+uuid: cd2875be-4d13-40e7-b1e8-7c0c97c9802b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.profile_exportateur.field_adresse
+    - field.field.node.profile_exportateur.field_certifications
+    - field.field.node.profile_exportateur.field_directeur_general
+    - field.field.node.profile_exportateur.field_e_mail
+    - field.field.node.profile_exportateur.field_fax
+    - field.field.node.profile_exportateur.field_imageprofile
+    - field.field.node.profile_exportateur.field_matricul_fiscale
+    - field.field.node.profile_exportateur.field_nom_d_entreprise
+    - field.field.node.profile_exportateur.field_presentation
+    - field.field.node.profile_exportateur.field_secteur
+    - field.field.node.profile_exportateur.field_site_web
+    - field.field.node.profile_exportateur.field_telephone
+    - node.type.profile_exportateur
+  module:
+    - image
+    - telephone
+    - user
+id: node.profile_exportateur.default
+targetEntityType: node
+bundle: profile_exportateur
+mode: default
+content:
+  field_adresse:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_certifications:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_directeur_general:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_e_mail:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_fax:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_imageprofile:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_matricul_fiscale:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_nom_d_entreprise:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_presentation:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_secteur:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_site_web:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_telephone:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden:
+  langcode: true
+  links: true

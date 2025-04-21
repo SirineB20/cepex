@@ -23,7 +23,6 @@ dependencies:
     - image
     - shs
     - telephone
-    - text
 id: profile.profile_exportateur.default
 targetEntityType: profile
 bundle: profile_exportateur
@@ -91,8 +90,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_presentation:
-    type: text_textarea
-    weight: 8
+    type: string_textarea
+    weight: 27
     region: content
     settings:
       rows: 5

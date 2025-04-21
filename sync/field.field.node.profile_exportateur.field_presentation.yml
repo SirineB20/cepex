@@ -1,13 +1,13 @@
-uuid: d3d4b38a-535d-4174-8737-d123f32372af
+uuid: 4c49585d-4b8f-440b-94a5-0d004c192220
 langcode: fr
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_presentation
-    - profile.type.profile_exportateur
-id: profile.profile_exportateur.field_presentation
+    - field.storage.node.field_presentation
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_presentation
 field_name: field_presentation
-entity_type: profile
+entity_type: node
 bundle: profile_exportateur
 label: Présentation
 description: ''

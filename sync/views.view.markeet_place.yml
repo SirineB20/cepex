@@ -1,0 +1,569 @@
+uuid: 471f45f1-948f-4d4c-be4f-1e61350f614f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.produits_marketplace
+    - node.type.profile_exportateur
+    - taxonomy.vocabulary.certifications
+    - taxonomy.vocabulary.secteurs
+  content:
+    - 'taxonomy_term:secteurs:0041fe75-f582-4660-b7dd-5519466dfcc2'
+    - 'taxonomy_term:secteurs:009161a3-c015-48a3-bc78-83c15bac333d'
+    - 'taxonomy_term:secteurs:00ce158d-8404-4589-acfc-f7a6d568715a'
+    - 'taxonomy_term:secteurs:0536d2da-add9-4598-8776-d0c47cc58fbf'
+    - 'taxonomy_term:secteurs:0bdd908b-c49f-4090-b8e5-3fd5db25aeb2'
+    - 'taxonomy_term:secteurs:0c78c694-fe3c-4b6c-8dfb-736f898679b7'
+    - 'taxonomy_term:secteurs:0cd9a8a0-ba55-430f-bfc0-a7b38cd70412'
+    - 'taxonomy_term:secteurs:0d9427d2-0ef0-4c93-843c-d1230ee48f42'
+    - 'taxonomy_term:secteurs:1381cb9d-fa00-4bce-9e79-82ea878c9220'
+    - 'taxonomy_term:secteurs:190142b4-bc60-4995-a289-45fda8290391'
+    - 'taxonomy_term:secteurs:1a67d0e8-c509-4af2-aa9b-b13bde7be62c'
+    - 'taxonomy_term:secteurs:1aad301a-bcfc-49f1-b602-3593f7780fc4'
+    - 'taxonomy_term:secteurs:1c7679db-c74c-4b41-ae96-2cc2dc943e91'
+    - 'taxonomy_term:secteurs:1f61ef1a-953d-4446-9086-0cfab5adda15'
+    - 'taxonomy_term:secteurs:1fcfb667-d134-4cbe-927d-1e83ce7ec2bf'
+    - 'taxonomy_term:secteurs:1fdb1f28-b715-4483-9fac-80290d6f569f'
+    - 'taxonomy_term:secteurs:2270b9d0-329d-49b3-8e60-2cee110c44d8'
+    - 'taxonomy_term:secteurs:241086d0-4e79-48e1-86d5-3867b893b802'
+    - 'taxonomy_term:secteurs:25424942-86e5-4da6-812e-10fae270420a'
+    - 'taxonomy_term:secteurs:2633bcda-53a5-42f0-b02a-65b6cb4f7600'
+    - 'taxonomy_term:secteurs:2853f6df-3f7a-4285-80c2-09e595f0d3f3'
+    - 'taxonomy_term:secteurs:29c961dd-10c0-4b4e-beb7-3e5810ae8919'
+    - 'taxonomy_term:secteurs:29cecb16-6c78-489a-a3c3-52cf3ea33321'
+    - 'taxonomy_term:secteurs:2acb4710-0a41-415f-b621-d71f64b6c4a9'
+    - 'taxonomy_term:secteurs:335e49d1-8037-4ba5-9d90-4935aa74bd91'
+    - 'taxonomy_term:secteurs:337c3c20-f219-4879-a5d2-96758325a01c'
+    - 'taxonomy_term:secteurs:3b1131bf-758a-45b0-b77e-d28c45fb38ad'
+    - 'taxonomy_term:secteurs:3bbfd01f-e3b9-49fb-8473-b0b06515bba4'
+    - 'taxonomy_term:secteurs:3c73ebc6-b440-49bf-b848-b2bb3e92a8ff'
+    - 'taxonomy_term:secteurs:3e06fdff-e48a-402e-9f2c-625ae0115064'
+    - 'taxonomy_term:secteurs:4121a682-a1b5-41ca-a780-fcc65b4ba87b'
+    - 'taxonomy_term:secteurs:470d6bbd-407d-45f4-8acc-6b188a787a83'
+    - 'taxonomy_term:secteurs:4753b3da-8372-4430-80fe-d536b66a28c7'
+    - 'taxonomy_term:secteurs:489a3201-a908-4a87-aa1e-a5c30a7a6af3'
+    - 'taxonomy_term:secteurs:4a88d71b-8f94-4a66-967b-04bd8ab7cb7b'
+    - 'taxonomy_term:secteurs:4ba7303e-8898-4f46-b15f-2bb56c1cf89e'
+    - 'taxonomy_term:secteurs:4de224e5-4e5a-4191-9d76-1137f1f8d903'
+    - 'taxonomy_term:secteurs:52c963dc-65b6-401d-a95b-e9d1b8ddbe2c'
+    - 'taxonomy_term:secteurs:5399429a-75cb-4c6a-9f4d-a293f5bf6e09'
+    - 'taxonomy_term:secteurs:569c7e8e-3dd7-4da7-a9db-1d5331b4e8ac'
+    - 'taxonomy_term:secteurs:578d84f7-cabe-4556-a08e-4255642b3bc2'
+    - 'taxonomy_term:secteurs:5811289e-10ee-4bf9-9d52-09e4d4b1665f'
+    - 'taxonomy_term:secteurs:58a7ec72-2f06-41c8-b86e-980ec3e49baf'
+    - 'taxonomy_term:secteurs:5fc58af2-2544-46e0-8b51-f719c20e4e4b'
+    - 'taxonomy_term:secteurs:6004b297-0b9b-4ea3-95d0-f128175a56cb'
+    - 'taxonomy_term:secteurs:602f1f64-581e-4515-b0d7-6ac1a6390fda'
+    - 'taxonomy_term:secteurs:6a5c349f-d823-40b4-8127-f34559a28828'
+    - 'taxonomy_term:secteurs:6a69aba9-482b-41b3-acb2-5cbc4c315c6c'
+    - 'taxonomy_term:secteurs:7118269b-b2b6-484a-8f28-49b4d15a538e'
+    - 'taxonomy_term:secteurs:74621dd3-2ba5-4716-a1a2-c4a1147929bb'
+    - 'taxonomy_term:secteurs:772f4d50-d6f3-42eb-8123-63435038ddff'
+    - 'taxonomy_term:secteurs:783be3e4-fb55-4629-b720-d4b250e021f2'
+    - 'taxonomy_term:secteurs:7fc7e2fd-c2bf-4030-8453-d9e023fee29d'
+    - 'taxonomy_term:secteurs:80282698-b3ae-4351-b0c1-203c495ed338'
+    - 'taxonomy_term:secteurs:82e881cc-2a0f-4c23-b4c5-bd661bde2a2f'
+    - 'taxonomy_term:secteurs:84a1f736-6e85-4ea4-8692-ba5e2d7d740c'
+    - 'taxonomy_term:secteurs:8b805040-eca9-4339-b497-002155e520ae'
+    - 'taxonomy_term:secteurs:8cf7c74a-6ae8-4abe-a86e-68d3528733c4'
+    - 'taxonomy_term:secteurs:93a784a6-5576-417d-b346-88f1de6cca10'
+    - 'taxonomy_term:secteurs:978ecee7-18b9-4d6c-9c31-60d969d68c12'
+    - 'taxonomy_term:secteurs:9b52cea6-e0dd-4363-b02f-41fba8a4ef99'
+    - 'taxonomy_term:secteurs:9e8d1612-a218-43c6-b48d-369fbd5a8902'
+    - 'taxonomy_term:secteurs:9f60b914-3916-4b74-adc8-045ef76c4733'
+    - 'taxonomy_term:secteurs:9fd5d573-3f00-4d37-b624-9625d2ceec45'
+    - 'taxonomy_term:secteurs:a54abe01-7693-4c8f-ad5e-9c3117def7fe'
+    - 'taxonomy_term:secteurs:a7f0a845-fd35-4130-a41e-00e9ee614600'
+    - 'taxonomy_term:secteurs:aade6eb3-f68c-436d-8796-40ba56a955dc'
+    - 'taxonomy_term:secteurs:ab188e7a-ff25-455d-9974-dc995b6d2393'
+    - 'taxonomy_term:secteurs:ac2b069a-018a-4e14-b55f-df3556e0e9f8'
+    - 'taxonomy_term:secteurs:b40d4c6e-2a9e-409c-b01f-8d295b62b68c'
+    - 'taxonomy_term:secteurs:b44de035-a40e-44be-9ea9-a3074feea564'
+    - 'taxonomy_term:secteurs:c77156f9-b1b6-47e3-a6d3-905a6b017975'
+    - 'taxonomy_term:secteurs:c9731947-6712-41f0-ba94-9af405c57c8b'
+    - 'taxonomy_term:secteurs:cbe4ee8e-0318-4a87-91ec-431d51d7d710'
+    - 'taxonomy_term:secteurs:d0c19b0a-d19c-4ed5-9d96-6f5163ea1185'
+    - 'taxonomy_term:secteurs:d4238eea-e162-4df3-8b90-b0e998f48a27'
+    - 'taxonomy_term:secteurs:d5a19947-2637-4867-925f-cb390718c9d7'
+    - 'taxonomy_term:secteurs:e19d4663-9adf-4fc0-8da0-b8cb0e02e1ce'
+    - 'taxonomy_term:secteurs:e1d4c4b3-9119-4c46-8c4e-7c9293f46b3d'
+    - 'taxonomy_term:secteurs:e4d9cdd4-1b83-43a2-9252-fd6eeb308320'
+    - 'taxonomy_term:secteurs:e657cc62-c594-4b0f-80da-f74eb1d77ed1'
+    - 'taxonomy_term:secteurs:e68ca5b7-f65c-4660-a6bd-d8acf0c3dd4b'
+    - 'taxonomy_term:secteurs:e79cc7bf-ee63-4f24-8620-5a60d01718ad'
+    - 'taxonomy_term:secteurs:ea9c9d0d-a258-436d-8d44-20c5e79339d8'
+    - 'taxonomy_term:secteurs:eb16117d-70c9-466a-be05-9ea4d3141553'
+    - 'taxonomy_term:secteurs:ec20fa0d-4a2e-40ef-970f-fc39fe56e132'
+    - 'taxonomy_term:secteurs:ecc9fb6c-73fc-4198-a3a7-c529fa7417af'
+    - 'taxonomy_term:secteurs:f02fdf2a-aca7-4eff-bcbf-14dea21c4bb4'
+    - 'taxonomy_term:secteurs:f0d6db6f-627e-4a03-a20a-fc448a54d739'
+    - 'taxonomy_term:secteurs:f18b0a80-4160-4170-ade0-8d5beff9787d'
+    - 'taxonomy_term:secteurs:f301cfd7-770a-4c6f-9ae6-e31f3c7547f6'
+    - 'taxonomy_term:secteurs:f3141dfe-8472-4408-8d5f-057b69e1821d'
+    - 'taxonomy_term:secteurs:fcaf81a3-fae4-465f-a05a-7a92ead0251d'
+  module:
+    - better_exposed_filters
+    - node
+    - taxonomy
+    - user
+id: markeet_place
+label: 'Market place'
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Market place'
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
+        options:
+          offset: 0
+          pagination_heading_level: h4
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« Premier'
+            last: 'Dernier »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Éléments par page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Tout -'
+            offset: false
+            offset_label: Décalage
+          quantity: 9
+      exposed_form:
+        type: bef
+        options:
+          submit_button: .
+          reset_button: false
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Sélectionner un filtre et cliquer sur Appliquer pour voir les résultats'
+          text_input_required_format: basic_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
+              autosubmit_hide: false
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Options avancées'
+              secondary_open: false
+              reset_button_always_show: false
+            filter:
+              type_1:
+                plugin_id: bef_links
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+                select_all_none: false
+              field_certifications_target_id:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              term_node_tid_depth:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      arguments: {  }
+      filters:
+        type_1:
+          id: type_1
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            produits_marketplace: produits_marketplace
+            profile_exportateur: profile_exportateur
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_1_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: type_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_certifications_target_id:
+          id: field_certifications_target_id
+          table: node__field_certifications
+          field: field_certifications_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_certifications_target_id_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: field_certifications_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_certifications_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: certifications
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          operator: or
+          value:
+            665: 665
+            670: 670
+            671: 671
+            709: 709
+            688: 688
+            723: 723
+            737: 737
+            725: 725
+            730: 730
+            724: 724
+            740: 740
+            666: 666
+            681: 681
+            667: 667
+            678: 678
+            694: 694
+            726: 726
+            727: 727
+            692: 692
+            693: 693
+            668: 668
+            669: 669
+            682: 682
+            683: 683
+            695: 695
+            684: 684
+            689: 689
+            685: 685
+            706: 706
+            707: 707
+            708: 708
+            703: 703
+            704: 704
+            705: 705
+            755: 755
+            720: 720
+            721: 721
+            754: 754
+            718: 718
+            719: 719
+            750: 750
+            753: 753
+            752: 752
+            751: 751
+            756: 756
+            757: 757
+            744: 744
+            747: 747
+            749: 749
+            748: 748
+            745: 745
+            746: 746
+            696: 696
+            697: 697
+            698: 698
+            672: 672
+            673: 673
+            715: 715
+            674: 674
+            714: 714
+            717: 717
+            701: 701
+            702: 702
+            713: 713
+            722: 722
+            728: 728
+            731: 731
+            741: 741
+            729: 729
+            711: 711
+            712: 712
+            732: 732
+            733: 733
+            734: 734
+            742: 742
+            743: 743
+            735: 735
+            736: 736
+            738: 738
+            739: 739
+            675: 675
+            679: 679
+            680: 680
+            686: 686
+            710: 710
+            716: 716
+            687: 687
+            676: 676
+            677: 677
+            699: 699
+            700: 700
+            690: 690
+            691: 691
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: term_node_tid_depth
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: secteurs
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+          depth: 2
+      style:
+        type: default
+      row:
+        type: 'entity:node'
+        options:
+          view_mode: teaser
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: market-place
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }

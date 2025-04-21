@@ -10,6 +10,7 @@ dependencies:
     - file
     - filter
     - media
+    - profile
     - search
     - shortcut
     - system
@@ -22,6 +23,7 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access profile overview'
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'delete own files'
@@ -29,4 +31,7 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view any profile'
+  - 'view any profile_exportateur profile'
+  - 'view any profile_homme_secteur profile'
   - 'view media'

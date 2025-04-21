@@ -3,11 +3,38 @@
   background-color: #f9f9f9;
   padding: 30px 0;
 }
+#edit-type-1-produits-marketplace{
+  border-radius: 45px;
+  padding: 10px 35px;
+  margin: 0 10px;
+  background: #cd1b4d;
+  color: #fff;
+  border: 1px solid #cd1b4d;
+  text-decoration: none;
+
+}
+#edit-type-1-profile-exportateur{
+  border: 1px solid #aaaaaa;
+    background: #fff;
+    border-radius: 45px;
+    padding: 10px 35px;
+    margin: 0 10px;
+
+}
 
 .container-interne {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+}
+#views-exposed-form-markeet-place-page-1{
+  width: 100%;
+  margin: 0 auto;
+  padding: 1px;
+  border: 1px solid;
+  border-radius: 41px;
+  display: flex;
+  background: white;
 }
 
 /* Form styling */
@@ -87,8 +114,7 @@ input.form-text::placeholder {
 }
 
 /* Select dropdown styling */
-select#edit-term-node-tid-depth,
-select.form-select {
+select#edit-term-node-tid-depth {
   -moz-appearance: none;
   appearance: none;
   background-color: #f7f7f7;

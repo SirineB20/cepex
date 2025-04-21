@@ -51,45 +51,43 @@
     </div>
   {% endif %}
   {% if exposed %}
-    <div class="view-filters">
+    <section class="filtre-maketplace">
+    <div class="container container-interne">
+     
       {{ exposed }}
-    </div>
+      </div>
+    </section>
   {% endif %}
-  {% if attachment_before %}
-    <div class="attachment attachment-before">
-      {{ attachment_before }}
-    </div>
-  {% endif %}
+  
 
-  {% if rows %}
-    <div class="view-content">
-      {{ rows }}
+  <section class="liste-produdit-marketplace">
+  <div class="container container-interne">
+    <div class="flexbox-liste-produit">
+      {{ sidebar_categories }}
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 listeprod-marketplace">
+        {% if title %}
+          <span class="titlecateg">{{ title }}</span>
+        {% endif %}
+       
+        <div class="flexbox-recheche-marketplace">
+          <input type="text" class="input-mot-cle input-nopadding" placeholder="Mots clés...">
+          <button class="btn-filtre-marketplace"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
+        </div>
+        <div class="boxlisteprod-marketplace row">
+          {{ rows }}
+        </div>
+       
+        {{ pager }}
+      </div>
     </div>
-  {% elseif empty %}
-    <div class="view-empty">
-      {{ empty }}
-    </div>
-  {% endif %}
+  </div>
+</section>
 
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
-  {% if attachment_after %}
-    <div class="attachment attachment-after">
-      {{ attachment_after }}
-    </div>
-  {% endif %}
-  {% if more %}
-    {{ more }}
-  {% endif %}
+  
   {% if footer %}
     <div class="view-footer">
       {{ footer }}
     </div>
   {% endif %}
-  {% if feed_icons %}
-    <div class="feed-icons">
-      {{ feed_icons }}
-    </div>
-  {% endif %}
+ 
 </div>

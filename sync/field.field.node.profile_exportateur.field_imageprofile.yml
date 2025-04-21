@@ -1,0 +1,38 @@
+uuid: 041d9905-da12-41d6-823f-bd7a3bf2c61b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_imageprofile
+    - node.type.profile_exportateur
+  module:
+    - image
+id: node.profile_exportateur.field_imageprofile
+field_name: field_imageprofile
+entity_type: node
+bundle: profile_exportateur
+label: Imageprofile
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

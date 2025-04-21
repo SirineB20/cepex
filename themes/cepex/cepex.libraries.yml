@@ -13,7 +13,7 @@ global:
       css/detail-event.css: {}
       css/detail-formation.css: {}
       css/details-opportinutes.css: {}
-      css/produit.css: {}
+      
       css/een.css: {}
       css/register-forms.css: {}
       css/ajouterProd.css: {}
