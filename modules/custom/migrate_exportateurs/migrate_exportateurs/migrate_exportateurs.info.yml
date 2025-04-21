@@ -1,0 +1,8 @@
+name: 'Migrate Exportateurs'
+type: module
+description: 'Migre les profils avec rôle exportateur vers le type de contenu exportateur.'
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - node
+  - user

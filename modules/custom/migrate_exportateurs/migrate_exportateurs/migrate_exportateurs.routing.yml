@@ -1,0 +1,7 @@
+migrate_exportateurs.migrate:
+  path: '/admin/migrate-exportateurs'
+  defaults:
+    _controller: '\Drupal\migrate_exportateurs\Controller\MigrateExportateursController::migrate'
+    _title: 'Migration Exportateurs'
+  requirements:
+    _permission: 'administer users'
