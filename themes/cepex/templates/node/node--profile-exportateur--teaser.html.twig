@@ -1,13 +1,13 @@
 
 <div class="borderprod" style="width: 100%; display: inline-block;">
 <div class="boximgprod">
-  {% set image_url = content.field_image_produit.0['#markup'] %}
+  {% set image_url = content.field_imageprofile.0['#markup'] %}
   <img src="{{ image_url }}" class="img-prod-marketplace" alt="Cepex">
 </div>
 <div class="boxcontenuprod">
   <span class="titleprod-marketplace">
-    {{ content.field_nom_produit }}
+    {{ content.field_nom_d_entreprise }}
   </span>
-  <a href="http://localhost:8087/fr/node/{{ nid }}" class="btn-cepex btnprod" tabindex="0">Découvrir <i class="fa-solid fa-arrow-right"></i></a>
+  <a href="#" class="btn-cepex btnprod" tabindex="0">Découvrir <i class="fa-solid fa-arrow-right"></i></a>
 </div>
 </div>

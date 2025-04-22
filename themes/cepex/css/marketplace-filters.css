@@ -3,10 +3,9 @@
   background-color: #f9f9f9;
   padding: 30px 0;
 }
-#edit-type-1-produits-marketplace{
-  border-radius: 45px;
-  padding: 10px 35px;
-  margin: 0 10px;
+/*#edit-type-1-produits-marketplace{
+  
+  padding: 10px 5px;
   background: #cd1b4d;
   color: #fff;
   border: 1px solid #cd1b4d;
@@ -17,9 +16,43 @@
   border: 1px solid #aaaaaa;
     background: #fff;
     border-radius: 45px;
-    padding: 10px 35px;
-    margin: 0 10px;
+    padding: 10px 5px;
+    margin-left: 1px;
 
+}*/
+  /* Style pour le bouton sélectionné */
+/* Style pour les boutons sélectionnés */
+.button-selected,
+
+#edit-type-1-produits-marketplace.bef-link--selected,
+#edit-type-1-profile-exportateur.bef-link--selected {
+  padding: 10px 15px;
+  background: #cd1b4d;
+  color: #fff !important;
+  border: 1px solid #cd1b4d;
+  text-decoration: none;
+  border-radius: 45px;
+  margin-left: 8px;
+}
+
+/* Style pour les boutons non sélectionnés */
+.button-unselected,
+#edit-type-1-produits-marketplace:not(.bef-link--selected),
+#edit-type-1-profile-exportateur:not(.bef-link--selected) {
+  border: 1px solid #aaaaaa;
+  background: #fff;
+  border-radius: 45px;
+  padding: 10px 15px;
+  margin-left: 8px;
+  color: #333 !important;
+}
+
+/* Style pour les selects quand ils sont sélectionnés */
+.form-select.filter-selected {
+  border-color: #cd1b4d;
+  background-color: #fff;
+  color: #cd1b4d;
+  font-weight: bold;
 }
 
 .container-interne {
@@ -42,7 +75,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  
   background: white;
   justify-content: center !important;
   border-radius: 12px;
@@ -115,23 +148,21 @@ input.form-text::placeholder {
 
 /* Select dropdown styling */
 select#edit-term-node-tid-depth {
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #f7f7f7;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-position: right 15px center;
-  background-repeat: no-repeat;
-  background-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
-  color: #333;
-  font-size: 15px;
-  height: 50px;
-  padding: 10px 20px;
-  padding-right: 40px;
-  transition: all 0.3s ease;
-  width: 100%;
   cursor: pointer;
+  font-size: 18px;
+  color: #5f5f5f;
+  font-weight: 500;
+  padding: 20px 51px 20px 35px;
+  background: #fff;
+  display: block;
+  position: relative;
+  /* border-radius: 41px; */
+  border-top-right-radius: 41px;
+  border-bottom-right-radius: 41px;
+  width: 465px;
+  height: 100%;
+  z-index: 22;
+  border-left: 1px solid #5f5f5f;
 }
 
 select#edit-term-node-tid-depth:focus,

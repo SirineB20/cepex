@@ -94,7 +94,7 @@
   #edit-field-certifications-target-id
   {
     border-radius: unset;
-    width: 300px;
+    width: 397px;
     padding: 20px 30px 20px 20px;
   }
 
@@ -121,23 +121,17 @@
         align-items: center;
        
         border-radius: 30px;
-        
-        margin-bottom: 20px;
+      
   }
   
   /* Style du titre "Filtrer par :" */
   .title-filtre-prod {
     font-size: 16px;
     color: #666;
-    margin-right: 15px;
     white-space: nowrap;
   }
   
-  /* Conteneur des boutons */
-  .flexbox-button-produit {
-    display: flex;
-    flex-grow: 1;
-  }
+ 
   
   /* Style pour les liens du filtre */
   .bef-links {

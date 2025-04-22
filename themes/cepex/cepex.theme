@@ -80,30 +80,18 @@ function cepex_preprocess_page(array &$variables): void {
     $variables['user_logged_in'] = FALSE;
   }
 }
-
 /**
- * Fonction helper pour appliquer les styles communs aux formulaires de filtres
+ * Helper function to apply common form styles.
  */
 function _cepex_apply_common_form_styles(&$variables, $form_id) {
-  // Ajouter des classes pour le conteneur principal
-  $variables['form']['#attributes']['class'][] = 'marketplace-filter-container';
-  $variables['form']['#attributes']['class'][] = 'filter-flex-container';
+  // Ajouter une classe au formulaire
+  $variables['attributes']['class'][] = $form_id;
   
-  // Modifier les attributs du bouton de recherche
-  if (isset($variables['form']['actions']['submit'])) {
-    $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn';
-    $variables['form']['actions']['submit']['#attributes']['class'][] = 'btn-primary';
-    $variables['form']['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
-  }
-  
-  
-  // Joindre la bibliothèque CSS/JS pour ce formulaire
-  $variables['#attached']['library'][] = 'cepex/marketplace';
+  // Ajouter d'autres styles communs si nécessaire
+  // Par exemple :
+  $variables['attributes']['class'][] = 'styled-form';
 }
 
-/**
- * Implements hook_preprocess_views_exposed_form().
- */
 function cepex_preprocess_views_exposed_form(&$variables) {
   if (!isset($variables['form']['#id'])) {
     return;
@@ -112,17 +100,9 @@ function cepex_preprocess_views_exposed_form(&$variables) {
   $form_id = $variables['form']['#id'];
 
   // Vérifier si c'est le formulaire de vue "markeet_place" que nous voulons cibler
-  if ($form_id == 'views-exposed-form-markeet-place-page-1')  {
+  if ($form_id == 'views-exposed-form-markeet-place-page-1') {
     // Ajouter une classe au formulaire
     $variables['attributes']['class'][] = 'views-exposed-form-markeet-place-page-1';
-    
-    // Modifier des attributs spécifiques des champs
-    if (isset($variables['form']['field_certifications_target_id'])) {
-      $variables['form']['field_certifications_target_id']['#attributes']['class'][] = 'custom-select';
-    }
-    
-    // Ajouter des variables personnalisées pour le template
-    $variables['custom_variable'] = 'valeur personnalisée';
   }
   // Cibler spécifiquement le formulaire exposé "gestion-produit-par-exportateur-page-1"
   elseif ($form_id == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {

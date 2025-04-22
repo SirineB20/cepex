@@ -1,34 +1,13 @@
-// Slider jurdique
-  $('.flexbox-cooperation').slick({
-    arrows: false,
-    dots: true,
-    slidesToShow: 5,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          arrows: false,
-          dots: true,
-          slidesToShow: 3
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          dots: true,
-          slidesToShow: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          dots: true,
-          slidesToShow: 1
-        }
-      }
-    ]
-  });
+const boutonMarketplace = document.getElementById('edit-type-1-produits-marketplace');
+const boutonExportateur = document.getElementById('edit-type-1-profile-exportateur');
 
-// End Slider jurdique
+// Ajouter les écouteurs d'événements
+boutonMarketplace.addEventListener('click', function() {
+  boutonMarketplace.className = 'button-selected';
+  boutonExportateur.className = 'button-unselected';
+});
+
+boutonExportateur.addEventListener('click', function() {
+  boutonExportateur.className = 'button-selected';
+  boutonMarketplace.className = 'button-unselected';
+});

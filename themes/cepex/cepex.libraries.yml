@@ -47,7 +47,7 @@ global:
 
     js/date.js: {}
     js/header.js: {}
-    js/maketplace.js: {}
+    js/filtermarketplace.js: {}
     js/media.js: {}
     js/slide.js: {}
     js/slick-offre.js: {}
