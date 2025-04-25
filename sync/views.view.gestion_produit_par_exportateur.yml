@@ -587,7 +587,7 @@ display:
           exposed: true
           expose:
             operator_id: term_node_tid_depth_op
-            label: 'Filtrer par secteur(profondeur)'
+            label: 'Filtrer par secteur (profondeur)'
             description: ''
             use_operator: false
             operator: term_node_tid_depth_op

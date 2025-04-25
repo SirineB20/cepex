@@ -1,0 +1,23 @@
+uuid: ff205fd9-9edf-49c6-b0d3-2a758dcbe58a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nombre_d_employes
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_nombre_d_employes
+field_name: field_nombre_d_employes
+entity_type: node
+bundle: profile_exportateur
+label: 'Nombre d’employés '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

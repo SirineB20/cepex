@@ -1,7 +1,6 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
-  address: 0
   admin_toolbar: 0
   advanced_language_selector: 0
   announcements_feed: 0
@@ -63,7 +62,6 @@ module:
   taxonomy: 0
   taxonomy_manager: 0
   taxonomy_term_depth: 0
-  tb_megamenu: 0
   telephone: 0
   text: 0
   token: 0

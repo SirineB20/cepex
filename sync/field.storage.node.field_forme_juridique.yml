@@ -1,0 +1,20 @@
+uuid: e844b10b-0ef2-4f3c-8a58-3b17bbb5cd1f
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_forme_juridique
+field_name: field_forme_juridique
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -30,6 +30,7 @@
         "drupal/jquery_ui": "^1.7",
         "drupal/paragraphs": "^1.18",
         "drupal/profile": "^1.11",
+        "drupal/selective_better_exposed_filters": "^3.0",
         "drupal/shs": " ^2.0",
         "drupal/structure_sync": "^2.0",
         "drupal/taxonomy_manager": "^2.0",

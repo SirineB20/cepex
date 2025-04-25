@@ -1,34 +1,25 @@
-uuid: 238732bf-d231-4804-845a-71af37df3b85
+uuid: 429c3594-b7b3-4ea8-9404-b9517d0b939d
 langcode: fr
-status: false
+status: true
 dependencies:
   config:
-    - field.storage.node.field_certifications
-    - field.storage.node.field_description_produit
-    - field.storage.node.field_image_produit
-    - field.storage.node.field_nom_produit
-    - field.storage.node.field_secteur
-    - field.storage.profile.field_certifications
-    - field.storage.profile.field_imageprofile
-    - field.storage.profile.field_nom_de_l_entreprise
-    - field.storage.profile.field_secteur1
+    - core.entity_view_mode.node.teaser
     - node.type.produits_marketplace
-    - profile.type.profile_exportateur
+    - node.type.profile_exportateur
+    - taxonomy.vocabulary.certifications
     - taxonomy.vocabulary.secteurs
   module:
     - better_exposed_filters
-    - image
     - node
-    - profile
     - taxonomy
     - user
 id: market_place
 label: 'Market place'
 module: views
-description: 'market place de type profile et contenu'
+description: ''
 tag: ''
-base_table: users_field_data
-base_field: uid
+base_table: node_field_data
+base_field: nid
 display:
   default:
     id: default
@@ -38,15 +29,15 @@ display:
     display_options:
       title: 'Market place'
       fields:
-        name:
-          id: name
-          table: users_field_data
-          field: name
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: user
-          entity_field: name
+          entity_type: node
+          entity_field: title
           plugin_id: field
           label: ''
           exclude: false
@@ -72,581 +63,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: user_name
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_imageprofile:
-          id: field_imageprofile
-          table: profile__field_imageprofile
-          field: field_imageprofile
-          relationship: profile_type
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: Image
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image
-          settings:
-            image_link: ''
-            image_style: ''
-            image_loading:
-              attribute: lazy
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_nom_de_l_entreprise:
-          id: field_nom_de_l_entreprise
-          table: profile__field_nom_de_l_entreprise
-          field: field_nom_de_l_entreprise
-          relationship: profile_type
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: "Nom d'entreprise"
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_description_produit:
-          id: field_description_produit
-          table: node__field_description_produit
-          field: field_description_produit
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Description produit'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: basic_string
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_image_produit:
-          id: field_image_produit
-          table: node__field_image_produit
-          field: field_image_produit
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Image produit'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image
-          settings:
-            image_link: ''
-            image_style: ''
-            image_loading:
-              attribute: lazy
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_nom_produit:
-          id: field_nom_produit
-          table: node__field_nom_produit
-          field: field_nom_produit
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Nom produit'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_certifications:
-          id: field_certifications
-          table: node__field_certifications
-          field: field_certifications
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Certificats produit'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_certifications_1:
-          id: field_certifications_1
-          table: profile__field_certifications
-          field: field_certifications
-          relationship: profile_type
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Certificats exportateur'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_secteur:
-          id: field_secteur
-          table: node__field_secteur
-          field: field_secteur
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Secteur produit'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_secteur1:
-          id: field_secteur1
-          table: profile__field_secteur1
-          field: field_secteur1
-          relationship: profile_type
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'secteur exportateur'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -657,7 +77,7 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: full
+        type: mini
         options:
           offset: 0
           pagination_heading_level: h4
@@ -667,8 +87,6 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« Premier'
-            last: 'Dernier »'
           expose:
             items_per_page: false
             items_per_page_label: 'Éléments par page'
@@ -677,7 +95,6 @@ display:
             items_per_page_options_all_label: '- Tout -'
             offset: false
             offset_label: Décalage
-          quantity: 9
       exposed_form:
         type: bef
         options:
@@ -695,36 +112,14 @@ display:
               autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
-              autosubmit_textfield_minimum_length: 3
-              autosubmit_hide: false
+              autosubmit_textfield_minimum_length: 0
+              autosubmit_hide: true
               input_required: false
               allow_secondary: false
               secondary_label: 'Options avancées'
               secondary_open: false
               reset_button_always_show: false
             filter:
-              term_node_tid_depth:
-                plugin_id: default
-                advanced:
-                  sort_options: false
-                  rewrite:
-                    filter_rewrite_values: ''
-                    filter_rewrite_values_key: false
-                  collapsible: false
-                  collapsible_disable_automatic_open: false
-                  is_secondary: false
-                  hide_label: false
-              field_secteur1_target_id:
-                plugin_id: default
-                advanced:
-                  sort_options: false
-                  rewrite:
-                    filter_rewrite_values: ''
-                    filter_rewrite_values_key: false
-                  collapsible: false
-                  collapsible_disable_automatic_open: false
-                  is_secondary: false
-                  hide_label: false
               type:
                 plugin_id: bef_links
                 advanced:
@@ -737,7 +132,26 @@ display:
                   is_secondary: false
                   hide_label: false
                 select_all_none: false
-              type_1:
+              term_node_tid_depth:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              body_format:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              field_certifications_target_id:
                 plugin_id: bef_links
                 advanced:
                   sort_options: false
@@ -752,69 +166,46 @@ display:
       access:
         type: perm
         options:
-          perm: 'access user profiles'
+          perm: 'access content'
       cache:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
-      arguments: {  }
-      filters:
-        field_secteur1_target_id:
-          id: field_secteur1_target_id
-          table: profile__field_secteur1
-          field: field_secteur1_target_id
-          relationship: profile_type
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
           expose:
-            operator_id: field_secteur1_target_id_op
-            label: 'Secteur (field_secteur1)'
-            description: ''
-            use_operator: false
-            operator: field_secteur1_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: secteur2
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-              homme_secteur: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
             label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: secteurs
-          type: select
-          hierarchy: true
-          limit: true
-          error_message: true
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
         type:
           id: type
           table: node_field_data
           field: type
-          relationship: uid
+          relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
@@ -823,11 +214,12 @@ display:
           operator: in
           value:
             produits_marketplace: produits_marketplace
+            profile_exportateur: profile_exportateur
           group: 1
           exposed: true
           expose:
             operator_id: type_op
-            label: Produits
+            label: ''
             description: ''
             use_operator: false
             operator: type_op
@@ -857,31 +249,29 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        type_1:
-          id: type_1
-          table: profile
-          field: type
-          relationship: profile_type
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
           group_type: group
           admin_label: ''
-          entity_type: profile
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            profile_exportateur: profile_exportateur
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: type_1_op
+            operator_id: term_node_tid_depth_op
             label: ''
             description: ''
             use_operator: false
-            operator: type_1_op
+            operator: term_node_tid_depth_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: type_1
-            required: true
+            identifier: secteur
+            required: false
             remember: false
             multiple: false
             remember_roles:
@@ -891,7 +281,7 @@ display:
               administrator: '0'
               exportateur: '0'
               homme_secteur: '0'
-            reduce: true
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -904,10 +294,113 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          reduce_duplicates: false
+          vid: secteurs
+          type: shs
+          hierarchy: false
+          limit: true
+          error_message: true
+          depth: 3
+        body_format:
+          id: body_format
+          table: node__body
+          field: body_format
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: body_format_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: body_format_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: search
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            placeholder: 'Mot clé'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_certifications_target_id:
+          id: field_certifications_target_id
+          table: node__field_certifications
+          field: field_certifications_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_certifications_target_id_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: field_certifications_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_certifications_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: certifications
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
         type: default
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          view_mode: teaser
       query:
         type: views_query
         options:
@@ -916,29 +409,8 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships:
-        profile_type:
-          id: profile_type
-          table: users_field_data
-          field: profile_type
-          relationship: none
-          group_type: group
-          admin_label: exportateur
-          entity_type: user
-          plugin_id: profile_relationship
-          required: true
-          profile_type: profile_exportateur
-        uid:
-          id: uid
-          table: users_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: 'produit:rédigé'
-          entity_type: user
-          entity_field: uid
-          plugin_id: standard
-          required: true
+      relationships: {  }
+      use_ajax: true
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -949,26 +421,17 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_certifications'
-        - 'config:field.storage.node.field_description_produit'
-        - 'config:field.storage.node.field_image_produit'
-        - 'config:field.storage.node.field_nom_produit'
-        - 'config:field.storage.node.field_secteur'
-        - 'config:field.storage.profile.field_certifications'
-        - 'config:field.storage.profile.field_imageprofile'
-        - 'config:field.storage.profile.field_nom_de_l_entreprise'
-        - 'config:field.storage.profile.field_secteur1'
+      tags: {  }
   page_1:
     id: page_1
-    display_title: 'Liste exportateur'
+    display_title: Page
     display_plugin: page
     position: 1
     display_options:
-      display_description: ''
       display_extenders: {  }
-      path: marketplace-entreprise-produit
+      path: market-place
     cache_metadata:
       max-age: -1
       contexts:
@@ -976,44 +439,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_certifications'
-        - 'config:field.storage.node.field_description_produit'
-        - 'config:field.storage.node.field_image_produit'
-        - 'config:field.storage.node.field_nom_produit'
-        - 'config:field.storage.node.field_secteur'
-        - 'config:field.storage.profile.field_certifications'
-        - 'config:field.storage.profile.field_imageprofile'
-        - 'config:field.storage.profile.field_nom_de_l_entreprise'
-        - 'config:field.storage.profile.field_secteur1'
-  page_2:
-    id: page_2
-    display_title: 'Liste produits'
-    display_plugin: page
-    position: 2
-    display_options:
-      defaults:
-        filters: true
-        filter_groups: true
-      display_description: ''
-      display_extenders: {  }
-      path: produit-marketplace
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_certifications'
-        - 'config:field.storage.node.field_description_produit'
-        - 'config:field.storage.node.field_image_produit'
-        - 'config:field.storage.node.field_nom_produit'
-        - 'config:field.storage.node.field_secteur'
-        - 'config:field.storage.profile.field_certifications'
-        - 'config:field.storage.profile.field_imageprofile'
-        - 'config:field.storage.profile.field_nom_de_l_entreprise'
-        - 'config:field.storage.profile.field_secteur1'
+      tags: {  }

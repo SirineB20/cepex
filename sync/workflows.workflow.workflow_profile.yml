@@ -3,6 +3,7 @@ langcode: fr
 status: true
 dependencies:
   config:
+    - node.type.profile_exportateur
     - profile.type.profile_exportateur
   module:
     - content_moderation
@@ -66,6 +67,8 @@ type_settings:
       to: published
       weight: 1
   entity_types:
+    node:
+      - profile_exportateur
     profile:
       - profile_exportateur
   default_moderation_state: draft

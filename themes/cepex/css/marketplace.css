@@ -71,53 +71,15 @@
 
   
 
-  #edit-field-certifications-target-id ul li:first-child {
-    display: none;
-}
 
-  .edit-term-node-tid-depth , #edit-field-certifications-target-id{
-      cursor: pointer;
-      font-size: 18px;
-      color: #5f5f5f;
-      font-weight: 500;
-      padding: 20px 51px 20px 35px;
-      background: #fff;
-      display: block;
-      position: relative;
-      border-radius: 45px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      width: 407px;
-      z-index: 22;
-      border-right: 1px solid #5f5f5f;
-  }
-  #edit-field-certifications-target-id
-  {
-    border-radius: unset;
-    width: 397px;
-    padding: 20px 30px 20px 20px;
-  }
-
-  .edit-term-node-tid-depth:after, .form-item-field-certifications-target-id:after{
-      right: 15px;
-      top: 15px;
-      border: solid transparent;
-      content: "\f054";
-      position: absolute;
-      pointer-events: none;
-      transition: all 0.2s ease;
-      font-family: 'FontAwesome';
-      font-size: 18px;
-      transform: rotate(90deg);
-      z-index: 22;
-  }
-  #edit-submit-markeet-place,#edit-type-1-all {
+  
+ #edit-type-all {
     display: none;
   }
   /* Conteneur principal pour le filtrage des produits */
 .flexfiltrage-prod {
     display: flex;
-        padding-right: 70px;
+        
         align-items: center;
        
         border-radius: 30px;
@@ -133,38 +95,7 @@
   
  
   
-  /* Style pour les liens du filtre */
-  .bef-links {
-    width: 100%;
-  }
   
-  .bef-links ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    
-  }
-  
-  .bef-links li {
-    flex: 0 0 auto;
-  }
-  
-  .bef-links a {
-    display: inline-block;
-    padding: 8px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.3s ease;
-  }
-  
-  /* Bouton normal */
-  .bef-link {
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ddd;
-  }
   
   /* Bouton "Tout" */
   #edit-type-1-all {
@@ -172,19 +103,7 @@
     background-color: #f0f0f0;
   }
   
-  /* Style pour le lien sélectionné (rouge comme sur l'image) */
-  .bef-link--selected {
-    background-color: #d92556; /* Couleur rouge de l'entreprise */
-    color: white;
-    border: 1px solid #d92556;
-    box-shadow: 0 2px 4px rgba(217, 37, 86, 0.3);
-  }
   
-  /* Hover sur les boutons */
-  .bef-link:hover:not(.bef-link--selected) {
-    background-color: #f0f0f0;
-    border-color: #ccc;
-  }
   
   /* Ajuster pour la responsivité */
   @media (max-width: 768px) {
@@ -196,51 +115,10 @@
     .title-filtre-prod {
       margin-bottom: 10px;
     }
-    
-    .bef-links ul {
-      flex-wrap: wrap;
-    }
+   
   }
 
-#edit-field-certifications-target-id {
-    position: relative;
-    margin: 0;
-}
-#edit-field-certifications-target-id ul {
-    list-style: none;
-    background: #fff;
-    margin: 0;
-    padding: 0;
-    display: none;
-    position: absolute;
-    top: 67px;
-    border: 1px solid #000;
-    padding-top: 0;
-    border-top: 0;
-    z-index: 2;
-    width: 300px;
-    left: 0;
-}
 
-#edit-field-certifications-target-id ul.open {
-    display: block;
-}
-
-#edit-field-certifications-target-id ul li a {
-    position: relative;
-    display: block;
-    color: #505050;
-    text-decoration: none;
-    padding: 15px 35px;
-    font-weight: 500;
-}
-#edit-field-certifications-target-id ul li::after {
-    display: none;
-}
-#edit-field-certifications-target-id ul li a:hover {
-    background: #cd0b47;
-    color: #fff;
-}
   .input-mot-cle {
       width: 55%;
       border: 0;
@@ -264,7 +142,9 @@
   li.have-children:hover a {
     color: #fff
 }
-
+#edit-field-certifications-target-id-all{
+  display: none;
+}
 .secteur-marketplace {
     padding: 60px 0;
     position: relative;
@@ -491,75 +371,95 @@
     align-items: flex-start;
 }
 
-.boxcateg-marketplace {
-    border: 1px solid #c5c5c5;
-    border-radius: 20px;
-    padding: 30px;
-}
 
+
+/* Style pour le titre de catégorie */
 .title-categ-marketplace {
-    font-size: 22px;
-    color: #545454;
-    font-weight: 500;
-    display: block;
-    padding: 0 0 5px;
-    border-bottom: 1.5px solid #545454;
+  font-size: 22px;
+  color: #545454;
+  font-weight: 500;
+  display: block;
+  padding: 0 0 5px;
+  border-bottom: 1.5px solid #545454;
 }
 
-.boxcateg-marketplace ul {
-    padding: 0;
-    margin: 30px 0 0;
-    list-style: none;
+
+
+#edit-field-certifications-target-id ul li {
+  margin: 0 0 15px;
 }
 
-.boxcateg-marketplace ul li {
-    margin: 0 0 15px;
+/* Style pour les liens normaux */
+#edit-field-certifications-target-id ul li a {
+  color: #505050;
+  font-size: 17px;
+  text-decoration: none;
 }
 
-.boxcateg-marketplace ul li a {
-    color: #505050;
-    font-size: 17px;
-    text-decoration: none;
+/* Style pour le hover des liens */
+#edit-field-certifications-target-id ul li a:hover {
+  color: #cd1b4d;
 }
 
-.boxcateg-marketplace ul li a:hover {
-    color: #cd1b4d;
+/* Style pour le lien actif/sélectionné */
+#edit-field-certifications-target-id ul li a.bef-link--selected {
+  color: #cd1b4d;
 }
 
-.boxcateg-marketplace ul li a.active {
-    color: #cd1b4d;
-}
+/* Style pour la liste des produits */
 .listeprod-marketplace {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
+/* Style pour le titre de catégorie */
 .titlecateg {
-    display: block;
-    font-size: 34px;
-    color: #cd1449;
-    font-weight: 500;
+  display: block;
+  font-size: 34px;
+  color: #cd1449;
+  font-weight: 500;
 }
-
+#edit-search{
+  margin-right: 30px;
+  border-radius: unset;
+  /* width: 320px; */
+  /* padding: 30px 30px 30px 30px; */
+  cursor: pointer;
+  font-size: 18px;
+  /* color: #5f5f5f; */
+  /* font-weight: 500; */
+  padding: 30px 30px 30px 30px;
+  display: block;
+  position: relative;
+  width: 736px;
+  z-index: 22;
+  /* border-right: 1px solid #5f5f5f; */
+  background: #ffffff;
+}
 .flexbox-recheche-marketplace {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #aaaaaa;
-    border-radius: 20px;
-    background: #fff;
-    padding: 5px 5px;
-    margin: 15px 0 0;
+  display: flex;
+      align-items: center;
+      /* justify-content: space-between; */
+      border: 1px solid #aaaaaa;
+      border-radius: 20px;
+      background: #fff;
+      padding: 15px 5px;
+      margin: 15px 0 0;
 }
 
 .btn-filtre-marketplace {
-    display: inline-block;
-    background: #d01a4e;
-    border: 0;
-    height: 100%;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 20px;
+  display: inline-block;
+  /* display: flex
+; */
+  background: #d01a4e;
+  border: 0;
+  height: 10p;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  margin-right: 30px;
 }
+
 .input-mot-cle.input-nopadding {
     width: 75%;
     padding: 5px 10px;
@@ -657,12 +557,13 @@
 
 .img-details-marketplace {
     max-width: 100%;
-    height: 400px;
+    height: 300px;
     display: block;
     margin: auto;
-    padding-left: 155px;
-    object-fit: cover;
     padding-right: 70px;
+    
+   
+  
 }
 
 .listesimgs {
@@ -840,6 +741,7 @@
 
 .tab-details-marketplace {
     padding: 0 15px;
+    margin-top: 30px;
 }
 
 .tab-details-marketplace .tab-pane {
@@ -1071,6 +973,9 @@
     object-fit: cover;
     max-height: 350px;
 }
+.boxcateg-marketplace{
+  padding: 15px;
+}
 
 .details-certification {
     padding-left: 10px;
@@ -1111,20 +1016,20 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
 .flexbox-recheche-marketplace input:focus {
     outline: none;
 }
-.bouton-filtre .js-form-item {
+#edit-type-produits-marketplace .js-form-item {
     margin: 0;
 }
-.filtre-maketplace .bouton-filtre:hover {
+.filtre-maketplace #edit-type-produits-marketplace:hover {
   background: #cd1b4d;
   color: #fff;
   border: 1px solid #cd1b4d;
 }
-.filtre-maketplace .bouton-filtre.active-filter {
+.filtre-maketplace #edit-type-produits-marketplace.active-filter {
   background: #cd1b4d;
   color: #fff;
   border: 1px solid #cd1b4d;
 }
-.filtre-maketplace .bouton-filtre {
+.filtre-maketplace #edit-type-produits-marketplace {
   border: 1px solid #aaaaaa;
   background: #fff;
   border-radius: 45px;
@@ -1144,7 +1049,9 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
     text-decoration: none;
 }
 
+#edit-type-produits-marketplace{
 
+}
 
 
 /******* Arrows Mission ********/
@@ -1182,9 +1089,8 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
     padding: 25px 0 60px;
 }
 
-#edit-filiere-all {
-  display: none;
-}
+
+
 
 .nom-categ-details {
     display: inline-block;
@@ -1276,10 +1182,7 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
 .webform-submission-contact-prestataire-form .form-item-mail-exportateur {
     display: none;
 }
-#edit-field-certifications-target-id a, .field--name-field-option-livraison a {
-    color: #000;
-    text-decoration: none;
-  }
+
   .field--name-field-pays-exportation-entrepris {
     font-size: 16px;
     color: #858585;
@@ -1318,14 +1221,7 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
     border-bottom: 2px solid #f0f0f0;
   }
   
-  /* Labels des champs */
-  .field > div:first-child {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #7f8c8d;
-    margin-bottom: 5px;
-  }
+  
   
   /* Valeurs des champs */
   .field > div:nth-child(2) {

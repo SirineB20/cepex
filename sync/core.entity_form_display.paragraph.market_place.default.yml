@@ -1,0 +1,36 @@
+uuid: da66eb54-2753-4f6c-9a6c-dba4062512a3
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.market_place.field_descriptionb
+    - field.field.paragraph.market_place.field_titre_banniere
+    - paragraphs.paragraphs_type.market_place
+  module:
+    - text
+id: paragraph.market_place.default
+targetEntityType: paragraph
+bundle: market_place
+mode: default
+content:
+  field_descriptionb:
+    type: text_textarea_with_summary
+    weight: 0
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_titre_banniere:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,31 @@
+uuid: 053800ce-a6c7-46e9-bcba-169dfcc038a4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.market_place.field_descriptionb
+    - field.field.paragraph.market_place.field_titre_banniere
+    - paragraphs.paragraphs_type.market_place
+  module:
+    - text
+id: paragraph.market_place.default
+targetEntityType: paragraph
+bundle: market_place
+mode: default
+content:
+  field_descriptionb:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_titre_banniere:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

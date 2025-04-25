@@ -13,10 +13,6 @@ declare(strict_types=1);
 function cepex_preprocess_html(array &$variables): void {
 
 }
-
-/**
- * Implements hook_preprocess_HOOK() for page.html.twig.
- */
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
@@ -99,10 +95,10 @@ function cepex_preprocess_views_exposed_form(&$variables) {
 
   $form_id = $variables['form']['#id'];
 
-  // Vérifier si c'est le formulaire de vue "markeet_place" que nous voulons cibler
-  if ($form_id == 'views-exposed-form-markeet-place-page-1') {
+  // Vérifier si c'est le formulaire de vue "market_place" que nous voulons cibler
+  if ($form_id == 'views-exposed-form-market-place-page-1') {
     // Ajouter une classe au formulaire
-    $variables['attributes']['class'][] = 'views-exposed-form-markeet-place-page-1';
+    $variables['attributes']['class'][] = 'views-exposed-form-mareet-place-page-1';
   }
   // Cibler spécifiquement le formulaire exposé "gestion-produit-par-exportateur-page-1"
   elseif ($form_id == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
@@ -168,7 +164,7 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
    elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-les-produits-de-l-exportateur') {
     _cepex_setup_filter_form_exportateurs($form);
   }
-  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-markeet-place-page-1') {
+  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-market-place-page-1') {
     _cepex_setup_filter_form_exportateurs($form);
   }
 }
@@ -261,9 +257,6 @@ function cepex_filter_form_after_build($form, &$form_state) {
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for form.
- */
-/**
  * Implements hook_theme_suggestions_form_alter().
  */
 function cepex_theme_suggestions_form_alter(array &$suggestions, array $variables) {
@@ -289,7 +282,7 @@ function cepex_theme_suggestions_form_alter(array &$suggestions, array $variable
         $suggestions[] = 'form__exportateurs_filters';
         $suggestions[] = 'form__gestion_exportateurs_marketplace';
       }
-      // Version sans le suffixe -page-1 pour plus de flexibilité
+      // Version sans le suffixe page-1 pour plus de flexibilité
       elseif ($id == 'views-exposed-form-les-produits-de-l-exportateur') {
         $suggestions[] = 'form__exportateurs_filters';
         $suggestions[] = 'form__gestion_produit_secteur';
@@ -363,75 +356,10 @@ function cepex_theme_suggestions_views_view_table_alter(array &$suggestions, arr
         $suggestions[] = 'views_view_table__produits_exportateur__' . $display_id;
       }
     }
-    if ($view_id == 'translations') {
-      $suggestions[] = 'views_view_table__translations';
-      
-      // Si vous avez besoin de suggestions encore plus spécifiques basées sur l'affichage
-      if ($display_id) {
-        $suggestions[] = 'views_view_table__translations' . $display_id;
-      }
-    }
-  }
-}
-/**
- * Implements hook_theme_suggestions_table_alter().
- */
-function THEMENAME_theme_suggestions_table_alter(array &$suggestions, array $variables) {
-  // Détecter si c'est un tableau de traduction basé sur le contenu ou le contexte
-  if (isset($variables['header']) && is_array($variables['header'])) {
-    // Vérifier si les en-têtes correspondent à ceux d'un tableau de traduction
-    $translation_headers = ['Langue', 'Traduction', 'État', 'Actions'];
-    $header_values = array_column($variables['header'], 0);
-    
-    // Si tous les en-têtes de traduction sont présents
-    if (count(array_intersect($translation_headers, $header_values)) >= 3) {
-      $suggestions[] = 'table__translation';
-      
-      // Ajouter une suggestion basée sur la route actuelle
-      $route_name = \Drupal::routeMatch()->getRouteName();
-      if ($route_name) {
-        $suggestions[] = 'table__translation__' . str_replace('.', '_', $route_name);
-      }
-      
-      // Ajouter une suggestion basée sur le type de contenu si disponible
-      $node = \Drupal::routeMatch()->getParameter('node');
-      if ($node && is_object($node)) {
-        $suggestions[] = 'table__translation__' . $node->getType();
-      }
-    }
+   
   }
 }
 
-/**
- * Implements hook_preprocess_table().
- */
-function THEMENAME_preprocess_table(&$variables) {
-  // Détecter si c'est un tableau de traduction
-  if (isset($variables['header']) && is_array($variables['header'])) {
-    $translation_headers = ['Langue', 'Traduction', 'État', 'Actions'];
-    $header_values = array_column($variables['header'], 0);
-    
-    if (count(array_intersect($translation_headers, $header_values)) >= 3) {
-      // Ajouter une classe pour le tableau de traduction
-      $variables['attributes']['class'][] = 'translation-table';
-      
-      // Vous pouvez également ajouter des classes à chaque ligne ou cellule si nécessaire
-      foreach ($variables['rows'] as $key => $row) {
-        $variables['rows'][$key]['attributes']->addClass('translation-row');
-        
-        // Ajouter des classes basées sur l'état de traduction
-        if (isset($row['cells'][2]['content']) && is_string($row['cells'][2]['content'])) {
-          $status = strtolower(strip_tags($row['cells'][2]['content']));
-          if (strpos($status, 'non traduit') !== false) {
-            $variables['rows'][$key]['attributes']->addClass('translation-missing');
-          } elseif (strpos($status, 'publié') !== false) {
-            $variables['rows'][$key]['attributes']->addClass('translation-published');
-          }
-        }
-      }
-    }
-  }
-}
 /**
  * Implements hook_theme_suggestions_views_view_alter().
  */

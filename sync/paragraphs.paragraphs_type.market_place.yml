@@ -1,0 +1,10 @@
+uuid: 762aa55b-00d8-4cc9-b1ed-3b7a88415b84
+langcode: fr
+status: true
+dependencies: {  }
+id: market_place
+label: banniere-market-place
+icon_uuid: null
+icon_default: null
+description: 'bannier pour markert place'
+behavior_plugins: {  }

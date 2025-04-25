@@ -1,0 +1,20 @@
+uuid: ac96dd5a-5bd0-496c-8f5d-5562f76b0426
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_capital
+field_name: field_capital
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -21,11 +21,6 @@ type_settings:
       weight: 0
       published: false
       default_revision: false
-    en_cours_inscription:
-      label: 'En cours inscription'
-      weight: 2
-      published: false
-      default_revision: true
     en_cours_modification:
       label: 'En cours modification'
       weight: 3
@@ -44,23 +39,17 @@ type_settings:
       to: draft
       weight: 0
     en_cours_modification:
-      label: 'En cours modification'
+      label: 'En cours de traitement'
       from:
         - en_cours_modification
+        - published
       to: en_cours_modification
       weight: 3
-    en_cours_modification_inscription:
-      label: 'En cours modification inscription'
-      from:
-        - en_cours_inscription
-      to: en_cours_inscription
-      weight: 2
     publish:
       label: Traiter
       from:
         - depublie
         - draft
-        - en_cours_inscription
         - en_cours_modification
         - published
       to: published

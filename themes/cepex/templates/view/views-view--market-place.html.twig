@@ -1,0 +1,255 @@
+{#
+/**
+ * @file
+ * Theme override for a main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if title %}
+    {{ title }}
+  {% endif %}
+  {{ title_suffix }}
+  {% if header %}
+    <div class="view-header">
+      {{ header }}
+    </div>
+  {% endif %}
+  <section class="banner-interne">
+  <div class="container container-interne">
+    <div class="contenu-banner">
+      <div class="box-foprodex" style="width: 100%">
+        <span class="title-interne text-uppercase">Market <span class="colorgris">place</span></span>
+        
+  <div class="field field--name-field-description-bmarket field--type-string-long field--label-above">
+              <div style="margin-right: 10px;
+    color: #000;
+    font-size: 17px;">La marketplace de CEPEX Tunisie est une plateforme numérique dédiée à la promotion des produits et services tunisiens sur le marché international. Conçue pour faciliter l'accès des entreprises tunisiennes aux opportunités d'exportation, elle met en relation directe les exportateurs locaux avec des acheteurs étrangers. Grâce à des fonctionnalités innovantes, cette marketplace permet aux entreprises de valoriser leur savoir-faire, d’élargir leur réseau commercial et d’accroître leur visibilité à l’échelle mondiale, soutenant ainsi la croissance des exportations tunisiennes.</div>
+          </div>
+
+
+      </div>
+          </div>
+
+    <div class="box-fil-ariane">
+      <nav aria-label="breadcrumb">
+        <h2 id="system-breadcrumb" class="visually-hidden">Fil d'Ariane</h2>
+        <ul>
+          <li>
+            <a href="/"> Accueil</a>
+            <i class="fa-solid fa-angle-right"></i>
+          </li>
+          <li>
+            <a href="/marketplace">Marketplace</a>
+            <i class="fa-solid fa-angle-right"></i>
+          </li>
+          <li>
+            Marketplace Entreprises &amp; Produits
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</section>
+  {% if exposed %}
+    <div class="container container-interne" style="
+    margin-left: 500px;
+">
+      {{ exposed.type }}
+    </div>
+    
+    <section style="margin-top: 20px;">
+      <div class="container container-interne p-0">
+        {{ exposed.secteur }}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="container liste-produdit-marketplace">
+    <div class="container container-interne">
+      <div class="flexbox-liste-produit">
+        
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 boxcateg-marketplace">
+            {% if exposed %}
+              <span class="title-categ-marketplace">Certifications</span>
+              {{ exposed.field_certifications_target_id }}
+            {% endif %}
+          </div>
+      
+        
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 listeprod-marketplace">
+          {% if title %}
+            <span class="titlecateg">{{ title }}</span>
+          {% endif %}
+          
+          <div class="flexbox-recheche-marketplace">
+            {% if exposed %}
+              <input type="text" class="input-mot-cle input-nopadding">
+              {{ exposed.search }}
+            {% endif %}
+            <button class="btn-filtre-marketplace"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
+          </div>
+          
+          <div class="boxlisteprod-marketplace row">
+            {{ rows }}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% if footer %}
+    <div class="view-footer">
+      {{ footer }}
+    </div>
+  {% endif %}
+</div>#}
+
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if title %}
+    {{ title }}
+  {% endif %}
+  {{ title_suffix }}
+  {% if header %}
+    <div class="view-header">
+      {{ header }}
+    </div>
+  {% endif %}
+  <section class="banner-interne">
+  <div class="container container-interne">
+    <div class="contenu-banner">
+      <div class="box-foprodex" style="width: 100%">
+        <span class="title-interne text-uppercase">Market <span class="colorgris">place</span></span>
+        
+  <div class="field field--name-field-description-bmarket field--type-string-long field--label-above">
+              <div style="margin-right: 10px;
+    color: #000;
+    font-size: 17px;">La marketplace de CEPEX Tunisie est une plateforme numérique dédiée à la promotion des produits et services tunisiens sur le marché international. Conçue pour faciliter l'accès des entreprises tunisiennes aux opportunités d'exportation, elle met en relation directe les exportateurs locaux avec des acheteurs étrangers. Grâce à des fonctionnalités innovantes, cette marketplace permet aux entreprises de valoriser leur savoir-faire, d’élargir leur réseau commercial et d’accroître leur visibilité à l’échelle mondiale, soutenant ainsi la croissance des exportations tunisiennes.</div>
+          </div>
+
+
+      </div>
+          </div>
+
+    <div class="box-fil-ariane">
+      <nav aria-label="breadcrumb">
+        <h2 id="system-breadcrumb" class="visually-hidden">Fil d'Ariane</h2>
+        <ul>
+          <li>
+            <a href="/"> Accueil</a>
+            <i class="fa-solid fa-angle-right"></i>
+          </li>
+          <li>
+            <a href="/marketplace">Marketplace</a>
+            <i class="fa-solid fa-angle-right"></i>
+          </li>
+          <li>
+            Marketplace Entreprises &amp; Produits
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</section>
+ {% if exposed %}
+  <form{{ exposed.form_attributes }}>
+    <div class="container container-interne" style="
+    margin-left: 500px;">
+      {{ exposed.type }}
+    </div>
+    
+    <section>
+      <div class="container container-interne p-0">
+       {{ exposed|without('type', 'secteur', 'field_certifications_target_id', 'search') }}
+        {{ exposed.secteur }}
+      </div>
+    </section>
+  
+    <section class="container liste-produdit-marketplace">
+      <div class="container container-interne">
+        <div class="flexbox-liste-produit">
+          
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 boxcateg-marketplace">
+            <span class="title-categ-marketplace">Certifications</span>
+            {{ exposed.field_certifications_target_id }}
+             
+          </div>
+        
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 listeprod-marketplace">
+            {% if title %}
+              <span class="titlecateg">{{ title }}</span>
+            {% endif %}
+            
+            <div class="flexbox-recheche-marketplace">
+              {{ exposed.search }}
+              <button type="submit" class="btn-filtre-marketplace"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
+      
+            </div>
+            <div class="boxlisteprod-marketplace row">
+            {{ rows }}
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  
+
+  </form>
+
+  
+{% endif %}
+
+{% if footer %}
+  <div class="view-footer">
+    {{ footer }}
+  </div>
+{% endif %}

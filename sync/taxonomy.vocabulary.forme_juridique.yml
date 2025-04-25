@@ -1,0 +1,9 @@
+uuid: 49d52ce3-1b59-4158-85f9-eb6b89da1d88
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Forme juridique'
+vid: forme_juridique
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,11 @@
+uuid: d4914f2b-4a84-43b6-9793-e17742fa896a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.forme_juridique
+id: taxonomy_term.forme_juridique
+target_entity_type_id: taxonomy_term
+target_bundle: forme_juridique
+default_langcode: site_default
+language_alterable: false

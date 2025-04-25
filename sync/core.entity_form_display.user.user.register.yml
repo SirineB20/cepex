@@ -34,13 +34,6 @@ content:
     settings:
       form_mode: default
     third_party_settings: {  }
-  profile_homme_secteur_profiles:
-    type: profile_form
-    weight: 90
-    region: content
-    settings:
-      form_mode: default
-    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
@@ -55,3 +48,4 @@ content:
 hidden:
   field_password: true
   langcode: true
+  profile_homme_secteur_profiles: true

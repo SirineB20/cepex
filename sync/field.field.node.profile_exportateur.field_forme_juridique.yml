@@ -1,0 +1,29 @@
+uuid: f6e77540-f48a-4f10-9f95-132da7fdabfe
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_forme_juridique
+    - node.type.profile_exportateur
+    - taxonomy.vocabulary.forme_juridique
+id: node.profile_exportateur.field_forme_juridique
+field_name: field_forme_juridique
+entity_type: node
+bundle: profile_exportateur
+label: 'Forme juridique'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      forme_juridique: forme_juridique
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

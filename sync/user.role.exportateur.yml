@@ -93,7 +93,6 @@ permissions:
   - 'update paragraph content footer_left'
   - 'use etat_produit transition create_new_draft'
   - 'use etat_produit transition en_cours_modification'
-  - 'use etat_produit transition en_cours_modification_inscription'
   - 'use text format basic_html'
   - 'use text format full_html'
   - 'use text format restricted_html'

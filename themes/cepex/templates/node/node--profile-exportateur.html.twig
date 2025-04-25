@@ -36,47 +36,65 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_suffix.contextual_links }}
   
-  <section class="details-entreprise-marketplace">
-    <div class="container container-interne">
-      
-      {# Informations principales de l'entreprise #}
+<section class="details-entreprise-marketplace">
+  <div class="container container-interne">
+    {# Informations principales de l'entreprise #}
+    <div class="flexbox-details-marketplace">
       <div class="boxdetails-company">
-        <div class="boximg-company-marketplace">
-          {% if content.field_imageprofile %}
-         
-            {% set image_url = content.field_imageprofile.0['#markup'] %}
-            <img src={{ image_url }} class="img-company-marketplace" alt="Logo entreprise">
-          {% endif %}
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12 boximg-details-marketplace">
+          <div class="borderdetails-marketplace">
+            {% if content.field_imageprofile %}
+              {% set image_url = content.field_imageprofile.0['#markup'] %}
+              <img src="{{ image_url }}" class="img-details-marketplace" alt="Logo entreprise">
+              <div class="boxpartage-marketplace">
+                <span class="icon-partage-marketplace"><i class="fa-solid fa-diagram-project"></i></span>
+                <div class="ul-partage">
+                  <a href="#" class="btn-paratge"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#" class="btn-paratge"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="btn-paratge"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+              </div>
+            {% endif %}
+          </div>
         </div>
-
-        <div class="boxcontenu-company">
-          <span class="name-company">{{ content.field_nom_de_l_entreprise }}</span>
-          <span class="activite-company">{{ content.field_directeur_general }}</span>
-          
-          <div class="company-contact-info">
-            {% if content.field_adresse %}<p>{{ content.field_adresse }}</p>{% endif %}
-            {% if content.field_tel %}<p>{{ content.field_tel }}</p>{% endif %}
-            {% if content.field_fax %}<p>{{ content.field_fax }}</p>{% endif %}
-            {% if content.field_e_mail %}<p>{{ content.field_e_mail }}</p>{% endif %}
-            {% if content.field_site_web %}<p>{{ content.field_site_web }}</p>{% endif %}
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12 boxdetails-marketplace">
+          <div class="bgdetails-maretplace">
+            <span class="name-company">{{ content.field_nom_de_l_entreprise }}</span>
+            <span class="activite-company">{{ content.field_directeur_general }}</span>
+            <div class="company-contact-info">
+              {% if content.field_adresse %}<p>{{ content.field_adresse }}</p>{% endif %}
+              {% if content.field_tel %}<p>{{ content.field_tel }}</p>{% endif %}
+              {% if content.field_fax %}<p>{{ content.field_fax }}</p>{% endif %}
+              {% if content.field_e_mail %}<p>{{ content.field_e_mail }}</p>{% endif %}
+              {% if content.field_site_web %}<p>{{ content.field_site_web }}</p>{% endif %}
+            </div>
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
+</section>
       {# Présentation de l'entreprise #}
       {% if content.field_presentation %}
-        <div class="presentation-company">
-          <span class="titre-company">Présentation</span>
-          <p>{{ content.field_presentation }}</p>
+        
+<div class="tab-content tab-details-marketplace" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+          <span class="titre-tab">Présentation</span>
+          
+            <span class="details-sub-details">{{ content.field_presentation }}</span>
+          
+        </div>
+      </div>
+         
         </div>
       {% endif %}
 
       {# Catégories de produits #}
-      {% if content.field_secteur1 %}
+      {% if content.field_secteur %}
         <div class="categories-company">
           <span class="titre-category-company">Catégories de produits</span>
           <div class="flexbox-categ-company">
-            <span>{{ content.field_secteur1 }}</span>
+            <span>{{ content.field_secteur }}</span>
           </div>
         </div>
       {% endif %}

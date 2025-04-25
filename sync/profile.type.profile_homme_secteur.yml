@@ -6,7 +6,7 @@ id: profile_homme_secteur
 label: 'Profile homme secteur'
 display_label: ''
 multiple: false
-registration: true
+registration: false
 roles:
   homme_secteur: homme_secteur
 allow_revisions: false

@@ -8,12 +8,7 @@ global:
       css/annuaire.css: {}
       css/bienvenue.css: {}
       css/boxservice.css: {}
-      css/communique.css: {}
-      css/decouvrir-tunisie.css: {}
-      css/detail-event.css: {}
-      css/detail-formation.css: {}
-      css/details-opportinutes.css: {}
-      
+      css/communique.css: {}  
       css/een.css: {}
       css/register-forms.css: {}
       css/ajouterProd.css: {}
@@ -42,10 +37,7 @@ global:
     https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js: { type: external }
     js/cepex.js: {}
     js/appui.js: {}
-  
     js/een.js: {}
-
-    js/date.js: {}
     js/header.js: {}
     js/filtermarketplace.js: {}
     js/media.js: {}
@@ -65,3 +57,6 @@ global:
     - core/drupal
     - core/drupalSettings
     - core/jquery.form
+    - core/drupal.ajax
+    
+  

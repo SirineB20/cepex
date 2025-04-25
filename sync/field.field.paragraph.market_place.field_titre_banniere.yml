@@ -1,0 +1,19 @@
+uuid: d388b93a-672a-447e-8b38-29c8233194b1
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_titre_banniere
+    - paragraphs.paragraphs_type.market_place
+id: paragraph.market_place.field_titre_banniere
+field_name: field_titre_banniere
+entity_type: paragraph
+bundle: market_place
+label: titre-banniere
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 8e6b28eb-e370-48da-8819-0c3db81c890a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_capital
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_capital
+field_name: field_capital
+entity_type: node
+bundle: profile_exportateur
+label: Capital
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

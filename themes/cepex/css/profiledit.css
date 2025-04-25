@@ -163,15 +163,7 @@
     display: flex;
     justify-content: flex-start;
   }
-  
-  /* SHS select widget styling */
-  .shs-container {
-    margin-bottom: -15px;
-  }
-  
-  .shs-widget-container {
-    margin-bottom: 10px;
-  }
+
   
   /* Disabled fields */
   .form-disabled textarea,

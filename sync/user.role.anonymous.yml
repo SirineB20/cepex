@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - filter.format.restricted_html
+    - node.type.profile_exportateur
   module:
     - comment
     - contact
+    - field_ui
     - filter
     - media
+    - node
     - profile
     - search
     - system
@@ -23,6 +26,10 @@ permissions:
   - 'access content'
   - 'access profile overview'
   - 'access site-wide contact form'
+  - 'administer profile display'
+  - 'administer profile form display'
+  - 'create profile_exportateur content'
+  - 'create profile_exportateur profile'
   - 'search content'
   - 'use text format restricted_html'
   - 'view any profile'
