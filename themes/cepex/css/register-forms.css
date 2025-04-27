@@ -2,11 +2,123 @@
 .auth-forms{
   padding:30px 0px;
 }
+#node-profile-exportateur-form{
+  margin: 2rem;
+  input {
+    height: 50px;
+}
+.form-item, .form-actions {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+}
 .auth-forms h4 {
   line-height: 26px;
   font-size: 21px;
 }
+.form-add-entreprise-exportatrice{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.form-control{
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
+
+#edit-field-statut--wrapper,#edit-field-certifications--wrapper,label,#edit-field-avez-vous-une-implantation--wrapper,#edit-field-avez-vous-une-implantation--wrapper
+{
+  color: #316ce8 !important;
+}
+
+#edit-group-commercialisation-entrepri{
+  legend{
+    background-color: #cb033d !important;
+    color: white !important;
+    padding: 15px;
+    text-align: center;
+    font-size: calc(1.275rem + 0.3vw);
+  }
+  .option{
+    color: black !important;
+  
+  }
+
+}
+#edit-group-entreprise-coordonnee{
+  legend{
+    background-color: #cb033d !important;
+    color: white !important;
+    padding: 15px;
+    text-align: center;
+    font-size: calc(1.275rem + 0.3vw);
+  }
+  .option{
+    color: black !important;
+  
+  }
+
+}
+#edit-group-entreprise-general {
+  /* Toutes vos règles ici */
+  .fieldset-wrapper {
+    /* Styles pour .fieldset-wrapper à l'intérieur de #edit-group-entreprise-general */
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: calc(-1 * var(--bs-gutter-y));
+      margin-right: calc(-0.5 * var(--bs-gutter-x));
+      margin-left: calc(-0.5 * var(--bs-gutter-x));
+  }
+  legend{
+    background-color: #cb033d !important;
+    color: white !important;
+    padding: 15px;
+    text-align: center;
+    font-size: calc(1.275rem + 0.3vw);
+  }
+  .option{
+    color: black !important;
+  
+  }
+  
+  input {
+    /* Styles pour les inputs à l'intérieur de #edit-group-entreprise-general */
+  }
+  
+  /* etc. */
+}
+#edit-field-avez-vous-une-implantation-none,#edit-field-statut-none,#edit-field-avez-vous-une-implantation-none,#edit-field-certifications-none{
+  display: none;
+}
+.form-required::after {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 0.3em;
+  content: "";
+  vertical-align: super;
+  background-image: url(../../images/icons/required.svg);
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+}
+.form-add-entreprise-exportatrice {
+  input {
+      height: 50px;
+  }
+}
 .auth-forms h1,
 .auth-forms h2,
 .auth-forms h3,
