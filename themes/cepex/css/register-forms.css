@@ -2,121 +2,182 @@
 .auth-forms{
   padding:30px 0px;
 }
-#node-profile-exportateur-form{
-  margin: 2rem;
-  input {
-    height: 50px;
+/* Style spécifique pour le formulaire d'exportateur */
+#node-profile-exportateur-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  
+  /* Titre principal */
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 28px;
+  }
+  
+  label.option {
+    color: black !important;
+  }
+  .form-item-field-statut,.form-item-field-certifications,.form-item-field-avez-vous-une-implantation {
+    display: flex;
+    
+  }
+  
+  /* Style des légendes/sections */
+  #edit-group-entreprise-general legend,
+  #edit-group-commercialisation-entrepri legend,
+  #edit-group-coordonnees legend {
+    background-color: #cb033d;
+    color: white !important;
+    padding: 15px;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    box-sizing: border-box;
+  }
+  
+  /* Style des labels - ÉGALISATION DES LABELS */
+  label,
+  #edit-field-statut--wrapper legend,
+  #edit-field-certifications--wrapper legend,
+  #edit-field-avez-vous-une-implantation--wrapper legend {
+    display: block;
+    color:#316ce8 !important;
+    margin-bottom: 14px;
+    font-weight: normal;
+    height: 22px; /* Hauteur fixe pour tous les labels */
+    line-height: 22px;
+    overflow: visible;
+    background: #fff;
+  }
+    #edit-group-entreprise-general {
+    /* Style pour la mise en page en deux colonnes */
+.fieldset-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px; /* Marge négative pour compenser le padding des colonnes */
 }
-.form-item, .form-actions {
-  margin-top: 5px;
+
+/* Tous les containers de champs auront 50% de largeur */
+.fieldset-wrapper > div {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0 10px;
   margin-bottom: 15px;
 }
-}
-.auth-forms h4 {
-  line-height: 26px;
-  font-size: 21px;
-}
-.form-add-entreprise-exportatrice{
-  margin-top: 5px;
-  margin-bottom: 15px;
-}
-.form-control{
-  display: block;
+
+/* Exception pour les champs qui doivent prendre toute la largeur */
+.fieldset-wrapper > div.field--name-field-presentation-wrapper,
+.fieldset-wrapper > div.field--name-field-imageprofile-wrapper {
   width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--bs-body-color);
-  appearance: none;
-  background-color: var(--bs-body-bg);
-  background-clip: padding-box;
-  border: var(--bs-border-width) solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
-#edit-field-statut--wrapper,#edit-field-certifications--wrapper,label,#edit-field-avez-vous-une-implantation--wrapper,#edit-field-avez-vous-une-implantation--wrapper
-{
-  color: #316ce8 !important;
-}
-
-#edit-group-commercialisation-entrepri{
-  legend{
-    background-color: #cb033d !important;
-    color: white !important;
-    padding: 15px;
-    text-align: center;
-    font-size: calc(1.275rem + 0.3vw);
+/* Assurer que les champs s'affichent correctement sur mobile */
+@media (max-width: 768px) {
+  .fieldset-wrapper > div {
+    width: 100%;
   }
-  .option{
-    color: black !important;
+}
+  }
   
-  }
-
-}
-#edit-group-entreprise-coordonnee{
-  legend{
-    background-color: #cb033d !important;
-    color: white !important;
-    padding: 15px;
-    text-align: center;
-    font-size: calc(1.275rem + 0.3vw);
-  }
-  .option{
-    color: black !important;
-  
-  }
-
-}
-#edit-group-entreprise-general {
-  /* Toutes vos règles ici */
+  /* Pour les autres fieldsets, conserver un layout normal */
   .fieldset-wrapper {
-    /* Styles pour .fieldset-wrapper à l'intérieur de #edit-group-entreprise-general */
-      --bs-gutter-x: 1.5rem;
-      --bs-gutter-y: 0;
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: calc(-1 * var(--bs-gutter-y));
-      margin-right: calc(-0.5 * var(--bs-gutter-x));
-      margin-left: calc(-0.5 * var(--bs-gutter-x));
-  }
-  legend{
-    background-color: #cb033d !important;
-    color: white !important;
-    padding: 15px;
-    text-align: center;
-    font-size: calc(1.275rem + 0.3vw);
-  }
-  .option{
-    color: black !important;
-  
+    margin-bottom: 20px;
   }
   
-  input {
-    /* Styles pour les inputs à l'intérieur de #edit-group-entreprise-general */
+  /* Marqueur de champ obligatoire */
+  .form-required:after {
+    content: " *";
+    color: #cb033d;
+    font-size: 16px;
+    vertical-align: super;
   }
   
-  /* etc. */
-}
-#edit-field-avez-vous-une-implantation-none,#edit-field-statut-none,#edit-field-avez-vous-une-implantation-none,#edit-field-certifications-none{
-  display: none;
-}
-.form-required::after {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 0.3em;
-  content: "";
-  vertical-align: super;
-  background-image: url(../../images/icons/required.svg);
-  background-repeat: no-repeat;
-  background-size: 6px 6px;
-}
-.form-add-entreprise-exportatrice {
-  input {
-      height: 50px;
+  .form-item, .form-actions {
+    margin-top: -2px;
+    margin-bottom: 15px;
+  }
+  
+  /* Style des champs input */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 46px;
+    background-color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .form-textarea-wrapper textarea {
+    display: block;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  textarea.form-control {
+    min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2));
+  }
+  
+  /* Style des champs select */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px) center;
+    padding-right: 35px;
+  }
+  
+  /* Style des boutons radio */
+  .form-radios {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-radio {
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .radio__label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Style du champ de fichier */
+  .form-managed-file {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-file {
+    margin-bottom: 5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    #edit-group-entreprise-general .fieldset-wrapper {
+      flex-direction: column;
+      
+      > .form-item {
+        width: 100%;
+      }
+    }
   }
 }
 .auth-forms h1,
