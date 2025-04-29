@@ -1,0 +1,6 @@
+name: 'Cepex User Create'
+type: module
+description: 'Crée un utilisateur automatiquement pour chaque contenu profile_exportateur.'
+core_version_requirement: ^11
+package: Custom
+version: 1.0

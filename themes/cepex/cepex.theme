@@ -418,4 +418,3 @@ function cepex_theme_suggestions_node_alter(array &$suggestions, array $variable
     $suggestions[] = 'node__' . $node->bundle() . '__' . $view_mode . '__' . $variables['elements']['#view_id'];
   }
 }
-

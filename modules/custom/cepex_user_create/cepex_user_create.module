@@ -1,0 +1,106 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function cepex_user_create_entity_insert(EntityInterface $entity) {
+  \Drupal::logger('cepex_user_create')->notice('Hook entity_insert appelé pour l\'entité de type: @type', [
+    '@type' => $entity->getEntityTypeId(),
+  ]);
+
+  if ($entity instanceof NodeInterface) {
+    \Drupal::logger('cepex_user_create')->notice('Entité est un nœud de type: @type', [
+      '@type' => $entity->getType(),
+    ]);
+
+    if ($entity->getType() == 'profile_exportateur') {
+      \Drupal::logger('cepex_user_create')->notice('Nœud de type profile_exportateur détecté, ID: @id', [
+        '@id' => $entity->id(),
+      ]);
+
+      if ($entity->hasField('field_e_mail') && $entity->hasField('field_matricul_fiscale')) {
+        $email = $entity->get('field_e_mail')->value;
+        $matricule_fiscal = $entity->get('field_matricul_fiscale')->value;
+
+        \Drupal::logger('cepex_user_create')->notice('Valeurs extraites - Email: @email, Matricule: @matricule', [
+          '@email' => $email ?? 'NULL',
+          '@matricule' => $matricule_fiscal ?? 'NULL',
+        ]);
+
+        if (empty($email) || empty($matricule_fiscal)) {
+          \Drupal::logger('cepex_user_create')->error('Email ou matricule fiscal manquant');
+          return;
+        }
+
+        $password = bin2hex(random_bytes(8));
+
+        $existing_users = \Drupal::entityTypeManager()
+          ->getStorage('user')
+          ->loadByProperties(['mail' => $email]);
+
+        if (empty($existing_users)) {
+          try {
+            \Drupal::logger('cepex_user_create')->notice('Tentative de création d\'utilisateur avec email: @email', [
+              '@email' => $email,
+            ]);
+
+            $user = User::create([
+              'name' => $matricule_fiscal,
+              'mail' => $email,
+              'pass' => $password,
+              'status' => 1,
+            ]);
+
+            $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+            $roles = $role_storage->loadMultiple();
+
+            if (isset($roles['exportateur'])) {
+              $user->addRole('exportateur');
+              \Drupal::logger('cepex_user_create')->notice('Rôle exportateur ajouté');
+            } else {
+              \Drupal::logger('cepex_user_create')->error('Le rôle exportateur n\'existe pas dans le système');
+            }
+
+            if ($user->hasField('field_password')) {
+              $user->set('field_password', $password);
+              \Drupal::logger('cepex_user_create')->notice('Champ password défini');
+            } else {
+              \Drupal::logger('cepex_user_create')->notice('Le champ field_password n\'existe pas sur l\'entité utilisateur');
+            }
+
+            $result = $user->save();
+            \Drupal::logger('cepex_user_create')->notice('Utilisateur sauvegardé avec résultat: @result', [
+              '@result' => $result,
+            ]);
+
+            \Drupal::messenger()->addMessage(t('Un nouvel utilisateur exportateur a été créé avec le nom d\'utilisateur : @username.', ['@username' => $matricule_fiscal]));
+
+            \Drupal::logger('cepex_user_create')->notice('Nouvel utilisateur exportateur créé: @user', [
+              '@user' => $matricule_fiscal,
+            ]);
+          }
+          catch (\Exception $e) {
+            \Drupal::logger('cepex_user_create')->error('Erreur lors de la création de l\'utilisateur exportateur: @error', [
+              '@error' => $e->getMessage(),
+            ]);
+
+            \Drupal::messenger()->addError(t('Erreur lors de la création de l\'utilisateur: @error', [
+              '@error' => $e->getMessage(),
+            ]));
+          }
+        } else {
+          \Drupal::logger('cepex_user_create')->warning('Un utilisateur avec l\'email @email existe déjà.', [
+            '@email' => $email,
+          ]);
+          \Drupal::messenger()->addWarning(t('Un utilisateur avec l\'email @email existe déjà.', ['@email' => $email]));
+        }
+      } else {
+        \Drupal::logger('cepex_user_create')->error('Champs requis non trouvés sur l\'entité profile_exportateur');
+      }
+    }
+  }
+}
