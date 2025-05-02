@@ -7,8 +7,24 @@
   padding: 1px;
 
   border-radius: 41px;
-  display: flex
-;
+  display: flex;
+}
+#edit-matricul_fiscale_value{
+  margin-right: 30px;
+  border-radius: unset;
+  /* width: 320px; */
+  /* padding: 30px 30px 30px 30px; */
+  cursor: pointer;
+  font-size: 18px;
+  /* color: #5f5f5f; */
+  /* font-weight: 500; */
+  padding: 30px 30px 30px 30px;
+  display: block;
+  position: relative;
+  width: 736px;
+  z-index: 22;
+  /* border-right: 1px solid #5f5f5f; */
+  background: #ffffff;
 }
 #edit-secteur-shs-0-0{
   cursor: pointer;
@@ -150,7 +166,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  
+  gap:18px;
   background: white;
   justify-content: center !important;
   border-radius: 12px;
@@ -233,7 +249,7 @@ select.form-select:focus {
 }
 
 /* Submit button styling - expanded to include all submit buttons */
-input#edit-submit-gestion-produit-par-exportateur,
+input#-gestion-produit-par-exportateur,
 input#edit-submit-gestion-exportateurs-par-homme-secteur,
 input#edit-submit-les-produits-de-l-exportateur
  {

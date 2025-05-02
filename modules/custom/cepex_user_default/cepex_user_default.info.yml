@@ -1,7 +1,0 @@
-name: 'CEPEX User Default Status role'
-type: module
-description: 'Définit l''état par défaut des nouveaux utilisateurs comme bloqué et de role exportateur'
-package: Custom
-core_version_requirement:  ^11
-dependencies:
-  - drupal:user

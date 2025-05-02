@@ -208,7 +208,6 @@
     
     <section>
       <div class="container container-interne p-0">
-       {{ exposed|without('type', 'secteur', 'field_certifications_target_id', 'search') }}
         {{ exposed.secteur }}
       </div>
     </section>
@@ -229,8 +228,8 @@
             {% endif %}
             
             <div class="flexbox-recheche-marketplace">
-              {{ exposed.search }}
-              <button type="submit" class="btn-filtre-marketplace"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
+              {{ exposed|without('type', 'secteur', 'field_certifications_target_id', 'search') }}
+
       
             </div>
             <div class="boxlisteprod-marketplace row">

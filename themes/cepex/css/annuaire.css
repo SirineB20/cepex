@@ -15,7 +15,28 @@
     font-size: 14px;
     margin-top: 20px;
 }
+.boxfiltre-guide input.form-select, .boxfiltre-guide #edit-field-nom-d-entreprise-value {
+    background: #dfdfdf;
+    border: 0;
+    padding: 10px 15px !important;
+    border-radius: 15px;
+}
 
+.boxfiltre-guide select {
+    background: #dfdfdf url(../images/chevron-down-solid.svg) 95% 50% no-repeat;
+    border: 0;
+    padding: 10px 15px !important;
+    border-radius: 15px;
+    background-size: 15px;
+}
+#edit-submit-annuaire-des-exportateurs{
+    border: 0;
+    background: #3f3f3f;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    border-radius: 15px;
+}
 .box-annuaire {
     position: relative;
 }

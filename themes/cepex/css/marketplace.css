@@ -418,23 +418,7 @@
   color: #cd1449;
   font-weight: 500;
 }
-#edit-search{
-  margin-right: 30px;
-  border-radius: unset;
-  /* width: 320px; */
-  /* padding: 30px 30px 30px 30px; */
-  cursor: pointer;
-  font-size: 18px;
-  /* color: #5f5f5f; */
-  /* font-weight: 500; */
-  padding: 30px 30px 30px 30px;
-  display: block;
-  position: relative;
-  width: 736px;
-  z-index: 22;
-  /* border-right: 1px solid #5f5f5f; */
-  background: #ffffff;
-}
+
 .flexbox-recheche-marketplace {
   display: flex;
       align-items: center;
@@ -446,10 +430,9 @@
       margin: 15px 0 0;
 }
 
-.btn-filtre-marketplace {
+#edit-submit-market-place {
   display: inline-block;
-  /* display: flex
-; */
+ 
   background: #d01a4e;
   border: 0;
   height: 10p;

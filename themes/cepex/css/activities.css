@@ -306,7 +306,7 @@ body {
            
       
   align-items: center;    /* Centre verticalement */
-  gap: 20px;              /* Espace entre les champs */
+   display:flex;             /* Espace entre les champs */
   margin-bottom: 20px;
 }
 .hide-if-not-selected {

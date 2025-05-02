@@ -1,0 +1,39 @@
+{# Entreprise card component #}
+<div class="col-md-12 col-sm-12 col-xs-12 box-actualites">
+  <div class="bgwhite-actualite">
+    <div class="span-event">{{ content.field_business_type|render|striptags|trim }}</div>
+    <div class="boximg-actualite box-evn" style="border: none">
+    {% set image_url = content.field_imageprofile.0['#markup'] %}
+    <img src="{{ image_url }}" class="img-actualite" alt="Logo entreprise">
+    </div>
+    <div class="details-actualite">
+      <span class="title-actualite">
+        {{ content.field_nom_d_entreprise }}
+      </span>
+      <div class="flexbox-adr-date">
+
+          <div class="boxdate-act" style="margin-right: 10px;display: flex">
+            <i class="fa-solid fa-location-dot"></i><span class="date-act">{{ content.field_gouvernorat }}</span>
+          </div>
+       
+        {% if content.field_adresse %}
+          <div class="boxadr-act" style="display: flex">
+            <i class="fas fa-map"></i><span class="adr-act">{{ content.field_adresse }}</span>
+          </div>
+        {% endif %}
+      </div>
+      
+     
+        <div class="desc-event">
+          {{ content.field_presentation }}
+        </div>
+    
+      <div class="flexbox-bouton-marketplace">
+        <a class="btn-cepex btnentreprise" href="{{ url }}">Voir plus</a>
+        
+          <a class="btn-cepex btnentreprise" href="#">Marketplace</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
