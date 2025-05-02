@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contient des hooks pour le module CEPEX User Default Status.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\profile\Entity\Profile;
+use Drupal\user\Entity\User;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * 
+ * Modifie le formulaire d'ajout d'utilisateur pour définir l'état par défaut comme bloqué
+ * et attribuer le rôle exportateur.
+ */
+function cepex_user_default_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Ne s'applique qu'au formulaire de création d'utilisateur
+  if (!\Drupal::routeMatch()->getParameter('user')) {
+    // Définir la valeur par défaut sur "bloqué" (0)
+    $form['status']['#default_value'] = 0;
+    // Pour s'assurer que le bouton radio "bloqué" soit sélectionné
+    if (isset($form['status']['#options'])) {
+      $form['status']['#default_value'] = 0;
+    } elseif (isset($form['account']['status'])) {
+      $form['account']['status']['#default_value'] = 0;
+    }
+    
+    // Définir le rôle exportateur comme sélectionné par défaut
+    if (isset($form['roles'])) {
+      // S'assurer que le rôle exportateur existe
+      if (isset($form['roles']['#options']['exportateur'])) {
+        $form['roles']['#default_value']['exportateur'] = 'exportateur';
+      }
+    } elseif (isset($form['account']['roles'])) {
+      if (isset($form['account']['roles']['#options']['exportateur'])) {
+        $form['account']['roles']['#default_value']['exportateur'] = 'exportateur';
+      }
+    }
+  }
+}
+
