@@ -1,0 +1,108 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function cepex_rct_create_entity_insert(EntityInterface $entity) {
+  \Drupal::logger('cepex_rct_create')->notice('Hook entity_insert appelé pour l\'entité de type: @type', [
+    '@type' => $entity->getEntityTypeId(),
+  ]);
+
+  if ($entity instanceof NodeInterface) {
+    \Drupal::logger('cepex_rct_create')->notice('Entité est un nœud de type: @type', [
+      '@type' => $entity->getType(),
+    ]);
+
+    if ($entity->getType() == 'rct') {
+      \Drupal::logger('cepex_rct_create')->notice('Nœud de type rct détecté, ID: @id', [
+        '@id' => $entity->id(),
+      ]);
+
+      if ($entity->hasField('field_mail_pays_etranger') && $entity->hasField('field_adress_test')) {
+        $email = $entity->get('field_mail_pays_etranger')->value;
+        $username = $entity->get('field_adress_test')->value;
+
+        \Drupal::logger('cepex_rct_create')->notice('Valeurs extraites - Email: @email, Matricule: @username', [
+          '@email' => $email ?? 'NULL',
+          '@username' => $username ?? 'NULL',
+        ]);
+
+        if (empty($email) || empty($username)) {
+          \Drupal::logger('cepex_rct_create')->error('Email ou username manquant');
+          return;
+        }
+
+        $password = bin2hex(random_bytes(8));
+
+        $existing_users = \Drupal::entityTypeManager()
+          ->getStorage('user')
+          ->loadByProperties(['mail' => $email]);
+
+        if (empty($existing_users)) {
+          try {
+            \Drupal::logger('cepex_rct_create')->notice('Tentative de création d\'utilisateur avec email: @email', [
+              '@email' => $email,
+            ]);
+
+            $user = User::create([
+              'name' => $username,
+              'mail' => $email,
+              'pass' => $password,
+              'status' => 1, // L'utilisateur est créé actif par défaut
+            ]);
+
+            $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+            $roles = $role_storage->loadMultiple();
+
+            if (isset($roles['rct'])) {
+              $user->addRole('rct');
+              \Drupal::logger('cepex_rct_create')->notice('Rôle rct ajouté');
+            } else {
+              \Drupal::logger('cepex_rct_create')->error('Le rôle rct n\'existe pas dans le système');
+            }
+
+            if ($user->hasField('field_password')) {
+              $user->set('field_password', $password);
+              \Drupal::logger('cepex_rct_create')->notice('Champ password défini');
+            } else {
+              \Drupal::logger('cepex_rct_create')->notice('Le champ field_password n\'existe pas sur l\'entité utilisateur');
+            }
+
+            $result = $user->save();
+            $entity->setOwnerId($user->id());
+            $entity->save();
+            \Drupal::logger('cepex_rct_create')->notice('Utilisateur sauvegardé avec résultat: @result', [
+              '@result' => $result,
+            ]);
+
+            \Drupal::messenger()->addMessage(t('Un nouvel utilisateur rct a été créé avec le nom d\'utilisateur : @username.', ['@username' => $username]));
+
+            \Drupal::logger('cepex_rct_create')->notice('Nouvel utilisateur rct créé: @user', [
+              '@user' => $username,
+            ]);
+          }
+          catch (\Exception $e) {
+            \Drupal::logger('cepex_rct_create')->error('Erreur lors de la création de l\'utilisateur rct: @error', [
+              '@error' => $e->getMessage(),
+            ]);
+
+            \Drupal::messenger()->addError(t('Erreur lors de la création de l\'utilisateur: @error', [
+              '@error' => $e->getMessage(),
+            ]));
+          }
+        } else {
+          \Drupal::logger('cepex_rct_create')->warning('Un utilisateur avec l\'email @email existe déjà.', [
+            '@email' => $email,
+          ]);
+          \Drupal::messenger()->addWarning(t('Un utilisateur avec l\'email @email existe déjà.', ['@email' => $email]));
+        }
+      } else {
+        \Drupal::logger('cepex_rct_create')->error('Champs requis non trouvés sur l\'entité rct');
+      }
+    }
+  }
+}

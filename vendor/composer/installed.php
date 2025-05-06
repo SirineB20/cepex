@@ -3,7 +3,7 @@
         'name' => 'drupal/legacy-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7b7f18abf5eddf6c8ce2a9080c1657e0a9426445',
+        'reference' => '02f53ff03e6bc8338a8a38922a182b05bda61354',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -424,6 +424,15 @@
                 0 => '11.1.5',
             ),
         ),
+        'drupal/country' => array(
+            'pretty_version' => '2.1.1',
+            'version' => '2.1.1.0',
+            'reference' => '2.1.1',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/country',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/csv_importer' => array(
             'pretty_version' => '2.0.0',
             'version' => '2.0.0.0',
@@ -508,7 +517,7 @@
         'drupal/legacy-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7b7f18abf5eddf6c8ce2a9080c1657e0a9426445',
+            'reference' => '02f53ff03e6bc8338a8a38922a182b05bda61354',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
