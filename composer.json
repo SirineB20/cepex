@@ -29,6 +29,8 @@
         "drupal/entity_model": "^3.2",
         "drupal/entity_reference_revisions": "^1.12",
         "drupal/field_group": "^4.0",
+        "drupal/field_permissions": "^1.4",
+        "drupal/geofield": "^1.64",
         "drupal/jquery_ui": "^1.7",
         "drupal/paragraphs": "^1.18",
         "drupal/profile": "^1.11",

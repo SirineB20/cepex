@@ -111,8 +111,8 @@ function cepex_preprocess_views_exposed_form(&$variables) {
       $variables['form']['title']['#attributes']['class'][] = 'search-input-styled';
     }
   }
-  // Cibler le formulaire exposé "gestion-exportateurs-par-homme-secteur"
-  elseif ($form_id == 'views-exposed-form-gestion-exportateurs-par-homme-secteur-page-1') {
+  // Cibler le formulaire exposé "gestion-exportateurs"
+  elseif ($form_id == 'views-exposed-form-gestion-exportateurs-page-1') {
     _cepex_apply_common_form_styles($variables, $form_id);
     
     // Améliorer le champ Matricule fiscale
@@ -157,8 +157,8 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
     _cepex_setup_filter_form($form);
   }
-  // Formulaire pour gestion-exportateurs-par-homme-secteur
-  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-exportateurs-par-homme-secteur-page-1') {
+  // Formulaire pour gestion-exportateurs
+  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-exportateurs-page-1') {
     _cepex_setup_filter_form_exportateurs($form);
   }
    elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-les-produits-de-l-exportateur') {
@@ -278,7 +278,7 @@ function cepex_theme_suggestions_form_alter(array &$suggestions, array $variable
         $suggestions[] = 'form__marketplace_filters';
         $suggestions[] = 'form__gestion_produit_marketplace';
       }
-      elseif ($id == 'views-exposed-form-gestion-exportateurs-par-homme-secteur-page-1') {
+      elseif ($id == 'views-exposed-form-gestion-exportateurs-page-1') {
         $suggestions[] = 'form__exportateurs_filters';
         $suggestions[] = 'form__gestion_exportateurs_marketplace';
       }
@@ -326,7 +326,7 @@ function cepex_theme_suggestions_input_alter(array &$suggestions, array $variabl
     // Pour les boutons de soumission de formulaire
     if (in_array($variables['element']['#id'], [
       'edit-submit-gestion-produit-par-exportateur',
-      'edit-submit-gestion-exportateurs-par-homme-secteur',
+      'edit-submit-gestion-exportateurs',
       'edit-submit-les-produits-de-l-exportateur'
     ])) {
       $suggestions[] = 'input__search_submit';
@@ -367,10 +367,10 @@ function cepex_theme_suggestions_views_view_alter(array &$suggestions, array $va
   $view = $variables['view'];
   
   // Suggestions pour la vue gestion_exportateurs_par_homme_secteur
-  if ($view->id() == 'gestion_exportateurs_par_homme_secteur' && $view->current_display == 'page_1') {
+  if ($view->id() == 'gestion_exportateurs' && $view->current_display == 'page_1') {
     $suggestions[] = 'views_view__' . $view->id();
     $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
-    $suggestions[] = 'views_view__exportateurs_par_homme_secteur';
+    $suggestions[] = 'views_view__exportateurs';
     
     // Ajouter des suggestions basées sur les arguments de la vue
     if (!empty($view->args)) {

@@ -28,12 +28,18 @@
           {{ content.field_presentation }}
         </div>
     
-      <div class="flexbox-bouton-marketplace">
-        <a class="btn-cepex btnentreprise" href="{{ url }}">Voir plus</a>
-        
-          <a class="btn-cepex btnentreprise" href="#">Marketplace</a>
-        
-      </div>
-    </div>
-  </div>
+<div class="flexbox-bouton-marketplace">
+  <a class="btn-cepex btnentreprise" href="{{ url }}">Voir plus</a>
+  
+  {# Afficher le bouton Marketplace uniquement si field_market_place est coché #}
+  {% if node.field_market_place.value %}
+    {# Récupérer le matricule fiscal de l'exportateur #}
+    {% set matricule_fiscal = node.field_matricul_fiscale.value %}
+    {# Construire l'URL de redirection #}
+    {% set marketplace_url = base_path ~ '/fr/market-place?type=profile_exportateur&matricul_fiscale_value=' ~ matricule_fiscal ~ '&secteur=All&field_certifications_target_id=All' %}
+    {# Afficher le bouton avec l'URL personnalisée #}
+    <a href="{{ marketplace_url }}" class="btn-cepex btnentreprise">{{ 'Marketplace'|t }}</a>
+  {% endif %}
+</div>
+</div>
 </div>

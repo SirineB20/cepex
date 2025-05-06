@@ -20,6 +20,7 @@
     border: 0;
     padding: 10px 15px !important;
     border-radius: 15px;
+    width: 100%;
 }
 
 .boxfiltre-guide select {
