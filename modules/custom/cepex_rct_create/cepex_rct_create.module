@@ -22,17 +22,43 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
         '@id' => $entity->id(),
       ]);
 
-      if ($entity->hasField('field_mail_pays_etranger') && $entity->hasField('field_adress_test')) {
-        $email = $entity->get('field_mail_pays_etranger')->value;
-        $username = $entity->get('field_adress_test')->value;
+      // Vérifier correctement si les champs existent et ont des valeurs
+      if ($entity->hasField('field_mail_pays_etranger') && 
+          $entity->hasField('field_adress_test') && 
+          $entity->hasField('field_pays')) {
+        
+        // Extraire les valeurs en s'assurant qu'elles ne sont pas vides
+        $email = !$entity->get('field_mail_pays_etranger')->isEmpty() 
+          ? $entity->get('field_mail_pays_etranger')->value 
+          : null;
+        
+        $username = !$entity->get('field_adress_test')->isEmpty() 
+          ? $entity->get('field_adress_test')->value 
+          : null;
+        
+        $pays = !$entity->get('field_pays')->isEmpty() 
+          ? $entity->get('field_pays')->value 
+          : null;
 
-        \Drupal::logger('cepex_rct_create')->notice('Valeurs extraites - Email: @email, Matricule: @username', [
+        \Drupal::logger('cepex_rct_create')->notice('Valeurs extraites - Email: @email, Matricule: @username, Pays: @pays', [
           '@email' => $email ?? 'NULL',
           '@username' => $username ?? 'NULL',
+          '@pays' => $pays ?? 'NULL',
         ]);
 
-        if (empty($email) || empty($username)) {
-          \Drupal::logger('cepex_rct_create')->error('Email ou username manquant');
+        // Vérifier si les valeurs nécessaires sont présentes
+        if (empty($email)) {
+          \Drupal::logger('cepex_rct_create')->error('Email manquant');
+          return;
+        }
+        
+        if (empty($username)) {
+          \Drupal::logger('cepex_rct_create')->error('Username manquant');
+          return;
+        }
+        
+        if (empty($pays)) {
+          \Drupal::logger('cepex_rct_create')->error('Pays manquant');
           return;
         }
 
@@ -52,7 +78,8 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
               'name' => $username,
               'mail' => $email,
               'pass' => $password,
-              'status' => 1, // L'utilisateur est créé actif par défaut
+              'status' => 1,
+              'field_pays' => $pays,
             ]);
 
             $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
@@ -73,8 +100,11 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
             }
 
             $result = $user->save();
+            
+            // Set the created user as the node owner
             $entity->setOwnerId($user->id());
             $entity->save();
+            
             \Drupal::logger('cepex_rct_create')->notice('Utilisateur sauvegardé avec résultat: @result', [
               '@result' => $result,
             ]);
@@ -99,7 +129,16 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
             '@email' => $email,
           ]);
           \Drupal::messenger()->addWarning(t('Un utilisateur avec l\'email @email existe déjà.', ['@email' => $email]));
+          
+          // Even if the user exists, set them as the node owner
+          $existing_user = reset($existing_users);
+          $entity->setOwnerId($existing_user->id());
+          $entity->save();
+          \Drupal::logger('cepex_rct_create')->notice('Nœud associé à l\'utilisateur existant: @user', [
+            '@user' => $existing_user->getAccountName(),
+          ]);
         }
+        
       } else {
         \Drupal::logger('cepex_rct_create')->error('Champs requis non trouvés sur l\'entité rct');
       }
