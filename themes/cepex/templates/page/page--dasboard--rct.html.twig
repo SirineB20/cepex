@@ -71,28 +71,19 @@
         <div class="sidebar-wrapper">
             <ul class="menu">
              <img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
-
-             {# Code de débogage pour afficher tous les champs disponibles #}
-{# Solution 1: Vérifier si le pays est stocké dans l'entité du profil RCT #}
-{% set current_user = user %}
-{% set user_id = current_user.id %}
-{% set pays_code = '' %}
-{% if current_user.field_pays is not empty %}
-  {% set pays_code = user.field_pays.entity.value %}
-{% endif %}
-
             {# Vos liens de menu avec toutes les informations #}
             <li>
-            <a href="/fr/node/{{ nid }}">
-                <i class="fa-solid fa-id-card"></i>
-                Profile RCT
-            </a>
+                <a href="/fr/node/{{ rct_node_id }}">
+                    <i class="fa-solid fa-id-card"></i>
+                    Contenu RCT
+                </a>
             </li>
+
 
             <li>
             <a href="http://localhost:8087/fr/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}">
                 <i class="fa-solid fa-box-open"></i>
-                Opportunités d'affaires {{ dump(current_user.field_pays) }}
+                Opportunités d'affaires
             </a>
             </li>
                 <li>
@@ -124,19 +115,40 @@
                         <i class="fa-regular fa-bell"></i>
                     </a>
                 </li>
-                  <li class="user-profile">
-                    <i class="fa-regular fa-user"></i>
-                    <span class="user-info"></span>
-                  </a>
+                {% if user_roles is defined and 'rct' in user_roles %}
+                   <li class="user-profile">
+                    <a href="/fr/node/{{ rct_node_id }}">
+                      <i class="fa-regular fa-user"></i>
+                        <span class="user-info">{{ entreprise_name }}</span>
+                    </a>
+                  </li>
+                  {% endif %}
             </ul>
         </nav>
-      
+         <div class="titre-form edit-form">
+            <div class="left">
+          
+              <h3 class="red"><span> dasboard du répresentant d'Opportunité</span></h3>
+             
+              
+            </div>
          {{ page.content }}
     </div>
 </div>
     </div>
   </div>
 </main>
+{% if pager is defined and pager %}
+    <nav aria-label="Page navigation" class="paginator-guide">
+      {{ pager }}
+    </nav>
+  {% endif %}
+{% if footer %}
+  <div class="view-footer">
+    {{ footer }}
+  </div>
+{% endif %}
+
 <footer class="footer site-footer">
   <div class="footer-wrapper d-flex justify-content-between container">
     {% if page.footer_left %}

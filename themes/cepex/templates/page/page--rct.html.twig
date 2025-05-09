@@ -43,114 +43,139 @@
  */
 #}
 {% if page.header %}
-<header>
-  <div class="headder-cepex">
-    <div class="logo">
-      {{ page.header }}
-    </div>
-    <div class="flex-header-top-bottom">
-      <div class="header-top">
-      <div class="box-sociaux-header">
-      {{ page.header_top }}
-      </div>
-      </div>
-      <div class="header-bottom">
-        {{ page.header_bottom }}
-      </div>
-    </div>
-  </div>
-</header>
+	<header>
+		<div class="headder-cepex">
+			<div class="logo">
+				{{ page.header }}
+			</div>
+			<div class="flex-header-top-bottom">
+				<div class="header-top">
+					<div class="box-sociaux-header">
+						{{ page.header_top }}
+					</div>
+				</div>
+				<div class="header-bottom">
+					{{ page.header_bottom }}
+				</div>
+			</div>
+		</div>
+	</header>
 {% endif %}
 
 <main role="main">
-  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-  <div class="row g-0">
-    <div class="order-1 order-lg-2 {{ content_classes }}">
-      <div class="d-flex">
-    <div class="sidebar">
-        <div class="sidebar-wrapper">
-            <ul class="menu">
-             <img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
+	<a id="main-content" tabindex="-1"></a>
+	{# link is in html.html.twig #}
+	<div class="row g-0">
+		<div class="order-1 order-lg-2 {{ content_classes }}">
+			<div class="d-flex">
+				<div class="sidebar">
+					<div class="sidebar-wrapper">
+						<ul class="menu">
+							<img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
 
-                <li>
-                    <a href="{{ path('entity.user.canonical', {'user': user_id}) }}/profile_exportateur">
-                        <i class="fa-regular fa-user"></i>
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="http://localhost:8087/fr/dasboard/rct/opportunites-daffaires">
-                        <i class="fa-solid fa-box-open"></i>
-                        Opportunités
-                    </a>
-                </li>
-                <li>
-                    <a href="http://localhost:8087/fr/rct/liste-exportateurs">
-                        <i class="fa-solid fa-box-open"></i>
-                        Liste d'exportateurs
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('user.logout') }}" class="logout-link">
-                        <i class="fa-solid fa-circle-arrow-left"></i>
-                        se déconnecter
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="content">
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-house"></i>
-                        Accueil
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-regular fa-bell"></i>
-                    </a>
-                </li>
-                  <li class="user-profile">
-                    <i class="fa-regular fa-user"></i>
-                    <span class="user-info"></span>
-                  </a>
-            </ul>
-        </nav>
-      
-         {{ page.content }}
-    </div>
-</div>
-    </div>
-  </div>
-</main>
-<footer class="footer site-footer">
-  <div class="footer-wrapper d-flex justify-content-between container">
-    {% if page.footer_left %}
-      <div class="footer-block col-md-5 col-sm-12 col-12">
-        {{ page.footer_left }}
-      </div>
-    {% endif %}
+							<li>
+								<a href="/fr/node/{{ rct_node_id }}">
+									<i class="fa-solid fa-id-card"></i>
+									Profile RCT
+								</a>
+							</li>
 
-    {% if page.footer_middle %}
-      <div class="footer-block col-md-4 col-sm-12 col-12">
-        {{ page.footer_middle }}
-      </div>
-    {% endif %}
+							<li>
+								<a href="http://localhost:8087/fr/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}">
+									<i class="fa-solid fa-box-open"></i>
+									Opportunités d'affaires
+								</a>
+							</li>
+							<li>
+								<a href="http://localhost:8087/fr/rct/liste-exportateurs">
+									<i class="fa-solid fa-box-open"></i>
+									Liste d'exportateurs
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('user.logout') }}" class="logout-link">
+									<i class="fa-solid fa-circle-arrow-left"></i>
+									se déconnecter
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="content">
+					<nav class="navbar">
+						<ul>
+							<li>
+								<a href="#">
+									<i class="fa-solid fa-house"></i>
+									Accueil
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa-regular fa-bell"></i>
+								</a>
+							</li>
+							{% if user_roles is defined and 'rct' in user_roles %}
+								<li class="user-profile">
+									<a href="/fr/node/{{ rct_node_id }}">
+										<i class="fa-regular fa-user"></i>
+										<span class="user-info">{{ entreprise_name }}</span>
+									</a>
+								</li>
+							{% endif %}
+						</ul>
+					</nav>
+					<div class="titre-form edit-form">
+						<div class="left">
 
-    {% if page.footer_right %}
-      <div class="footer-block col-md-3 col-sm-12 col-12">
-        {{ page.footer_right }}
-      </div>
-    {% endif %}
-  </div>
-  
-  {% if page.footer %}
-    <div class="footer-block copyright">
-      {{ page.footer }}
-    </div>
-  {% endif %}
-</footer>
+							<h3 class="red">
+								<span>
+									dasboard du répresentant d'Opportunité</span>
+							</h3>
 
+
+						</div>
+						{{ page.content }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	{% if pager is defined and pager %}
+		<nav aria-label="Page navigation" class="paginator-guide">
+			{{ pager }}
+		</nav>
+	{% endif %}
+	{% if footer %}
+		<div class="view-footer">
+			{{ footer }}
+		</div>
+	{% endif %}
+
+	<footer class="footer site-footer">
+		<div class="footer-wrapper d-flex justify-content-between container">
+			{% if page.footer_left %}
+				<div class="footer-block col-md-5 col-sm-12 col-12">
+					{{ page.footer_left }}
+				</div>
+			{% endif %}
+
+			{% if page.footer_middle %}
+				<div class="footer-block col-md-4 col-sm-12 col-12">
+					{{ page.footer_middle }}
+				</div>
+			{% endif %}
+
+			{% if page.footer_right %}
+				<div class="footer-block col-md-3 col-sm-12 col-12">
+					{{ page.footer_right }}
+				</div>
+			{% endif %}
+		</div>
+
+		{% if page.footer %}
+			<div class="footer-block copyright">
+				{{ page.footer }}
+			</div>
+		{% endif %}
+	</footer>

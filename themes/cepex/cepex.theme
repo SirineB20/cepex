@@ -18,6 +18,10 @@ function cepex_preprocess_html(array &$variables): void {
  */
 function cepex_preprocess_page(array &$variables): void {
   // Obtenir l'utilisateur actuel
+   // Initialiser la variable nid comme vide par défaut
+  $variables['nid'] = NULL;
+  
+  // Obtenir l'utilisateur actuel
   $current_user = \Drupal::currentUser();
   
   // Vérifier si l'utilisateur est connecté (ID > 0)
@@ -30,6 +34,7 @@ function cepex_preprocess_page(array &$variables): void {
     $variables['user_name'] = $user->getDisplayName();
     $variables['user_id'] = $user->id();
     $variables['user_roles'] = $user->getRoles();
+    
     
     // Charger le profil exportateur associé à cet utilisateur
     $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
@@ -70,12 +75,52 @@ function cepex_preprocess_page(array &$variables): void {
         }
       }
     }
-  }
-  else {
+    
+    // Ajouter l'ID du pays pour le RCT connecté
+    if (in_array('rct', $user->getRoles())) {
+      // Vérifier si l'information est stockée directement dans le profil utilisateur
+      if ($user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
+        // Option 1: Si c'est une référence d'entité standard
+        $variables['pays_code'] = $user->get('field_pays')->target_id;
+        
+        // Option 2: Si c'est un champ country avec valeur directe
+        if ($user->get('field_pays')->value) {
+          $variables['pays_code'] = $user->get('field_pays')->value;
+        }
+      }
+      // Sinon, chercher dans le contenu de type "rct"
+      else {
+        // Rechercher le contenu RCT associé à cet utilisateur
+       // Rechercher le contenu RCT associé
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'rct')
+        ->condition('uid', $current_user->id())
+        ->accessCheck(FALSE)
+        ->range(0, 1);
+      
+      $nids = $query->execute();
+      
+      if (!empty($nids)) {
+        $nid = reset($nids);
+        $variables['rct_node_id'] = $nid;
+          // Charger le nœud RCT
+          $node = \Drupal\node\Entity\Node::load($nid);
+          
+          if ($node && $node->hasField('field_pays') && !$node->get('field_pays')->isEmpty()) {
+            // Option 2: Si c'est un champ country avec valeur directe
+            if ($node->get('field_pays')->value) {
+              $variables['pays_code'] = $node->get('field_pays')->value;
+            }
+          }
+        }
+      }
+    }
+  } else {
     // Si l'utilisateur n'est pas connecté
     $variables['user_logged_in'] = FALSE;
   }
 }
+
 /**
  * Helper function to apply common form styles.
  */

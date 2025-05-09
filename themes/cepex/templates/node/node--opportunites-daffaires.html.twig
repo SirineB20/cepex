@@ -1,0 +1,88 @@
+
+
+{#
+/**
+ * @file
+ * Default theme implementation to display a product node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - label: The title of the node.
+ * - content: All node items.
+ * - author_picture: The node author user entity.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: Same as attributes, for the main title tag.
+ * - content_attributes: Same as attributes, for the main content tag.
+ * - author_attributes: Same as attributes, for the author tag.
+ * - title_prefix: Additional output populated by modules, before the title.
+ * - title_suffix: Additional output populated by modules, after the title.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - page: Flag for the full page state.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
+<section class="detailsprod-marketplace">
+  {# Bouton pour retourner à la page de gestion des produits #}
+  
+
+  <div class="container container-interne">
+    <div class="flexbox-details-marketplace">
+     
+      <div class="col-lg-6 col-md-12 col-sm-12 col-12 boxdetails-marketplace"style="
+    width: 100%;
+">
+        <div class="bgdetails-maretplace"style="text-align: center;">
+          <span class="titleprod-details" style="margin-bottom: 21px";>{{ label }}</span>
+           <div class="boxdate-act" style="margin-right: 10px;display: flex">
+            <i class="fa-solid fa-location-dot"></i><span class="date-act">{{ content.field_lieux }}</span>
+          </div>
+           {% if content.field_date_opportunitie %}
+          <div class="boxadr-act"  style="margin-left: 10px;display: flex">
+            <i class="fas fa-map"></i><span class="date-act">{{ content.field_date_opportunitie }}</span>
+          </div>
+        {% endif %}
+         
+
+        </div>
+      </div>
+    </div>
+    
+    
+        
+<div class="tab-content tab-details-marketplace" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+          <span class="titre-tab">Présentation d'Opportunité</span>
+          
+            <span class="details-sub-details">{{ content.field_presentation_opportunitie }}</span>
+          
+        </div>
+      </div>
+         
+        </div>
+      
+
+      {# Catégories de produits #}
+      {% if content.field_secteur_opportunitie %}
+        <div class="categories-company">
+          <span class="titre-category-company">Catégories de l'Opportunité</span>
+          <div class="flexbox-categ-company">
+            <span>{{ content.field_secteur_opportunitie }}</span>
+          </div>
+        </div>
+      {% endif %}
+    
+    {# Bouton flottant pour accéder à la page de gestion des produits #}
+    <div class="floating-action-button">
+      <a href="http://localhost:8087/fr/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}" title="Retourner à la page de gestion des opportunités" class="btn-fab">
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
