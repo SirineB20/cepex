@@ -1480,6 +1480,8 @@ input#edit-type-contenu-2, input#edit-type-contenu-1 {
     height: 100%;
     color: white;
     text-decoration: none;
+    background: #cb043d;
+    border-radius: 50%;
   }
   
   .floating-action-button:hover {

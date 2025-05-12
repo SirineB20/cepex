@@ -194,6 +194,22 @@ function cepex_preprocess_views_exposed_form(&$variables) {
   }
 }
 
+
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function cepex_suggestions_views_view_alter(array &$suggestions, array $variables) {
+  // Get the View object.
+  $view = $variables['view'];
+  // Check if the View's ID is 'les_opportunites_d_affaires'.
+  if ($view->id() == 'les_opportunites_d_affaires') {
+    // Add a template suggestion: views-view--les-opportunites-d-affaires.
+    $suggestions[] = 'views_view__' . $view->id();
+    // Optionally, add a suggestion for the specific display (e.g., page_1).
+    $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
+  }
+}
+
 /**
  * Implements hook_form_alter().
  */

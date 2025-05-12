@@ -205,6 +205,24 @@
   color: #555;
   font-size: 14px;
 }
+.form-select{
+  -moz-appearance: none;
+    appearance: none;
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 15px;
+    height: 50px;
+    padding: 10px 20px;
+    padding-right: 40px;
+    transition: all 0.3s ease;
+    width: 450px;
+    margin-top: 0;
+    margin-right: 25px;
+}
 
 /* Text input styling - expanded to include all text inputs */
 input#edit-title,
@@ -246,6 +264,23 @@ input#edit-field-presentation-opportunitie-wrapper:focus {
   border-color: #cd0b47;
   box-shadow: 0 0 0 2px rgba(205, 11, 71, 0.1);
   outline: none;
+}
+input#matricul_fiscale_market{
+      appearance: none;
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 15px;
+    height: 50px;
+    padding: 38px 26px 45px 20px;
+    /* padding-right: 40px; */
+    transition: all 0.3s ease;
+    width: 730px;
+    margin-top: 0;
+    margin-right: 25px;
 }
 
 input#edit-title::placeholder,

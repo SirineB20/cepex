@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for the unformatted row style of the "les_opportunites_d_affaires" View.
+ */
+#}
+{% for row in rows %}
+  <div class="col-md-6 col-sm-12 col-xs-12 box-actualites">
+    <div class="bgwhite-actualite">
+      {{ row.content }}
+    </div>
+  </div>
+{% endfor %}

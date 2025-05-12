@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Theme override for the "les_opportunites_d_affaires" View.
+ */
+#}
+<section class="banner-interne">
+	<div class="container container-interne">
+		<div class="contenu-banner">
+			<div class="box-foprodex" style="width: 100%">
+				<span class="title-interne text-uppercase">Saisissez
+					<span class="colorgris">les Opportunités d'Affaires à l'International</span>
+				</span>
+
+
+				<div class="clearfix text-formatted field field--name-field-description-banniere field--type-text-long field--label-above">
+					<div class="field__item">
+						<p>Vous souhaitez étendre votre activité à l'international ? Découvrez les marchés porteurs et explorez de nouvelles perspectives et développement.</p>
+						<p>Que vous soyez à la recherche d'appels d'offres, de partenariats stratégiques ou d'opportunités d'exportation, nous mettons à votre disposition toutes les informations essentielles pour réussir à l'international. Profitez de cette rubrique pour saisir les occasions qui propulseront votre entreprise sur la scène mondiale.&nbsp;</p>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+
+		<div class="block block-system block-system-breadcrumb-block">
+
+
+			<div class="box-fil-ariane">
+				<nav aria-label="breadcrumb">
+					<h2 id="system-breadcrumb" class="visually-hidden">Fil d'Ariane</h2>
+					<ul>
+						<li>
+							<a href="/">Accueil</a>
+							<i class="fa-solid fa-angle-right"></i>
+						</li>
+						<li>
+							Opportunités D'affaires
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+
+		</div>
+
+
+	</div>
+</section>
+<section class="opportinutes-affaires">
+	<div class="container container-interne">
+		<div class="boxtitle-opportinutes">
+			<span class="title-opportinutes">{{ view.title }}</span>
+			<p>Découvrez de nombreuses opportunités d'affaires classées par pays et par secteur. Cette rubrique vous permet d'identifier les marchés porteurs et les secteurs en croissance, vous aidant ainsi à piloter efficacement votre stratégie export.</p>
+		</div>
+		<div class="boxfiltre-guide boxfiltre-event boxfiltre-opportinutes">
+			<div class="div-filtre">
+				{{ exposed }}
+			</div>
+		</div>
+		<div class="flexbox-actualites flexbox-opportunites">
+
+			{{ rows }}
+		</div>
+		<nav aria-label="Page navigation" class="paginator-guide">
+			{{ pager }}
+		</nav>
+	</div>
+</section>
+ {{ drupal_view('annuaire_des_exportateurs', 'block_1') }}
