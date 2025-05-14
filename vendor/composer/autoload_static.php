@@ -39,6 +39,10 @@ class ComposerStaticInitb34e23b536c00e34f7b4a8d32000c6bf
             'phootwork\\lang\\' => 15,
             'phootwork\\collection\\' => 21,
         ),
+        'l' => 
+        array (
+            'libphonenumber\\' => 15,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -118,6 +122,7 @@ class ComposerStaticInitb34e23b536c00e34f7b4a8d32000c6bf
             'GuzzleHttp\\' => 11,
             'Grasmash\\YamlCli\\' => 17,
             'Grasmash\\Expander\\' => 18,
+            'Giggsey\\Locale\\' => 15,
         ),
         'E' => 
         array (
@@ -172,6 +177,10 @@ class ComposerStaticInitb34e23b536c00e34f7b4a8d32000c6bf
         'phootwork\\collection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phootwork/collection',
+        ),
+        'libphonenumber\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src',
         ),
         'Twig\\' => 
         array (
@@ -399,6 +408,10 @@ class ComposerStaticInitb34e23b536c00e34f7b4a8d32000c6bf
         'Grasmash\\Expander\\' => 
         array (
             0 => __DIR__ . '/..' . '/grasmash/expander/src',
+        ),
+        'Giggsey\\Locale\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/giggsey/locale/src',
         ),
         'Egulias\\EmailValidator\\' => 
         array (

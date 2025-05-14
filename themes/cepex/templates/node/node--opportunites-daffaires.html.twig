@@ -1,78 +1,56 @@
-<section class="banner-interne">
-	<div class="container container-interne">
-		<div class="contenu-banner">
-			<div class="box-foprodex" style="width: 100%">
-				<h1 class="title-interne">
-					Saisissez
-					<span class="color-accent">les Opportunités d'Affaires à l'International</span>
-				</h1>
-				<div class="banner-description">
-					<p>Vous souhaitez étendre votre activité à l'international ? Découvrez les marchés porteurs et explorez de nouvelles perspectives de développement.</p>
-					<p>Que vous soyez à la recherche d'appels d'offres, de partenariats stratégiques ou d'opportunités d'exportation, nous mettons à votre disposition toutes les informations essentielles pour réussir à l'international.</p>
-				</div>
-			</div>
-		</div>
-		<div class="box-fil-ariane">
-			<nav aria-label="breadcrumb">
-				<h2 id="system-breadcrumb" class="visually-hidden">Fil d'Ariane</h2>
-				<ul>
-					<li>
-						<a href="/">Accueil</a>
-						<i class="fa-solid fa-angle-right"></i>
-					</li>
-					<li>
-						Opportunités D'affaires
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</section>
-
 <div class="container event-detail">
-	<div class="icone-container">
-		<div class="date-event">
-			<i class="fa-solid fa-calendar"></i>
-			{{ content.field_date_opportunitie }}
-		</div>
-		<div class="location-event">
-			<i class="fa-solid fa-location-dot"></i>
-			{{ content.field_lieux }}
-		</div>
-	
+  <div class="icone-container">
+    <div class="date-event">
+      <i class="fa-solid fa-calendar"></i>
+      {{ content.field_date_opportunitie }}
+    </div>
+    <div class="location-event">
+      <i class="fa-solid fa-location-dot"></i>
+      {{ content.field_lieux }}
+    </div>
     <div class="type-event" style="display: flex; gap: 10px;">
       <i class="fa-solid fa-briefcase"></i>
       {{ content.field_secteur_opportunitie }}
     </div>
-    	</div>
+  </div>
+  <div class="socials-events">
+    <a href="#" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="#" aria-label="Twitter">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+    <a href="#" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+  </div>
+
+  <div class="img-devent">
+    {% set image_url = content.field_image_oppo.0['#markup'] %}
+    <img src="{{ image_url }}" alt="img opportunité" class="event-detail__header-img">
+  </div>
+
+  <h2 class="devent-titre">{{ label }}</h2>
+  <div class="desc-devent">
+    {{ content.field_presentation_opportunitie }}
+    {{ content.field_description_complete}}
+  </div>
   
+  <!-- Bouton pour répondre à l'opportunité -->
+  <div class="response-button-container">
+    <a href="http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.id }}" class="webclique btn-response">
+      <i class="fa-solid fa-reply"></i> Répondre à cette opportunité
+    </a>
+  </div>
 
-	<div class="socials-events">
-		<a href="#" aria-label="Facebook">
-			<i class="fa-brands fa-facebook-f"></i>
-		</a>
-		<a href="#" aria-label="Twitter">
-			<i class="fa-brands fa-x-twitter"></i>
-		</a>
-		<a href="#" aria-label="LinkedIn">
-			<i class="fa-brands fa-linkedin-in"></i>
-		</a>
-	</div> 
-	<div class="img-devent">
-  {% set image_url = content.field_image_oppo.0['#markup'] %}
-		<img src="{{ image_url }}" alt="img opportunité" class="event-detail__header-img">
-	</div>
-
-	<h2 class="devent-titre">{{ label }}</h2>
-	<div class="desc-devent">
-		{{ content.field_presentation_opportunitie }}
-	</div>
-
-
-	<div class="floating-action-button">
-		<a href="{{ base_path }}fr/dashboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}" class="btn btn-primary btn-fab" title="Retourner à la gestion">
-			<i class="fa-solid fa-arrow-right"></i>
-		</a>
-	</div>
-</div>
+  <div class="floating-action-button">
+  {% if user_roles is defined and 'rct' in user_roles %}
+    <a href="{{ base_path }}fr/dashboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}" class="btn btn-primary btn-fab" title="Retourner à la gestion">
+	{% endif %}
+  {% if user_roles is defined and 'exportateur' in user_roles %}
+	<a href="http://localhost:8087/fr/dashboard/gestion-produits" title="Aller à la gestion des produits">
+{% endif %}
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
 </div>

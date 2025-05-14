@@ -1,0 +1,27 @@
+field.field.*.*.*.third_party.telephone_advanced:
+  type: mapping
+  label: Settings for the Telephone Advanced module
+  mapping:
+    enabled:
+      type: bool
+      label: Enabled
+    default_country:
+      type: string
+      label: Default country
+      nullable: true
+    allowed_countries:
+      type: sequence
+      label: Allowed countries
+      sequence:
+        type: string
+        label: Country
+    allowed_types:
+      type: sequence
+      label: Allowed types
+      sequence:
+        type: int
+        label: Type
+    storage_format:
+      type: bool
+      label: Storage format
+      nullable: true

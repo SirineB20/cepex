@@ -1,0 +1,81 @@
+grumphp:
+  hide_circumvention_tip: true
+  ascii:
+    failed: ~
+    succeeded: ~
+  fixer:
+    enabled: true
+    fix_by_default: false
+  testsuites:
+    git_commit_msg:
+      tasks:
+        - git_commit_message
+    git_pre_commit:
+      tasks:
+        - composer
+        - composer_normalize
+        - git_blacklist
+        - git_branch_name
+        - phpcpd
+        - phpcs
+        - phpmd
+        - yamllint
+  tasks:
+    composer: ~
+    composer_normalize: ~
+    git_blacklist:
+      keywords:
+        - " die\\("
+        - " exit;"
+        - " exit\\("
+        - "\\$_[A-Z_]+\\["
+      regexp_type: E
+      triggered_by:
+        - install
+        - module
+        - php
+    git_branch_name:
+      whitelist:
+        - "#^\\d+(\\.\\d+)?\\.x|feature/(\\d+|[a-z][a-z0-9]*(-[a-z0-9]+)*)$#"
+    git_commit_message:
+      matchers:
+        - "/^(Issue #\\d+(, #\\d+)*( by .+?)?: )?(Add|Change|Fix|Update|Remove|Revert) /"
+    phpcpd:
+      exclude:
+        - tests/
+        - vendor/
+        - "*.api.php"
+        - "*Test.php"
+        - "*TestBase.php"
+        - "*TestCase.php"
+      min_lines: 10
+      triggered_by:
+        - module
+        - php
+    phpcs:
+      report_width: 120
+      ignore_patterns:
+        - vendor/
+        - "*.min.*"
+      triggered_by:
+        - install
+        - module
+        - php
+    phpmd:
+      ruleset:
+        - phpmd.xml
+      exclude:
+        - tests/
+        - vendor/
+        - "*.api.php"
+        - "*Test.php"
+        - "*TestBase.php"
+        - "*TestCase.php"
+      report_format: ansi
+      triggered_by:
+        - install
+        - module
+        - php
+    yamllint:
+      ignore_patterns:
+        - vendor/

@@ -32,7 +32,7 @@
   font-size: 18px;
   color: #5f5f5f;
   font-weight: 500;
-  padding: 33px 27px 27px 21px;
+  
   /* background: #fff; */
   display: block;
   position: relative;
@@ -73,7 +73,7 @@
     font-size: 18px;
     color: #5f5f5f;
     font-weight: 500;
-    padding: 33px 27px 27px 21px;
+    
     display: block;
     position: relative;
     width: 440px;
@@ -85,8 +85,7 @@
     font-size: 18px;
     color: #5f5f5f;
     font-weight: 500;
-    padding: 33px 27px 27px 21px;
-    /* background: #fff; */
+    
     display: block;
     position: relative;
     border-radius: 45px;

@@ -10,17 +10,17 @@
       <span class="title-actualite">
         {{ content.field_nom_d_entreprise }}
       </span>
-      <div class="flexbox-adr-date">
 
-          <div class="boxdate-act" style="margin-right: 10px;display: flex">
-            <i class="fa-solid fa-location-dot"></i><span class="date-act">{{ content.field_gouvernorat }}</span>
+        <div class="flexbox-adr-date">
+          <div class="boxadr-act">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="adr-act">{{ content.field_gouvernorat }}</span>
           </div>
-       
-        {% if content.field_adresse %}
-          <div class="boxadr-act" style="display: flex">
-            <i class="fas fa-map"></i><span class="adr-act">{{ content.field_adresse }}</span>
+          <div class="boxdate-act">
+            <i class="fas fa-map"></i>
+            <span class="date-act">{{ content.field_adresse }}</span>
           </div>
-        {% endif %}
+        </div>
       </div>
       
      
@@ -29,7 +29,7 @@
         </div>
     
 <div class="flexbox-bouton-marketplace">
-  <a class="btn-cepex btnentreprise" href="{{ url }}">Voir plus</a>
+  <a class="btn-cepex btnentreprise" href="{{ url }}">Voir plus<i class="fa-solid fa-arrow-right"></i></a>
   
   {# Afficher le bouton Marketplace uniquement si field_market_place est coché #}
   {% if node.field_market_place.value %}

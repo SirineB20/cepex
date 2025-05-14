@@ -1,18 +1,36 @@
+{# node--opportunites-daffaires--teaser.html.twig #}
 <div class="details-actualite">
-          <span class="title-actualite">{{ label }}</span>
-        </a>
-        <div class="flexbox-adr-date">
-          <div class="boxadr-act">
-            <i class="fa-solid fa-location-dot"></i>
-            <span class="adr-act">{{ content.field_lieux.value }}</span>
-          </div>
-          <div class="boxdate-act">
-            <i class="fa-solid fa-calendar"></i>
-            <span class="date-act">{{ rcontent.field_date_opportunitie.value|date('d-m-Y') }}</span>
-          </div>
-        </div>
-        <p>{{ content.field_presentation_opportunitie.value }}</p>
-  <a href="{{ url }}" class="btn-cepex btnprod" tabindex="0">Voir plus <i class="fa-solid fa-arrow-right"></i></a>
+  <span class="title-actualite">{{ label }}</span>
+  <div class="flexbox-adr-date">
+    <div class="boxadr-act">
+      <i class="fa-solid fa-location-dot"></i>
+      <span class="adr-act">{{ content.field_lieux }}</span>
+    </div>
+    <div class="boxdate-act">
+      <i class="fa-solid fa-calendar"></i>
+      <span class="date-act">{{ content.field_date_opportunitie }}</span>
+    </div>
+  </div>
+  <p>{{ content.field_presentation_opportunitie }}</p>
 
+  {# Popup de connexion pour utilisateurs non exportateurs ou non connectés #}
+  <div id="popup-login" class="popup" style="display: none;">
+    <div class="popup-content">
+      <span class="close">×</span>
+      <p>Vous devez être connecté pour accéder à cette fonctionnalité</p>
+      <a href="/fr/user/login" id="login-redirect-button" class="cepex-connect">Se connecter</a>
+    </div>
+  </div>
 
-      </div>
+  <div class="flexbox-bouton-marketplace">
+    {% if 'exportateur' in user.roles %}
+      <a href="{{ url }}" class="btn-cepex btnprod" tabindex="0">
+        Voir plus <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    {% else %}
+      <a href="javascript:void(0);" class="btn-cepex btnprod" tabindex="0" onclick="document.getElementById('popup-login').style.display='block';">
+        Voir plus <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    {% endif %}
+  </div>
+</div>

@@ -36,7 +36,7 @@
     font-weight: 500;
 }
 .actualites {
-    padding: 70px 0;
+    padding: 60px 0;
 }
 
 .boxtitre-actualite {
@@ -45,108 +45,135 @@
     text-align: center;
 }
 
-.titre-actualite {
-    font-size: 36px;
-    color: #cb043d;
-    display: block;
-    font-weight: 700;
-}
-
+/* Fixed size for box-actualites to ensure uniformity */
 .box-actualites {
     position: relative;
     overflow: hidden;
+    height: 380px; /* Further reduced fixed height for all boxes */
+    margin-bottom: 15px;
 }
 
+/* White background with consistent padding and flex display */
 .bgwhite-actualite {
-    padding: 35px 20px;
+    display: flex;
+    flex-direction: column; /* Changed to column for better content organization */
+    padding: 13px;
     background: #fff;
     position: relative;
     overflow: hidden;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-    margin: 15px;
-    display: flex;
-    flex-wrap: wrap;
+    margin: 8px;
+    height: calc(100% - 16px); /* Fill the parent height minus margin */
 }
 
+/* Image container with fixed height */
 .boximg-actualite {
-    width: 25%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 95px; /* Further reduced fixed height for image section */
 }
 
 .img-actualite {
     max-width: 100%;
-    height: 200px;
+    max-height: 100px;
     display: block;
     object-fit: contain;
 }
 
-.details-actualite {
-    width: 75%;
-    border-left: 1px solid #000;
-    padding-left: 20px;
-}
-
-.flexbox-actualites {
-    position: relative;
-    overflow: hidden;
-    margin: 35px 0 0;
-}
-
-.details-actualite .title-actualite,.card-seminaire .title-actualite {
-    font-size: 22px;
+/* Title styling with ellipsis for overflow */
+.title-actualite {
+    font-size: 26px;
     color: #000;
-    font-weight: 500;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
+/* Flex container for address and date */
 .flexbox-adr-date {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    margin: 15px 0 0;
+    margin: 5px 0;
 }
 
-.boxadr-act i {
-    font-size: 19px;
-    color: #cb033d;
-}
-
-.boxdate-act i {
-    font-size: 19px;
-    color: #cb033d;
-}
-
-.adr-act a{
-    font-size: 16px;
-    color: #000;
-    margin-left: 10px;
-    font-weight: 400;
-}
-
-.date-act {
-    font-size: 16px;
-    color: #000;
-    margin-left: 10px;
-    font-weight: 400;
-}
-
-.boxdate-act {
-    margin-left: 20px;
-}
-
-.details-actualite p {
-    font-size: 16px;
-    color: #000;
-    line-height: 28px;
-    margin: 20px 0 0;
-    text-align: justify;
-}
-
-.boxbtn-actualite {
+.boxadr-act, .boxdate-act {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
+
+.boxadr-act i, .boxdate-act i {
+    font-size: 15px;
+    color: #cb033d;
+}
+
+.adr-act a, .date-act {
+    font-size: 15px;
+    color: #000;
+    margin-left: 5px;
+    font-weight: 500;
+    text-decoration:none;
+}
+
+/* Description with fixed height and ellipsis for overflow */
+.desc-succes-storie {
+    margin: 8px 0;
+    height: 90px; /* Further reduced fixed height */
+    overflow: hidden;
+    position: relative;
+}
+
+.desc-succes-storie div {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit to 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+/* Add a fade effect at the bottom of the description */
+.desc-succes-storie:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(transparent, white);
+}
+
+/* Button container positioned at bottom */
+.flexbox-bouton-marketplace {
+    margin-top: auto; /* Push buttons to the bottom */
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-cepex {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #cb033d;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.btn-cepex:hover {
+    background: #9b0230;
+}
+
+/* Animation effects */
 .box-actualites:before {
     content: "";
     background: #cb033d;
@@ -158,6 +185,7 @@
     z-index: 1;
     transition: 0.5s ease all;
 }
+
 .box-actualites:after {
     content: "";
     background: #cb033d;
@@ -169,6 +197,7 @@
     z-index: 1;
     transition: 0.5s ease all;
 }
+
 .bgwhite-actualite:before {
     content: "";
     background: #cb033d;
@@ -180,6 +209,7 @@
     z-index: 0;
     transition: 0.5s ease all;
 }
+
 .bgwhite-actualite:after {
     content: "";
     background: #cb033d;
@@ -191,17 +221,108 @@
     z-index: 0;
     transition: 0.5s ease all;
 }
+
 .box-actualites:hover:after {
     height: calc(100% - 23px);
 }
+
 .box-actualites:hover:before {
     width: calc(100% - 27px);
 }
+
 .box-actualites:hover .bgwhite-actualite:before {
     width: 100%;
 }
+
 .box-actualites:hover .bgwhite-actualite:after {
     height: 100%;
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
+    .box-actualites {
+        height: auto;
+        min-height: 320px;
+    }
+    
+    .bgwhite-actualite {
+        height: auto;
+    }
+}
+
+/* Grid layout for multiple boxes */
+.row-actualites {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-actualites {
+    width: 33.333%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+    .col-actualites {
+        width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-actualites {
+        width: 100%;
+    }
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
+    .box-actualites {
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .bgwhite-actualite {
+        height: auto;
+    }
+}
+
+/* Grid layout for multiple boxes */
+.row-actualites {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-actualites {
+    width: 33.333%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+    .col-actualites {
+        width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-actualites {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .col-actualites {
+        width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-actualites {
+        width: 100%;
+    }
 }
 .act-flexbox-button {
     display: flex;

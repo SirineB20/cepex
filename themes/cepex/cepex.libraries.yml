@@ -1,3 +1,11 @@
+popup:
+  version: 1.x
+  css:
+    theme:
+      css/popup.css: {}
+  dependencies:
+    - core/drupal
+
 global:
   css:
     theme:
@@ -8,7 +16,7 @@ global:
       css/annuaire.css: {}
       css/bienvenue.css: {}
       css/boxservice.css: {}
-      css/communique.css: {}  
+      css/communique.css: {}
       css/een.css: {}
       css/register-forms.css: {}
       css/ajouterProd.css: {}
@@ -29,6 +37,7 @@ global:
       css/jquery.fancybox.min.css: {}
       css/detail-event.css: {}
       css/opportunities.css: {}
+      css/popup.css: {}
       https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css: { type: external }
       https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css: { type: external }
       https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css: { type: external }
@@ -52,6 +61,7 @@ global:
     js/temoignage.js: {}
     js/marketplace.js: {}
     js/register-form.js: {}
+    js/popup.js: {}
     https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js: { type: external, attributes: { defer: true } }
   dependencies:
     - core/jquery
@@ -60,6 +70,3 @@ global:
     - core/drupalSettings
     - core/jquery.form
     - core/drupal.ajax
-    
-    
-  

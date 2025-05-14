@@ -16,25 +16,20 @@ function cepex_preprocess_html(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
+
 function cepex_preprocess_page(array &$variables): void {
-  // Obtenir l'utilisateur actuel
-   // Initialiser la variable nid comme vide par défaut
-  $variables['nid'] = NULL;
-  
-  // Obtenir l'utilisateur actuel
   $current_user = \Drupal::currentUser();
-  
-  // Vérifier si l'utilisateur est connecté (ID > 0)
+  $variables['nid'] = NULL;
+  // Gestion des utilisateurs connectés
   if ($current_user->id() > 0) {
     // Charger l'objet utilisateur complet pour avoir accès à toutes ses propriétés
     $user = \Drupal\user\Entity\User::load($current_user->id());
-    
+
     // Ajouter les variables de l'utilisateur connecté au tableau $variables
     $variables['user_logged_in'] = TRUE;
     $variables['user_name'] = $user->getDisplayName();
     $variables['user_id'] = $user->id();
     $variables['user_roles'] = $user->getRoles();
-    
     
     // Charger le profil exportateur associé à cet utilisateur
     $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
@@ -91,18 +86,17 @@ function cepex_preprocess_page(array &$variables): void {
       // Sinon, chercher dans le contenu de type "rct"
       else {
         // Rechercher le contenu RCT associé à cet utilisateur
-       // Rechercher le contenu RCT associé
-      $query = \Drupal::entityQuery('node')
-        ->condition('type', 'rct')
-        ->condition('uid', $current_user->id())
-        ->accessCheck(FALSE)
-        ->range(0, 1);
-      
-      $nids = $query->execute();
-      
-      if (!empty($nids)) {
-        $nid = reset($nids);
-        $variables['rct_node_id'] = $nid;
+        $query = \Drupal::entityQuery('node')
+          ->condition('type', 'rct')
+          ->condition('uid', $current_user->id())
+          ->accessCheck(FALSE)
+          ->range(0, 1);
+        
+        $nids = $query->execute();
+        
+        if (!empty($nids)) {
+          $nid = reset($nids);
+          $variables['rct_node_id'] = $nid;
           // Charger le nœud RCT
           $node = \Drupal\node\Entity\Node::load($nid);
           

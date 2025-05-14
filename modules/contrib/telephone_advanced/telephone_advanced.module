@@ -1,0 +1,281 @@
+<?php
+
+/**
+ * @file
+ * Main module file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\telephone_advanced\FieldSettings;
+use Drupal\telephone_advanced\Plugin\Field\FieldType\TelephoneItem;
+use Drupal\telephone_advanced\TelephoneTypes;
+use libphonenumber\PhoneNumberFormat;
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function telephone_advanced_element_info_alter(array &$info) {
+  $info['tel']['#element_validate'][] = 'telephone_advanced_validate_tel';
+}
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function telephone_advanced_field_info_alter(array &$info) {
+  $info['telephone']['class'] = TelephoneItem::class;
+  $info['telephone']['constraints']['TelephoneAdvanced'] = [];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function telephone_advanced_form_field_config_edit_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\Core\Entity\EntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\Core\Field\FieldConfigInterface $field */
+  $field = $form_object->getEntity();
+
+  if ($field->getType() !== 'telephone') {
+    return;
+  }
+
+  /** @var \Drupal\Core\Locale\CountryManagerInterface $country_manager */
+  $country_manager = Drupal::service('country_manager');
+
+  $form['telephone_advanced'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Advanced settings'),
+    '#tree' => TRUE,
+  ];
+
+  $form['telephone_advanced']['enabled'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enabled'),
+    '#default_value' => (int) FieldSettings::isEnabled($field),
+  ];
+
+  $form['telephone_advanced']['settings'] = [
+    '#type' => 'container',
+    '#parents' => ['telephone_advanced'],
+    '#states' => [
+      'invisible' => [
+        ':input[name="telephone_advanced[enabled]"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+
+  $form['telephone_advanced']['settings']['default_country'] = [
+    '#type' => 'select',
+    '#title' => t('Default country'),
+    '#options' => $country_manager->getList(),
+    '#default_value' => FieldSettings::getDefaultCountry($field),
+    '#empty_option' => '- ' . t('None') . ' -',
+  ];
+
+  $form['telephone_advanced']['settings']['allowed_countries'] = [
+    '#type' => 'select',
+    '#title' => t('Allowed countries'),
+    '#options' => $country_manager->getList(),
+    '#multiple' => TRUE,
+    '#default_value' => FieldSettings::getAllowedCountries($field),
+  ];
+
+  $options = [];
+  $ids = TelephoneTypes::getIds();
+  foreach (TelephoneTypes::getLabels() as $type => $label) {
+    $options[$ids[$type]] = $label;
+  }
+
+  $form['telephone_advanced']['settings']['allowed_types'] = [
+    '#type' => 'select',
+    '#title' => t('Allowed types'),
+    '#description' => t("Note that in some regions it's impossible to distinguish between fixed-line and mobile numbers by looking at the telephone number itself."),
+    '#options' => $options,
+    '#multiple' => TRUE,
+    '#default_value' => array_intersect_key(
+      $ids,
+      array_flip(FieldSettings::getAllowedTypes($field))
+    ),
+  ];
+
+  $form['telephone_advanced']['settings']['storage_format'] = [
+    '#type' => 'select',
+    '#title' => t('Storage format'),
+    '#description' => t('Store the telephone number in this format.'),
+    '#options' => [
+      PhoneNumberFormat::NATIONAL => t('National'),
+      PhoneNumberFormat::INTERNATIONAL => t('International'),
+      PhoneNumberFormat::E164 => t('E164'),
+    ],
+    '#default_value' => FieldSettings::getStorageFormat($field),
+    '#empty_option' => '- ' . t('None') . ' -',
+  ];
+
+  $form['#validate'][] = 'telephone_advanced_form_field_config_edit_form_validate';
+  $form['actions']['submit']['#submit'][] = 'telephone_advanced_form_field_config_edit_form_submit';
+}
+
+/**
+ * Form validation handler; Validate the field settings.
+ *
+ * @param array $form
+ *   The complete form structure.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current form state.
+ */
+function telephone_advanced_form_field_config_edit_form_validate(array &$form, FormStateInterface $form_state) {
+  if (!$form_state->getValue(['telephone_advanced', 'enabled'])) {
+    return;
+  }
+
+  $allowed_countries = $form_state->getValue(['telephone_advanced', 'allowed_countries']);
+  $allowed_countries = array_filter($allowed_countries);
+
+  if (!$allowed_countries) {
+    return;
+  }
+
+  $default_country = $form_state->getValue(['telephone_advanced', 'default_country']);
+
+  if ($default_country && !in_array($default_country, $allowed_countries, TRUE)) {
+    $form_state->setErrorByName('telephone_advanced][allowed_countries', t('The default country must also be an allowed country.'));
+  }
+
+  $storage_format = $form_state->getValue(['telephone_advanced', 'storage_format']);
+
+  if ($storage_format == PhoneNumberFormat::NATIONAL && count($allowed_countries) > 1) {
+    $form_state->setErrorByName('telephone_advanced][storage_format', t('The national format cannot be used if more than one country is allowed.'));
+  }
+}
+
+/**
+ * Form submit handler; Save the field settings.
+ *
+ * @param array $form
+ *   The complete form structure.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current form state.
+ */
+function telephone_advanced_form_field_config_edit_form_submit(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\Core\Entity\EntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\Core\Field\FieldConfigInterface $field */
+  $field = $form_object->getEntity();
+
+  $enabled = (bool) $form_state->getValue(['telephone_advanced', 'enabled']);
+
+  $field->setThirdPartySetting('telephone_advanced', 'enabled', $enabled);
+
+  if (!$enabled) {
+    // Unset the module settings.
+    $field->unsetThirdPartySetting('telephone_advanced', 'default_country');
+    $field->unsetThirdPartySetting('telephone_advanced', 'allowed_countries');
+    $field->unsetThirdPartySetting('telephone_advanced', 'allowed_types');
+    $field->unsetThirdPartySetting('telephone_advanced', 'storage_format');
+  }
+  else {
+    // Set the module settings.
+    $default_country = $form_state->getValue(['telephone_advanced', 'default_country']);
+    $field->setThirdPartySetting('telephone_advanced', 'default_country', $default_country ?: NULL);
+
+    $allowed_countries = $form_state->getValue(['telephone_advanced', 'allowed_countries']);
+    $allowed_countries = array_filter($allowed_countries);
+    $allowed_countries = $allowed_countries ? array_values($allowed_countries) : [];
+    $field->setThirdPartySetting('telephone_advanced', 'allowed_countries', $allowed_countries);
+
+    $allowed_types = $form_state->getValue(['telephone_advanced', 'allowed_types']);
+    $allowed_types = array_filter($allowed_types);
+    $allowed_types = $allowed_types ? array_keys(array_intersect(TelephoneTypes::getIds(), $allowed_types)) : [];
+    $field->setThirdPartySetting('telephone_advanced', 'allowed_types', $allowed_types);
+
+    $storage_format = $form_state->getValue(['telephone_advanced', 'storage_format']);
+    $storage_format = $storage_format === '' ? NULL : (int) $storage_format;
+    $field->setThirdPartySetting('telephone_advanced', 'storage_format', $storage_format);
+  }
+
+  $field->save();
+}
+
+/**
+ * Validates the "tel" element.
+ *
+ * @param array $element
+ *   The form element.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function telephone_advanced_validate_tel(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  // Skip if the options aren't specified.
+  if (!isset($element['#telephone_advanced'])) {
+    return;
+  }
+
+  // Skip if there's no value.
+  if (!isset($element['#value']) || $element['#value'] === '') {
+    return;
+  }
+
+  $settings = $element['#telephone_advanced'] + [
+    'default_country' => NULL,
+    'allowed_countries' => [],
+    'allowed_types' => [],
+    'format' => NULL,
+  ];
+
+  /** @var \Drupal\telephone_advanced\TelephoneValidatorInterface $validator */
+  $validator = Drupal::service('telephone_advanced.telephone_validator');
+
+  // Validate the telephone number.
+  if (!$validator->isValid($element['#value'], $settings['default_country'])) {
+    $form_state->setError($element, t('The specified telephone number is not valid.'));
+    return;
+  }
+
+  // Validate the country.
+  if ($settings['allowed_countries'] && !$validator->isFromCountry($element['#value'], $settings['allowed_countries'], $settings['default_country'])) {
+    /** @var \Drupal\Core\Locale\CountryManagerInterface $country_manager */
+    $country_manager = Drupal::service('country_manager');
+    $countries = array_intersect_key($country_manager->getList(), array_flip($settings['allowed_countries']));
+    $countries = implode(', ', $countries);
+
+    if (count($settings['allowed_countries']) === 1) {
+      $form_state->setError($element, t('Only telephone numbers of @country are allowed.', [
+        '@country' => $countries,
+      ]));
+    }
+    else {
+      $form_state->setError($element, t('Only telephone numbers from one of these countries are allowed: @countries.', [
+        '@countries' => $countries,
+      ]));
+    }
+    return;
+  }
+
+  // Validate the type.
+  if ($settings['allowed_types'] && !$validator->isOfType($element['#value'], $settings['allowed_types'], FALSE, $settings['default_country'])) {
+    if (count($settings['allowed_types']) === 1) {
+      $form_state->setError($element, t('Only @type telephone numbers are allowed.', [
+        '@type' => mb_strtolower(TelephoneTypes::getLabel(reset($settings['allowed_types']))),
+      ]));
+    }
+    else {
+      $types = array_intersect_key(TelephoneTypes::getLabels(), array_flip($settings['allowed_types']));
+      $types = mb_strtolower(implode(', ', $types));
+
+      $form_state->setError($element, t('Only following telephone numbers types are allowed: @types.', [
+        '@types' => $types,
+      ]));
+    }
+    return;
+  }
+
+  // Format.
+  if ($settings['format'] !== NULL) {
+    /** @var \Drupal\telephone_advanced\TelephoneFormatterInterface $formatter */
+    $formatter = Drupal::service('telephone_advanced.telephone_formatter');
+    $element['#value'] = $formatter->format($element['#value'], $settings['format'], $settings['default_country']);
+    $form_state->setValueForElement($element, $element['#value']);
+  }
+}

@@ -149,7 +149,7 @@ input#edit-field-date-opportunitie-value{
   .boxfiltre-guide select {
     background: #dfdfdf;
     border: 0;
-    padding: 18px 20px !important;
+    padding: 14px 20px !important;
     border-radius: 15px;
     width:325px
   }
@@ -163,3 +163,58 @@ input#edit-field-date-opportunitie-value{
     padding: 7px 15px;
     border-radius: 15px;
   }
+
+  /* Style pour le bouton de réponse */
+.response-button-container {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.webclique {
+  font-size: 18px;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s ease all;
+  font-weight: 400;
+  align-items: center;
+  border-radius: 45px;
+  padding: 10px 35px;
+  margin: 0 10px;
+  /* Nouvelles propriétés */
+  background: #cd1b4d;
+  color: #fff;
+  border: 1px solid #cd1b4d;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-response {
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.webclique:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+}
+
+.webclique i {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+/* Style responsive */
+@media (max-width: 768px) {
+  .response-button-container {
+    margin: 20px 0;
+  }
+  
+  .webclique {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 15px;
+  }
+}

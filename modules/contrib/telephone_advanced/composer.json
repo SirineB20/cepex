@@ -1,0 +1,47 @@
+{
+    "name": "drupal/telephone_advanced",
+    "description": "Adds validation and formatting to Drupal core's telephone field.",
+    "license": "GPL-2.0+",
+    "type": "drupal-module",
+    "keywords": [
+        "Drupal"
+    ],
+    "authors": [
+        {
+            "name": "Matthijs Van Assche",
+            "email": "matthijs@fanatict.be"
+        }
+    ],
+    "homepage": "https://www.drupal.org/project/telephone_advanced",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/telephone_advanced",
+        "source": "https://git.drupalcode.org/project/telephone_advanced"
+    },
+    "require": {
+        "giggsey/libphonenumber-for-php": "^8.12"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "drupal/coder": "^8.3",
+        "ergebnis/composer-normalize": "^2.26",
+        "irstea/phpcpd-shim": "^6.0",
+        "irstea/phpmd-shim": "^2.12",
+        "phpcompatibility/php-compatibility": "dev-develop",
+        "phpro/grumphp-shim": "^1.12"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
+        }
+    }
+}

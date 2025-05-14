@@ -1,0 +1,9 @@
+services:
+  telephone_advanced.telephone_parser:
+    class: Drupal\telephone_advanced\TelephoneParser
+  telephone_advanced.telephone_validator:
+    class: Drupal\telephone_advanced\TelephoneValidator
+    arguments: ['@telephone_advanced.telephone_parser']
+  telephone_advanced.telephone_formatter:
+    class: Drupal\telephone_advanced\TelephoneFormatter
+    arguments: ['@telephone_advanced.telephone_parser']
