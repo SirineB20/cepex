@@ -12,15 +12,9 @@ dependencies:
     - field.storage.node.field_reference_produit
     - field.storage.node.field_secteur
     - node.type.produits_marketplace
-    - user.role.administrator
-    - user.role.anonymous
-    - user.role.authenticated
-    - user.role.exportateur
-    - user.role.homme_secteur
   module:
     - image
     - node
-    - user
 id: produit
 label: Produit
 module: views
@@ -476,10 +470,9 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: some
+        type: none
         options:
           offset: 0
-          items_per_page: 5
       exposed_form:
         type: basic
         options:
@@ -491,14 +484,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
-        options:
-          role:
-            anonymous: anonymous
-            authenticated: authenticated
-            administrator: administrator
-            exportateur: exportateur
-            homme_secteur: homme_secteur
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -538,7 +525,7 @@ display:
             title: All
           title_enable: false
           title: ''
-          default_argument_type: profile_owner
+          default_argument_type: node
           default_argument_options: {  }
           summary_options:
             base_path: ''
@@ -549,10 +536,10 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: true
+          specify_validation: false
           validate:
             type: none
-            fail: empty
+            fail: 'not found'
           validate_options: {  }
           break_phrase: false
           not: false
@@ -592,7 +579,6 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.roles
       tags:
         - 'config:field.storage.node.field_description_produit'
         - 'config:field.storage.node.field_fabriquant'
@@ -616,7 +602,6 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.roles
       tags:
         - 'config:field.storage.node.field_description_produit'
         - 'config:field.storage.node.field_fabriquant'

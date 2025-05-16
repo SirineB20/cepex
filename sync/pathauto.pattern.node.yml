@@ -1,0 +1,40 @@
+uuid: 2b11fea0-9c66-449e-aaac-a2a776a35539
+langcode: fr
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: node
+label: Node
+type: 'canonical_entities:node'
+pattern: '[node:author:name]/[node:title]'
+selection_criteria:
+  a3a53a32-7d69-4d7c-adec-a56cb7c229d3:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a3a53a32-7d69-4d7c-adec-a56cb7c229d3
+    context_mapping:
+      node: node
+    bundles:
+      actualite: actualite
+      opportunites_daffaires: opportunites_daffaires
+      page_actualite: page_actualite
+      produits_marketplace: produits_marketplace
+      profile_exportateur: profile_exportateur
+      rct: rct
+  34ed096d-319a-4c91-9dca-7b6a750dcf7b:
+    id: language
+    negate: false
+    uuid: 34ed096d-319a-4c91-9dca-7b6a750dcf7b
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+      fr: fr
+      ar: ar
+selection_logic: and
+weight: -5
+relationships:
+  'node:langcode:language':
+    label: Langue

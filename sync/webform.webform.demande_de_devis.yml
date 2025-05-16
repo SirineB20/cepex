@@ -13,40 +13,23 @@ title: 'Demande de devis'
 description: ''
 categories: {  }
 elements: |-
-  prenom:
-    '#type': webform_name
+  contact:
+    '#type': textfield
     '#title': Contact
-    '#title__title': Contact
-    '#title__type': textfield
-    '#first__access': false
-    '#middle__access': false
-    '#last__access': false
-    '#suffix__access': false
-    '#degree__access': false
-  nom:
-    '#type': webform_name
-    '#title': "Nom d'entreprise"
-    '#title__title': "Nom d'entreprise"
-    '#title__required': true
-    '#title__type': textfield
-    '#first__access': false
-    '#middle__access': false
-    '#last__access': false
-    '#suffix__access': false
-    '#degree__access': false
     '#required': true
   nom_de_produit:
-    '#type': webform_name
+    '#type': textfield
     '#title': 'Nom de produit'
-    '#title_display': ''
-    '#title__title': 'Nom de produit'
-    '#title__type': textfield
-    '#first__access': false
-    '#middle__access': false
-    '#last__access': false
-    '#suffix__access': false
-    '#degree__access': false
-    '#required': true
+  telephone:
+    '#type': webform_telephone
+    '#title': Téléphone
+    '#type__access': false
+    '#phone__title': Téléphone
+    '#phone__required': true
+    '#ext__access': false
+  courriel:
+    '#type': email
+    '#title': Courriel
   quantite_requise:
     '#type': number
     '#title': 'Quantité requise'
@@ -61,15 +44,8 @@ elements: |-
     '#title': 'Date de livraison souhaité'
     '#placeholder': jj/mm/aaaa
   description_de_produit:
-    '#type': textfield
-    '#title': 'Description de produit'
-  telephone:
-    '#type': webform_telephone
-    '#title': Téléphone
-    '#type__access': false
-    '#phone__title': Téléphone
-    '#phone__required': true
-    '#ext__access': false
+    '#type': textarea
+    '#title': ' Description de produit'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

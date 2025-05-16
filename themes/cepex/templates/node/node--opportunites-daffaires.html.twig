@@ -38,10 +38,18 @@
   
   <!-- Bouton pour répondre à l'opportunité -->
   <div class="response-button-container">
-    <a href="http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.id }}" class="webclique btn-response">
-      <i class="fa-solid fa-reply"></i> Répondre à cette opportunité
-    </a>
+{% if user.id %}
+  <a href="http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.title.value|url_encode }}&nom_d_entreprise={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}" class="btn-cepex btn-devis">
+    Répondre à cette opportunité<i class="fa-solid fa-arrow-right"></i>
+  </a>
+{% else %}
+  <a href="http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.title.value|url_encode }}" class="btn-cepex btn-devis">
+    Répondre à cette opportunité<i class="fa-solid fa-arrow-right"></i>
+  </a>
+{% endif %}
+
   </div>
+ 
 
   <div class="floating-action-button">
   {% if user_roles is defined and 'rct' in user_roles %}

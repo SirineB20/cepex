@@ -13,24 +13,19 @@ title: 'Formulaire de contact'
 description: ''
 categories: {  }
 elements: |-
+  service:
+    '#type': textfield
+    '#title': Service
+    '#required': true
   nom:
     '#type': webform_name
-    '#title': Nom
+    '#title': 'Nom Complet'
     '#required': true
+    '#title__access': false
     '#title__title': Nom
     '#title__type': textfield
-    '#first__access': false
-    '#middle__access': false
-    '#last__access': false
-    '#suffix__access': false
-    '#degree__access': false
-  prenom:
-    '#type': webform_name
-    '#title': Prénom
-    '#required': true
-    '#title__title': Prénom
-    '#first__access': false
-    '#middle__access': false
+    '#first__title': Nom
+    '#middle__title': Prénom
     '#last__access': false
     '#suffix__access': false
     '#degree__access': false

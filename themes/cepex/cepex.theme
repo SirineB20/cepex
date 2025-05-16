@@ -116,9 +116,6 @@ function cepex_preprocess_page(array &$variables): void {
 }
 use Drupal\Core\Form\FormStateInterface;
 
-
-
-
 /**
  * Helper function to apply common form styles.
  */
@@ -211,10 +208,7 @@ function cepex_suggestions_views_view_alter(array &$suggestions, array $variable
  * Implements hook_form_alter().
  */
 function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form') {
-    // On attache la librairie contenant webform-custom.css
-    $form['#attached']['library'][] = 'cepex/form-contact';
-  }
+
   
   if (strpos($form_id, 'webform_submission_formulaire_de_contact_') === 0) {
     // Obtenez le paramètre service de l'URL
@@ -227,17 +221,164 @@ if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form') {
       }
     }
   }
+  if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form' || strpos($form_id, 'webform_submission_repondre_a_l_opportunite_') === 0) {
+  // Attach the custom CSS library
+  $form['#attached']['library'][] = 'cepex/form-contact';
+  
+  // Get URL parameters
+  $request = \Drupal::request();
+  $parameters = [
+    'nom_d_entreprise' => $request->query->get('nom_d_entreprise'),
+    'email' => $request->query->get('email'),
+    'opportunite_id' => $request->query->get('opportunite_id'),
+  ];
+  
+  // Initialize default values array
+  $default_values = [];
+  
+  // 1. First get connected user data if available
+  $current_user = \Drupal::currentUser();
+  if ($current_user->isAuthenticated()) {
+    $user = \Drupal\user\Entity\User::load($current_user->id());
+    if ($user) {
+      $default_values['nom'] = $user->getDisplayName(); // Nom complet field seen in screenshot
+      $default_values['courriel'] = $user->getEmail(); // Courriel field seen in screenshot
+      
+      // Récupérer le profil exportateur (type de contenu) associé à l'utilisateur
+      try {
+        // Requête pour trouver les noeuds de type "profile_exportateur" liés à l'utilisateur courant
+        $query = \Drupal::entityQuery('node')
+          ->condition('type', 'profile_exportateur')
+          ->condition('uid', $current_user->id())
+          ->accessCheck(TRUE)
+          ->sort('created', 'DESC') // Prendre le plus récent si plusieurs existent
+          ->range(0, 1);
+        
+        $nids = $query->execute();
+        
+        if (!empty($nids)) {
+          $nid = reset($nids);
+          $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+          
+          if ($node && $node->hasField('field_secteur') && !$node->get('field_secteur')->isEmpty()) {
+            // Récupération du champ secteur selon son type
+            $field_secteur = $node->get('field_secteur');
+            
+            // Si c'est une référence à un terme de taxonomie
+            if ($field_secteur->entity) {
+              $default_values['secteur_d_activite'] = $field_secteur->entity->label();
+            }
+            // Si c'est une valeur simple (texte, etc.)
+            else {
+              $value = $field_secteur->getValue();
+              if (isset($value[0]['value'])) {
+                $default_values['secteur_d_activite'] = $value[0]['value'];
+              }
+            }
+            
+            \Drupal::logger('cepex_webform')->notice('Secteur trouvé pour l\'utilisateur: @secteur', [
+              '@secteur' => $default_values['secteur_d_activite'] ?? 'non défini'
+            ]);
+          }
+        } else {
+          \Drupal::logger('cepex_webform')->notice('Aucun nœud de type profile_exportateur trouvé pour l\'utilisateur @uid', [
+            '@uid' => $current_user->id()
+          ]);
+        }
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('cepex_webform')->error('Erreur lors de la récupération du secteur: @error', [
+          '@error' => $e->getMessage()
+        ]);
+      }
+    }
+  }
+  
+  // 2. Then apply URL parameters (they override user data if present)
+  foreach ($parameters as $param_key => $param_value) {
+    if (!empty($param_value)) {
+      $decoded_value = urldecode($param_value);
+      
+      // Map URL parameter names to exact form field keys from screenshot
+      switch ($param_key) {
+        case 'nom_d_entreprise':
+          $default_values['nom_d_entreprise'] = $decoded_value;
+          break;
+        case 'email':
+          $default_values['courriel'] = $decoded_value; // Use 'courriel' as seen in screenshot
+          break;
+        case 'opportunite_id':
+          $default_values['nom_d_opportunite'] = $decoded_value; // Use field key from screenshot
+          break;
+      }
+    }
+  }
+  
+  // Log all parameters for debugging
+  $debug_message = 'Valeurs par défaut à appliquer: ' . print_r($default_values, TRUE);
+  \Drupal::logger('cepex_webform')->notice($debug_message);
+  
+  // No values to set, exit early
+  if (empty($default_values)) {
+    return;
+  }
+  
+  // Apply values using multiple reliable methods
+  
+  // Method 1: Using #default_data for the form
+  $form['#default_data'] = isset($form['#default_data']) 
+    ? array_merge($form['#default_data'], $default_values) 
+    : $default_values;
+  
+  // Method 2: Directly set default values on the elements
+  if (isset($form['elements']) && is_array($form['elements'])) {
+    foreach ($default_values as $field_key => $value) {
+      if (isset($form['elements'][$field_key])) {
+        $form['elements'][$field_key]['#default_value'] = $value;
+        // Also set #value to ensure field is populated
+        $form['elements'][$field_key]['#value'] = $value;
+      }
+    }
+  }
+  
+  // Method 3: Set values directly via form_state storage
+  $storage = $form_state->getStorage();
+  $storage['webform_values'] = $default_values;
+  $form_state->setStorage($storage);
+  
+  // Method 4: Create a webform submission with values
+  $webform = $form_state->getFormObject()->getWebform();
+  if ($webform) {
+    $submission_storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+    $submission = $submission_storage->create([
+      'webform_id' => $webform->id(),
+      'data' => $default_values,
+    ]);
+    $form_state->set('webform_submission', $submission);
+  }
+  
+  // Method 5: Add direct alter hook to ensure fields are populated during rendering
+  $form['#after_build'][] = function($form, $form_state) use ($default_values) {
+    foreach ($default_values as $key => $value) {
+      if (isset($form['elements'][$key]['#default_value'])) {
+        $form['elements'][$key]['#default_value'] = $value;
+        $form['elements'][$key]['#value'] = $value;
+      }
+    }
+    return $form;
+  };
+}
+
   
   if (strpos($form_id, 'webform_submission_demande_de_devis_') === 0) {
     // On attache la librairie contenant webform-custom.css
     $form['#attached']['library'][] = 'cepex/form-contact';
     
+    // Récupérer les paramètres de l'URL
+    $nom_de_produit = \Drupal::request()->query->get('nom_de_produit');
+    
     // Récupérer l'utilisateur connecté
     $current_user = \Drupal::currentUser();
-    
-    // Récupérer les paramètres de l'URL
-    $produit_id = \Drupal::request()->query->get('produit_id');
-    $nom_produit_url = \Drupal::request()->query->get('nom_produit');
     
     // Vérifier si un utilisateur est connecté
     if ($current_user->isAuthenticated()) {
@@ -263,14 +404,126 @@ if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form') {
       }
     }
     
+    // Récupération de la description du produit
+    $description_produit = \Drupal::request()->query->get('description_produit');
+    
+    // Si pas de description dans l'URL mais que le nom du produit est défini, 
+    // chercher le produit et sa description dans la base de données
+    if (!empty($nom_de_produit) && empty($description_produit)) {
+      // Trouver le nœud du produit par son titre
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'produit') // Remplacer par le type de contenu réel du produit
+        ->condition('title', urldecode($nom_de_produit))
+        ->range(0, 1);
+      $nids = $query->execute();
+      
+      // Si un produit est trouvé
+      if (!empty($nids)) {
+        $nid = reset($nids);
+        $node = \Drupal\node\Entity\Node::load($nid);
+        
+        // Si le nœud a le champ field_description_produit
+        if ($node && $node->hasField('field_description_produit') && !$node->get('field_description_produit')->isEmpty()) {
+          $description_produit = $node->get('field_description_produit')->value;
+          \Drupal::messenger()->addMessage('Description du produit récupérée depuis la base de données.');
+        }
+      }
+    }
+    
+    // Remplir le champ description_de_produit avec la description trouvée
+    if (!empty($description_produit)) {
+      $decoded_description = urldecode($description_produit);
+      
+      // Tenter de remplir le champ description_de_produit de différentes manières
+      // Approche 1: directement dans les éléments du formulaire
+      if (isset($form['elements']['description_de_produit'])) {
+        $form['elements']['description_de_produit']['#default_value'] = $decoded_description;
+        $form['elements']['description_de_produit']['#value'] = $decoded_description;
+        
+        // Si c'est un champ textfield ou textarea standard
+        if (isset($form['elements']['description_de_produit']['#type']) && 
+            ($form['elements']['description_de_produit']['#type'] == 'textfield' || 
+             $form['elements']['description_de_produit']['#type'] == 'textarea')) {
+          $form['elements']['description_de_produit']['#attributes']['value'] = $decoded_description;
+        }
+      }
+      
+      
+      // Approche 3: chercher le champ avec #webform_key = description_de_produit
+      foreach ($form as $key => &$element) {
+        if (is_array($element) && isset($element['#webform_key']) && $element['#webform_key'] === 'description_de_produit') {
+          $element['#default_value'] = $decoded_description;
+          $element['#value'] = $decoded_description;
+          \Drupal::messenger()->addMessage('Champ description trouvé et modifié via #webform_key: ' . $key);
+          break;
+        }
+      }
+    }
+    
     // Gérer le champ nom_de_produit indépendamment de la connexion utilisateur
-    if (isset($form['elements']['nom_de_produit'])) {
-      if (!empty($produit_id)) {
-        // Utiliser directement la valeur du titre du produit envoyée via l'URL
-        $form['elements']['nom_de_produit']['#default_value'] = urldecode($produit_id);
+    if (!empty($nom_de_produit)) {
+      // Décode la valeur
+      $decoded_value = urldecode($nom_de_produit);
+      
+      // Approche 1: via le state du formulaire
+      $webform = $form_state->getFormObject()->getWebform();
+      $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+      $values = ['data' => ['nom_de_produit' => $decoded_value]];
+      
+      // Ajouter la description du produit aux valeurs si disponible
+      if (!empty($description_produit)) {
+        $values['data']['description_de_produit'] = urldecode($description_produit);
+      }
+      
+      $submission = $storage->create(['webform_id' => $webform->id(), 'data' => $values['data']]);
+      $form_state->setValues($values);
+      $form_state->set('submission', $submission);
+      
+      // Approche 2: modifier directement les éléments du formulaire
+      if (isset($form['elements']['nom_de_produit'])) {
+        $form['elements']['nom_de_produit']['#default_value'] = $decoded_value;
+        $form['elements']['nom_de_produit']['#value'] = $decoded_value;
+        
+        // Si c'est un champ textfield standard
+        if (isset($form['elements']['nom_de_produit']['#type']) && 
+            ($form['elements']['nom_de_produit']['#type'] == 'textfield' || 
+             $form['elements']['nom_de_produit']['#type'] == 'textarea')) {
+          $form['elements']['nom_de_produit']['#attributes']['value'] = $decoded_value;
+        }
+      }
+      
+     
+    
+      
+      // Approche 5: Chercher le champ avec #webform_key = nom_de_produit
+      foreach ($form as $key => &$element) {
+        if (is_array($element) && isset($element['#webform_key']) && $element['#webform_key'] === 'nom_de_produit') {
+          $element['#default_value'] = $decoded_value;
+          $element['#value'] = $decoded_value;
+          break;
+        }
+      }
+      
+      // Si tout échoue, affichons plus d'informations sur le formulaire
+      if (function_exists('dpm') || function_exists('kint')) {
+        // Si Devel est activé, utilisons ses fonctions pour un meilleur débogage
+        if (function_exists('dpm')) {
+          dpm($form, 'Structure du formulaire');
+          dpm($form_state, 'État du formulaire');
+        } else if (function_exists('kint')) {
+          kint($form);
+          kint($form_state);
+        }
+      } else {
+        // Sinon, affichons au moins des informations basiques
+        $form_keys = array_keys($form);
+        $elements_keys = isset($form['elements']) ? array_keys($form['elements']) : [];
+        \Drupal::messenger()->addMessage('Clés du formulaire: ' . implode(', ', $form_keys));
+        \Drupal::messenger()->addMessage('Clés des éléments: ' . implode(', ', $elements_keys));
       }
     }
   }
+  
   // Formulaire pour gestion-produit-par-exportateur
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
     _cepex_setup_filter_form($form);
@@ -279,13 +532,14 @@ if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form') {
   elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-exportateurs-page-1') {
     _cepex_setup_filter_form_exportateurs($form);
   }
-   elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-les-produits-de-l-exportateur') {
+  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-les-produits-de-l-exportateur') {
     _cepex_setup_filter_form_exportateurs($form);
   }
   elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-market-place-page-1') {
     _cepex_setup_filter_form_exportateurs($form);
   }
 }
+
 
 /**
  * Helper function pour configurer le formulaire de filtres de produits

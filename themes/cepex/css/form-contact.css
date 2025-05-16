@@ -43,7 +43,7 @@
   width: 100%;
   margin-bottom: 1rem;
 }
-#edit-service,#edit-contact,#edit-courriel{
+#edit-service,#edit-contact,#edit-courriel,#edit-nom-d-opportunite,#edit-description-de-produit,#edit-nom-de-produit,#edit-secteur-d-activite,#edit-nom-d-entreprise{
     background-color: #eaeaea;
     color: #878787;
     border: none !important;

@@ -72,11 +72,13 @@
 						Contactez le prestataire
 					</a>
 					{% if user.id %}
-						<a href="http://localhost:8087/fr/form/demande-de-devis?produit_id={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}" class="btn-cepex btn-devis">
+						{% set description_produit = node.field_description_produit.value|default('') %}
+						<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis">
 							Demander un devis<i class="fa-solid fa-arrow-right"></i>
 						</a>
 					{% else %}
-						<a href="http://localhost:8087/fr/form/demande-de-devis?produit_id={{ node.id }}" class="btn-cepex btn-devis">
+						{% set description_produit = node.field_description_produit.value|default('') %}
+						<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis">
 							Demander un devis<i class="fa-solid fa-arrow-right"></i>
 						</a>
 					{% endif %}
