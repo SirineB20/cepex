@@ -1,0 +1,11 @@
+uuid: 615bc7f1-9461-468c-aa98-413b611ba660
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.opportunites_daffaires
+id: node.opportunites_daffaires
+target_entity_type_id: node
+target_bundle: opportunites_daffaires
+default_langcode: site_default
+language_alterable: false

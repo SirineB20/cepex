@@ -9,6 +9,7 @@ popup:
 global:
   css:
     theme:
+      css/form-contact.css: {}
       css/style.css: {}
       css/activities.css: {}
       css/ambassades.css: {}

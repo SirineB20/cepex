@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'produit marketplace'
 type: produits_marketplace
-description: null
+description: 'les produits de marketplace '
 help: null
 new_revision: true
 preview_mode: 1

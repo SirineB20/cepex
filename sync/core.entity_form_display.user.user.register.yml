@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.user.register
     - field.field.user.user.field_password
+    - field.field.user.user.field_pays
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -47,5 +48,6 @@ content:
     third_party_settings: {  }
 hidden:
   field_password: true
+  field_pays: true
   langcode: true
   profile_homme_secteur_profiles: true

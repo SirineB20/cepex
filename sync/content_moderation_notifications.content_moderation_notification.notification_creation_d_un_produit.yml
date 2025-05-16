@@ -1,0 +1,20 @@
+uuid: e94c9aef-3757-49a5-9792-359583d33195
+langcode: fr
+status: true
+dependencies: {  }
+id: notification_creation_d_un_produit
+workflow: etat_produit
+transitions:
+  create_new_draft: create_new_draft
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: "Notification de création d'un produit"
+body:
+  value: '<p>le produit est ajouté</p>'
+  format: basic_html
+label: "Notification création d'un produit"

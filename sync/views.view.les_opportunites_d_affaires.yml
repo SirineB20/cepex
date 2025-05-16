@@ -1,0 +1,450 @@
+uuid: 15fc2ff9-c1f2-4b99-9b26-31f286e3a2bb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.opportunites_daffaires
+    - taxonomy.vocabulary.secteurs
+  content:
+    - 'taxonomy_term:secteurs:1381cb9d-fa00-4bce-9e79-82ea878c9220'
+    - 'taxonomy_term:secteurs:6a5c349f-d823-40b4-8127-f34559a28828'
+    - 'taxonomy_term:secteurs:7118269b-b2b6-484a-8f28-49b4d15a538e'
+    - 'taxonomy_term:secteurs:80282698-b3ae-4351-b0c1-203c495ed338'
+    - 'taxonomy_term:secteurs:9e8d1612-a218-43c6-b48d-369fbd5a8902'
+    - 'taxonomy_term:secteurs:d4238eea-e162-4df3-8b90-b0e998f48a27'
+  module:
+    - better_exposed_filters
+    - country
+    - datetime
+    - node
+    - taxonomy
+    - user
+id: les_opportunites_d_affaires
+label: "Les opportunités d'affaires"
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: "Les opportunités d'affaires"
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
+        options:
+          offset: 0
+          pagination_heading_level: h4
+          items_per_page: 5
+          total_pages: null
+          id: 0
+          tags:
+            next: '>'
+            previous: '<'
+            first: '<<'
+            last: '>>'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Éléments par page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Tout -'
+            offset: false
+            offset_label: Décalage
+          quantity: 5
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Filtrer
+          reset_button: false
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Sélectionner un filtre et cliquer sur Appliquer pour voir les résultats'
+          text_input_required_format: basic_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
+              autosubmit_hide: false
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Options avancées'
+              secondary_open: false
+              reset_button_always_show: false
+            filter:
+              field_date_opportunitie_value:
+                plugin_id: bef_datepicker
+                advanced:
+                  placeholder_text: ''
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              field_lieux_value:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              term_node_tid_depth:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            opportunites_daffaires: opportunites_daffaires
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_date_opportunitie_value:
+          id: field_date_opportunitie_value
+          table: node__field_date_opportunitie
+          field: field_date_opportunitie_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_date_opportunitie_value_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: field_date_opportunitie_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_date_opportunitie_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+              rct: '0'
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: jj/mm/yy
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_lieux_value:
+          id: field_lieux_value
+          table: node__field_lieux
+          field: field_lieux_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: country_item
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_lieux_value_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: field_lieux_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_lieux_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+              rct: '0'
+            reduce: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          type: select
+          reduce_duplicates: 0
+          country_target_bundle: opportunites_daffaires
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          operator: or
+          value:
+            665: 665
+            706: 706
+            703: 703
+            744: 744
+            672: 672
+            732: 732
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: term_node_tid_depth
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+              rct: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: secteurs
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+          depth: 3
+      style:
+        type: default
+      row:
+        type: 'entity:node'
+        options:
+          view_mode: teaser
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+          contextual_filters_or: false
+      relationships: {  }
+      use_more: true
+      use_more_always: true
+      use_more_text: more
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: opportunites-daffaires
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }

@@ -1,0 +1,20 @@
+uuid: 8ad6e72b-a829-4008-b567-6933c6354882
+langcode: fr
+status: true
+dependencies: {  }
+id: le_profile_en_cours_modification
+workflow: workflow_profile
+transitions:
+  en_cours_modification: en_cours_modification
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: 'Le profile en cours modification'
+body:
+  value: '<p>Le profile est en cours de modification</p>'
+  format: basic_html
+label: 'Le profile en cours modification'

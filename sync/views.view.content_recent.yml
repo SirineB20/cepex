@@ -133,7 +133,7 @@ display:
         options:
           submit_button: Appliquer
           reset_button: false
-          reset_button_label: Réinitialiser
+          reset_button_label: Reset
           exposed_sorts_label: 'Trier par'
           expose_sort_order: true
           sort_asc_label: Asc
@@ -290,7 +290,7 @@ display:
           required: true
       use_more: false
       use_more_always: false
-      use_more_text: Plus
+      use_more_text: More
       link_display: '0'
       link_url: ''
       header: {  }

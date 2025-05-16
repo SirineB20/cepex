@@ -1,0 +1,60 @@
+uuid: b990cd38-75e0-453c-82c4-a93b77cc4742
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.opportunites_daffaires
+  module:
+    - content_moderation
+id: opportunitie
+label: Opportunité
+type: content_moderation
+type_settings:
+  states:
+    depublie:
+      label: Dépublié
+      weight: 3
+      published: false
+      default_revision: true
+    draft:
+      label: 'Non traité'
+      weight: 0
+      published: false
+      default_revision: false
+    en_cours_modification:
+      label: 'En cours modification'
+      weight: 2
+      published: true
+      default_revision: true
+    published:
+      label: Traité
+      weight: 1
+      published: true
+      default_revision: true
+  transitions:
+    create_new_draft:
+      label: 'Creation opportunité'
+      from:
+        - draft
+      to: draft
+      weight: 0
+    en_cours_de_traitement:
+      label: 'En cours de traitement'
+      from:
+        - en_cours_modification
+        - published
+      to: en_cours_modification
+      weight: 2
+    publish:
+      label: Traité
+      from:
+        - depublie
+        - draft
+        - en_cours_modification
+        - published
+      to: published
+      weight: 1
+  entity_types:
+    node:
+      - opportunites_daffaires
+  default_moderation_state: draft

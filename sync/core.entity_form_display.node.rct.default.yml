@@ -1,0 +1,182 @@
+uuid: a4a40423-7041-4014-ae28-2cfd2c915839
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.rct.field_adress_pays_etranger
+    - field.field.node.rct.field_adress_test
+    - field.field.node.rct.field_body
+    - field.field.node.rct.field_location_pays_etranger
+    - field.field.node.rct.field_mail_pays_etranger
+    - field.field.node.rct.field_mobile_pays_etranger
+    - field.field.node.rct.field_pays
+    - field.field.node.rct.field_pdf_representant_network
+    - field.field.node.rct.field_photo_representant
+    - field.field.node.rct.field_reseau_sociaux_representan
+    - field.field.node.rct.field_telephone_pays_etranger
+    - field.field.node.rct.field_whatsapp_pays_etranger
+    - image.style.thumbnail
+    - node.type.rct
+  module:
+    - content_moderation
+    - country
+    - file
+    - geofield
+    - image
+    - path
+    - telephone
+    - text
+id: node.rct.default
+targetEntityType: node
+bundle: rct
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_adress_pays_etranger:
+    type: string_textfield
+    weight: 121
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_adress_test:
+    type: string_textfield
+    weight: 134
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_body:
+    type: text_textarea_with_summary
+    weight: 122
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_location_pays_etranger:
+    type: geofield_latlon
+    weight: 125
+    region: content
+    settings:
+      html5_geolocation: false
+    third_party_settings: {  }
+  field_mail_pays_etranger:
+    type: email_default
+    weight: 124
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_mobile_pays_etranger:
+    type: telephone_default
+    weight: 126
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_pays:
+    type: country_default
+    weight: 133
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_pdf_representant_network:
+    type: file_generic
+    weight: 123
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_photo_representant:
+    type: image_image
+    weight: 129
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_telephone_pays_etranger:
+    type: telephone_default
+    weight: 131
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_whatsapp_pays_etranger:
+    type: telephone_default
+    weight: 132
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_reseau_sociaux_representan: true

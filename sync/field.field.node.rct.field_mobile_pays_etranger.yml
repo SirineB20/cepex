@@ -1,0 +1,21 @@
+uuid: 7c6c1a21-946f-4f50-b5ae-f895df155d9a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mobile_pays_etranger
+    - node.type.rct
+  module:
+    - telephone
+id: node.rct.field_mobile_pays_etranger
+field_name: field_mobile_pays_etranger
+entity_type: node
+bundle: rct
+label: 'Mobile '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

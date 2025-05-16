@@ -1,0 +1,63 @@
+uuid: d96a7ebd-c41a-44fd-be93-7d7064ccea02
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reseau_sociaux_representan
+    - node.type.rct
+  module:
+    - social_media_links_field
+id: node.rct.field_reseau_sociaux_representan
+field_name: field_reseau_sociaux_representan
+entity_type: node
+bundle: rct
+label: 'Réseau sociaux représentant'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  iconset: 'fontawesome:2x'
+  platforms:
+    email:
+      enabled: false
+      description: ''
+      weight: -10
+    facebook-f:
+      enabled: true
+      description: ''
+      weight: -9
+    instagram:
+      enabled: true
+      description: ''
+      weight: -8
+    linkedin-in:
+      enabled: true
+      description: ''
+      weight: -7
+    tiktok:
+      enabled: false
+      description: ''
+      weight: -6
+    x-twitter:
+      enabled: true
+      description: ''
+      weight: -5
+    vimeo:
+      enabled: false
+      description: ''
+      weight: -4
+    website:
+      enabled: true
+      description: ''
+      weight: -3
+    whatsapp:
+      enabled: false
+      description: ''
+      weight: -2
+    youtube:
+      enabled: false
+      description: ''
+      weight: -1
+field_type: social_media_links_field

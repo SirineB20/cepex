@@ -1,0 +1,14 @@
+uuid: a32c2b8d-ca99-4bfd-a341-a596a47ace6f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.rct
+  module:
+    - user
+id: user_add_role_action.rct
+label: 'Ajouter le rôle RCT aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: rct

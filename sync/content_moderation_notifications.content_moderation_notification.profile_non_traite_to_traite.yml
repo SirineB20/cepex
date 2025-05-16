@@ -1,0 +1,20 @@
+uuid: 53c671bb-f3eb-4470-8329-1b2e90bcd283
+langcode: fr
+status: true
+dependencies: {  }
+id: profile_non_traite_to_traite
+workflow: workflow_profile
+transitions:
+  publish: publish
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: false
+site_mail: false
+emails: ''
+subject: 'profile non traité to traité'
+body:
+  value: '<p>Le profile est publié</p>'
+  format: basic_html
+label: 'profile non traité to traité'

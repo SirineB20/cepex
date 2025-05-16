@@ -1,0 +1,11 @@
+uuid: d2dc1e63-01ad-4447-9db8-3088e1ac699f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.rct
+id: node.rct
+target_entity_type_id: node
+target_bundle: rct
+default_langcode: site_default
+language_alterable: false

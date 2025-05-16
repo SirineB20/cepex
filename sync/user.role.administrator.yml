@@ -1,11 +1,18 @@
 uuid: 516bca1b-f6e4-4823-af1a-e3aa8c146fb0
 langcode: fr
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - field_permissions
 _core:
   default_config_hash: OeKGIkmZA_c-t6QLH81WNQx8gDCc1MRmxaTuQgxBByU
 id: administrator
 label: Administrateur
 weight: 3
 is_admin: true
-permissions: {  }
+permissions:
+  - 'create field_market_place'
+  - 'edit field_market_place'
+  - 'edit own field_market_place'
+  - 'view field_market_place'
+  - 'view own field_market_place'

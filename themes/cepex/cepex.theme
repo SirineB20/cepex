@@ -114,6 +114,10 @@ function cepex_preprocess_page(array &$variables): void {
     $variables['user_logged_in'] = FALSE;
   }
 }
+use Drupal\Core\Form\FormStateInterface;
+
+
+
 
 /**
  * Helper function to apply common form styles.
@@ -203,11 +207,70 @@ function cepex_suggestions_views_view_alter(array &$suggestions, array $variable
     $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
   }
 }
-
 /**
  * Implements hook_form_alter().
  */
 function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+if ($form_id === 'webform_submission_repondre_a_l_opportunite_add_form') {
+    // On attache la librairie contenant webform-custom.css
+    $form['#attached']['library'][] = 'cepex/form-contact';
+  }
+  
+  if (strpos($form_id, 'webform_submission_formulaire_de_contact_') === 0) {
+    // Obtenez le paramètre service de l'URL
+    $service = \Drupal::request()->query->get('service');
+    
+    if (!empty($service)) {
+      // Définissez la valeur par défaut du champ service
+      if (isset($form['elements']['service'])) {
+        $form['elements']['service']['#default_value'] = urldecode($service);
+      }
+    }
+  }
+  
+  if (strpos($form_id, 'webform_submission_demande_de_devis_') === 0) {
+    // On attache la librairie contenant webform-custom.css
+    $form['#attached']['library'][] = 'cepex/form-contact';
+    
+    // Récupérer l'utilisateur connecté
+    $current_user = \Drupal::currentUser();
+    
+    // Récupérer les paramètres de l'URL
+    $produit_id = \Drupal::request()->query->get('produit_id');
+    $nom_produit_url = \Drupal::request()->query->get('nom_produit');
+    
+    // Vérifier si un utilisateur est connecté
+    if ($current_user->isAuthenticated()) {
+      // Charger l'utilisateur complet pour accéder à toutes ses propriétés
+      $user = \Drupal\user\Entity\User::load($current_user->id());
+      
+      // Récupérer le nom d'utilisateur
+      $user_name = $user->getDisplayName();
+      
+      // Récupérer l'email de l'utilisateur
+      $user_mail = $user->getEmail();
+      
+      // Appliquer les valeurs aux champs du formulaire si disponibles
+      
+      // Nom de l'utilisateur (contact)
+      if (isset($form['elements']['contact'])) {
+        $form['elements']['contact']['#default_value'] = $user_name;
+      }
+      
+      // Email de l'utilisateur
+      if (isset($form['elements']['courriel'])) {
+        $form['elements']['courriel']['#default_value'] = $user_mail;
+      }
+    }
+    
+    // Gérer le champ nom_de_produit indépendamment de la connexion utilisateur
+    if (isset($form['elements']['nom_de_produit'])) {
+      if (!empty($produit_id)) {
+        // Utiliser directement la valeur du titre du produit envoyée via l'URL
+        $form['elements']['nom_de_produit']['#default_value'] = urldecode($produit_id);
+      }
+    }
+  }
   // Formulaire pour gestion-produit-par-exportateur
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
     _cepex_setup_filter_form($form);

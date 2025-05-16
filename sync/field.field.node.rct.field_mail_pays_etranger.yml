@@ -1,0 +1,19 @@
+uuid: a69e40ea-e24c-4bf0-a54b-5ce7216cc0dd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mail_pays_etranger
+    - node.type.rct
+id: node.rct.field_mail_pays_etranger
+field_name: field_mail_pays_etranger
+entity_type: node
+bundle: rct
+label: 'Mail RCT'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

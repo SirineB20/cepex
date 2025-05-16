@@ -35,6 +35,7 @@
         "drupal/geofield": "^1.64",
         "drupal/jquery_ui": "^1.7",
         "drupal/paragraphs": "^1.18",
+        "drupal/pathauto": "^1.13",
         "drupal/profile": "^1.11",
         "drupal/selective_better_exposed_filters": "^3.0",
         "drupal/shs": " ^2.0",

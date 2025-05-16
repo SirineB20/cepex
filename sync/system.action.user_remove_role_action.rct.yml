@@ -1,0 +1,14 @@
+uuid: 4004b245-5109-4f10-8568-f0755e4e5315
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.rct
+  module:
+    - user
+id: user_remove_role_action.rct
+label: 'Enlever le rôle RCT des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: rct

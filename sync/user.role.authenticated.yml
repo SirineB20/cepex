@@ -4,9 +4,14 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.webform_default
+    - workflows.workflow.workflow_profile
   module:
     - comment
     - contact
+    - content_moderation
+    - contextual
+    - field_ui
     - file
     - filter
     - media
@@ -23,14 +28,19 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access contextual links'
   - 'access profile overview'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'administer user form display'
   - 'delete own files'
+  - 'edit own comments'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'use text format webform_default'
+  - 'use workflow_profile transition create_new_draft'
   - 'view any profile'
   - 'view any profile_exportateur profile'
   - 'view any profile_homme_secteur profile'

@@ -1,0 +1,30 @@
+uuid: e7edf043-b3d6-4439-909a-14bdbb92b9e4
+langcode: fr
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - node
+id: node.field_image_oppo
+field_name: field_image_oppo
+entity_type: node
+type: image
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  default_image:
+    uuid: 29f8feff-4ea5-4983-9b96-2b6caba5edec
+    alt: ''
+    title: ''
+    width: 800
+    height: 824
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

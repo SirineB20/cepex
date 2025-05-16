@@ -1,0 +1,20 @@
+uuid: cd90fa03-426c-4d1e-a3d0-a80c9bd6611a
+langcode: fr
+status: true
+dependencies: {  }
+id: creation_profile
+workflow: workflow_profile
+transitions:
+  create_new_draft: create_new_draft
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: 'Creation de profile'
+body:
+  value: '<p>Le &nbsp;profile est creé avec succé</p>'
+  format: basic_html
+label: 'Création profile'

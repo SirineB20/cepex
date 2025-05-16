@@ -110,10 +110,10 @@ display:
           bef:
             general:
               autosubmit: true
-              autosubmit_exclude_textfield: false
+              autosubmit_exclude_textfield: true
               autosubmit_textfield_delay: 500
               autosubmit_textfield_minimum_length: 0
-              autosubmit_hide: true
+              autosubmit_hide: false
               input_required: false
               allow_secondary: false
               secondary_label: 'Options avancées'
@@ -143,14 +143,6 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-              body_format:
-                plugin_id: default
-                advanced:
-                  placeholder_text: ''
-                  collapsible: false
-                  collapsible_disable_automatic_open: false
-                  is_secondary: false
-                  hide_label: false
               field_certifications_target_id:
                 plugin_id: bef_links
                 advanced:
@@ -163,6 +155,14 @@ display:
                   is_secondary: false
                   hide_label: false
                 select_all_none: false
+              field_matricul_fiscale_value:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
       access:
         type: perm
         options:
@@ -226,16 +226,17 @@ display:
             operator_limit_selection: false
             operator_list: {  }
             identifier: type
-            required: false
-            remember: false
+            required: true
+            remember: true
             multiple: false
             remember_roles:
+              anonymous: anonymous
               authenticated: authenticated
-              anonymous: '0'
               content_editor: '0'
               administrator: '0'
               exportateur: '0'
               homme_secteur: '0'
+              rct: '0'
             reduce: true
           is_grouped: false
           group_info:
@@ -301,50 +302,6 @@ display:
           limit: true
           error_message: true
           depth: 3
-        body_format:
-          id: body_format
-          table: node__body
-          field: body_format
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: string
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: body_format_op
-            label: ''
-            description: ''
-            use_operator: false
-            operator: body_format_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-              exportateur: '0'
-              homme_secteur: '0'
-            placeholder: 'Mot clé'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         field_certifications_target_id:
           id: field_certifications_target_id
           table: node__field_certifications
@@ -395,6 +352,51 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_matricul_fiscale_value:
+          id: field_matricul_fiscale_value
+          table: node__field_matricul_fiscale
+          field: field_matricul_fiscale_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_matricul_fiscale_value_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: field_matricul_fiscale_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: matricul_fiscale_market
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              exportateur: '0'
+              homme_secteur: '0'
+              rct: '0'
+            placeholder: 'Matricule fiscale'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: default
       row:
@@ -410,7 +412,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }

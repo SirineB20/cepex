@@ -48,6 +48,7 @@ type_settings:
       label: 'En cours modification'
       from:
         - en_cours_modification
+        - published
       to: en_cours_modification
       weight: 3
     en_cours_modification_inscription:

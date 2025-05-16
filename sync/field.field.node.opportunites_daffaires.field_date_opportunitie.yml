@@ -1,0 +1,21 @@
+uuid: a086eb12-27a6-4fb2-9caf-e7e14765ce51
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_opportunitie
+    - node.type.opportunites_daffaires
+  module:
+    - datetime
+id: node.opportunites_daffaires.field_date_opportunitie
+field_name: field_date_opportunitie
+entity_type: node
+bundle: opportunites_daffaires
+label: 'Date opportunité'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

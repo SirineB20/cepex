@@ -6,10 +6,14 @@ dependencies:
     - filter.format.basic_html
     - filter.format.full_html
     - filter.format.restricted_html
+    - media.type.audio
+    - media.type.document
     - media.type.image
+    - media.type.remote_video
     - media.type.video
     - node.type.page_actualite
     - node.type.produits_marketplace
+    - node.type.profile_exportateur
     - taxonomy.vocabulary.certifications
     - taxonomy.vocabulary.secteurs
     - workflows.workflow.etat_produit
@@ -20,6 +24,7 @@ dependencies:
     - content_moderation
     - content_translation
     - contextual
+    - field_permissions
     - field_ui
     - file
     - filter
@@ -59,16 +64,22 @@ permissions:
   - 'bypass paragraphs type content access'
   - 'cancel account'
   - 'change own username'
+  - 'create audio media'
   - 'create content translations'
+  - 'create document media'
   - 'create image media'
   - 'create paragraph content footer_left'
   - 'create produits_marketplace content'
   - 'create terms in certifications'
   - 'create terms in secteurs'
   - 'delete content translations'
+  - 'delete media'
+  - 'delete own audio media'
+  - 'delete own document media'
   - 'delete own image media'
   - 'delete own produits_marketplace content'
   - 'delete own profile_exportateur profile'
+  - 'delete own remote_video media'
   - 'delete own video media'
   - 'delete page_actualite revisions'
   - 'delete paragraph content footer_left'
@@ -76,9 +87,14 @@ permissions:
   - 'delete term revisions in secteurs'
   - 'delete terms in certifications'
   - 'delete terms in secteurs'
+  - 'edit any remote_video media'
+  - 'edit own audio media'
   - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own field_market_place'
   - 'edit own image media'
   - 'edit own produits_marketplace content'
+  - 'edit own profile_exportateur content'
   - 'edit terms in certifications'
   - 'edit terms in secteurs'
   - 'post comments'
@@ -89,6 +105,7 @@ permissions:
   - 'translate comment'
   - 'translate editable entities'
   - 'update content translations'
+  - 'update media'
   - 'update own profile_exportateur profile'
   - 'update paragraph content footer_left'
   - 'use etat_produit transition create_new_draft'
@@ -100,7 +117,7 @@ permissions:
   - 'use workflow_profile transition en_cours_modification'
   - 'use workflow_profile transition en_cours_modification_inscription'
   - 'use workflow_profile transition publish'
-  - 'view any unpublished content'
+  - 'view own field_market_place'
   - 'view own profile'
   - 'view own profile_exportateur profile'
   - 'view own unpublished content'

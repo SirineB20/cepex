@@ -1,0 +1,38 @@
+uuid: fc6aaab7-9d80-4577-97c0-e7140fe7b05d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_oppo
+    - node.type.opportunites_daffaires
+  module:
+    - image
+id: node.opportunites_daffaires.field_image_oppo
+field_name: field_image_oppo
+entity_type: node
+bundle: opportunites_daffaires
+label: 'image oppo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

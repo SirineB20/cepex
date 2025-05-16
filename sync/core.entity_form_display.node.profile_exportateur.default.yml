@@ -4,20 +4,25 @@ status: true
 dependencies:
   config:
     - field.field.node.profile_exportateur.field_adresse
+    - field.field.node.profile_exportateur.field_avez_vous_une_implantation
     - field.field.node.profile_exportateur.field_capital
     - field.field.node.profile_exportateur.field_certifications
+    - field.field.node.profile_exportateur.field_code_postal
     - field.field.node.profile_exportateur.field_date_creation
     - field.field.node.profile_exportateur.field_directeur_general
     - field.field.node.profile_exportateur.field_e_mail
     - field.field.node.profile_exportateur.field_fax
     - field.field.node.profile_exportateur.field_forme_juridique
+    - field.field.node.profile_exportateur.field_gouvernorat
     - field.field.node.profile_exportateur.field_imageprofile
+    - field.field.node.profile_exportateur.field_market_place
     - field.field.node.profile_exportateur.field_matricul_fiscale
     - field.field.node.profile_exportateur.field_nom_d_entreprise
     - field.field.node.profile_exportateur.field_nombre_d_employes
     - field.field.node.profile_exportateur.field_presentation
     - field.field.node.profile_exportateur.field_secteur
     - field.field.node.profile_exportateur.field_site_web
+    - field.field.node.profile_exportateur.field_statut
     - field.field.node.profile_exportateur.field_telephone
     - image.style.thumbnail
     - node.type.profile_exportateur
@@ -25,10 +30,74 @@ dependencies:
   module:
     - content_moderation
     - datetime
+    - field_group
     - image
-    - path
     - shs
     - telephone
+third_party_settings:
+  field_group:
+    group_entreprise_general:
+      children:
+        - field_nom_d_entreprise
+        - field_matricul_fiscale
+        - field_imageprofile
+        - field_statut
+        - field_forme_juridique
+        - field_nombre_d_employes
+        - field_capital
+        - field_date_creation
+        - field_presentation
+      label: 'Information générales'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+    group_coordonnees:
+      children:
+        - field_directeur_general
+        - field_adresse
+        - field_code_postal
+        - field_gouvernorat
+        - field_telephone
+        - field_fax
+        - field_e_mail
+        - field_site_web
+      label: Coordonnées
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+    group_commercialisation_entrepri:
+      children:
+        - field_certifications
+        - field_secteur
+        - field_avez_vous_une_implantation
+      label: Commercialisation
+      region: content
+      parent_name: ''
+      weight: 7
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
 id: node.profile_exportateur.default
 targetEntityType: node
 bundle: profile_exportateur
@@ -36,40 +105,53 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_adresse:
     type: string_textfield
-    weight: 121
+    weight: 5
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_avez_vous_une_implantation:
+    type: options_buttons
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_capital:
     type: number
-    weight: 135
+    weight: 11
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_certifications:
-    type: options_select
-    weight: 26
+    type: options_buttons
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_code_postal:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_date_creation:
     type: datetime_default
-    weight: 137
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_directeur_general:
     type: string_textfield
-    weight: 122
+    weight: 4
     region: content
     settings:
       size: 60
@@ -77,7 +159,7 @@ content:
     third_party_settings: {  }
   field_e_mail:
     type: email_default
-    weight: 123
+    weight: 10
     region: content
     settings:
       placeholder: ''
@@ -85,32 +167,41 @@ content:
     third_party_settings: {  }
   field_fax:
     type: telephone_default
-    weight: 133
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_forme_juridique:
-    type: entity_reference_autocomplete
-    weight: 136
+    type: options_select
+    weight: 9
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
+    third_party_settings: {  }
+  field_gouvernorat:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_imageprofile:
     type: image_image
-    weight: 130
+    weight: 7
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+  field_market_place:
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_matricul_fiscale:
     type: string_textfield
-    weight: 125
+    weight: 6
     region: content
     settings:
       size: 60
@@ -118,7 +209,7 @@ content:
     third_party_settings: {  }
   field_nom_d_entreprise:
     type: string_textfield
-    weight: 126
+    weight: 5
     region: content
     settings:
       size: 60
@@ -126,14 +217,14 @@ content:
     third_party_settings: {  }
   field_nombre_d_employes:
     type: number
-    weight: 134
+    weight: 10
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_presentation:
     type: string_textarea
-    weight: 131
+    weight: 13
     region: content
     settings:
       rows: 5
@@ -141,7 +232,7 @@ content:
     third_party_settings: {  }
   field_secteur:
     type: options_shs
-    weight: 7
+    weight: 10
     region: content
     settings:
       display_node_count: false
@@ -151,62 +242,55 @@ content:
     third_party_settings: {  }
   field_site_web:
     type: string_textfield
-    weight: 128
+    weight: 11
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_statut:
+    type: options_buttons
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_telephone:
     type: telephone_default
-    weight: 132
+    weight: 8
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 15
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 120
+    weight: 4
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 16
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 10
     region: content
     settings:
       size: 60
@@ -214,7 +298,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 0
     region: content
     settings:
       match_operator: CONTAINS
@@ -222,4 +306,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true
+  path: true

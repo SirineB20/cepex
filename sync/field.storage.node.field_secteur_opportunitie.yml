@@ -1,0 +1,20 @@
+uuid: 8973c468-9432-498d-9026-94dc4d98ff29
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_secteur_opportunitie
+field_name: field_secteur_opportunitie
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

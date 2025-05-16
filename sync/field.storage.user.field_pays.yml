@@ -1,0 +1,20 @@
+uuid: fc53cfb4-a634-48c5-8eac-ba6c93c6dc0c
+langcode: fr
+status: true
+dependencies:
+  module:
+    - country
+    - user
+id: user.field_pays
+field_name: field_pays
+entity_type: user
+type: country
+settings:
+  selectable_countries: {  }
+module: country
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

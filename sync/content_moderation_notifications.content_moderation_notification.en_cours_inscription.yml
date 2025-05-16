@@ -1,0 +1,20 @@
+uuid: c59d0391-b2b5-488b-bc9c-efb4f12df104
+langcode: fr
+status: true
+dependencies: {  }
+id: en_cours_inscription
+workflow: workflow_profile
+transitions:
+  en_cours_modification_inscription: en_cours_modification_inscription
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: "Profile est en cours d'inscription"
+body:
+  value: '<p>En cours inscription</p>'
+  format: basic_html
+label: 'En cours inscription'

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.user.compact
     - field.field.user.user.field_password
+    - field.field.user.user.field_pays
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -30,6 +31,8 @@ content:
     region: content
 hidden:
   field_password: true
+  field_pays: true
   langcode: true
   member_for: true
   profile_exportateur_profiles: true
+  profile_homme_secteur_profiles: true

@@ -11,8 +11,8 @@ third_party_settings:
     parent: 'main:'
 name: 'profile exportateur'
 type: profile_exportateur
-description: null
+description: "profile de l'exportateur gérer ses propres produits et son propre profile"
 help: null
 new_revision: true
-preview_mode: 1
+preview_mode: 0
 display_submitted: true

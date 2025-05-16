@@ -1,0 +1,21 @@
+uuid: b4f509b7-c9ee-49ec-9402-3f8f73c02912
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_statut
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_statut
+field_name: field_statut
+entity_type: node
+bundle: profile_exportateur
+label: 'Statut '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Résidente
+  off_label: 'Non résidente'
+field_type: boolean

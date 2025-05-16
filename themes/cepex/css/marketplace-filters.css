@@ -10,7 +10,7 @@
   display: flex;
 }
 
-#edit-matricul_fiscale_value{
+#edit-matricul_fiscale_value .form-text{
   margin-right: 30px;
   border-radius: unset;
   /* width: 320px; */

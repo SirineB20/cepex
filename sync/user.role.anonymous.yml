@@ -3,11 +3,14 @@ langcode: fr
 status: true
 dependencies:
   config:
+    - filter.format.basic_html
     - filter.format.restricted_html
     - node.type.profile_exportateur
+    - workflows.workflow.workflow_profile
   module:
     - comment
-    - contact
+    - content_moderation
+    - contextual
     - field_ui
     - filter
     - media
@@ -24,14 +27,19 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
-  - 'access profile overview'
-  - 'access site-wide contact form'
+  - 'access contextual links'
   - 'administer profile display'
   - 'administer profile form display'
+  - 'administer user display'
+  - 'administer user form display'
+  - 'administer users'
   - 'create profile_exportateur content'
   - 'create profile_exportateur profile'
+  - 'edit own comments'
   - 'search content'
+  - 'use text format basic_html'
   - 'use text format restricted_html'
+  - 'use workflow_profile transition create_new_draft'
   - 'view any profile'
   - 'view any profile_exportateur profile'
   - 'view any profile_homme_secteur profile'

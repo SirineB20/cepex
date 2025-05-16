@@ -1,0 +1,26 @@
+uuid: dd9a3006-ea0b-416d-bee6-d37405d1755e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description_complete
+    - filter.format.plain_text
+    - node.type.opportunites_daffaires
+  module:
+    - text
+id: node.opportunites_daffaires.field_description_complete
+field_name: field_description_complete
+entity_type: node
+bundle: opportunites_daffaires
+label: 'Description compléte'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - plain_text
+field_type: text_with_summary

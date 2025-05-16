@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'page actualite'
 type: page_actualite
-description: null
+description: 'page actualité + témoignage'
 help: null
 new_revision: true
 preview_mode: 1

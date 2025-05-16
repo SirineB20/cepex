@@ -1,0 +1,22 @@
+uuid: 41cc9c6e-1416-4fae-b2f0-10b22c3496ea
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lieux
+    - node.type.opportunites_daffaires
+  module:
+    - country
+id: node.opportunites_daffaires.field_lieux
+field_name: field_lieux
+entity_type: node
+bundle: opportunites_daffaires
+label: Lieu
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selectable_countries: {  }
+field_type: country

@@ -1,166 +1,127 @@
-.entete-form {
-    margin: 20px 0 0;
+/* Cible le formulaire entier via son ID */
+#webform-submission-repondre-a-l-opportunite-add-form ,#webform-submission-formulaire-de-contact-add-form,
+#webform-submission-demande-de-devis-add-form{
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.flex-entete-form {
-    background: #cd0f45;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 50px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+/* Labels à l’intérieur du formulaire */
+#webform-submission-repondre-a-l-opportunite-add-form label,
+#webform-submission-formulaire-de-contact-add-form label,
+#webform-submission-demande-de-devis-add-form label,
+#webform-submission-repondre-a-l-opportunite-add-form legend,
+#webform-submission-formulaire-de-contact-add-form legend,
+#webform-submission-demande-de-devis-add-form legend {
+  color: #383838;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-.title-entete-form {
-    font-size: 32px;
-    color: #fff;
-    font-weight: 500;
+/* Tous les champs texte, email, textarea */
+#webform-submission-repondre-a-l-opportunite-add-form .form-text,
+#webform-submission-repondre-a-l-opportunite-add-form .form-email,
+#webform-submission-repondre-a-l-opportunite-add-form .form-textarea,
+#webform-submission-formulaire-de-contact-add-form .form-text,
+#webform-submission-formulaire-de-contact-add-form .form-email,
+#webform-submission-formulaire-de-contact-add-form .form-textarea,
+#webform-submission-demande-de-devis-add-form .form-text,
+#webform-submission-demande-de-devis-add-form .form-email,
+#webform-submission-demande-de-devis-add-form .form-textarea {
+  border: 1px solid #f9e2e8;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
-.title-form-cepex {
-    display: block;
-    background: #f9e2e8;
-    width: 80%;
-    margin: 35px auto 0;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    font-size: 20px;
-    color: #383838;
-    font-weight: 500;
+#edit-telephone-phone,#edit-quantite-requise,#edit-unite,#edit-date-de-livraison-souhaite {
+  border: 1px solid #f9e2e8;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
-
-.form-cepex {
-    padding: 50px 0;
+#edit-service,#edit-contact,#edit-courriel{
+    background-color: #eaeaea;
+    color: #878787;
+    border: none !important;
+    cursor: not-allowed;
+    pointer-events: none;
 }
-
-.boxform-cepex {
-    margin: 35px 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 15px;
-}
-
-.flex-etes {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.title-etes {
-    font-size: 16px;
-    color: #282828;
+.form-required::after {
     display: inline-block;
-    margin-right: 70px;
+    width: 6px;
+    height: 6px;
+    margin: 0 0.3em;
+    content: "";
+    vertical-align: super;
+    background-image: url(../../images/icons/required.svg);
+    background-repeat: no-repeat;
+    background-size: 6px 6px;
+}
+/* Le bouton de soumission */
+#webform-submission-repondre-a-l-opportunite-add-form .webform-button--submit,
+#webform-submission-formulaire-de-contact-add-form .webform-button--submit,
+#webform-submission-demande-de-devis-add-form .webform-button--submit {
+  background: #cd0f45;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
-.d-flex-input {
-    display: flex;
-    align-items: center;
-    margin-left: 70px;
+#webform-submission-repondre-a-l-opportunite-add-form .webform-button--submit:hover,
+#webform-submission-formulaire-de-contact-add-form .webform-button--submit:hover,
+#webform-submission-demande-de-devis-add-form .webform-button--submit:hover {
+  background: #f9e2e8;
+  color: #383838;
+}
+/**
+ * Centre le formulaire sur la page et limite sa largeur
+ */
+#webform-submission-repondre-a-l-opportunite-add-form,
+#webform-submission-formulaire-de-contact-add-form,
+#webform-submission-demande-de-devis-add-form {
+  /* largeur en pourcentage pour le responsive, et max-width pour ne pas dépasser */
+  width: 90%;
+  max-width: 800px;
+  /* centrage horizontal et un peu d’espacement vertical */
+  margin: 2rem auto;
+  /* garde vos styles existants */
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.d-flex-input label {
-    color: #5f5f5f;
-    font-size: 16px;
-    margin-left: 10px;
+/* Si vous voulez aussi centrer le titre */
+#webform-submission-repondre-a-l-opportunite-add-form > legend,
+#webform-submission-repondre-a-l-opportunite-add-form h2,
+#webform-submission-formulaire-de-contact-add-form > legend,
+#webform-submission-formulaire-de-contact-add-form h2,
+#webform-submission-demande-de-devis-add-form > legend,
+#webform-submission-demande-de-devis-add-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.form-group {
-    margin: 30px 0 0;
+/* Ajustement des colonnes pour le layout deux-colonnes */
+#webform-submission-repondre-a-l-opportunite-add-form .fieldset-wrapper,
+#webform-submission-formulaire-de-contact-add-form .fieldset-wrapper,
+#webform-submission-demande-de-devis-add-form .fieldset-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
 }
 
-.form-group label {
-    color: #282828;
-    font-size: 16px;
-    padding: 5px 0;
-    width: 100%;
-}
-
-.form-group .msg-small {
-    font-size: 11px;
-    color: #000;
-}
-
-.form-group input {
-    height: 55px;
-    border-radius: 8px !important;
-    border: 1px solid #c7c7c7!important;
-}
-.form-group select {
-    height: 55px;
-    border-radius: 8px !important;
-    border: 1px solid #c7c7c7!important;
-}
-.flexrow {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flexrow .form-group {
-    padding: 0 15px;
-}
-.form-group .label-check {
-    width: auto;
-    margin-left: 10px;
-}
-.form-group.alignbox {
-    align-items: center;
-    display: flex;
-}
-
-.form-group.alignbox .form-check-input {
-    width: 20px;
-    height: 20px;
-    border-radius: 5px !important;
-    margin: 0;
-}
-
-.form-group .label-check .btn-check {
-    position: relative;
-    color: #c40020;
-}
-
-.flexbox-bouton-form {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0 0;
-}
-.logo-entete-form img {
-    width: 100px;
-    height: auto;
-    display: block;
-}
-@media screen and (max-width: 768px) {
-.title-form-cepex {
-    width: 98%;
-    margin: 20px auto 0;
-    font-size: 17px;
-}
-.title-entete-form {
-    font-size: 25px;
-}
-.flex-entete-form {
-    padding: 10px 30px;
-}
-.boxform-cepex {
-    padding: 0;
-}
-.d-flex-input {
-    margin-left: 0;
-    margin-right: 20px;
-}
-.flexrow .form-group {
-    padding: 0;
-    margin: 20px 0 0;
-}
-.title-etes {
-    font-size: 16px;
-    margin-right: 0;
-    width: 100%;
-}
-}
-@media screen and (max-width: 480px) {
-.logo-entete-form {
-    display: none;
-}
+/* Pour que le bouton “Envoyer” reste aligné à droite */
+#webform-submission-repondre-a-l-opportunite-add-form .webform-actions,
+#webform-submission-formulaire-de-contact-add-form .webform-actions,
+#webform-submission-demande-de-devis-add-form .webform-actions {
+  text-align: right;
+  margin-top: 1rem;
 }

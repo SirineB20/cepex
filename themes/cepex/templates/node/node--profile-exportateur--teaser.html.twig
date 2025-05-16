@@ -1,13 +1,21 @@
-
 <div class="borderprod" style="width: 100%">
-<div class="boximgprod">
-  {% set image_url = content.field_imageprofile.0['#markup'] %}
-  <img src="{{ image_url }}" class="img-prod-marketplace" alt="Cepex">
-</div>
-<div class="boxcontenuprod">
-  <span class="titleprod-marketplace">
-    {{ content.field_nom_d_entreprise }}
-  </span>
-  <a href="{{ url }}" class="btn-cepex btnprod" tabindex="0">voir plus <i class="fa-solid fa-arrow-right"></i></a>
-</div>
+	<div class="boximgprod">
+		{% set image_url = content.field_imageprofile.0['#markup'] %}
+		<img src="{{ image_url }}" class="img-prod-marketplace" alt="Cepex">
+	</div>
+	<div class="boxcontenuprod">
+		<span class="titleprod-marketplace">
+			{{ content.field_nom_d_entreprise }}
+		</span>
+		<div class="flexbox-bouton-marketplace">
+			<a href="{{ url }}" class="btn-cepex btnentreprise" tabindex="0">voir plus
+				<i class="fa-solid fa-arrow-right"></i>
+			</a>
+
+			<a href="http://localhost:8087/fr/form/formulaire-de-contact?entreprise_id={{ node.id }}" class="btn-cepex btnentreprise">
+				Contactez
+				<i class="fa-solid fa-arrow-right"></i>
+			</a>
+		</div>
+	</div>
 </div>

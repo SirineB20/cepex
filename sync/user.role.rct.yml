@@ -1,0 +1,117 @@
+uuid: 30345893-f8cb-4c8e-9962-e0d71149acb1
+langcode: fr
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.opportunites_daffaires
+    - node.type.profile_exportateur
+    - node.type.rct
+    - taxonomy.vocabulary.secteurs
+    - workflows.workflow.editorial
+    - workflows.workflow.opportunitie
+  module:
+    - block_content
+    - comment
+    - config_translation
+    - content_moderation
+    - content_translation
+    - field_ui
+    - file
+    - filter
+    - image
+    - language
+    - media
+    - node
+    - paragraphs
+    - paragraphs_type_permissions
+    - profile
+    - taxonomy
+id: rct
+label: RCT
+weight: 6
+is_admin: false
+permissions:
+  - 'access content overview'
+  - 'access files overview'
+  - 'access user profiles'
+  - 'administer block_content display'
+  - 'administer comment display'
+  - 'administer content translation'
+  - 'administer filters'
+  - 'administer image styles'
+  - 'administer languages'
+  - 'administer media display'
+  - 'administer node display'
+  - 'administer nodes'
+  - 'administer paragraph display'
+  - 'administer profile display'
+  - 'administer taxonomy_term display'
+  - 'administer user display'
+  - 'bypass node access'
+  - 'bypass paragraphs type content access'
+  - 'cancel account'
+  - 'change own username'
+  - 'create audio media'
+  - 'create content translations'
+  - 'create document media'
+  - 'create image media'
+  - 'create opportunites_daffaires content'
+  - 'create paragraph content footer_left'
+  - 'create terms in secteurs'
+  - 'delete all revisions'
+  - 'delete any opportunites_daffaires content'
+  - 'delete content translations'
+  - 'delete media'
+  - 'delete opportunites_daffaires revisions'
+  - 'delete own audio media'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own opportunites_daffaires content'
+  - 'delete own rct content'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'delete paragraph content footer_left'
+  - 'delete term revisions in secteurs'
+  - 'delete terms in secteurs'
+  - 'edit any opportunites_daffaires content'
+  - 'edit any remote_video media'
+  - 'edit own audio media'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own opportunites_daffaires content'
+  - 'edit own rct content'
+  - 'edit terms in secteurs'
+  - 'revert all revisions'
+  - 'revert opportunites_daffaires revisions'
+  - 'revert term revisions in secteurs'
+  - 'translate block_content'
+  - 'translate comment'
+  - 'translate configuration'
+  - 'translate editable entities'
+  - 'update media'
+  - 'update paragraph content footer_left'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'use opportunitie transition create_new_draft'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view latest version'
+  - 'view opportunites_daffaires revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view paragraph content footer_left'
+  - 'view profile_exportateur revisions'
+  - 'view term revisions in secteurs'
+  - 'view user email addresses'

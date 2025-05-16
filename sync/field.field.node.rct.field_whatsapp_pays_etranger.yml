@@ -1,0 +1,21 @@
+uuid: 8de1f902-7048-4b99-b04e-c176351398d0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_whatsapp_pays_etranger
+    - node.type.rct
+  module:
+    - telephone
+id: node.rct.field_whatsapp_pays_etranger
+field_name: field_whatsapp_pays_etranger
+entity_type: node
+bundle: rct
+label: WhatsApp
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

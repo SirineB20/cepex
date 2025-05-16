@@ -1,0 +1,20 @@
+uuid: 03f787f1-7e3e-4e6c-9b03-54e970bc6969
+langcode: fr
+status: true
+dependencies:
+  module:
+    - country
+    - node
+id: node.field_lieux
+field_name: field_lieux
+entity_type: node
+type: country
+settings:
+  selectable_countries: {  }
+module: country
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,20 @@
+uuid: 50215274-0fe1-49db-a243-7d4de6edd108
+langcode: fr
+status: true
+dependencies: {  }
+id: non_traite_vers_traite
+workflow: etat_produit
+transitions:
+  publish: publish
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: 'Produit traité vers non traité'
+body:
+  value: "<p>Changé l'état de produit traité vers non traité</p>"
+  format: basic_html
+label: 'non traité vers traité'

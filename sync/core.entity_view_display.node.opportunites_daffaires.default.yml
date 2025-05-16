@@ -1,0 +1,81 @@
+uuid: 2f8542d9-a7a9-49e9-98fd-fd9d98e2f633
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.opportunites_daffaires.field_date_opportunitie
+    - field.field.node.opportunites_daffaires.field_description_complete
+    - field.field.node.opportunites_daffaires.field_image_oppo
+    - field.field.node.opportunites_daffaires.field_lieux
+    - field.field.node.opportunites_daffaires.field_presentation_opportunitie
+    - field.field.node.opportunites_daffaires.field_secteur_opportunitie
+    - node.type.opportunites_daffaires
+  module:
+    - country
+    - datetime
+    - image
+    - text
+    - user
+id: node.opportunites_daffaires.default
+targetEntityType: node
+bundle: opportunites_daffaires
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_date_opportunitie:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_description_complete:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_image_oppo:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_lieux:
+    type: country_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_presentation_opportunitie:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_secteur_opportunitie:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden:
+  langcode: true

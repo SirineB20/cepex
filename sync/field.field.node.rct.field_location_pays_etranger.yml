@@ -1,0 +1,21 @@
+uuid: 84a0a951-04b6-4cd0-b08a-1a35957ca537
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location_pays_etranger
+    - node.type.rct
+  module:
+    - geofield
+id: node.rct.field_location_pays_etranger
+field_name: field_location_pays_etranger
+entity_type: node
+bundle: rct
+label: 'location pays etranger'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

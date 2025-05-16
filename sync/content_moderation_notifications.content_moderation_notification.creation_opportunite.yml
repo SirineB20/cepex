@@ -1,0 +1,19 @@
+uuid: 7079218d-4f58-4636-9d20-483b9257928b
+langcode: fr
+status: true
+dependencies: {  }
+id: creation_opportunite
+workflow: opportunitie
+transitions:
+  create_new_draft: create_new_draft
+roles:
+  administrator: administrator
+  rct: rct
+author: true
+site_mail: false
+emails: ''
+subject: 'Creation opportunité'
+body:
+  value: "<p>Creation d'opportunité</p>"
+  format: basic_html
+label: 'Creation opportunité'

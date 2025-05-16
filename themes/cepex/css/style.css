@@ -220,30 +220,7 @@ section {
   display: inline-flex;
 }
 
-.btn-cepex {
-  color: #303030;
-  font-size: 16px;
-  display: inline-flex;
-  padding: 10px 20px;
-  border-radius: 18px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.5s ease all;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-  background: transparent;
-  border: 2px solid #cb033d;
-  font-weight: 500;
-  align-items: center;
-}
 
-.btn-cepex i {
-  margin-left: 10px;
-}
-
-.btn-cepex:hover {
-  background: #cb033d;
-  color: #fff;
-}
 
 /*********** Page Guide export ************/
 .guide-export {
@@ -1221,7 +1198,7 @@ top: 0;
 
 .contenu-banner {
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
   padding: 60px 0 0;
 }

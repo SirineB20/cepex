@@ -1,0 +1,19 @@
+uuid: a22e7c36-7878-42ad-b014-ef6780dc9859
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - telephone
+id: node.field_telephone_pays_etranger
+field_name: field_telephone_pays_etranger
+entity_type: node
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

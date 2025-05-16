@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.user.user.field_password
+    - field.field.user.user.field_pays
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
+    - country
     - image
     - user
 _core:
@@ -23,6 +25,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_pays:
+    type: country_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
     region: content
   member_for:
     weight: 5
@@ -41,3 +50,4 @@ content:
 hidden:
   langcode: true
   profile_exportateur_profiles: true
+  profile_homme_secteur_profiles: true

@@ -1,0 +1,22 @@
+uuid: 7d045fee-401c-4bdd-bf05-460e6cc890f3
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pays
+    - node.type.rct
+  module:
+    - country
+id: node.rct.field_pays
+field_name: field_pays
+entity_type: node
+bundle: rct
+label: Pays
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selectable_countries: {  }
+field_type: country

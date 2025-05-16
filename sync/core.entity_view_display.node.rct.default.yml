@@ -1,0 +1,134 @@
+uuid: 44c088c2-89fd-4615-8e2c-01e089583fed
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.rct.field_adress_pays_etranger
+    - field.field.node.rct.field_adress_test
+    - field.field.node.rct.field_body
+    - field.field.node.rct.field_location_pays_etranger
+    - field.field.node.rct.field_mail_pays_etranger
+    - field.field.node.rct.field_mobile_pays_etranger
+    - field.field.node.rct.field_pays
+    - field.field.node.rct.field_pdf_representant_network
+    - field.field.node.rct.field_photo_representant
+    - field.field.node.rct.field_reseau_sociaux_representan
+    - field.field.node.rct.field_telephone_pays_etranger
+    - field.field.node.rct.field_whatsapp_pays_etranger
+    - node.type.rct
+  module:
+    - country
+    - file
+    - geofield
+    - image
+    - social_media_links_field
+    - telephone
+    - text
+    - user
+id: node.rct.default
+targetEntityType: node
+bundle: rct
+mode: default
+content:
+  field_adress_pays_etranger:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_adress_test:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_location_pays_etranger:
+    type: geofield_default
+    label: above
+    settings:
+      output_format: wkt
+      output_escape: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_mail_pays_etranger:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_mobile_pays_etranger:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_pays:
+    type: country_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_pdf_representant_network:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_photo_representant:
+    type: image_url
+    label: above
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_reseau_sociaux_representan:
+    type: social_media_links_field_default
+    label: above
+    settings:
+      appearance: {  }
+      link_attributes: {  }
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_telephone_pays_etranger:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_whatsapp_pays_etranger:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

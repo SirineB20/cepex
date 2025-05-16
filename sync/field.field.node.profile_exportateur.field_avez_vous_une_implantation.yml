@@ -1,0 +1,21 @@
+uuid: 45c20517-5987-4d4e-8a09-4e2589292458
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_avez_vous_une_implantation
+    - node.type.profile_exportateur
+id: node.profile_exportateur.field_avez_vous_une_implantation
+field_name: field_avez_vous_une_implantation
+entity_type: node
+bundle: profile_exportateur
+label: 'Avez-vous une implantation commerciale à l’étranger ?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: oui
+  off_label: non
+field_type: boolean

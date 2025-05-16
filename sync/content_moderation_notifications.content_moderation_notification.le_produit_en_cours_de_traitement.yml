@@ -1,0 +1,20 @@
+uuid: 325bdcf3-35ed-4ff0-9f6e-1438d689ed06
+langcode: fr
+status: true
+dependencies: {  }
+id: le_produit_en_cours_de_traitement
+workflow: etat_produit
+transitions:
+  en_cours_modification: en_cours_modification
+roles:
+  administrator: administrator
+  exportateur: exportateur
+  homme_secteur: homme_secteur
+author: true
+site_mail: false
+emails: ''
+subject: 'Le produit en cours de traitement'
+body:
+  value: '<p>Le produit est en cours de traitement</p>'
+  format: basic_html
+label: 'Le produit en cours de traitement'
