@@ -120,9 +120,14 @@
         <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
-    </div>
+<div class="exportateur-products">
+    <h2>{% trans %}Produits de cet exportateur{% endtrans %}</h2>
     
-    {{ drupal_view('produit', 'produitblock') }}
+    {# Utiliser une vue pour afficher les produits de l'exportateur #}
+    {{ drupal_view('produit', 'produitblock', node.getOwnerId()) }}
+  </div>
+
+</article>
   
   </section>
 </div>
