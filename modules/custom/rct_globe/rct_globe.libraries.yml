@@ -1,0 +1,20 @@
+amcharts5:
+  remote: https://www.amcharts.com/
+  version: 5.0.0
+  license:
+    name: Commercial
+    url: https://www.amcharts.com/license/
+    gpl-compatible: false
+  js:
+    https://cdn.amcharts.com/lib/5/index.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/map.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/geodata/worldLow.js: { type: external, minified: true }
+    js/rct_globe.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.dialog
+  css:
+    theme:
+      css/rct_globe.css: {}

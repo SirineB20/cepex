@@ -5,12 +5,12 @@ popup:
       css/popup.css: {}
   dependencies:
     - core/drupal
-
 global:
   css:
     theme:
       css/form-contact.css: {}
       css/style.css: {}
+      css/maps.css: {}
       css/activities.css: {}
       css/ambassades.css: {}
       css/appui.css: {}
@@ -28,7 +28,6 @@ global:
       css/programme.css: {}
       css/marketplace.css: {}
       css/marketplace-filters.css: {}
-      css/maps.css: {}
       css/header.css: {}
       css/banner.css: {}
       css/filtre.css: {}

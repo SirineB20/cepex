@@ -1,0 +1,5 @@
+name: RCT Globe
+description: Module pour afficher un globe interactif avec les bureaux étrangers.
+type: module
+core_version_requirement: ^10 || ^11
+package: Custom

@@ -14,12 +14,53 @@ function cepex_preprocess_html(array &$variables): void {
 
 }
 /**
+ * Implémentation de hook_preprocess_HOOK() pour views_view.
+ */
+function cepex_preprocess_views_view(&$variables) {
+  if ($variables['view']->id() === 'bureaux_etranger') {
+    $variables['#attached']['library'][] = 'cepex/amcharts_globe';
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;  // Ajoutez cette ligne
 
 function cepex_preprocess_page(array &$variables): void {
   $current_user = \Drupal::currentUser();
   $variables['nid'] = NULL;
+  $current_path = \Drupal::service('path.current')->getPath();
+  
+  // Liste des chemins à exclure de la redirection
+  $excluded_paths = [
+    '/user/login',
+    '/user/logout',
+    '/admin',
+  ];
+  
+  if (in_array($current_path, $excluded_paths)) {
+    return;
+  }
+  
+  // Redirection selon le rôle
+  if ($current_user->hasRole('exportateur') && $current_path != '/dashboard/gestion-produits') {
+    $response = new RedirectResponse('/dashboard/gestion-produits');
+    $response->send();
+    exit;
+  }
+  elseif ($current_user->hasRole('rct') && $current_path != '/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}') {
+    $response = new RedirectResponse('/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}');
+    $response->send();
+    exit;
+  }
+    elseif ($current_user->hasRole('homme_secteur') && $current_path != '/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}') {
+    $response = new RedirectResponse('/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}');
+    $response->send();
+    exit;
+  }
+
   // Gestion des utilisateurs connectés
   if ($current_user->id() > 0) {
     // Charger l'objet utilisateur complet pour avoir accès à toutes ses propriétés
@@ -114,7 +155,6 @@ function cepex_preprocess_page(array &$variables): void {
     $variables['user_logged_in'] = FALSE;
   }
 }
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Helper function to apply common form styles.
@@ -132,7 +172,6 @@ function cepex_preprocess_views_exposed_form(&$variables) {
   if (!isset($variables['form']['#id'])) {
     return;
   }
-
   $form_id = $variables['form']['#id'];
 
   // Vérifier si c'est le formulaire de vue "market_place" que nous voulons cibler
@@ -188,8 +227,6 @@ function cepex_preprocess_views_exposed_form(&$variables) {
     }
   }
 }
-
-
 /**
  * Implements hook_theme_suggestions_views_view_alter().
  */
@@ -208,8 +245,6 @@ function cepex_suggestions_views_view_alter(array &$suggestions, array $variable
  * Implements hook_form_alter().
  */
 function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-
-  
   if (strpos($form_id, 'webform_submission_formulaire_de_contact_') === 0) {
     // Obtenez le paramètre service de l'URL
     $service = \Drupal::request()->query->get('service');
@@ -368,8 +403,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     return $form;
   };
 }
-
-  
   if (strpos($form_id, 'webform_submission_demande_de_devis_') === 0) {
     // On attache la librairie contenant webform-custom.css
     $form['#attached']['library'][] = 'cepex/form-contact';
@@ -432,8 +465,7 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     
     // Remplir le champ description_de_produit avec la description trouvée
     if (!empty($description_produit)) {
-      $decoded_description = urldecode($description_produit);
-      
+      $decoded_description = urldecode($description_produit); 
       // Tenter de remplir le champ description_de_produit de différentes manières
       // Approche 1: directement dans les éléments du formulaire
       if (isset($form['elements']['description_de_produit'])) {
@@ -447,8 +479,7 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
           $form['elements']['description_de_produit']['#attributes']['value'] = $decoded_description;
         }
       }
-      
-      
+       
       // Approche 3: chercher le champ avec #webform_key = description_de_produit
       foreach ($form as $key => &$element) {
         if (is_array($element) && isset($element['#webform_key']) && $element['#webform_key'] === 'description_de_produit') {
@@ -491,10 +522,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
           $form['elements']['nom_de_produit']['#attributes']['value'] = $decoded_value;
         }
       }
-      
-     
-    
-      
       // Approche 5: Chercher le champ avec #webform_key = nom_de_produit
       foreach ($form as $key => &$element) {
         if (is_array($element) && isset($element['#webform_key']) && $element['#webform_key'] === 'nom_de_produit') {

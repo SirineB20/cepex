@@ -1,0 +1,7 @@
+rct_globe.globe_page:
+  path: '/rct-globe'
+  defaults:
+    _controller: '\Drupal\rct_globe\Controller\RctGlobeController::globePage'
+    _title: 'RCT Globe'
+  requirements:
+    _permission: 'access content'

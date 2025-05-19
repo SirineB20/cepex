@@ -56,34 +56,49 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-12 col-sm-12 col-12 boxdetails-marketplace">
-				<div class="bgdetails-maretplace">
-					<span class="titleprod-details">{{ label }}</span>
-					{% if content.field_nom_produit %}
-						<span class="subtitleprod-details">{{ content.field_nom_produit }}</span>
-					{% endif %}
-					{% if content.field_reference_produit %}
-						<span class="refprod-details">{{ content.field_reference_produit }}</span>
-					{% endif %}
-					{% if content.field_description_produit %}
-						<span class="description-details">Description</span>
-						<p>{{ content.field_description_produit }}</p>
-					{% endif %}
-					<a href="http://localhost:8087/fr/form/formulaire-de-contact?service={{ node.title.value|url_encode }}" class="btn-cepex btn-devis">
-						Contactez le prestataire
-					</a>
-					{% if user.id %}
-						{% set description_produit = node.field_description_produit.value|default('') %}
-						<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis">
-							Demander un devis<i class="fa-solid fa-arrow-right"></i>
-						</a>
-					{% else %}
-						{% set description_produit = node.field_description_produit.value|default('') %}
-						<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis">
-							Demander un devis<i class="fa-solid fa-arrow-right"></i>
-						</a>
-					{% endif %}
-				</div>
+		<div class="bgdetails-maretplace">
+			<!-- Product Title and Information -->
+			<span class="titleprod-details">{{ label }}</span>
+			{% if content.field_nom_produit %}
+			<span class="subtitleprod-details">{{ content.field_nom_produit }}</span>
+			{% endif %}
+			{% if content.field_reference_produit %}
+			<span class="refprod-details">{{ content.field_reference_produit }}</span>
+			{% endif %}
+			
+			<!-- Product Description -->
+			{% if content.field_description_produit %}
+			<span class="description-details">Description</span>
+			<p>{{ content.field_description_produit }}</p>
+			{% endif %}
+			
+			<!-- Contact Provider Button -->
+			<a href="http://localhost:8087/fr/form/formulaire-de-contact?service={{ node.title.value|url_encode }}" class="btn-cepex btn-devis">
+			Contactez le prestataire
+			</a>
+			
+			<!-- Login Popup for Non-exporters or Non-connected Users -->
+			<div id="popup-login" class="popup" style="display: none;">
+			<div class="popup-content">
+				<span class="close">×</span>
+				<p>Vous devez être connecté pour accéder à cette fonctionnalité</p>
+				<a href="/fr/user/login" id="login-redirect-button" class="cepex-connect">Se connecter</a>
 			</div>
+			</div>
+			
+			<!-- Request Quote Button - Conditional Display -->
+			{% if 'exportateur' in user.roles %}
+			{% set description_produit = node.field_description_produit.value|default('') %}
+			<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis" tabindex="0">
+				Demander un devis<i class="fa-solid fa-arrow-right"></i>
+			</a>
+			{% else %}
+			{% set description_produit = node.field_description_produit.value|default('') %}
+			<a href="javascript:void(0);" class="btn-cepex btnprod" tabindex="0" onclick="document.getElementById('popup-login').style.display='block';">
+				Demander un devis<i class="fa-solid fa-arrow-right"></i>
+			</a>
+			{% endif %}
+		</div>
 		</div>
 
 		<div class="col-md-12 col-sm-12 col-12 caract-details-marketplace">

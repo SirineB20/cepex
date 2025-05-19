@@ -1,0 +1,10 @@
+<?php
+
+function rct_globe_theme() {
+  return [
+    'rct_globe' => [
+      'variables' => [],
+      'template' => 'rct_globe',
+    ],
+  ];
+}
