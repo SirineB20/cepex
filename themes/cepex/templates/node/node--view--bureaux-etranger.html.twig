@@ -1,6 +1,6 @@
-{% set id_pays = label.0['#context']['value']|replace({' ': "-"}) %}
+{% set countryId = label.0['#context']['value']|replace({' ': "-"}) %}
 
-<div class="maps-details" id="details-{{ id_pays|lower }}">
+<div class="maps-details" id="details-{{ countryId|lower }}">
   <div class="image-bureau">
     <img src="{{ content.field_photo_representant.0['#markup'] }}" class="img-bureau" alt="Cepex">
     <div class="contenu-sociaux-name">
