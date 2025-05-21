@@ -1,0 +1,22 @@
+{% set id_pays = label.0['#context']['value']|replace({' ': "-"}) %}
+
+<div class="maps-details" id="details-{{ id_pays|lower }}">
+  <div class="image-bureau">
+    <img src="{{ content.field_photo_representant.0['#markup'] }}" class="img-bureau" alt="Cepex">
+    <div class="contenu-sociaux-name">
+      <div class="flexbox-sociaux-maps">
+        {{ content.field_reseau_soc_bureau_etranger }}
+      </div>
+      <div class="name-network"><span>{{ label }}</span></div>
+    </div>
+  </div>
+  <div class="details-adr">
+    <span class="title-adr">{{ label }} </span>
+    <div class="boxadr"><span>{{ content.field_adress_pays_etranger }}</span></div>
+    <div class="boxadr"><span class="strong">{{ "Tel"|t }} :</span><span>{{ content.field_telephone_pays_etranger.0[ "#title"] }} </span></div>
+    <div class="boxadr"><span class="strong">{{ "Mobile"|t }} :</span><span>{{ content.field_mobile_pays_etranger.0[ "#title"] }}  </span></div>
+    <div class="boxadr"><span class="strong">{{ "Whatsapp"|t }} :</span><span> {{ content.field_whatsapp_pays_etranger.0[ "#title"] }}</span></div>
+    <div class="boxadr"><span class="strong">{{ "Email"|t }} :</span><span>{{ content.field_mail_pays_etranger.0[ "#context"]['value'] }}</span></div>
+  </div>
+</div>
+<div class="hello-pays hidden">{{ label.0['#context']['value'] }}|{{ content.field_location_pays_etranger.0["#lon"] }}|{{ content.field_location_pays_etranger.0["#lat"] }}</div>

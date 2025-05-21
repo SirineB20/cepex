@@ -43,10 +43,15 @@ global:
       https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css: { type: external }
       https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css: { type: external }
   js:
-    https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js: { type: external }
+    js/cepex.js: {}
+    https://cdn.amcharts.com/lib/5/index.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/map.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/geodata/worldLow.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/themes/Animated.js: { type: external, minified: true }
+    https://cdn.amcharts.com/lib/5/themes/Responsive.js: { type: external, minified: true }
+    js/maps.js: {}
     https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js: { type: external }
     https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js: { type: external }
-    js/cepex.js: {}
     js/appui.js: {}
     js/een.js: {}
     js/header.js: {}

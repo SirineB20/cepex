@@ -17,9 +17,10 @@ function cepex_preprocess_html(array &$variables): void {
  * Implémentation de hook_preprocess_HOOK() pour views_view.
  */
 function cepex_preprocess_views_view(&$variables) {
-  if ($variables['view']->id() === 'bureaux_etranger') {
-    $variables['#attached']['library'][] = 'cepex/amcharts_globe';
-  }
+  
+}
+function cepex_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'cepex/amcharts5';
 }
 
 /**

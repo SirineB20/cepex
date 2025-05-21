@@ -1,19 +1,12 @@
-{# Charge la bibliothèque amCharts (JS/CSS) #}
-
-<div class="container container-interne">
-  <div class="titlecontenu">
-    <span>Bureaux à <span class="colorred">l'étranger</span></span>
-  </div>
-
-  <div class="flexbox-maps">
-    <div class="boxmaps">
-      {# Conteneur VIDE pour le globe. Votre JS (Drupal.behaviors) s'appuie sur cet ID #}
-      <div id="chartdiv" style="width:100%; height:500px;"></div>
+<section class="bloc-bureaux" id="etranger">
+  <div class="container container-interne">
+    <div class="titlecontenu">
+      <h1><span>Bureaux à <span class="colorred">l'étranger</span></span></h1>
     </div>
-
-    <div class="detailsmaps">
-      {# Affiche les lignes de la vue (détails) APRÈS le globe #}
-      {{ rows }}
+    <div class="flexbox-maps position-relative">
+      <div class="boxmaps"><div id="chartdiv" aria-label="Carte interactive des bureaux à l'étranger"></div></div>
+      <div class="detailsmaps"><div class="contenu-pays">{{ rows }}</div></div>
     </div>
   </div>
-</div>
+</section>
+

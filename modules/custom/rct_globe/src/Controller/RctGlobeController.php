@@ -58,8 +58,6 @@ class RctGlobeController extends ControllerBase {
         $this->messenger()->addWarning('Le nœud ' . $node->id() . ' n\'a pas de localisation.');
       }
     }
-
-    
     return [
       '#theme' => 'rct_globe',
       '#attached' => [
@@ -75,3 +73,14 @@ class RctGlobeController extends ControllerBase {
     ];
   }
 }
+$build['#attached']['drupalSettings']['rctGlobe']['data'] = [
+  [
+    'name' => 'Bureau 1',
+    'latitude' => 48.8566,
+    'longitude' => 2.3522,
+    'address' => 'Adresse du bureau 1',
+    'phone' => '+123456789',
+    'email' => 'contact@bureau1.com'
+  ],
+  // Autres bureaux...
+];

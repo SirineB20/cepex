@@ -146,7 +146,11 @@
   font-weight: 600;
   padding-right: 5px;
 }
-
+@media (max-width: 600px) {
+  #chartdiv {
+    height: 400px;
+  }
+}
 @media screen and (max-width: 992px) {
   .boxmaps {
     width: 100%;
