@@ -211,3 +211,14 @@
   flex: 1; /* Adjust size as needed */
   margin-left: 20px; /* Optional: adds space between the two elements */
 }
+.maps-details {
+  display: none;
+}
+
+.maps-details.contenu-pays-open {
+  display: block;
+}
+
+.hello-pays.hidden {
+  display: none;
+}
