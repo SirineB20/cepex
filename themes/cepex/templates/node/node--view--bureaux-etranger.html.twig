@@ -1,21 +1,125 @@
+{#
+  Template: Representative/Country Details Display
+  Purpose: Display representative information with contact details and map coordinates
+#}
+
+{# ===== VARIABLES INITIALIZATION ===== #}
 {% set countryId = label.0['#context']['value']|lower|replace({' ': '-'}) %}
+
+{# ===== COORDINATE EXTRACTION ===== #}
+{% set longitude = null %}
+{% set latitude = null %}
+
+{# Method 1: Direct field access #}
+{% if node.field_location_pays_etranger.lon %}
+  {% set longitude = node.field_location_pays_etranger.lon %}
+  {% set latitude = node.field_location_pays_etranger.lat %}
+{% endif %}
+
+{# Method 2: Entity field access (fallback) #}
+{% if not longitude %}
+  {% set geofield_item = node.get('field_location_pays_etranger').first %}
+  {% if geofield_item %}
+    {% set longitude = geofield_item.lon %}
+    {% set latitude = geofield_item.lat %}
+  {% endif %}
+{% endif %}
+
+{# ===== MAIN TEMPLATE STRUCTURE ===== #}
 <div class="maps-details" id="details-{{ countryId }}">
-  <div class="image-bureau">
-    <img src="{{ content.field_photo_representant.0['#markup'] }}" class="img-bureau" alt="Cepex">
-    <div class="contenu-sociaux-name">
-      <div class="flexbox-sociaux-maps">
-        {{ content.field_reseau_soc_bureau_etranger }}
+  
+  {# === CLOSE BUTTON === #}
+  <button class="close-details-btn" 
+          data-target="details-{{ countryId }}" 
+          aria-label="{{ 'Fermer'|t }}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 6L6 18M6 6L18 18" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  {# === MAIN CONTENT === #}
+  <div class="bureau-content">
+    
+    {# === IMAGE AND SOCIAL SECTION === #}
+    <div class="image-bureau">
+      <img src="{{ content.field_photo_representant.0['#markup'] }}" 
+           class="img-bureau" 
+           alt="{{ label.0['#context']['value'] }}">
+      
+      <div class="contenu-sociaux-name">
+        <div class="flexbox-sociaux-maps">
+          {{ content.field_reseau_sociaux_representant }}
+        </div>
       </div>
-      <div class="name-network"><span>{{ label }}</span></div>
+    </div>
+
+    {# === CONTACT DETAILS SECTION === #}
+    <div class="details-adr">
+      <span class="title-adr">{{ label }}</span>
+      
+      {# Address (if available) #}
+      {% if content.field_adress_pays_etranger.0 %}
+        <div class="boxadr">
+          <span class="address-icon">📍</span>
+          <span>{{ content.field_adress_pays_etranger }}</span>
+        </div>
+      {% endif %}
+
+      {# Phone Numbers #}
+      <div class="boxadr">
+        <span class="strong">{{ 'Téléphone - Fix'|t }} :</span>
+        <span>{{ content.field_telephone_pays_etranger }}</span>
+      </div>
+
+      <div class="boxadr">
+        <span class="strong">{{ "Mobile"|t }} :</span>
+        <span>{{ content.field_mobile_pays_etranger }}</span>
+      </div>
+
+      <div class="boxadr">
+        <span class="strong">{{ "Whatsapp"|t }} :</span>
+        <span>{{ content.field_whatsapp_pays_etranger }}</span>
+      </div>
+
+      {# Email (if available) #}
+      {% if content.field_mail_pays_etranger.0["#context"]['value'] %}
+        <div class="boxadr">
+          <span class="strong title-contact">{{ "Email"|t }} :</span>
+          <a href="mailto:{{ content.field_mail_pays_etranger.0['#context']['value'] }}" 
+             class="contact-link email-link">
+            {{ content.field_mail_pays_etranger.0["#context"]['value'] }}
+          </a>
+        </div>
+      {% endif %}
+
+      {# Action Buttons #}
+      <div class="action-buttons">
+        {% if content.field_pdf_representant_network.0['#file'] %}
+          <a href="{{ file_url(content.field_pdf_representant_network.0['#file'].uri.value) }}" 
+             class="btn-cepex mt-3" 
+             target="_blank">
+            {{ "Voir plus"|t }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
-  <div class="details-adr">
-    <span class="title-adr">{{ label }} </span>
-    <div class="boxadr"><span>{{ content.field_adress_pays_etranger }}</span></div>
-    <div class="boxadr"><span class="strong">{{ "Tel"|t }} :</span><span>{{ content.field_telephone_pays_etranger.0["#title"] }} </span></div>
-    <div class="boxadr"><span class="strong">{{ "Mobile"|t }} :</span><span>{{ content.field_mobile_pays_etranger.0["#title"] }}  </span></div>
-    <div class="boxadr"><span class="strong">{{ "Whatsapp"|t }} :</span><span> {{ content.field_whatsapp_pays_etranger.0["#title"] }}</span></div>
-    <div class="boxadr"><span class="strong">{{ "Email"|t }} :</span><span>{{ content.field_mail_pays_etranger.0["#context"]['value'] }}</span></div>
-  </div>
 </div>
-<div class="hello-pays hidden">{{ label.0['#context']['value'] }}|{{ content.field_location_pays_etranger.0["#lon"] }}|{{ content.field_location_pays_etranger.0["#lat"] }}</div>
+
+{# ===== MAP COORDINATES DATA ===== #}
+{% if longitude and latitude %}
+  <div class="hello-pays hidden">
+    {{ label.0['#context']['value'] }}|{{ longitude }}|{{ latitude }}
+  </div>
+{% endif %}

@@ -39,45 +39,49 @@ function cepex_preprocess_page(array &$variables): void {
     '/user/login',
     '/user/logout',
     '/admin',
+    '/user/register',
+    '/user/password',
+    '/user/reset',
   ];
   
-  if (in_array($current_path, $excluded_paths)) {
-    return;
+  // Ajouter les chemins système et API à exclure
+  foreach ($excluded_paths as $excluded_path) {
+    if (strpos($current_path, $excluded_path) === 0) {
+      return;
+    }
   }
   
-  // Redirection selon le rôle
-  if ($current_user->hasRole('exportateur') && $current_path != '/dashboard/gestion-produits') {
-    $response = new RedirectResponse('/dashboard/gestion-produits');
-    $response->send();
-    exit;
-  }
-  elseif ($current_user->hasRole('rct') && $current_path != '/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}') {
-    $response = new RedirectResponse('/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}');
-    $response->send();
-    exit;
-  }
-    elseif ($current_user->hasRole('homme_secteur') && $current_path != '/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}') {
-    $response = new RedirectResponse('/dashboard/gestion-exportateurs-par-homme-secteur/{{ tid }}');
-    $response->send();
-    exit;
+  // Exclure les chemins AJAX et API
+  if (strpos($current_path, '/admin') === 0 || 
+      strpos($current_path, '/system') === 0 || 
+      strpos($current_path, '/core') === 0 ||
+      strpos($current_path, '/api') === 0) {
+    return;
   }
 
   // Gestion des utilisateurs connectés
   if ($current_user->id() > 0) {
-    // Charger l'objet utilisateur complet pour avoir accès à toutes ses propriétés
+    // Charger l'objet utilisateur complet
     $user = \Drupal\user\Entity\User::load($current_user->id());
 
-    // Ajouter les variables de l'utilisateur connecté au tableau $variables
+    // Variables de base de l'utilisateur
     $variables['user_logged_in'] = TRUE;
     $variables['user_name'] = $user->getDisplayName();
     $variables['user_id'] = $user->id();
     $variables['user_roles'] = $user->getRoles();
     
-    // Charger le profil exportateur associé à cet utilisateur
+    // Variables pour la redirection dynamique
+    $pays_code = NULL;
+    $user_id = $user->id();
+    $tid = NULL;
+    $should_redirect = FALSE;
+    $redirect_url = NULL;
+    
+    // Charger le profil exportateur
     $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
     $profiles = $profile_storage->loadByProperties([
       'uid' => $user->id(),
-      'type' => 'profile_exportateur', // Le type de profile
+      'type' => 'profile_exportateur',
     ]);
     
     if (!empty($profiles)) {
@@ -91,70 +95,198 @@ function cepex_preprocess_page(array &$variables): void {
       $variables['entreprise_name'] = $user->getDisplayName();
     }
     
-    // Ajouter l'ID du secteur pour l'homme secteur connecté
+    // Logique spécifique pour homme_secteur
     if (in_array('homme_secteur', $user->getRoles())) {
-      // Vérifier si l'information est stockée directement dans le profil utilisateur
       if ($user->hasField('field_secteur') && !$user->get('field_secteur')->isEmpty()) {
-        $variables['id_secteur_homme_secteur'] = $user->get('field_secteur')->target_id;
-      } 
-      // Sinon, chercher dans le profil homme_secteur
-      else {
+        $tid = $user->get('field_secteur')->target_id;
+        $variables['id_secteur_homme_secteur'] = $tid;
+      } else {
         $homme_secteur_profiles = $profile_storage->loadByProperties([
           'uid' => $user->id(),
-          'type' => 'profile_homme_secteur', // Ajustez selon votre type de profil
+          'type' => 'profile_homme_secteur',
         ]);
         
         if (!empty($homme_secteur_profiles)) {
           $homme_secteur_profile = reset($homme_secteur_profiles);
           if ($homme_secteur_profile->hasField('field_secteur') && !$homme_secteur_profile->get('field_secteur')->isEmpty()) {
-            $variables['id_secteur_homme_secteur'] = $homme_secteur_profile->get('field_secteur')->target_id;
+            $tid = $homme_secteur_profile->get('field_secteur')->target_id;
+            $variables['id_secteur_homme_secteur'] = $tid;
           }
         }
       }
     }
     
-    // Ajouter l'ID du pays pour le RCT connecté
-    if (in_array('rct', $user->getRoles())) {
-      // Vérifier si l'information est stockée directement dans le profil utilisateur
-      if ($user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
-        // Option 1: Si c'est une référence d'entité standard
-        $variables['pays_code'] = $user->get('field_pays')->target_id;
-        
-        // Option 2: Si c'est un champ country avec valeur directe
-        if ($user->get('field_pays')->value) {
-          $variables['pays_code'] = $user->get('field_pays')->value;
-        }
-      }
-      // Sinon, chercher dans le contenu de type "rct"
-      else {
-        // Rechercher le contenu RCT associé à cet utilisateur
-        $query = \Drupal::entityQuery('node')
-          ->condition('type', 'rct')
-          ->condition('uid', $current_user->id())
-          ->accessCheck(FALSE)
-          ->range(0, 1);
-        
-        $nids = $query->execute();
-        
-        if (!empty($nids)) {
-          $nid = reset($nids);
-          $variables['rct_node_id'] = $nid;
-          // Charger le nœud RCT
-          $node = \Drupal\node\Entity\Node::load($nid);
-          
-          if ($node && $node->hasField('field_pays') && !$node->get('field_pays')->isEmpty()) {
-            // Option 2: Si c'est un champ country avec valeur directe
-            if ($node->get('field_pays')->value) {
-              $variables['pays_code'] = $node->get('field_pays')->value;
-            }
-          }
+    // Logique spécifique pour RCT
+   // Logique spécifique pour RCT
+if (in_array('rct', $user->getRoles())) {
+  $variables['name_connected_user'] = $current_user->getAccountName();
+  $variables['id_connected_user'] = $current_user->id();
+  
+  // Debug: Log pour vérifier si on entre dans cette condition
+  \Drupal::logger('cepex')->info('Utilisateur RCT détecté: @uid', ['@uid' => $current_user->id()]);
+  
+  // Récupérer le contenu RCT de l'utilisateur connecté
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'rct')
+    ->condition('uid', $current_user->id())
+    ->accessCheck(FALSE);
+  
+  $nids = $query->execute();
+  
+  // Debug: Log pour voir les résultats de la requête
+  \Drupal::logger('cepex')->info('Nodes RCT trouvés: @nids', ['@nids' => implode(', ', $nids)]);
+  
+  if (!empty($nids)) {
+    $rct_nid = reset($nids);
+    $variables['id_rct'] = $rct_nid;
+    $variables['rct_node_id'] = $rct_nid;
+    
+    // Debug: Log pour confirmer l'ID récupéré
+    \Drupal::logger('cepex')->info('ID RCT assigné: @id', ['@id' => $rct_nid]);
+    
+    // Charger le node RCT pour récupérer d'autres informations si nécessaire
+    $rct_node = \Drupal\node\Entity\Node::load($rct_nid);
+    if ($rct_node) {
+      // Vous pouvez ajouter d'autres variables basées sur le contenu RCT
+      $variables['rct_title'] = $rct_node->getTitle();
+      
+      // Si le node RCT a un champ pays, l'utiliser
+      if ($rct_node->hasField('field_pays') && !$rct_node->get('field_pays')->isEmpty()) {
+        if ($rct_node->get('field_pays')->value) {
+          $pays_code = $rct_node->get('field_pays')->value;
+          $variables['pays_code'] = $pays_code;
         }
       }
     }
   } else {
-    // Si l'utilisateur n'est pas connecté
+    // Debug: Aucun node RCT trouvé
+    \Drupal::logger('cepex')->warning('Aucun node RCT trouvé pour l\'utilisateur: @uid', ['@uid' => $current_user->id()]);
+    
+    // Vérifier si des nodes RCT existent du tout
+    $all_rct_query = \Drupal::entityQuery('node')
+      ->condition('type', 'rct')
+      ->accessCheck(FALSE);
+    $all_rct_nids = $all_rct_query->execute();
+    
+    \Drupal::logger('cepex')->info('Total nodes RCT dans le système: @count', ['@count' => count($all_rct_nids)]);
+  }
+  
+  // Vérifier le champ pays sur l'utilisateur si pas trouvé sur le node
+  if (!$pays_code && $user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
+    $pays_code = $user->get('field_pays')->target_id;
+    if ($user->get('field_pays')->value) {
+      $pays_code = $user->get('field_pays')->value;
+    }
+    $variables['pays_code'] = $pays_code;
+  }
+}
+    // REDIRECTION SEULEMENT AU PREMIER LOGIN
+    // Vérifier si c'est une session fraîche (juste après login)
+    $session = \Drupal::request()->getSession();
+    $just_logged_in = $session->get('just_logged_in', FALSE);
+    
+    // Définir les chemins autorisés pour chaque rôle
+    $allowed_paths = [];
+    
+    if ($current_user->hasRole('exportateur')) {
+      $allowed_paths = [
+        '/dashboard/gestion-produits',
+        '/user/' . $user_id,
+        '/user/' . $user_id . '/edit',
+        // Ajouter d'autres chemins autorisés pour exportateur
+      ];
+      
+      // Redirection seulement si juste connecté ET pas sur un chemin autorisé
+      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
+        $redirect_url = '/dashboard/gestion-produits';
+        $should_redirect = TRUE;
+      }
+    }
+    elseif ($current_user->hasRole('rct') && $pays_code) {
+      $allowed_paths = [
+        "/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}",
+        "/fr/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}",
+        '/rct/liste-exportateurs',
+        '/fr/rct/liste-exportateurs',
+        '/user/' . $user_id,
+        '/fr/user/' . $user_id,
+        '/user/' . $user_id . '/edit',
+        '/fr/user/' . $user_id . '/edit',
+        // Ajouter d'autres chemins autorisés pour RCT
+      ];
+      
+      if (isset($variables['rct_node_id'])) {
+        $allowed_paths[] = '/node/' . $variables['rct_node_id'];
+        $allowed_paths[] = '/fr/node/' . $variables['rct_node_id'];
+      }
+      
+      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
+        $redirect_url = "/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}";
+        $should_redirect = TRUE;
+      }
+    }
+    elseif ($current_user->hasRole('homme_secteur') && $tid) {
+      $allowed_paths = [
+        "/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}",
+        "/fr/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}",
+        '/user/' . $user_id,
+        '/fr/user/' . $user_id,
+        '/user/' . $user_id . '/edit',
+        '/fr/user/' . $user_id . '/edit',
+        // Ajouter d'autres chemins autorisés pour homme_secteur
+      ];
+      
+      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
+        $redirect_url = "/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}";
+        $should_redirect = TRUE;
+      }
+    }
+
+    // Effectuer la redirection si nécessaire
+    if ($should_redirect && $redirect_url) {
+      // Marquer que la redirection post-login a été faite
+      $session->set('just_logged_in', FALSE);
+      
+      $response = new RedirectResponse($redirect_url);
+      $response->send();
+      exit;
+    }
+    
+    // Nettoyer le flag après la première page
+    if ($just_logged_in) {
+      $session->set('just_logged_in', FALSE);
+    }
+
+  } else {
     $variables['user_logged_in'] = FALSE;
   }
+}
+
+/**
+ * Vérifie si un chemin est autorisé selon des patterns
+ */
+function isPathAllowed($current_path, $allowed_paths) {
+  foreach ($allowed_paths as $allowed_path) {
+    // Vérification exacte
+    if ($current_path === $allowed_path) {
+      return TRUE;
+    }
+    // Vérification avec wildcard (commence par)
+    if (strpos($allowed_path, '*') !== FALSE) {
+      $pattern = str_replace('*', '', $allowed_path);
+      if (strpos($current_path, $pattern) === 0) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+/**
+ * Implements hook_user_login().
+ */
+function cepex_user_login($account) {
+  // Marquer que l'utilisateur vient de se connecter
+  \Drupal::request()->getSession()->set('just_logged_in', TRUE);
 }
 
 /**
@@ -816,5 +948,84 @@ function cepex_theme_suggestions_node_alter(array &$suggestions, array $variable
     $suggestions[] = 'node__' . $variables['elements']['#view_id'];
     $suggestions[] = 'node__' . $node->bundle() . '__' . $variables['elements']['#view_id'];
     $suggestions[] = 'node__' . $node->bundle() . '__' . $view_mode . '__' . $variables['elements']['#view_id'];
+  }
+}
+/*
+ * Validate Matricule Fiscal Format.
+ */
+function my_custom_module_validate_matricule_fiscal(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form)
+{
+  $matricule_fiscal1 = $form_state->getValue('field_matricul_fiscale');
+  $matricule_fiscal = $matricule_fiscal1[0]["value"];
+
+  // Check if the format is correct: 7 digits followed by a letter.
+  if (!preg_match('/^\d{7}[a-zA-Z]$/', $matricule_fiscal)) {
+    $form_state->setError($element, t('Le matricule fiscal doit comporter 7 chiffres suivis d\'une lettre.'));
+    return;
+  }
+
+  // Calculate the checksum using predefined weights.
+  $weights = [7, 6, 5, 4, 3, 2, 1];
+  $sum = 0;
+  for ($i = 0; $i < 7; $i++) {
+    $sum += $matricule_fiscal[$i] * $weights[$i];
+  }
+
+  // Determine the expected letter.
+  $remainder = ($sum % 23) + 1;
+  $letters = 'abcdefghjklmnpqrstvwxyz';
+  $expected_letter = $letters[$remainder - 1];
+
+  // Compare the expected letter with the actual letter in the matricule.
+  $actual_letter = strtolower($matricule_fiscal[7]);
+  if ($actual_letter !== $expected_letter) {
+    $form_state->setError($element, t('Le matricule fiscal n\'est pas valide selon la clé de contrôle.'));
+  }
+}
+
+function validateUniqueMatriculeFiscal(array &$element, FormStateInterface $form_state, array &$complete_form)
+{
+  $matricule_fiscal1 = $form_state->getValue('field_matricul_fiscale');
+  $matricule_fiscal = $matricule_fiscal1[0]["value"];
+  // Vérifier si le nom d'utilisateur existe pour le rôle exportateur.
+  $query = \Drupal::entityQuery('user')
+    ->condition('name', $matricule_fiscal)
+    ->condition('roles', 'exportateur')
+    ->accessCheck(TRUE)
+    ->range(0, 1);
+  $existing_user_ids = $query->execute();
+
+  if (!empty($existing_user_ids)) {
+    $form_state->setError($element, t('Le matricule fiscal existe déjà. Veuillez vous connecter !!'));
+  }
+}
+function validateUniqueMail(array &$element, FormStateInterface $form_state, array &$complete_form)
+{
+  $matricule_fiscal1 = $form_state->getValue('field_e_mail');
+  $matricule_fiscal = $matricule_fiscal1[0]["value"];
+  // Vérifier si le nom d'utilisateur existe pour le rôle exportateur.
+  $query = \Drupal::entityQuery('user')
+    ->condition('mail', $matricule_fiscal)
+    ->accessCheck(TRUE)
+    ->range(0, 1);
+  $existing_user_ids = $query->execute();
+
+  if (!empty($existing_user_ids)) {
+    $form_state->setError($element, t('Votre mail existe déjà. Veuillez choisir un autre mail de contact !!'));
+  }
+}
+function opportunite_custom_date_validate($form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+  // Get the date value from the form.
+  $date_value = $form_state->getValue(['field_date_opportunite', 0, 'value']);
+  $timestamp_opp = $date_value->getTimestamp();
+
+  // Get the current date timestamp.
+  $current_timestamp = strtotime(date('Y-m-d'));
+
+  // Check if the date is not greater than the current date.
+  if ($timestamp_opp <= $current_timestamp) {
+    // Set an error on the date field.
+    $form_state->setErrorByName('field_date_opportunitie', t('La date de clôture doit être supérieure à la date d\'aujourd\'hui.'));
   }
 }

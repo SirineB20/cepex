@@ -1,8 +1,23 @@
-(function (Drupal) {
+(function (Drupal, once) {
+  'use strict';
+  
   Drupal.behaviors.rctGlobe = {
     attach: function (context, settings) {
+      // Vérification si once est disponible
+      if (typeof once === 'undefined') {
+        console.error('La bibliothèque "once" n\'est pas disponible');
+        return;
+      }
+      
       const chartDivs = once('rctGlobe', '#chartdiv', context);
+      if (chartDivs.length === 0) {
+        console.log('Aucun élément #chartdiv trouvé ou déjà initialisé');
+        return;
+      }
+      
       chartDivs.forEach(function(chartDiv) {
+        console.log('Initialisation du globe pour:', chartDiv);
+        
         var root = am5.Root.new("chartdiv");
         var myTheme = am5.Theme.new(root);
         myTheme.rule("Label").setAll({ fontSize: "1em" });
@@ -85,19 +100,26 @@
         var pointDataArray = [];
         console.log("Recherche des éléments .hello-pays...");
         
-        $('.hello-pays', context).each(function(index, element) {
-          var divContent = $(element).text();
+        var helloPaysElements = context.querySelectorAll('.hello-pays');
+        console.log("Nombre d'éléments .hello-pays trouvés:", helloPaysElements.length);
+        
+        helloPaysElements.forEach(function(element, index) {
+          var divContent = element.textContent || element.innerText;
           console.log("Contenu trouvé:", divContent);
           
           var values = divContent.split('|');
+          console.log("Valeurs après split:", values);
+          
           if (values.length === 3) {
             var name = values[0].trim();
             var longitude = parseFloat(values[1].trim());
             var latitude = parseFloat(values[2].trim());
             
             console.log("Données parsées:", { name, longitude, latitude });
+            console.log("Types:", typeof longitude, typeof latitude);
+            console.log("isNaN check:", isNaN(longitude), isNaN(latitude));
             
-            if (!isNaN(longitude) && !isNaN(latitude)) {
+            if (!isNaN(longitude) && !isNaN(latitude) && longitude !== 0 && latitude !== 0) {
               var countryId = name.toLowerCase().replace(/\s+/g, '-');
               pointDataArray.push({
                 name: name, 
@@ -105,17 +127,25 @@
                 latitude: latitude, 
                 countryId: countryId 
               });
-              console.log("Point ajouté:", { name, countryId, longitude, latitude });
+              console.log("✓ Point ajouté:", { name, countryId, longitude, latitude });
             } else {
-              console.error("Coordonnées invalides pour:", name);
+              console.error("✗ Coordonnées invalides pour:", name, "lon:", longitude, "lat:", latitude);
             }
           } else {
-            console.error("Format de données incorrect:", divContent);
+            console.error("✗ Format de données incorrect:", divContent, "- Nombre d'éléments:", values.length);
+            if (divContent.includes('DEBUG')) {
+              console.warn("⚠️ Élément en mode debug détecté - coordonnées non disponibles");
+            }
           }
         });
         
-        console.log("Nombre total de points:", pointDataArray.length);
+        console.log("Nombre total de points valides:", pointDataArray.length);
         console.log("Données complètes:", pointDataArray);
+        
+        if (pointDataArray.length === 0) {
+          console.warn("Aucun point valide trouvé. Vérifiez que les champs Geofield contiennent des coordonnées.");
+          return;
+        }
         
         // Création de la série de points
         var pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {
@@ -165,6 +195,20 @@
           return am5.Bullet.new(root, { sprite: circle });
         });
         
+        // Gestionnaire pour les boutons de fermeture
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.close-details-btn')) {
+            var button = e.target.closest('.close-details-btn');
+            var targetId = button.getAttribute('data-target');
+            var targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              targetElement.classList.remove('contenu-pays-open');
+              console.log('Détail fermé pour:', targetId);
+            }
+          }
+        });
+        
         // Animation de rotation
         chart.animate({
           key: "rotationX",
@@ -178,4 +222,4 @@
       });
     }
   };
-})(Drupal);
+})(Drupal, once);

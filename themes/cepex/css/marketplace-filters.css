@@ -250,6 +250,23 @@ input#edit-field-presentation-opportunitie-wrapper {
   margin-top: 0;
   margin-right: 25px;
 }
+#edit-name{
+    -moz-appearance: none;
+  appearance: none;
+  background-position: right 15px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  font-size: 15px;
+  height: 50px;
+  padding: 20px 20px;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+  margin-top: 0;
+  
+}
 
 input#edit-title:focus,
 input#edit-field-matricule-fiscale-value:focus,

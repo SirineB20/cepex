@@ -23,6 +23,9 @@
     display: flex;
     
   }
+  #edit-moderation-state-0-state {
+    display: none;
+  }
   
   /* Style des légendes/sections */
   #edit-group-entreprise-general legend,
@@ -476,7 +479,7 @@
 }
 
 .auth-forms .from-inputs div {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: start;
 }
 

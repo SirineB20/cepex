@@ -18,28 +18,18 @@
       <div class="col-md-6 text-center">
         <div class="card card-outline-success text-center">
           <div class="card-header">
-            <h4 class="m-b-0 text-white">Identifiez-vous</h4>
+            <h4 class="m-b-0 text-white">Mot de passe oublié?</h4>
           </div>
           <div class="card-body">
             <form{{ attributes }}>
               <div class="row from-inputs">
-                <div class="col-lg-12 m-b-20">
-                  <h5 class="text-primary">Vous n'avez pas encore de compte ?</h5>
-                       <a href="{{ path('user.register') }}" class=="btn submit">
-                    {{ 'Créer un compte'|t }}
-                  <div class="box-information-login">
-                    <span>
-                      Si vous avez un compte CEPEX, veuillez vous connecter avec vos identifiants.
-                    </span>
-                  </div>
-                </div>
+                
                 <div class="col-lg-12">
                   {{ children }}
                 </div>
               </div>
             </form>
-            <class="card-text pull-left m-t-5 text-align-left">
-            <a href="/user/password" class="class-lang">Mot de passe oublié ?</a>
+
           </div>
         </div>
       </div>
