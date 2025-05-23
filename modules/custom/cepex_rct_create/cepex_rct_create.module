@@ -24,7 +24,7 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
 
       // Vérifier correctement si les champs existent et ont des valeurs
       if ($entity->hasField('field_mail_pays_etranger') && 
-          $entity->hasField('field_adress_test') && 
+          $entity->hasField('field_namerct') && 
           $entity->hasField('field_pays')) {
         
         // Extraire les valeurs en s'assurant qu'elles ne sont pas vides
@@ -32,8 +32,8 @@ function cepex_rct_create_entity_insert(EntityInterface $entity) {
           ? $entity->get('field_mail_pays_etranger')->value 
           : null;
         
-        $username = !$entity->get('field_adress_test')->isEmpty() 
-          ? $entity->get('field_adress_test')->value 
+        $username = !$entity->get('field_namerct')->isEmpty() 
+          ? $entity->get('field_namerct')->value 
           : null;
         
         $pays = !$entity->get('field_pays')->isEmpty() 

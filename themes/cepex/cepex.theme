@@ -19,6 +19,7 @@ function cepex_preprocess_html(array &$variables): void {
 function cepex_preprocess_views_view(&$variables) {
   
 }
+
 function cepex_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'cepex/amcharts5';
 }

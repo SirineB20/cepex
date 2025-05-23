@@ -71,15 +71,22 @@
 				<div class="sidebar">
 					<div class="sidebar-wrapper">
 						<ul class="menu">
-							<img src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
-
-							<li>
-								<a href="={{ path('entity.user.canonical', {'user': user_id})}}">
-									<i class="fa-solid fa-id-card"></i>
-									Profil RCT
-								</a>
-							</li>
-
+							<img
+							src="{{ base_path ~ directory }}/images/Logo-white.png" alt="logo" class="logo-sidebar">
+							{# Vos liens de menu avec toutes les informations #}
+							{% if id_rct %}
+								<li>
+									<a href="/fr/node/{{ id_rct }}/edit">
+										<i class="fa-solid fa-id-card"></i>
+										Profil RCT
+									</a>
+								</li>
+							{% else %}
+								<!-- Debug: Afficher un message si id_rct n'est pas défini -->
+								<li>
+									<span style="color: red;">ID RCT non trouvé</span>
+								</li>
+							{% endif %}
 							<li>
 								<a href="/fr/dasboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}">
 									<i class="fa-solid fa-box-open"></i>
@@ -118,7 +125,7 @@
 							</li>
 							{% if user_roles is defined and 'rct' in user_roles %}
 								<li class="user-profile">
-									<a href="/node/{{ id_rct }}/edit">
+									<a href="{{ path('entity.user.canonical', {'user': user_id}) }}">
 										<i class="fa-regular fa-user"></i>
 										<span class="user-info">{{ entreprise_name }}</span>
 									</a>

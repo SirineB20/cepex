@@ -8,19 +8,11 @@
   ]
 %}
 <div{{ row.attributes.addClass(row_classes) }}>
-  <section class="bloc-activites-export">
-  <div class="container container-interne">
-    <div class="view-filters">
-      <div class="flexbox-filtre-activites boxfiltre-opportinutes">
-        <div class="filter-news">
-        {% if exposed is defined and exposed %}
+   <div class="container">
+      <div class="boxfiltre-guide boxfiltre-export boxfiltre-opportinutes">
           {{ exposed }}
-        {% endif %}
         </div>
-      </div>
-      </div>  
-    </div>
-  </section>
+     </div>
 
   {# Contenu des actualités #}
  <div class="section-support nobg" style="padding-top: 0;">

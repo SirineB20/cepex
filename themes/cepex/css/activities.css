@@ -1,6 +1,7 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
 .tab-content {
   width: 100%;
 }
@@ -33,9 +34,9 @@ body {
 /*
  * Basic styling for features added by Better Exposed Filters
  */
- #edit-field-soustype-target-id-all
- {
-  display: none;}
+#edit-field-type-target-id-all {
+  display:none;
+}
 
  .form-control {
   display: block;
@@ -587,7 +588,7 @@ html[lang="ar"] .image-succes-storie {
 .date-picker,
 .search-bar {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   border-radius: 5px;
   outline: none;
 }
@@ -611,7 +612,7 @@ html[lang="ar"] .image-succes-storie {
 }
 
 .category:hover {
-  background: #f1f1f1;
+  background: #fff;
   transform: translateY(-2px);
 }
 @media screen and (max-width: 992px) {
@@ -646,3 +647,219 @@ html[lang="ar"] .image-succes-storie {
       font-size: 14px;
   }
 }
+/* Styles spécifiques pour la form d'actualité */
+
+
+/* Champ de date */
+#views-exposed-form-actualite-block-1 .js-form-item-field-date-value {
+  margin-bottom: 0;
+}
+
+#views-exposed-form-actualite-block-1 #edit-field-date-value {
+  padding: 12px 16px;
+  border: 2px solid #e8e9ea;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333333;
+  transition: all 0.3s ease;
+  width: 250px;
+  height: 50px;
+  box-sizing: border-box;
+  background: #fafbfc;
+}
+
+#views-exposed-form-actualite-block-1 #edit-field-date-value:focus {
+  outline: none;
+  border-color: #cb033d;
+  box-shadow: 0 0 0 3px rgba(203, 3, 61, 0.1);
+  background: #fff;
+}
+
+/* Champ de recherche mot clé */
+#views-exposed-form-actualite-block-1 .js-form-item-body-value {
+  margin-bottom: 0;
+}
+
+#views-exposed-form-actualite-block-1 #edit-body-value {
+  padding: 12px 16px;
+  border: 2px solid #e8e9ea;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333333;
+  transition: all 0.3s ease;
+  width: 250px;
+  height: 50px;
+  box-sizing: border-box;
+  background: #fafbfc;
+}
+
+#views-exposed-form-actualite-block-1 #edit-body-value:focus {
+  outline: none;
+  border-color: #cb033d;
+  box-shadow: 0 0 0 3px rgba(203, 3, 61, 0.1);
+  background: #fff;
+}
+
+#views-exposed-form-actualite-block-1 #edit-body-value::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Section des liens de filtre par type */
+#views-exposed-form-actualite-block-1 .js-form-item-field-type-target-id {
+  margin-bottom: 0;
+}
+
+#views-exposed-form-actualite-block-1 .bef-links {
+  padding: 8px;
+  margin: 0;
+  width: 250px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+#views-exposed-form-actualite-block-1 .bef-links:hover {
+  border-color: #cb033d;
+  background: #fff;
+}
+
+#views-exposed-form-actualite-block-1 .bef-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#views-exposed-form-actualite-block-1 .bef-links li {
+  margin: 0;
+}
+
+#views-exposed-form-actualite-block-1 .bef-link {
+  display: inline-block;
+  padding: 6px 10px;
+  background: transparent;
+  color: #333333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#views-exposed-form-actualite-block-1 .bef-link:hover {
+  background: rgba(203, 3, 61, 0.1);
+  color: #cb033d;
+  transform: translateY(-1px);
+}
+
+#views-exposed-form-actualite-block-1 .bef-link--selected {
+  background: #cb033d;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(203, 3, 61, 0.3);
+}
+
+#views-exposed-form-actualite-block-1 .bef-link--selected:hover {
+  background: #a8032f;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Bouton submit (caché mais stylé au cas où) */
+#views-exposed-form-actualite-block-1 #edit-submit-actualite {
+  background: linear-gradient(135deg, #cb033d, #a8032f);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 250px;
+  height: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(203, 3, 61, 0.3);
+}
+
+#views-exposed-form-actualite-block-1 #edit-submit-actualite:hover {
+  background: linear-gradient(135deg, #a8032f, #8a0225);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(203, 3, 61, 0.4);
+}
+
+/* Actions container */
+#views-exposed-form-actualite-block-1 .form-actions {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #views-exposed-form-actualite-block-1 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  #views-exposed-form-actualite-block-1 .js-form-item-field-date-value,
+  #views-exposed-form-actualite-block-1 .js-form-item-body-value,
+  #views-exposed-form-actualite-block-1 .js-form-item-field-type-target-id,
+  #views-exposed-form-actualite-block-1 .form-actions {
+    margin-bottom: 0;
+  }
+  
+  #views-exposed-form-actualite-block-1 #edit-field-date-value,
+  #views-exposed-form-actualite-block-1 #edit-body-value,
+  #views-exposed-form-actualite-block-1 .bef-links,
+  #views-exposed-form-actualite-block-1 #edit-submit-actualite {
+    width: 100%;
+  }
+  
+  #views-exposed-form-actualite-block-1 .bef-links ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  #views-exposed-form-actualite-block-1 .bef-link {
+    text-align: center;
+    width: 100%;
+    padding: 8px 12px;
+  }
+}
+
+/* Cacher le lien "Any" - Sélecteurs multiples pour plus d'efficacité */
+#edit-field-type-target-id-all,
+#views-exposed-form-actualite-block-1 #edit-field-type-target-id-all,
+#views-exposed-form-actualite-block-1 .bef-links li:has(#edit-field-type-target-id-all),
+#views-exposed-form-actualite-block-1 .bef-link[href*="field_type_target_id=All"] {
+  display: none !important;
+}
+
+/* Animation d'entrée élégante */
+#views-exposed-form-actualite-block-1 {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#viewsreference--view-title
+{display:none;}
