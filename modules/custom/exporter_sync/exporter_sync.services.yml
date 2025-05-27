@@ -1,0 +1,4 @@
+services:
+  exporter_sync.sync_service:
+    class: Drupal\exporter_sync\ExporterSyncService
+    arguments: ['@http_client', '@config.factory', '@logger.factory', '@entity_type.manager']

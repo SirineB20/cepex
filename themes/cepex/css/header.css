@@ -411,10 +411,9 @@ body {
 }
 
 .header-bottom {
-    position: relative;
+    
     margin-top: 25px;
-    transition: 0.5s ease all;
-    transform: translateY(0%);
+ 
 }
 
 .navmenu {

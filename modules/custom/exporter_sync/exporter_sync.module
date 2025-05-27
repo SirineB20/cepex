@@ -1,0 +1,120 @@
+<?php
+/**
+ * @file
+ * Module pour synchroniser les exportateurs.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_user_insert().
+ */
+function exporter_sync_user_insert(EntityInterface $entity) {
+  if ($entity instanceof User && $entity->hasRole('exportateur')) {
+    // Vérifier si le service existe avant de l'utiliser
+    if (\Drupal::hasService('exporter_sync.sync_service')) {
+      $sync_service = \Drupal::service('exporter_sync.sync_service');
+      $sync_service->autoSyncUser($entity);
+    }
+  }
+}
+
+/**
+ * Implements hook_user_update().
+ */
+function exporter_sync_user_update(EntityInterface $entity) {
+  if ($entity instanceof User && $entity->hasRole('exportateur')) {
+    // Vérifier si le service existe avant de l'utiliser
+    if (\Drupal::hasService('exporter_sync.sync_service')) {
+      $sync_service = \Drupal::service('exporter_sync.sync_service');
+      $sync_service->autoSyncUser($entity);
+    }
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function exporter_sync_node_insert(EntityInterface $entity) {
+  if ($entity instanceof Node && $entity->bundle() === 'profile_exportateur') {
+    // Récupérer l'utilisateur propriétaire du nœud
+    $user_id = $entity->getOwnerId();
+    if ($user_id) {
+      $user = User::load($user_id);
+      if ($user && $user->hasRole('exportateur')) {
+        // Vérifier si le service existe avant de l'utiliser
+        if (\Drupal::hasService('exporter_sync.sync_service')) {
+          $sync_service = \Drupal::service('exporter_sync.sync_service');
+          $sync_service->autoSyncUser($user);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function exporter_sync_node_update(EntityInterface $entity) {
+  if ($entity instanceof Node && $entity->bundle() === 'profile_exportateur') {
+    // Récupérer l'utilisateur propriétaire du nœud
+    $user_id = $entity->getOwnerId();
+    if ($user_id) {
+      $user = User::load($user_id);
+      if ($user && $user->hasRole('exportateur')) {
+        // Vérifier si le service existe avant de l'utiliser
+        if (\Drupal::hasService('exporter_sync.sync_service')) {
+          $sync_service = \Drupal::service('exporter_sync.sync_service');
+          $sync_service->autoSyncUser($user);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function exporter_sync_node_delete(EntityInterface $entity) {
+  if ($entity instanceof Node && $entity->bundle() === 'profile_exportateur') {
+    // Optionnel : gérer la suppression du profil exportateur
+    $user_id = $entity->getOwnerId();
+    if ($user_id) {
+      $user = User::load($user_id);
+      if ($user && $user->hasRole('exportateur')) {
+        // Log ou autres actions lors de la suppression
+        \Drupal::logger('exporter_sync')->info('Profile exportateur supprimé pour l\'utilisateur @user', [
+          '@user' => $user->getDisplayName(),
+        ]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_user_delete().
+ */
+function exporter_sync_user_delete(EntityInterface $entity) {
+  if ($entity instanceof User && $entity->hasRole('exportateur')) {
+    // Supprimer aussi le profil exportateur associé
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'profile_exportateur')
+      ->condition('uid', $entity->id())
+      ->accessCheck(FALSE);
+    
+    $nids = $query->execute();
+    
+    if (!empty($nids)) {
+      $nodes = Node::loadMultiple($nids);
+      foreach ($nodes as $node) {
+        $node->delete();
+      }
+      
+      \Drupal::logger('exporter_sync')->info('Profiles exportateur supprimés pour l\'utilisateur @user', [
+        '@user' => $entity->getDisplayName(),
+      ]);
+    }
+  }
+}

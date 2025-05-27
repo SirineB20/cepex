@@ -1,0 +1,15 @@
+exporter_sync.api.create:
+  path: '/api/exporter/create'
+  defaults:
+    _controller: '\Drupal\exporter_sync\Controller\ExporterApiController::createExporter'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+
+exporter_sync.config:
+  path: '/admin/config/services/exporter-sync'
+  defaults:
+    _form: '\Drupal\exporter_sync\Form\ExporterSyncConfigForm'
+    _title: 'Configuration Exporter Sync'
+  requirements:
+    _permission: 'administer site configuration'

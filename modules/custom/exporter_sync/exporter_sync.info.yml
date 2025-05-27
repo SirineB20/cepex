@@ -1,0 +1,11 @@
+name: 'Exporter Synchronization'
+type: module
+description: 'Synchronizes exporters between e-cepex and cepex sites'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:user
+  - drupal:node
+  - drupal:rest
+  - drupal:serialization
+  - drupal:field
