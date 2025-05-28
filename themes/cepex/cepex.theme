@@ -28,37 +28,12 @@ function cepex_page_attachments(array &$attachments) {
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;  // Ajoutez cette ligne
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
 
 function cepex_preprocess_page(array &$variables): void {
   $current_user = \Drupal::currentUser();
   $variables['nid'] = NULL;
-  $current_path = \Drupal::service('path.current')->getPath();
-  
-  // Liste des chemins à exclure de la redirection
-  $excluded_paths = [
-    '/user/login',
-    '/user/logout',
-    '/admin',
-    '/user/register',
-    '/user/password',
-    '/user/reset',
-  ];
-  
-  // Ajouter les chemins système et API à exclure
-  foreach ($excluded_paths as $excluded_path) {
-    if (strpos($current_path, $excluded_path) === 0) {
-      return;
-    }
-  }
-  
-  // Exclure les chemins AJAX et API
-  if (strpos($current_path, '/admin') === 0 || 
-      strpos($current_path, '/system') === 0 || 
-      strpos($current_path, '/core') === 0 ||
-      strpos($current_path, '/api') === 0) {
-    return;
-  }
 
   // Gestion des utilisateurs connectés
   if ($current_user->id() > 0) {
@@ -75,8 +50,6 @@ function cepex_preprocess_page(array &$variables): void {
     $pays_code = NULL;
     $user_id = $user->id();
     $tid = NULL;
-    $should_redirect = FALSE;
-    $redirect_url = NULL;
     
     // Charger le profil exportateur
     $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
@@ -118,176 +91,253 @@ function cepex_preprocess_page(array &$variables): void {
     }
     
     // Logique spécifique pour RCT
-   // Logique spécifique pour RCT
-if (in_array('rct', $user->getRoles())) {
-  $variables['name_connected_user'] = $current_user->getAccountName();
-  $variables['id_connected_user'] = $current_user->id();
-  
-  // Debug: Log pour vérifier si on entre dans cette condition
-  \Drupal::logger('cepex')->info('Utilisateur RCT détecté: @uid', ['@uid' => $current_user->id()]);
-  
-  // Récupérer le contenu RCT de l'utilisateur connecté
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', 'rct')
-    ->condition('uid', $current_user->id())
-    ->accessCheck(FALSE);
-  
-  $nids = $query->execute();
-  
-  // Debug: Log pour voir les résultats de la requête
-  \Drupal::logger('cepex')->info('Nodes RCT trouvés: @nids', ['@nids' => implode(', ', $nids)]);
-  
-  if (!empty($nids)) {
-    $rct_nid = reset($nids);
-    $variables['id_rct'] = $rct_nid;
-    $variables['rct_node_id'] = $rct_nid;
-    
-    // Debug: Log pour confirmer l'ID récupéré
-    \Drupal::logger('cepex')->info('ID RCT assigné: @id', ['@id' => $rct_nid]);
-    
-    // Charger le node RCT pour récupérer d'autres informations si nécessaire
-    $rct_node = \Drupal\node\Entity\Node::load($rct_nid);
-    if ($rct_node) {
-      // Vous pouvez ajouter d'autres variables basées sur le contenu RCT
-      $variables['rct_title'] = $rct_node->getTitle();
+    if (in_array('rct', $user->getRoles())) {
+      $variables['name_connected_user'] = $current_user->getAccountName();
+      $variables['id_connected_user'] = $current_user->id();
       
-      // Si le node RCT a un champ pays, l'utiliser
-      if ($rct_node->hasField('field_pays') && !$rct_node->get('field_pays')->isEmpty()) {
-        if ($rct_node->get('field_pays')->value) {
-          $pays_code = $rct_node->get('field_pays')->value;
-          $variables['pays_code'] = $pays_code;
+      // Récupérer le contenu RCT de l'utilisateur connecté
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'rct')
+        ->condition('uid', $current_user->id())
+        ->accessCheck(FALSE);
+      
+      $nids = $query->execute();
+      
+      if (!empty($nids)) {
+        $rct_nid = reset($nids);
+        $variables['id_rct'] = $rct_nid;
+        $variables['rct_node_id'] = $rct_nid;
+        
+        // Charger le node RCT pour récupérer d'autres informations si nécessaire
+        $rct_node = \Drupal\node\Entity\Node::load($rct_nid);
+        if ($rct_node) {
+          $variables['rct_title'] = $rct_node->getTitle();
+          
+          // Si le node RCT a un champ pays, l'utiliser
+          if ($rct_node->hasField('field_pays') && !$rct_node->get('field_pays')->isEmpty()) {
+            if ($rct_node->get('field_pays')->value) {
+              $pays_code = $rct_node->get('field_pays')->value;
+              $variables['pays_code'] = $pays_code;
+            }
+          }
+        }
+      }
+      
+      // Vérifier le champ pays sur l'utilisateur si pas trouvé sur le node
+      if (!$pays_code && $user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
+        $pays_code = $user->get('field_pays')->target_id;
+        if ($user->get('field_pays')->value) {
+          $pays_code = $user->get('field_pays')->value;
+        }
+        $variables['pays_code'] = $pays_code;
+      }
+    }  
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ * Effectue la redirection après connexion selon le rôle de l'utilisateur.
+ */
+function cepex_user_login($account) {
+  // Éviter les redirections multiples et les conflits
+  if (\Drupal::request()->query->get('destination')) {
+    return;
+  }
+
+  // Éviter les redirections en boucle
+  $request = \Drupal::request();
+  if ($request->query->get('skip_redirect')) {
+    return;
+  }
+
+  $user = $account;
+  $user_roles = $user->getRoles();
+  $redirect_url = NULL;
+
+  // Logique de redirection selon le rôle (ordre de priorité)
+  
+  // 1. Redirection pour le rôle RCT
+  if (in_array('rct', $user_roles)) {
+    $pays_code = NULL;
+    $user_id = $user->id();
+    
+    // Récupérer le node RCT de l'utilisateur
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'rct')
+      ->condition('uid', $user_id)
+      ->accessCheck(FALSE);
+    
+    $nids = $query->execute();
+    
+    if (!empty($nids)) {
+      $rct_nid = reset($nids);
+      $rct_node = \Drupal\node\Entity\Node::load($rct_nid);
+      
+      if ($rct_node && $rct_node->hasField('field_pays') && !$rct_node->get('field_pays')->isEmpty()) {
+        $pays_code = $rct_node->get('field_pays')->value;
+      }
+    }
+    
+    // Si pas de pays sur le node, vérifier sur l'utilisateur
+    if (!$pays_code && $user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
+      $pays_code = $user->get('field_pays')->value;
+    }
+    
+    if ($pays_code && $user_id) {
+      $redirect_url = "/fr/dashboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}";
+    }
+  }
+  
+  // 2. Redirection pour le rôle homme_secteur
+  elseif (in_array('homme_secteur', $user_roles)) {
+    $secteur_id = NULL;
+    
+    // Vérifier d'abord sur l'utilisateur
+    if ($user->hasField('field_secteur') && !$user->get('field_secteur')->isEmpty()) {
+      $secteur_id = $user->get('field_secteur')->target_id;
+    } else {
+      // Sinon vérifier sur le profil homme_secteur
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profiles = $profile_storage->loadByProperties([
+        'uid' => $user->id(),
+        'type' => 'profile_homme_secteur',
+      ]);
+      
+      if (!empty($profiles)) {
+        $profile = reset($profiles);
+        if ($profile->hasField('field_secteur') && !$profile->get('field_secteur')->isEmpty()) {
+          $secteur_id = $profile->get('field_secteur')->target_id;
         }
       }
     }
-  } else {
-    // Debug: Aucun node RCT trouvé
-    \Drupal::logger('cepex')->warning('Aucun node RCT trouvé pour l\'utilisateur: @uid', ['@uid' => $current_user->id()]);
     
-    // Vérifier si des nodes RCT existent du tout
-    $all_rct_query = \Drupal::entityQuery('node')
-      ->condition('type', 'rct')
-      ->accessCheck(FALSE);
-    $all_rct_nids = $all_rct_query->execute();
-    
-    \Drupal::logger('cepex')->info('Total nodes RCT dans le système: @count', ['@count' => count($all_rct_nids)]);
+    if ($secteur_id) {
+      $redirect_url = "/fr/dashboard/gestion-produits-secteur/{$secteur_id}";
+    }
   }
   
-  // Vérifier le champ pays sur l'utilisateur si pas trouvé sur le node
-  if (!$pays_code && $user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
-    $pays_code = $user->get('field_pays')->target_id;
-    if ($user->get('field_pays')->value) {
+  // 3. Redirection pour le rôle exportateur
+  elseif (in_array('exportateur', $user_roles)) {
+    $redirect_url = "/fr/dashboard/gestion-produits";
+  }
+  
+  // Effectuer la redirection si une URL a été définie
+  if ($redirect_url) {
+    // Utiliser une redirection différée pour éviter les conflits
+    \Drupal::service('messenger')->addMessage('Redirection en cours...', 'status');
+    
+    // Programmer une redirection JavaScript pour éviter les conflits avec les autres hooks
+    $script = "
+      <script>
+        setTimeout(function() {
+          window.location.href = '{$redirect_url}';
+        }, 100);
+      </script>
+    ";
+    
+    // Ajouter le script à la page
+    $response = new \Symfony\Component\HttpFoundation\Response($script);
+    $response->send();
+    exit;
+  }
+}
+
+/**
+ * ALTERNATIVE RECOMMANDÉE: Utiliser hook_form_alter avec submit handler ajouté
+ * Cette méthode est plus propre et évite les conflits
+ */
+function cepex_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // AJOUTER notre handler APRÈS les handlers existants (ne pas remplacer)
+  $form['#submit'][] = 'cepex_user_login_form_submit';
+}
+
+/**
+ * Submit handler personnalisé pour le formulaire de connexion
+ * Appelé APRÈS l'authentification réussie
+ */
+function cepex_user_login_form_submit(&$form, FormStateInterface $form_state) {
+  // Vérifier que l'utilisateur est bien connecté
+  $current_user = \Drupal::currentUser();
+  
+  if (!$current_user->isAuthenticated()) {
+    return;
+  }
+
+  // Éviter les redirections multiples
+  if (\Drupal::request()->query->get('destination')) {
+    return;
+  }
+
+  $user = \Drupal\user\Entity\User::load($current_user->id());
+  $user_roles = $user->getRoles();
+  $redirect_url = NULL;
+  
+  // Même logique de redirection que dans hook_user_login
+  if (in_array('rct', $user_roles)) {
+    $pays_code = NULL;
+    $user_id = $user->id();
+    
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'rct')
+      ->condition('uid', $user_id)
+      ->accessCheck(FALSE);
+    
+    $nids = $query->execute();
+    
+    if (!empty($nids)) {
+      $rct_nid = reset($nids);
+      $rct_node = \Drupal\node\Entity\Node::load($rct_nid);
+      
+      if ($rct_node && $rct_node->hasField('field_pays') && !$rct_node->get('field_pays')->isEmpty()) {
+        $pays_code = $rct_node->get('field_pays')->value;
+      }
+    }
+    
+    if (!$pays_code && $user->hasField('field_pays') && !$user->get('field_pays')->isEmpty()) {
       $pays_code = $user->get('field_pays')->value;
     }
-    $variables['pays_code'] = $pays_code;
-  }
-}
-    // REDIRECTION SEULEMENT AU PREMIER LOGIN
-    // Vérifier si c'est une session fraîche (juste après login)
-    $session = \Drupal::request()->getSession();
-    $just_logged_in = $session->get('just_logged_in', FALSE);
     
-    // Définir les chemins autorisés pour chaque rôle
-    $allowed_paths = [];
-    
-    if ($current_user->hasRole('exportateur')) {
-      $allowed_paths = [
-        '/dashboard/gestion-produits',
-        '/user/' . $user_id,
-        '/user/' . $user_id . '/edit',
-        // Ajouter d'autres chemins autorisés pour exportateur
-      ];
-      
-      // Redirection seulement si juste connecté ET pas sur un chemin autorisé
-      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
-        $redirect_url = '/dashboard/gestion-produits';
-        $should_redirect = TRUE;
-      }
-    }
-    elseif ($current_user->hasRole('rct') && $pays_code) {
-      $allowed_paths = [
-        "/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}",
-        "/fr/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}",
-        '/rct/liste-exportateurs',
-        '/fr/rct/liste-exportateurs',
-        '/user/' . $user_id,
-        '/fr/user/' . $user_id,
-        '/user/' . $user_id . '/edit',
-        '/fr/user/' . $user_id . '/edit',
-        // Ajouter d'autres chemins autorisés pour RCT
-      ];
-      
-      if (isset($variables['rct_node_id'])) {
-        $allowed_paths[] = '/node/' . $variables['rct_node_id'];
-        $allowed_paths[] = '/fr/node/' . $variables['rct_node_id'];
-      }
-      
-      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
-        $redirect_url = "/dasboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}";
-        $should_redirect = TRUE;
-      }
-    }
-    elseif ($current_user->hasRole('homme_secteur') && $tid) {
-      $allowed_paths = [
-        "/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}",
-        "/fr/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}",
-        '/user/' . $user_id,
-        '/fr/user/' . $user_id,
-        '/user/' . $user_id . '/edit',
-        '/fr/user/' . $user_id . '/edit',
-        // Ajouter d'autres chemins autorisés pour homme_secteur
-      ];
-      
-      if ($just_logged_in && !in_array($current_path, $allowed_paths) && !$this->isPathAllowed($current_path, $allowed_paths)) {
-        $redirect_url = "/dashboard/gestion-exportateurs-par-homme-secteur/{$tid}";
-        $should_redirect = TRUE;
-      }
-    }
-
-    // Effectuer la redirection si nécessaire
-    if ($should_redirect && $redirect_url) {
-      // Marquer que la redirection post-login a été faite
-      $session->set('just_logged_in', FALSE);
-      
-      $response = new RedirectResponse($redirect_url);
-      $response->send();
-      exit;
-    }
-    
-    // Nettoyer le flag après la première page
-    if ($just_logged_in) {
-      $session->set('just_logged_in', FALSE);
-    }
-
-  } else {
-    $variables['user_logged_in'] = FALSE;
-  }
-}
-
-/**
- * Vérifie si un chemin est autorisé selon des patterns
- */
-function isPathAllowed($current_path, $allowed_paths) {
-  foreach ($allowed_paths as $allowed_path) {
-    // Vérification exacte
-    if ($current_path === $allowed_path) {
-      return TRUE;
-    }
-    // Vérification avec wildcard (commence par)
-    if (strpos($allowed_path, '*') !== FALSE) {
-      $pattern = str_replace('*', '', $allowed_path);
-      if (strpos($current_path, $pattern) === 0) {
-        return TRUE;
-      }
+    if ($pays_code && $user_id) {
+      $redirect_url = "/fr/dashboard/rct/opportunites-daffaires/{$pays_code}/{$user_id}";
     }
   }
-  return FALSE;
-}
-/**
- * Implements hook_user_login().
- */
-function cepex_user_login($account) {
-  // Marquer que l'utilisateur vient de se connecter
-  \Drupal::request()->getSession()->set('just_logged_in', TRUE);
+  elseif (in_array('homme_secteur', $user_roles)) {
+    $secteur_id = NULL;
+    
+    if ($user->hasField('field_secteur') && !$user->get('field_secteur')->isEmpty()) {
+      $secteur_id = $user->get('field_secteur')->target_id;
+    } else {
+      $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
+      $profiles = $profile_storage->loadByProperties([
+        'uid' => $user->id(),
+        'type' => 'profile_homme_secteur',
+      ]);
+      
+      if (!empty($profiles)) {
+        $profile = reset($profiles);
+        if ($profile->hasField('field_secteur') && !$profile->get('field_secteur')->isEmpty()) {
+          $secteur_id = $profile->get('field_secteur')->target_id;
+        }
+      }
+    }
+    
+    if ($secteur_id) {
+      $redirect_url = "/fr/dashboard/gestion-produits-secteur/{$secteur_id}";
+    }
+  }
+  elseif (in_array('exportateur', $user_roles)) {
+    $redirect_url = "/fr/dashboard/gestion-produits";
+  }
+  
+  // Définir la redirection via FormState
+  if ($redirect_url) {
+    // Créer une URL Drupal propre
+    $url = Url::fromUserInput($redirect_url);
+    
+    // Utiliser setRedirectUrl au lieu de setResponse
+    $form_state->setRedirectUrl($url);
+  }
 }
 
 /**

@@ -61,7 +61,6 @@ global:
     js/maps.js: {}
     js/appui.js: {}
     js/header.js: {}
-    js/filtermarketplace.js: {}
     js/media.js: {}
     js/conflict.js: {}
     js/jquery.fancybox.min.js: {}

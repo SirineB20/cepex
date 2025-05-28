@@ -19,6 +19,7 @@
         "drupal/address": "^2.0",
         "drupal/admin_toolbar": "^3.5",
         "drupal/better_exposed_filters": "^7.0",
+        "drupal/captcha": "^2.0",
         "drupal/conditional_fields": "^4.0@alpha",
         "drupal/content_moderation_notifications": "^3.7",
         "drupal/core-composer-scaffold": "^11.1",

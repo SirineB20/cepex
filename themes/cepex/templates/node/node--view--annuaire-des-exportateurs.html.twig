@@ -36,7 +36,7 @@
     {# Récupérer le matricule fiscal de l'exportateur #}
     {% set matricule_fiscal = node.field_matricul_fiscale.value %}
     {# Construire l'URL de redirection #}
-    {% set marketplace_url = base_path ~ '/fr/market-place?type=profile_exportateur&matricul_fiscale_value=' ~ matricule_fiscal ~ '&secteur=All&field_certifications_target_id=All' %}
+    {% set marketplace_url = base_path ~ '/fr/market-place?type=profile_exportateur&matricul_fiscale_market=' ~ matricule_fiscal ~ '&secteur=All&field_certifications_target_id=All' %}
     {# Afficher le bouton avec l'URL personnalisée #}
     <a href="{{ marketplace_url }}" class="btn-cepex btnentreprise">{{ 'Marketplace'|t }}</a>
   {% endif %}

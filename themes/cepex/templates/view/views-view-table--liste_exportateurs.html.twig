@@ -62,7 +62,9 @@
       {% endfor %}
     </tbody>
   </table>
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
+
+    <nav aria-label="Page navigation" class="paginator-guide">
+      {{ pager }}
+    </nav>
+
 </div>

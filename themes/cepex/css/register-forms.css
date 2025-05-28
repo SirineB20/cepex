@@ -42,7 +42,7 @@
   }
   
   /* Style des labels - ÉGALISATION DES LABELS */
-  label,
+  label,h4,
   #edit-field-statut--wrapper legend,
   #edit-field-certifications--wrapper legend,
   #edit-field-avez-vous-une-implantation--wrapper legend {
@@ -837,4 +837,55 @@ span.select2-selection.select2-selection--single {
 }
 .flexboxmodal .btn.submit {
     margin-left: 0 !important;
+}
+/* Astérisque rouge pour les champs requis */
+.auth-forms label.form-required::after {
+  content: " *";
+  color: #cb033d;
+}
+
+/* Style général du CAPTCHA */
+.auth-forms .captcha {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+h4 {
+  text-align: center;
+  color: #cb043d;
+
+}
+
+/* Centrage de l'image du CAPTCHA */
+.auth-forms .captcha__image-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Disposition du contenu du CAPTCHA */
+.auth-forms .captcha__element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Largeur du champ de saisie du CAPTCHA */
+.auth-forms .form-item-captcha-response {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Style du titre du CAPTCHA */
+.auth-forms .captcha__title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Style de la description du CAPTCHA */
+.auth-forms .captcha__description {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
 }

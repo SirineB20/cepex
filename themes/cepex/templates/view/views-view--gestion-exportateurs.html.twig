@@ -53,7 +53,6 @@
   {% if exposed %}
     <section class="filtre">
      <div class="container container-interne">
-   
       {{ exposed }}
       </div>
     </section>
@@ -74,10 +73,26 @@
     </div>
   {% endif %}
 
-  {# Pagination #}
-  {% if pager is defined and pager %}
     <nav aria-label="Page navigation" class="paginator-guide">
       {{ pager }}
     </nav>
+
+  {% if attachment_after %}
+    <div class="attachment attachment-after">
+      {{ attachment_after }}
+    </div>
   {% endif %}
-  
+  {% if more %}
+    {{ more }}
+  {% endif %}
+  {% if footer %}
+    <div class="view-footer">
+      {{ footer }}
+    </div>
+  {% endif %}
+  {% if feed_icons %}
+    <div class="feed-icons">
+      {{ feed_icons }}
+    </div>
+  {% endif %}
+</div>

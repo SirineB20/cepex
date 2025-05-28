@@ -228,7 +228,8 @@
             {% endif %}
             
             <div class="flexbox-recheche-marketplace">
-              {{ exposed|without('type', 'secteur', 'field_certifications_target_id', 'search') }}
+            {{ exposed.matricul_fiscale_market}}
+              {{ exposed|without('type', 'secteur', 'field_certifications_target_id', 'matricul_fiscale_market') }}
 
       
             </div>

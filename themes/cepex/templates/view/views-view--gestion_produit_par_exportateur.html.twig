@@ -72,26 +72,19 @@
       {{ empty }}
     </div>
   {% endif %}
-
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
+    <nav aria-label="Page navigation" class="paginator-guide">
+      {{ pager }}
+    </nav>
   {% if attachment_after %}
     <div class="attachment attachment-after">
       {{ attachment_after }}
     </div>
   {% endif %}
-  {% if more %}
-    {{ more }}
-  {% endif %}
+
   {% if footer %}
     <div class="view-footer">
       {{ footer }}
     </div>
   {% endif %}
-  {% if feed_icons %}
-    <div class="feed-icons">
-      {{ feed_icons }}
-    </div>
-  {% endif %}
+ 
 </div>

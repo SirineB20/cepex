@@ -230,3 +230,181 @@ p {}
         width: 100%;
     }
 }
+/* Container principal des messages Drupal - Pleine largeur */
+[data-drupal-messages] {
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Assurer que le container parent prend toute la largeur */
+[data-drupal-messages] > div {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+/* Style pour les messages d'erreur */
+[data-drupal-messages] [role="alert"] {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  border-left: 6px solid #dc3545;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+/* Style pour les messages de succès */
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'état"],
+[data-drupal-messages] [role="status"] {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  border-left: 6px solid #198754;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+/* Style pour les messages d'information */
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'information"],
+[data-drupal-messages] .messages--info {
+  background-color: #cff4fc;
+  color: #055160;
+  border: 1px solid #b3e5fc;
+  border-left: 6px solid #0dcaf0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+/* Style pour les messages d'avertissement */
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'avertissement"],
+[data-drupal-messages] .messages--warning {
+  background-color: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+  border-left: 6px solid #ffc107;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+/* Accessibilité - Titre caché */
+[data-drupal-messages] h2.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+/* Liste des messages */
+[data-drupal-messages] ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+[data-drupal-messages] li {
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+[data-drupal-messages] li:last-child {
+  margin-bottom: 0;
+}
+
+/* Icônes pour les différents types de messages */
+[data-drupal-messages] [role="alert"] li::before {
+  content: "⚠️";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  font-size: 1rem;
+}
+
+[data-drupal-messages] [role="status"] li::before,
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'état"] li::before {
+  content: "✅";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  font-size: 1rem;
+}
+
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'information"] li::before,
+[data-drupal-messages] .messages--info li::before {
+  content: "ℹ️";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  font-size: 1rem;
+}
+
+[data-drupal-messages] [role="contentinfo"][aria-label*="Message d'avertissement"] li::before,
+[data-drupal-messages] .messages--warning li::before {
+  content: "⚠️";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  font-size: 1rem;
+  color: #ffc107;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  [data-drupal-messages] {
+    margin: 0.5rem 0;
+  }
+  
+  [data-drupal-messages] [role="alert"],
+  [data-drupal-messages] [role="status"],
+  [data-drupal-messages] [role="contentinfo"] {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  [data-drupal-messages] li {
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Forcer la pleine largeur sur tous les conteneurs parents potentiels */
+.region-highlighted [data-drupal-messages],
+.region-content [data-drupal-messages],
+.page-wrapper [data-drupal-messages],
+.main-content [data-drupal-messages] {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

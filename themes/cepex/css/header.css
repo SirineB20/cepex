@@ -428,14 +428,22 @@ body {
     align-items: center;
 }
 
-.nav-menu .link-nav {
-    margin-left: 55px;
-    position: relative;
-    padding-bottom: 10px;
-}
+
 
 .nav-menu .link-nav:first-child {
     margin-left: 0;
+}
+/* On enlève tout margin-left par défaut */
+.navmenu .nav-menu .link-nav {
+  margin-left: 0;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+/* On ne décale que les items du PREMIER niveau (dans .nav-menu) 
+   qui ne sont pas first-child */
+.navmenu .nav-menu > .link-nav:not(:first-child) {
+  margin-left: 55px;
 }
 
 .nav-menu .link-nav a {
@@ -486,7 +494,7 @@ body {
     left: 0;
     box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.2);
     padding: 0;
-    margin: 0;
+    margin: 0px;
     list-style: none;
     padding: 0 10px;
 }

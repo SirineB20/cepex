@@ -3,128 +3,286 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ * Ajoute les validations sur le formulaire de création de profil exportateur
+ */
+function cepex_user_create_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Cibler le formulaire de création/édition du type de contenu profile_exportateur
+  if ($form_id == 'node_profile_exportateur_form' || $form_id == 'node_profile_exportateur_edit_form') {
+    
+    \Drupal::logger('cepex_user_create')->notice('Form alter appliqué sur le formulaire: @form_id', [
+      '@form_id' => $form_id,
+    ]);
+    
+    // Ajouter les validations sur les champs
+    if (isset($form['field_matricul_fiscale'])) {
+      $form['field_matricul_fiscale']['widget'][0]['value']['#element_validate'][] = 'cepex_user_create_validate_matricule_fiscal';
+      $form['field_matricul_fiscale']['widget'][0]['value']['#element_validate'][] = 'cepex_user_create_validate_unique_matricule_fiscal';
+    }
+    
+    if (isset($form['field_e_mail'])) {
+      $form['field_e_mail']['widget'][0]['value']['#element_validate'][] = 'cepex_user_create_validate_unique_mail';
+    }
+    
+    // Ajouter une validation globale du formulaire
+    $form['#validate'][] = 'cepex_user_create_form_validate';
+  }
+}
+
+/**
+ * Validation globale du formulaire profile_exportateur
+ */
+function cepex_user_create_form_validate(array &$form, FormStateInterface $form_state) {
+  \Drupal::logger('cepex_user_create')->notice('Validation globale du formulaire déclenchée');
+  
+  $matricule_fiscal_field = $form_state->getValue('field_matricul_fiscale');
+  $email_field = $form_state->getValue('field_e_mail');
+  
+  if (empty($matricule_fiscal_field) || empty($email_field)) {
+    return; // Les champs individuels gèreront leurs propres erreurs
+  }
+  
+  $matricule_fiscal = $matricule_fiscal_field[0]['value'] ?? '';
+  $email = $email_field[0]['value'] ?? '';
+  
+  if (empty($matricule_fiscal) || empty($email)) {
+    $form_state->setErrorByName('', t('Le matricule fiscal et l\'email sont requis.'));
+    return;
+  }
+  
+  // Si des erreurs existent déjà (de la validation des champs individuels), 
+  // empêcher la création du contenu
+  if ($form_state->hasAnyErrors()) {
+    \Drupal::logger('cepex_user_create')->error('Validation échouée - empêche la création du contenu et de l\'utilisateur');
+    $form_state->setErrorByName('', t('Impossible de créer le profil exportateur. Veuillez corriger les erreurs ci-dessus.'));
+  }
+}
+
+/**
+ * Fonction de validation du format et clé de contrôle du matricule fiscal
+ */
+function cepex_user_create_validate_matricule_fiscal(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form) {
+  $matricule_fiscal_field = $form_state->getValue('field_matricul_fiscale');
+  
+  if (empty($matricule_fiscal_field) || !isset($matricule_fiscal_field[0]['value'])) {
+    return;
+  }
+  
+  $matricule_fiscal = $matricule_fiscal_field[0]['value'];
+  
+  if (empty($matricule_fiscal)) {
+    return;
+  }
+  
+  \Drupal::logger('cepex_user_create')->notice('Validation du matricule fiscal: @matricule', [
+    '@matricule' => $matricule_fiscal,
+  ]);
+  
+  // Vérifier le format: 7 chiffres suivis d'une lettre
+  if (!preg_match('/^\d{7}[a-zA-Z]$/', $matricule_fiscal)) {
+    $form_state->setError($element, t('Le matricule fiscal doit comporter 7 chiffres suivis d\'une lettre.'));
+    \Drupal::logger('cepex_user_create')->error('Format de matricule invalide: @matricule', [
+      '@matricule' => $matricule_fiscal,
+    ]);
+    return;
+  }
+  
+  // Calculer et vérifier la clé de contrôle
+  $weights = [7, 6, 5, 4, 3, 2, 1];
+  $sum = 0;
+  for ($i = 0; $i < 7; $i++) {
+    $sum += $matricule_fiscal[$i] * $weights[$i];
+  }
+  
+  $remainder = ($sum % 23) + 1;
+  $letters = 'abcdefghjklmnpqrstvwxyz';
+  $expected_letter = $letters[$remainder - 1];
+  
+  $actual_letter = strtolower($matricule_fiscal[7]);
+  if ($actual_letter !== $expected_letter) {
+    $form_state->setError($element, t('Le matricule fiscal n\'est pas valide selon la clé de contrôle.'));
+    \Drupal::logger('cepex_user_create')->error('Clé de contrôle invalide pour le matricule: @matricule (attendu: @expected, reçu: @actual)', [
+      '@matricule' => $matricule_fiscal,
+      '@expected' => $expected_letter,
+      '@actual' => $actual_letter,
+    ]);
+  }
+}
+
+/**
+ * Fonction de validation de l'unicité du matricule fiscal
+ */
+function cepex_user_create_validate_unique_matricule_fiscal(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form) {
+  $matricule_fiscal_field = $form_state->getValue('field_matricul_fiscale');
+  
+  if (empty($matricule_fiscal_field) || !isset($matricule_fiscal_field[0]['value'])) {
+    return;
+  }
+  
+  $matricule_fiscal = $matricule_fiscal_field[0]['value'];
+  
+  if (empty($matricule_fiscal)) {
+    return;
+  }
+  
+  \Drupal::logger('cepex_user_create')->notice('Vérification de l\'unicité du matricule fiscal: @matricule', [
+    '@matricule' => $matricule_fiscal,
+  ]);
+  
+  // Vérifier si le matricule fiscal existe déjà comme nom d'utilisateur
+  $query = \Drupal::entityQuery('user')
+    ->condition('name', $matricule_fiscal)
+    ->condition('roles', 'exportateur')
+    ->accessCheck(TRUE)
+    ->range(0, 1);
+  $existing_user_ids = $query->execute();
+  
+  if (!empty($existing_user_ids)) {
+    $form_state->setError($element, t('Le matricule fiscal existe déjà. Si vous avez déjà un compte, veuillez vous connecter.'));
+    \Drupal::logger('cepex_user_create')->error('Matricule fiscal déjà utilisé: @matricule', [
+      '@matricule' => $matricule_fiscal,
+    ]);
+  }
+}
+
+/**
+ * Fonction de validation de l'unicité de l'email
+ */
+function cepex_user_create_validate_unique_mail(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form) {
+  $email_field = $form_state->getValue('field_e_mail');
+  
+  if (empty($email_field) || !isset($email_field[0]['value'])) {
+    return;
+  }
+  
+  $email = $email_field[0]['value'];
+  
+  if (empty($email)) {
+    return;
+  }
+  
+  \Drupal::logger('cepex_user_create')->notice('Vérification de l\'unicité de l\'email: @email', [
+    '@email' => $email,
+  ]);
+  
+  // Vérifier si l'email existe déjà
+  $query = \Drupal::entityQuery('user')
+    ->condition('mail', $email)
+    ->accessCheck(TRUE)
+    ->range(0, 1);
+  $existing_user_ids = $query->execute();
+  
+  if (!empty($existing_user_ids)) {
+    $form_state->setError($element, t('Cet email est déjà utilisé. Si vous avez déjà un compte, veuillez vous connecter.'));
+    \Drupal::logger('cepex_user_create')->error('Email déjà utilisé: @email', [
+      '@email' => $email,
+    ]);
+  }
+}
 
 /**
  * Implements hook_entity_insert().
+ * Création d'utilisateur seulement APRÈS validation et création réussie du contenu
  */
 function cepex_user_create_entity_insert(EntityInterface $entity) {
   \Drupal::logger('cepex_user_create')->notice('Hook entity_insert appelé pour l\'entité de type: @type', [
     '@type' => $entity->getEntityTypeId(),
   ]);
 
-  if ($entity instanceof NodeInterface) {
-    \Drupal::logger('cepex_user_create')->notice('Entité est un nœud de type: @type', [
-      '@type' => $entity->getType(),
-    ]);
-
-    if ($entity->getType() == 'profile_exportateur') {
-      \Drupal::logger('cepex_user_create')->notice('Nœud de type profile_exportateur détecté, ID: @id', [
-        '@id' => $entity->id(),
-      ]);
-
-      if ($entity->hasField('field_e_mail') && $entity->hasField('field_matricul_fiscale')) {
-        $email = $entity->get('field_e_mail')->value;
-        $matricule_fiscal = $entity->get('field_matricul_fiscale')->value;
-
-        \Drupal::logger('cepex_user_create')->notice('Valeurs extraites - Email: @email, Matricule: @matricule', [
-          '@email' => $email ?? 'NULL',
-          '@matricule' => $matricule_fiscal ?? 'NULL',
-        ]);
-
-        if (empty($email) || empty($matricule_fiscal)) {
-          \Drupal::logger('cepex_user_create')->error('Email ou matricule fiscal manquant');
-          return;
-        }
-
-        $password = bin2hex(random_bytes(8));
-
-        $existing_users = \Drupal::entityTypeManager()
-          ->getStorage('user')
-          ->loadByProperties(['mail' => $email]);
-
-        if (empty($existing_users)) {
-          try {
-            \Drupal::logger('cepex_user_create')->notice('Tentative de création d\'utilisateur avec email: @email', [
-              '@email' => $email,
-            ]);
-
-            $user = User::create([
-              'name' => $matricule_fiscal,
-              'mail' => $email,
-              'pass' => $password,
-              'status' => 0, // L'utilisateur est créé inactif par défaut
-            ]);
-
-            $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
-            $roles = $role_storage->loadMultiple();
-
-            if (isset($roles['exportateur'])) {
-              $user->addRole('exportateur');
-              \Drupal::logger('cepex_user_create')->notice('Rôle exportateur ajouté');
-            } else {
-              \Drupal::logger('cepex_user_create')->error('Le rôle exportateur n\'existe pas dans le système');
-            }
-
-            if ($user->hasField('field_password')) {
-              $user->set('field_password', $password);
-              \Drupal::logger('cepex_user_create')->notice('Champ password défini');
-            } else {
-              \Drupal::logger('cepex_user_create')->notice('Le champ field_password n\'existe pas sur l\'entité utilisateur');
-            }
-
-            $result = $user->save();
-            $entity->setOwnerId($user->id());
-            $entity->save();
-            \Drupal::logger('cepex_user_create')->notice('Utilisateur sauvegardé avec résultat: @result', [
-              '@result' => $result,
-            ]);
-
-            \Drupal::messenger()->addMessage(t('Un nouvel utilisateur exportateur a été créé avec le nom d\'utilisateur : @username.', ['@username' => $matricule_fiscal]));
-
-            \Drupal::logger('cepex_user_create')->notice('Nouvel utilisateur exportateur créé: @user', [
-              '@user' => $matricule_fiscal,
-            ]);
-          }
-          catch (\Exception $e) {
-            \Drupal::logger('cepex_user_create')->error('Erreur lors de la création de l\'utilisateur exportateur: @error', [
-              '@error' => $e->getMessage(),
-            ]);
-
-            \Drupal::messenger()->addError(t('Erreur lors de la création de l\'utilisateur: @error', [
-              '@error' => $e->getMessage(),
-            ]));
-          }
-        } else {
-          \Drupal::logger('cepex_user_create')->warning('Un utilisateur avec l\'email @email existe déjà.', [
-            '@email' => $email,
-          ]);
-          \Drupal::messenger()->addWarning(t('Un utilisateur avec l\'email @email existe déjà.', ['@email' => $email]));
-        }
-      } else {
-        \Drupal::logger('cepex_user_create')->error('Champs requis non trouvés sur l\'entité profile_exportateur');
-      }
-    }
-  }
-}
-/**
- * Implements hook_entity_presave().
- * 
- * Utilisation de hook_entity_presave pour capturer les changements 
- * avant qu'ils ne soient enregistrés en base de données.
- */
-function cepex_user_create_entity_presave(EntityInterface $entity) {
-  \Drupal::logger('cepex_user_create')->notice('Hook entity_presave appelé pour l\'entité de type: @type', [
-    '@type' => $entity->getEntityTypeId(),
-  ]);
-
   if ($entity instanceof NodeInterface && $entity->getType() == 'profile_exportateur') {
-    \Drupal::logger('cepex_user_create')->notice('Traitement d\'un nœud profile_exportateur, ID: @id', [
+    \Drupal::logger('cepex_user_create')->notice('Nœud profile_exportateur créé avec succès, ID: @id - Création de l\'utilisateur', [
       '@id' => $entity->id(),
     ]);
 
-    // Vérifier l'état de modération actuel - approche simplifiée et robuste
-    $moderation_state = NULL;
-    $original_state = NULL;
+    if ($entity->hasField('field_e_mail') && $entity->hasField('field_matricul_fiscale')) {
+      $email = $entity->get('field_e_mail')->value;
+      $matricule_fiscal = $entity->get('field_matricul_fiscale')->value;
+
+      \Drupal::logger('cepex_user_create')->notice('Création d\'utilisateur - Email: @email, Matricule: @matricule', [
+        '@email' => $email ?? 'NULL',
+        '@matricule' => $matricule_fiscal ?? 'NULL',
+      ]);
+
+      if (empty($email) || empty($matricule_fiscal)) {
+        \Drupal::logger('cepex_user_create')->error('Email ou matricule fiscal manquant lors de la création d\'utilisateur');
+        return;
+      }
+
+      // À ce stade, les validations ont déjà été passées au niveau du formulaire
+      // On peut procéder à la création de l'utilisateur en toute sécurité
+      $password = bin2hex(random_bytes(8));
+
+      try {
+        \Drupal::logger('cepex_user_create')->notice('Création d\'utilisateur après validation réussie - Email: @email', [
+          '@email' => $email,
+        ]);
+
+        $user = User::create([
+          'name' => $matricule_fiscal,
+          'mail' => $email,
+          'pass' => $password,
+          'status' => 0, // L'utilisateur est créé inactif par défaut
+        ]);
+
+        $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+        $roles = $role_storage->loadMultiple();
+
+        if (isset($roles['exportateur'])) {
+          $user->addRole('exportateur');
+          \Drupal::logger('cepex_user_create')->notice('Rôle exportateur ajouté');
+        } else {
+          \Drupal::logger('cepex_user_create')->error('Le rôle exportateur n\'existe pas dans le système');
+        }
+
+        if ($user->hasField('field_password')) {
+          $user->set('field_password', $password);
+          \Drupal::logger('cepex_user_create')->notice('Champ password défini');
+        }
+
+        $result = $user->save();
+        
+        // Lier l'utilisateur au profil
+        $entity->setOwnerId($user->id());
+        $entity->save();
+        
+        \Drupal::logger('cepex_user_create')->notice('Utilisateur créé et lié au profil, résultat: @result', [
+          '@result' => $result,
+        ]);
+
+        \Drupal::messenger()->addMessage(t('Votre profil exportateur a été créé avec succès. Un compte utilisateur a été créé avec le nom d\'utilisateur : @username. Il sera activé après validation de votre profil.', 
+          ['@username' => $matricule_fiscal]
+        ));
+
+        \Drupal::logger('cepex_user_create')->notice('Nouvel utilisateur exportateur créé: @user', [
+          '@user' => $matricule_fiscal,
+        ]);
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('cepex_user_create')->error('Erreur lors de la création de l\'utilisateur exportateur: @error', [
+          '@error' => $e->getMessage(),
+        ]);
+
+        \Drupal::messenger()->addError(t('Profil créé mais erreur lors de la création du compte utilisateur: @error', [
+          '@error' => $e->getMessage(),
+        ]));
+      }
+    } else {
+      \Drupal::logger('cepex_user_create')->error('Champs requis non trouvés sur l\'entité profile_exportateur');
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ * Activation du compte utilisateur lors du changement d'état vers "traité"
+ */
+function cepex_user_create_entity_presave(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface && $entity->getType() == 'profile_exportateur') {
+    
+    // Vérifier les changements d'état de modération
     $is_treated = FALSE;
     $was_not_treated = FALSE;
     
@@ -136,23 +294,22 @@ function cepex_user_create_entity_presave(EntityInterface $entity) {
       $was_published = $entity->original->isPublished();
     }
     
-    // Si le contenu est maintenant publié et ne l'était pas avant, on considère qu'il est traité
+    // Si le contenu est maintenant publié et ne l'était pas avant
     if ($is_published && !$was_published && !$entity->isNew()) {
       $is_treated = TRUE;
       $was_not_treated = TRUE;
       \Drupal::logger('cepex_user_create')->notice('Détection de publication: contenu maintenant publié');
     }
     
-    // Vérifier les champs de modération courants
+    // Vérifier les champs de modération
     $possible_moderation_fields = [
       'moderation_state',
-      'field_moderation_state',
+      'field_moderation_state', 
       'field_etat_moderation',
       'status',
       'field_status',
     ];
     
-    // Liste des valeurs considérées comme "traité"
     $treated_states = ['traite', 'traité', 'treated', 'approved', 'published', '1', 1, TRUE];
     
     foreach ($possible_moderation_fields as $field_name) {
@@ -160,62 +317,36 @@ function cepex_user_create_entity_presave(EntityInterface $entity) {
         $current_value = $entity->get($field_name)->value;
         $previous_value = NULL;
         
-        // Récupérer l'état d'origine si disponible
         if ($entity->original && $entity->original->hasField($field_name)) {
           $previous_value = $entity->original->get($field_name)->value;
         }
         
-        \Drupal::logger('cepex_user_create')->notice('Champ @field: valeur actuelle=@current, valeur précédente=@previous', [
-          '@field' => $field_name,
-          '@current' => $current_value ?? 'NULL',
-          '@previous' => $previous_value ?? 'NULL',
-        ]);
-        
-        // Vérifier si état actuel = traité
         $current_is_treated = in_array($current_value, $treated_states, TRUE) || 
                               in_array($current_value, $treated_states, FALSE);
                               
-        // Vérifier si état précédent = non traité
         $previous_not_treated = $previous_value && !(in_array($previous_value, $treated_states, TRUE) || 
                                                     in_array($previous_value, $treated_states, FALSE));
         
-        // Si on détecte un changement vers "traité"
         if ($current_is_treated && ($previous_not_treated || $entity->isNew())) {
           $is_treated = TRUE;
           $was_not_treated = TRUE;
-          $moderation_state = $current_value;
-          $original_state = $previous_value;
-          
-          \Drupal::logger('cepex_user_create')->notice('Changement d\'état détecté dans le champ @field: de @from à @to', [
-            '@field' => $field_name,
-            '@from' => $previous_value ?? 'NULL',
-            '@to' => $current_value,
-          ]);
           break;
         }
       }
     }
     
-    // Si l'état est passé de "non traité" à "traité" ou si c'est une nouvelle entité traitée
+    // Activer l'utilisateur si le profil passe à "traité"
     if ($is_treated && ($was_not_treated || $entity->isNew())) {
-      \Drupal::logger('cepex_user_create')->notice('Changement d\'état détecté: passage à "traité" (@state)', [
-        '@state' => $moderation_state,
-      ]);
+      \Drupal::logger('cepex_user_create')->notice('Profil approuvé - recherche de l\'utilisateur à activer');
 
-      // Essayer différentes méthodes pour récupérer l'utilisateur associé
       $user = NULL;
       
-      // Méthode 1: via le propriétaire du nœud
+      // Rechercher l'utilisateur associé
       $uid = $entity->getOwnerId();
       if ($uid > 0) {
         $user = User::load($uid);
-        \Drupal::logger('cepex_user_create')->notice('Tentative de récupération via propriétaire du nœud, UID: @uid, trouvé: @found', [
-          '@uid' => $uid,
-          '@found' => !empty($user) ? 'oui' : 'non',
-        ]);
       }
       
-      // Méthode 2: via l'email du nœud si l'utilisateur n'est pas trouvé
       if (empty($user) && $entity->hasField('field_e_mail')) {
         $email = $entity->get('field_e_mail')->value;
         if (!empty($email)) {
@@ -223,14 +354,9 @@ function cepex_user_create_entity_presave(EntityInterface $entity) {
             ->getStorage('user')
             ->loadByProperties(['mail' => $email]);
           $user = !empty($users) ? reset($users) : NULL;
-          \Drupal::logger('cepex_user_create')->notice('Tentative de récupération via email: @email, trouvé: @found', [
-            '@email' => $email,
-            '@found' => !empty($user) ? 'oui' : 'non',
-          ]);
         }
       }
       
-      // Méthode 3: via le matricule fiscal du nœud si l'utilisateur n'est pas trouvé
       if (empty($user) && $entity->hasField('field_matricul_fiscale')) {
         $matricule = $entity->get('field_matricul_fiscale')->value;
         if (!empty($matricule)) {
@@ -238,23 +364,17 @@ function cepex_user_create_entity_presave(EntityInterface $entity) {
             ->getStorage('user')
             ->loadByProperties(['name' => $matricule]);
           $user = !empty($users) ? reset($users) : NULL;
-          \Drupal::logger('cepex_user_create')->notice('Tentative de récupération via matricule: @mat, trouvé: @found', [
-            '@mat' => $matricule,
-            '@found' => !empty($user) ? 'oui' : 'non',
-          ]);
         }
       }
       
-      // Activer le compte utilisateur si trouvé
+      // Activer le compte utilisateur
       if (!empty($user)) {
         try {
-          // Vérifier si le compte est déjà actif
           if ($user->isActive()) {
             \Drupal::logger('cepex_user_create')->notice('Le compte utilisateur @user est déjà actif', [
               '@user' => $user->getAccountName(),
             ]);
           } else {
-            // Activer le compte
             $user->set('status', 1);
             $user->save();
             
@@ -265,26 +385,18 @@ function cepex_user_create_entity_presave(EntityInterface $entity) {
             \Drupal::messenger()->addMessage(t('Le compte utilisateur @username a été activé suite à l\'approbation du profil exportateur.', 
               ['@username' => $user->getAccountName()]
             ));
-            
-           
           }
         }
         catch (\Exception $e) {
           \Drupal::logger('cepex_user_create')->error('Erreur lors de l\'activation du compte utilisateur: @error', [
             '@error' => $e->getMessage(),
           ]);
-          
-          \Drupal::messenger()->addError(t('Erreur lors de l\'activation du compte utilisateur: @error', [
-            '@error' => $e->getMessage(),
-          ]));
         }
       } else {
         \Drupal::logger('cepex_user_create')->warning('Aucun utilisateur trouvé pour le profil exportateur @id', [
           '@id' => $entity->id(),
         ]);
       }
-    } else {
-      \Drupal::logger('cepex_user_create')->notice('Aucun changement d\'état nécessitant une action sur le compte utilisateur');
     }
   }
 }

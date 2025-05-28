@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -18,18 +19,19 @@
       <div class="col-md-6 text-center">
         <div class="card card-outline-success text-center">
           <div class="card-header">
-            <h4 class="m-b-0 text-white">Identifiez-vous</h4>
+            <h4 class="m-b-0 text-white">{{ 'Identifiez-vous'|t }}</h4>
           </div>
           <div class="card-body">
             <form{{ attributes }}>
-              <div class="row from-inputs">
+              <div class="row form-inputs">
                 <div class="col-lg-12 m-b-20">
-                  <h5 class="text-primary">Vous n'avez pas encore de compte ?</h5>
-                       <a href="{{ path('user.register') }}" class=="btn submit">
-                    {{ 'Créer un compte'|t }}
+                  <h5 class="text-primary">{{ "Vous n'avez pas un compte ?"|t }}</h5>
+                  <a href="{{ path('user.register') }}" class="btn btn-submit">
+                    <h4>{{ 'Creé un compte'|t }}</h4>
+                  </a>
                   <div class="box-information-login">
                     <span>
-                      Si vous avez un compte CEPEX, veuillez vous connecter avec vos identifiants.
+                      {{'Si vous avez un compte CEPEX, veuillez vous connecter avec vos identifiants.'|t }}
                     </span>
                   </div>
                 </div>
@@ -38,8 +40,11 @@
                 </div>
               </div>
             </form>
-            <class="card-text pull-left m-t-5 text-align-left">
-            <a href="/user/password" class="class-lang">Mot de passe oublié ?</a>
+            <div class="card-text pull-left m-t-5 text-align-left">
+              <a href="/user/password" class="forgot-password-link">
+                {{ 'oubliez-vous votre mot de passe?'|t }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
