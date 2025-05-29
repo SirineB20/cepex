@@ -79,6 +79,7 @@ body {
 .social-media-sharing {
     display: block;
   }
+
   .social-media-sharing ul {
     padding-left: 0px;
     display: inline-flex;
@@ -235,15 +236,15 @@ body {
     padding: 8px 12px;
 }
 /* Style du conteneur */
-#edit-actions--2 {
+#edit-actions--2,#edit-submit--2,#edit-submit {
     position: relative;
-    width: 40px;
+    width: 100px;
     height: 40px;
     margin-left: 3px;
 }
 
 /* Cacher le texte du bouton sans modifier directement #edit-submit */
-#edit-actions--2 input[type="submit"] {
+#edit-actions--2 input[type="submit"],#edit-submit--2 input[type="submit"],#edit-submit input[type="submit"] {
     color: transparent;
     font-size: 0;
     background-color: #cd0b47;
@@ -256,7 +257,7 @@ body {
 }
 
 /* Ajouter l'icône de loupe par-dessus */
-#edit-actions--2::after {
+#edit-actions--2::after,#edit-submit--2::after,#edit-submit::after {
     content: "\f002"; /* Code Unicode de l'icône de loupe */
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -427,9 +428,6 @@ body {
     display: flex;
     align-items: center;
 }
-
-
-
 .nav-menu .link-nav:first-child {
     margin-left: 0;
 }

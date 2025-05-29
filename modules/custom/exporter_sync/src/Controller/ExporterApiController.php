@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\exporter_sync\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
@@ -10,12 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Controller pour l'API d'exportateurs.
  */
-class ExporterApiController extends ControllerBase {
-
+class ExporterApiController extends ControllerBase
+{
   /**
    * Crée ou met à jour un exportateur.
    */
-  public function createExporter(Request $request): JsonResponse {
+  public function createExporter(Request $request): JsonResponse
+  {
     // Vérification de l'authentification
     $auth_header = $request->headers->get('Authorization');
     if (!$this->validateApiKey($auth_header)) {
@@ -23,13 +25,13 @@ class ExporterApiController extends ControllerBase {
     }
 
     $data = json_decode($request->getContent(), TRUE);
-    
-    if (!$data || !isset($data['email'])) {
-      return new JsonResponse(['error' => 'Invalid data - email required'], 400);
+
+    if (!$data || !isset($data['email']) || !isset($data['matricul_fiscale'])) {
+      return new JsonResponse(['error' => 'Invalid data - email and matricul_fiscale required'], 400);
     }
 
     try {
-      // Vérifier si l'utilisateur existe
+      // Vérifier si l'utilisateur existe par email
       $existing_users = \Drupal::entityTypeManager()
         ->getStorage('user')
         ->loadByProperties(['mail' => $data['email']]);
@@ -49,23 +51,21 @@ class ExporterApiController extends ControllerBase {
       return new JsonResponse([
         'message' => $message,
         'user_id' => $user->id(),
+        'username' => $user->getAccountName(),
         'profile_id' => $profile_node->id(),
         'status' => 'success'
       ], 201);
-
     } catch (\Exception $e) {
       \Drupal::logger('exporter_sync')->error('Error creating exporter: @message', [
         '@message' => $e->getMessage(),
       ]);
-      
+
       return new JsonResponse(['error' => 'Internal server error'], 500);
     }
   }
 
-  /**
-   * Valide la clé API.
-   */
-  protected function validateApiKey(?string $auth_header): bool {
+  protected function validateApiKey(?string $auth_header): bool
+  {
     if (!$auth_header || !str_starts_with($auth_header, 'Bearer ')) {
       return FALSE;
     }
@@ -80,55 +80,64 @@ class ExporterApiController extends ControllerBase {
   /**
    * Crée un nouvel utilisateur exportateur.
    */
- protected function createExporterUser(array $data): User {
-  // Utiliser le matricule fiscal pour générer le username si pas fourni
-  $username = $data['username'] ?? $this->generateUsername($data['matricule_fiscale']);
-  
-  $user = User::create([
-    'name' => $username,
-    'mail' => $data['email'],
-    'status' => $data['status'] ?? 1,
-    'roles' => ['exportateur'],
-  ]);
+  protected function createExporterUser(array $data): User
+  {
+    // Le username est maintenant le matricule fiscal
+    $username = $this->generateUniqueUsername($data['matricul_fiscale']);
 
-  $user->save();
-  return $user;
-}
+    $user = User::create([
+      'name' => $username,
+      'mail' => $data['email'],
+      'status' => $data['status'] ?? 1,
+      'roles' => ['exportateur'],
+    ]);
 
+    $user->save();
+    return $user;
+  }
 
   /**
    * Met à jour un utilisateur exportateur existant.
    */
-  protected function updateExporterUser(User $user, array $data): void {
+  protected function updateExporterUser(User $user, array $data): void
+  {
+    $user_updated = FALSE;
+
     // Ajouter le rôle exportateur s'il ne l'a pas
     if (!$user->hasRole('exportateur')) {
       $user->addRole('exportateur');
+      $user_updated = TRUE;
     }
 
-    // Mettre à jour le nom d'utilisateur si fourni
-    if (isset($data['username'])) {
-      $user->set('name', $data['username']);
+    // Mettre à jour le nom d'utilisateur avec le matricule fiscal si fourni
+    if (isset($data['matricul_fiscale'])) {
+      $new_username = $this->generateUniqueUsername($data['matricul_fiscale'], $user->id());
+      if ($user->getAccountName() !== $new_username) {
+        $user->set('name', $new_username);
+        $user_updated = TRUE;
+      }
     }
-    
+
     if (isset($data['status'])) {
       $user->set('status', $data['status']);
+      $user_updated = TRUE;
     }
 
-    $user->save();
+    if ($user_updated) {
+      $user->save();
+    }
   }
 
-  /**
-   * Crée ou met à jour le profil exportateur (nœud profile_exportateur).
-   */
-  protected function createOrUpdateExporterProfile(User $user, array $data): Node {
+  protected function createOrUpdateExporterProfile(User $user, array $data): Node
+  {
     // Chercher un nœud profile_exportateur existant pour cet utilisateur
     $query = \Drupal::entityQuery('node')
       ->condition('type', 'profile_exportateur')
       ->condition('uid', $user->id())
       ->accessCheck(FALSE);
-    
+
     $nids = $query->execute();
-    
+
     if (!empty($nids)) {
       // Mettre à jour le profil existant
       $profile_node = Node::load(reset($nids));
@@ -136,7 +145,7 @@ class ExporterApiController extends ControllerBase {
       // Créer un nouveau profil
       $profile_node = Node::create([
         'type' => 'profile_exportateur',
-        'title' => $data['nom_d_entreprise'] ?: $user->getDisplayName(),
+        'title' => $data['nom_d_entreprise'] ?? $user->getDisplayName(),
         'uid' => $user->id(),
         'status' => 1,
       ]);
@@ -146,10 +155,9 @@ class ExporterApiController extends ControllerBase {
     if (isset($data['matricul_fiscale'])) {
       $profile_node->set('field_matricul_fiscale', $data['matricul_fiscale']);
     }
-        if (isset($data['gouvernorat'])) {
+    if (isset($data['gouvernorat'])) {
       $profile_node->set('field_gouvernorat', $data['gouvernorat']);
     }
-    
     if (isset($data['directeur_general'])) {
       $profile_node->set('field_directeur_general', $data['directeur_general']);
     }
@@ -159,100 +167,304 @@ class ExporterApiController extends ControllerBase {
     if (isset($data['telephone'])) {
       $profile_node->set('field_telephone', $data['telephone']);
     }
-   
     if (isset($data['nom_d_entreprise'])) {
       $profile_node->set('field_nom_d_entreprise', $data['nom_d_entreprise']);
       // Mettre à jour aussi le titre
       $profile_node->set('title', $data['nom_d_entreprise']);
     }
+
     $profile_node->save();
     return $profile_node;
   }
 
   /**
-   * Génère un nom d'utilisateur unique basé sur l'email.
+   * Génère un nom d'utilisateur unique basé sur le matricule fiscal.
    */
- protected function generateUsername(string $matricule_fiscal): string {
-  // Utiliser le matricule fiscal comme base pour le nom d'utilisateur
-  $base_username = $matricule_fiscal;
-  $username = $base_username;
-  $counter = 1;
+  protected function generateUniqueUsername(string $matricule_fiscal, ?int $exclude_user_id = null): string
+  {
+    // Nettoyer le matricule fiscal pour le nom d'utilisateur
+    $base_username = $this->sanitizeUsername($matricule_fiscal);
+    $username = $base_username;
+    $counter = 1;
 
-  while ($this->usernameExists($username)) {
-    $username = $base_username . '_' . $counter;
-    $counter++;
+    while ($this->usernameExists($username, $exclude_user_id)) {
+      $username = $base_username . '_' . $counter;
+      $counter++;
+    }
+
+    return $username;
   }
 
-  return $username;
-}
+  /**
+   * Nettoie le matricule fiscal pour créer un nom d'utilisateur valide.
+   */
+  protected function sanitizeUsername(string $matricule_fiscal): string
+  {
+    // Supprimer les espaces et caractères spéciaux, garder uniquement alphanumériques et underscores
+    $sanitized = preg_replace('/[^a-zA-Z0-9_]/', '', $matricule_fiscal);
+
+    // S'assurer que le nom d'utilisateur n'est pas vide
+    if (empty($sanitized)) {
+      $sanitized = 'user_' . time();
+    }
+
+    return $sanitized;
+  }
 
   /**
-   * Vérifie si un nom d'utilisateur existe.
+   * Vérifie si un nom d'utilisateur existe déjà.
    */
-  protected function usernameExists(string $username): bool {
-    $users = \Drupal::entityTypeManager()
+  protected function usernameExists(string $username, ?int $exclude_user_id = null): bool
+  {
+    $query = \Drupal::entityTypeManager()
       ->getStorage('user')
-      ->loadByProperties(['name' => $username]);
-    
+      ->getQuery()
+      ->condition('name', $username)
+      ->accessCheck(FALSE);
+
+    // Exclure l'utilisateur actuel lors de la mise à jour
+    if ($exclude_user_id) {
+      $query->condition('uid', $exclude_user_id, '<>');
+    }
+
+    $users = $query->execute();
     return !empty($users);
   }
 
   /**
-   * Récupère un exportateur par ID utilisateur.
+   * Met à jour un exportateur existant.
    */
-  public function getExporter(Request $request, $user_id = null): JsonResponse {
+  public function updateExporter(Request $request, $user_id = null): JsonResponse
+  {
     // Vérification de l'authentification
     $auth_header = $request->headers->get('Authorization');
     if (!$this->validateApiKey($auth_header)) {
       return new JsonResponse(['error' => 'Unauthorized'], 401);
     }
 
-    try {
-      if (!$user_id) {
-        return new JsonResponse(['error' => 'User ID required'], 400);
-      }
+    if (!$user_id) {
+      return new JsonResponse(['error' => 'User ID required'], 400);
+    }
 
+    $data = json_decode($request->getContent(), TRUE);
+
+    if (!$data) {
+      return new JsonResponse(['error' => 'Invalid JSON data'], 400);
+    }
+
+    try {
+      // Vérifier si l'utilisateur existe et a le rôle exportateur
       $user = User::load($user_id);
       if (!$user || !$user->hasRole('exportateur')) {
         return new JsonResponse(['error' => 'Exporter not found'], 404);
       }
 
-      // Récupérer le profil exportateur associé
+      // Mettre à jour l'utilisateur
+      $this->updateExporterUser($user, $data);
+
+      // Mettre à jour le profil exportateur
+      $profile_node = $this->createOrUpdateExporterProfile($user, $data);
+
+      return new JsonResponse([
+        'message' => 'Exporter updated successfully',
+        'user_id' => $user->id(),
+        'username' => $user->getAccountName(),
+        'profile_id' => $profile_node->id(),
+        'status' => 'success'
+      ], 200);
+    } catch (\Exception $e) {
+      \Drupal::logger('exporter_sync')->error('Error updating exporter: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new JsonResponse(['error' => 'Internal server error'], 500);
+    }
+  }
+
+  /**
+   * Met à jour partiellement un exportateur (PATCH).
+   */
+  public function patchExporter(Request $request, $user_id = null): JsonResponse
+  {
+    // Vérification de l'authentification
+    $auth_header = $request->headers->get('Authorization');
+    if (!$this->validateApiKey($auth_header)) {
+      return new JsonResponse(['error' => 'Unauthorized'], 401);
+    }
+
+    if (!$user_id) {
+      return new JsonResponse(['error' => 'User ID required'], 400);
+    }
+
+    $data = json_decode($request->getContent(), TRUE);
+
+    if (!$data) {
+      return new JsonResponse(['error' => 'Invalid JSON data'], 400);
+    }
+
+    try {
+      // Vérifier si l'utilisateur existe et a le rôle exportateur
+      $user = User::load($user_id);
+      if (!$user || !$user->hasRole('exportateur')) {
+        return new JsonResponse(['error' => 'Exporter not found'], 404);
+      }
+
+      // Mise à jour partielle - ne met à jour que les champs fournis
+      $this->partialUpdateExporterUser($user, $data);
+      $profile_node = $this->partialUpdateExporterProfile($user, $data);
+
+      return new JsonResponse([
+        'message' => 'Exporter partially updated successfully',
+        'user_id' => $user->id(),
+        'username' => $user->getAccountName(),
+        'profile_id' => $profile_node ? $profile_node->id() : null,
+        'updated_fields' => array_keys($data),
+        'status' => 'success'
+      ], 200);
+    } catch (\Exception $e) {
+      \Drupal::logger('exporter_sync')->error('Error partially updating exporter: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new JsonResponse(['error' => 'Internal server error'], 500);
+    }
+  }
+
+  /**
+   * Met à jour partiellement un utilisateur exportateur.
+   */
+  protected function partialUpdateExporterUser(User $user, array $data): void
+  {
+    $user_updated = FALSE;
+
+    // Le username est maintenant automatiquement basé sur le matricule fiscal
+    if (isset($data['matricul_fiscale']) && !empty(trim($data['matricul_fiscale']))) {
+      $new_username = $this->generateUniqueUsername(trim($data['matricul_fiscale']), $user->id());
+      if ($user->getAccountName() !== $new_username) {
+        $user->set('name', $new_username);
+        $user_updated = TRUE;
+      }
+    }
+
+    if (isset($data['email']) && !empty(trim($data['email']))) {
+      $user->set('mail', trim($data['email']));
+      $user_updated = TRUE;
+    }
+
+    if (isset($data['status']) && is_numeric($data['status'])) {
+      $user->set('status', (int)$data['status']);
+      $user_updated = TRUE;
+    }
+
+    // Ajouter le rôle exportateur s'il ne l'a pas
+    if (!$user->hasRole('exportateur')) {
+      $user->addRole('exportateur');
+      $user_updated = TRUE;
+    }
+
+    if ($user_updated) {
+      $user->save();
+    }
+  }
+
+  /**
+   * Met à jour partiellement le profil exportateur.
+   */
+  protected function partialUpdateExporterProfile(User $user, array $data): ?Node
+  {
+    // Chercher le profil existant
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'profile_exportateur')
+      ->condition('uid', $user->id())
+      ->accessCheck(FALSE);
+
+    $nids = $query->execute();
+
+    if (empty($nids)) {
+      return NULL; // Pas de profil existant
+    }
+
+    $profile_node = Node::load(reset($nids));
+    $profile_updated = FALSE;
+
+    // Mappage des champs à mettre à jour
+    $field_mapping = [
+      'matricul_fiscale' => 'field_matricul_fiscale',
+      'gouvernorat' => 'field_gouvernorat',
+      'directeur_general' => 'field_directeur_general',
+      'adresse' => 'field_adresse',
+      'telephone' => 'field_telephone',
+      'nom_d_entreprise' => 'field_nom_d_entreprise',
+    ];
+
+    foreach ($field_mapping as $data_key => $field_name) {
+      if (isset($data[$data_key])) {
+        $profile_node->set($field_name, $data[$data_key]);
+        $profile_updated = TRUE;
+      }
+    }
+
+    // Mettre à jour le titre si nom d'entreprise fourni
+    if (isset($data['nom_d_entreprise']) && !empty(trim($data['nom_d_entreprise']))) {
+      $profile_node->set('title', trim($data['nom_d_entreprise']));
+      $profile_updated = TRUE;
+    }
+
+    if ($profile_updated) {
+      $profile_node->save();
+    }
+
+    return $profile_node;
+  }
+
+  /**
+   * Supprime un exportateur.
+   */
+  public function deleteExporter(Request $request, $user_id = null): JsonResponse
+  {
+    // Vérification de l'authentification
+    $auth_header = $request->headers->get('Authorization');
+    if (!$this->validateApiKey($auth_header)) {
+      return new JsonResponse(['error' => 'Unauthorized'], 401);
+    }
+
+    if (!$user_id) {
+      return new JsonResponse(['error' => 'User ID required'], 400);
+    }
+
+    try {
+      $user = User::load($user_id);
+      if (!$user || !$user->hasRole('exportateur')) {
+        return new JsonResponse(['error' => 'Exporter not found'], 404);
+      }
+
+      // Supprimer le profil associé
       $query = \Drupal::entityQuery('node')
         ->condition('type', 'profile_exportateur')
         ->condition('uid', $user->id())
         ->accessCheck(FALSE);
-      
+
       $nids = $query->execute();
-      $profile_data = [];
-      
+
       if (!empty($nids)) {
-        $profile_node = Node::load(reset($nids));
-        $profile_data = [
-          'profile_id' => $profile_node->id(),
-          'matricul_fiscale' => $profile_node->get('field_matricul_fiscale')->value ?? '',
-          'nom_d_entreprise' => $profile_node->get('field_nom_d_entreprise')->value ?? '',
-          'directeur_general' => $profile_node->get('field_directeur_general')->value ?? '',
-          'adresse' => $profile_node->get('field_adresse')->value ?? '',
-          'telephone' => $profile_node->get('field_telephone')->value ?? '',
-          'gouvernorat' => $profile_node->get('field_gouvernorat')->value ?? '',
-        ];
+        $profile_nodes = Node::loadMultiple($nids);
+        foreach ($profile_nodes as $profile_node) {
+          $profile_node->delete();
+        }
       }
 
-      return new JsonResponse([
-        'user_id' => $user->id(),
-        'email' => $user->getEmail(),
-        'username' => $user->getAccountName(),
-        'status' => $user->isActive() ? 1 : 0,
-        'created' => $user->getCreatedTime(),
-        'profile' => $profile_data,
-      ], 200);
+      $user->delete();
 
+      return new JsonResponse([
+        'message' => 'Exporter deleted successfully',
+        'user_id' => $user_id,
+        'status' => 'success'
+      ], 200);
     } catch (\Exception $e) {
-      \Drupal::logger('exporter_sync')->error('Error getting exporter: @message', [
+      \Drupal::logger('exporter_sync')->error('Error deleting exporter: @message', [
         '@message' => $e->getMessage(),
       ]);
-      
+
       return new JsonResponse(['error' => 'Internal server error'], 500);
     }
   }

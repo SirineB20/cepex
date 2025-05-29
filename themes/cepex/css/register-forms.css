@@ -42,7 +42,7 @@
   }
   
   /* Style des labels - ÉGALISATION DES LABELS */
-  label,h4,
+  label,
   #edit-field-statut--wrapper legend,
   #edit-field-certifications--wrapper legend,
   #edit-field-avez-vous-une-implantation--wrapper legend {
@@ -851,11 +851,7 @@ span.select2-selection.select2-selection--single {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-h4 {
-  text-align: center;
-  color: #cb043d;
 
-}
 
 /* Centrage de l'image du CAPTCHA */
 .auth-forms .captcha__image-wrapper {

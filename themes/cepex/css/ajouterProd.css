@@ -1,5 +1,11 @@
 
-#profile-profile-homme-secteur-edit-form , #node-produits-marketplace-edit-form , #node-produits-marketplace-form {
+#profile-profile-homme-secteur-edit-form , #node-produits-marketplace-edit-form ,
+#node-produits-marketplace-form,
+#node-opportunites-daffaires-form,
+#node-opportunites-daffaires-edit-form,
+#node-rct-edit-form,
+.node-profile-exportateur-edit-form ,.node-form
+ {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
@@ -10,7 +16,6 @@
     margin-bottom: 22px;
 
 }
-
 #edit-preview
 {
     background: #fae5eb;

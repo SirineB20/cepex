@@ -71,8 +71,10 @@
     </div>
   {% endif %}
 
-  {% if pager %}
-    {{ pager }}
+   {% if pager is defined and pager %}
+    <nav aria-label="Page navigation" class="paginator-guide">
+      {{ pager }}
+    </nav>
   {% endif %}
   {% if attachment_after %}
     <div class="attachment attachment-after">

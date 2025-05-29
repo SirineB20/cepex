@@ -13,12 +13,20 @@
   }
   
   /* Form labels */
-  .profile-profile-exportateur-edit-form label {
+  .profile-profile-exportateur-edit-form label,
+  .profile-profile-exportateur-edit-form legend,
+  .node-opportunites-daffaires-form label,
+  .node-opportunites-daffaires-edit-form label,
+  .node-opportunites-daffaires-form legend,
+  .node-opportunites-daffaires-edit-form legend,
+  .node-rct-edit-form label,
+  .node-rct-edit-form legend,
+  .node-profile-exportateur-edit-form label,
+  .node-profile-exportateur-edit-form legend{
     font-weight: 600;
     display: block;
     margin-bottom: 8px;
   }
-  
   
   
   /* Text inputs */

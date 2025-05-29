@@ -1,211 +1,157 @@
-{#
-/**
- * Template pour les détails d'événement/opportunité
- * Version améliorée avec design moderne
- */
-#}
 
-<div class="container event-detail">
+<article{{ attributes.addClass('event-detail-wrapper') }}>
   
-  {# === SECTION INFORMATIONS CLÉS === #}
-  <div class="icone-container">
-    <div class="date-event">
-      <i class="fa-solid fa-calendar-days"></i>
-      <div class="field-content">
-        {{ content.field_date_opportunitie }}
-      </div>
-    </div>
+  <div class="container event-detail">
     
-    <div class="location-event">
-      <i class="fa-solid fa-location-dot"></i>
-      <div class="field-content">
-        {{ content.field_lieux }}
-      </div>
-    </div>
-    
-    <div class="type-event">
-      <i class="fa-solid fa-briefcase"></i>
-      <div class="field-content">
-        {{ content.field_secteur_opportunitie }}
-      </div>
-    </div>
-  </div>
-
-  {# === SECTION PARTAGE SOCIAL === #}
-  <div class="socials-events">
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('<current>')|url_encode }}" 
-       target="_blank" 
-       rel="noopener" 
-       aria-label="{{ 'Partager sur Facebook'|t }}">
-      <i class="fa-brands fa-facebook-f"></i>
-    </a>
-    
-    <a href="https://twitter.com/intent/tweet?url={{ url('<current>')|url_encode }}&text={{ label|url_encode }}" 
-       target="_blank" 
-       rel="noopener" 
-       aria-label="{{ 'Partager sur Twitter'|t }}">
-      <i class="fa-brands fa-x-twitter"></i>
-    </a>
-    
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url('<current>')|url_encode }}" 
-       target="_blank" 
-       rel="noopener" 
-       aria-label="{{ 'Partager sur LinkedIn'|t }}">
-      <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-    
-    <a href="mailto:?subject={{ label|url_encode }}&body={{ url('<current>')|url_encode }}" 
-       aria-label="{{ 'Partager par email'|t }}">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </div>
-
-  {# === IMAGE PRINCIPALE === #}
-  {% if content.field_image_oppo.0 %}
-    <div class="img-devent">
-      <img src="{{ content.field_image_oppo.0['#markup'] }}" 
-           alt="{{ label }}" 
-           class="event-detail__header-img"
-           loading="lazy">
-    </div>
-  {% endif %}
-
-  {# === TITRE PRINCIPAL === #}
-  <h1 class="devent-titre">{{ label }}</h1>
-
-  {# === DESCRIPTION COMPLÈTE === #}
-  <div class="desc-devent">
-    {% if content.field_presentation_opportunitie %}
-      <div class="presentation-section">
-        {{ content.field_presentation_opportunitie }}
+    {# === HEADER AVEC IMAGE DE FOND === #}
+    {% if content.field_image_header %}
+      <div class="header-devent">
+        {{ content.field_image_header }}
+        {% if content.field_logo %}
+          <div class="Logo-white">
+            {{ content.field_logo }}
+          </div>
+        {% endif %}
+        <h1 class="titre-hevent">{{ label }}</h1>
       </div>
     {% endif %}
     
-    {% if content.field_description_complete %}
-      <div class="description-section">
-        {{ content.field_description_complete }}
+    {# === SECTION INFORMATIONS CLÉS === #}
+    <div class="icone-container">
+      <div class="date-event">
+        <i class="fa-solid fa-calendar-days"></i>
+        <div class="field-content">
+          {{ content.field_date_opportunitie }}
+        </div>
+      </div>
+      
+      <div class="location-event">
+        <i class="fa-solid fa-location-dot"></i>
+        <div class="field-content">
+          {{ content.field_lieux }}
+        </div>
+      </div>
+      
+      <div class="type-event">
+        <i class="fa-solid fa-briefcase"></i>
+        <div class="field-content">
+          {{ content.field_secteur_opportunitie }}
+        </div>
+      </div>
+    </div>
+
+    {# === SECTION PARTAGE SOCIAL === #}
+    <div class="socials-events">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('<current>')|url_encode }}" 
+         target="_blank" 
+         rel="noopener" 
+         aria-label="{{ 'Partager sur Facebook'|t }}">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      
+      <a href="https://twitter.com/intent/tweet?url={{ url('<current>')|url_encode }}&text={{ label|url_encode }}" 
+         target="_blank" 
+         rel="noopener" 
+         aria-label="{{ 'Partager sur Twitter'|t }}">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url('<current>')|url_encode }}" 
+         target="_blank" 
+         rel="noopener" 
+         aria-label="{{ 'Partager sur LinkedIn'|t }}">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      
+      <a href="mailto:?subject={{ label|url_encode }}&body={{ url('<current>')|url_encode }}" 
+         aria-label="{{ 'Partager par email'|t }}">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+
+    {# === IMAGE PRINCIPALE === #}
+    {% if content.field_image_oppo.0 %}
+      <div class="img-devent">
+        <img src="{{ content.field_image_oppo.0['#markup'] }}" 
+             alt="{{ label }}" 
+             class="event-detail__header-img"
+             loading="lazy">
       </div>
     {% endif %}
-  </div>
-  
-  {# === BOUTON RÉPONDRE À L'OPPORTUNITÉ === #}
-  <div class="opportunity-card__actions">
-    {% set opportunity_url %}
-      {{ base_path }}fr/form/repondre-a-l-opportunite?opportunite_id={{ node.title.value|url_encode }}
-      {% if user.id %}
-        &nom_d_entreprise={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}
-      {% endif %}
-    {% endset %}
-    
-    <a href="{{ opportunity_url|trim }}" 
-       class="btn-cepex btn-devis"
-       {% if not user.id %}
-         title="{{ 'Vous devez être connecté pour répondre'|t }}"
-       {% endif %}>
-      {{ 'Répondre à cette opportunité'|t }}
-      <i class="fa-solid fa-paper-plane"></i>
-    </a>
-  </div>
 
-  {# === INFORMATIONS SUPPLÉMENTAIRES === #}
-  {% if content.field_contact_info or content.field_deadline %}
-    <div class="additional-info">
-      {% if content.field_deadline %}
-        <div class="deadline-info">
-          <i class="fa-solid fa-clock"></i>
-          <strong>{{ 'Date limite'|t }} :</strong>
-          {{ content.field_deadline }}
+    {# === TITRE PRINCIPAL (si pas dans header) === #}
+    {% if not content.field_image_header %}
+      <h1 class="devent-titre">{{ label }}</h1>
+    {% endif %}
+
+
+    {# === DESCRIPTION COMPLÈTE === #}
+    <div class="desc-devent">
+      {% if content.field_presentation_opportunitie %}
+        <div class="presentation-section">
+          <h3>{{ 'Présentation de l\'opportunité'|t }}</h3>
+          {{ content.field_presentation_opportunitie }}
         </div>
       {% endif %}
       
-      {% if content.field_contact_info %}
-        <div class="contact-info">
-          <i class="fa-solid fa-user-tie"></i>
-          <strong>{{ 'Contact'|t }} :</strong>
-          {{ content.field_contact_info }}
+      {% if content.field_description_complete %}
+        <div class="description-section">
+          <h3>{{ 'Description complète'|t }}</h3>
+          {{ content.field_description_complete }}
         </div>
       {% endif %}
     </div>
-  {% endif %}
-</div>
+    
+    {# === BOUTON RÉPONDRE À L'OPPORTUNITÉ === #}
+    <div class="opportunity-card__actions">
+      {% set opportunity_url %}
+        http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.title.value|url_encode }}
+        {% if user.id %}
+          &nom_d_entreprise={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}
+        {% endif %}
+      {% endset %}
+      
+      <a href="{{ opportunity_url|trim }}" 
+         class="btn-cepex btn-devis"
+         {% if not user.id %}
+           title="{{ 'Vous devez être connecté pour répondre'|t }}"
+         {% endif %}>
+        {{ 'Répondre à cette opportunité'|t }}
+        <i class="fa-solid fa-paper-plane"></i>
+      </a>
+    </div>
 
-{# === BOUTON FLOTTANT DE RETOUR === #}
-<div class="floating-action-button">
-  {% if user_roles is defined %}
-    {% if 'rct' in user_roles and pays_code is defined and user_id is defined %}
-      <a href="{{ base_path }}fr/dashboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}" 
-         class="btn-fab" 
-         title="{{ 'Retourner à la gestion des opportunités'|t }}">
+  </div>
+
+  {# === BOUTON FLOTTANT DE RETOUR === #}
+  <div class="floating-action-button">
+    {% if user_roles is defined %}
+      {% if 'rct' in user_roles and pays_code is defined and user_id is defined %}
+        <a href="{{ base_path }}fr/dashboard/rct/opportunites-daffaires/{{ pays_code }}/{{ user_id }}" 
+           class="btn-fab" 
+           title="{{ 'Retourner à la gestion des opportunités'|t }}">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      {% elseif 'exportateur' in user_roles %}
+        <a href="{{ base_path }}fr/dashboard/gestion-produits" 
+           class="btn-fab"
+           title="{{ 'Aller à la gestion des produits'|t }}">
+          <i class="fa-solid fa-box"></i>
+        </a>
+      {% else %}
+        <a href="{{ base_path }}fr" 
+           class="btn-fab"
+           title="{{ 'Retour à l\'accueil'|t }}">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      {% endif %}
+    {% else %}
+      <a href="javascript:history.back()" 
+         class="btn-fab"
+         title="{{ 'Retour'|t }}">
         <i class="fa-solid fa-arrow-left"></i>
       </a>
-    {% elseif 'exportateur' in user_roles %}
-      <a href="{{ base_path }}fr/dashboard/gestion-produits" 
-         class="btn-fab"
-         title="{{ 'Aller à la gestion des produits'|t }}">
-        <i class="fa-solid fa-box"></i>
-      </a>
-    {% else %}
-      <a href="{{ base_path }}fr" 
-         class="btn-fab"
-         title="{{ 'Retour à l\'accueil'|t }}">
-        <i class="fa-solid fa-home"></i>
-      </a>
     {% endif %}
-  {% else %}
-    <a href="javascript:history.back()" 
-       class="btn-fab"
-       title="{{ 'Retour'|t }}">
-      <i class="fa-solid fa-arrow-left"></i>
-    </a>
-  {% endif %}
-</div>
+  </div>
 
-{# === STYLES SUPPLÉMENTAIRES POUR INFORMATIONS ADDITIONNELLES === #}
-<style>
-.additional-info {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--primary);
-  margin-top: var(--spacing-lg);
-}
-
-.additional-info > div {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-  font-size: 0.95rem;
-}
-
-.additional-info > div:last-child {
-  margin-bottom: 0;
-}
-
-.additional-info i {
-  color: var(--primary);
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.presentation-section {
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid rgba(203, 4, 61, 0.1);
-}
-
-.description-section {
-  margin-top: var(--spacing-md);
-}
-
-/* États pour utilisateur non connecté */
-.btn-cepex[title*="connecté"] {
-  opacity: 0.7;
-  cursor: help;
-}
-
-.btn-cepex[title*="connecté"]:hover {
-  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-}
-</style>
+</article>

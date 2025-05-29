@@ -15,6 +15,9 @@ section {
   display: flex;
   flex-wrap: wrap;
 }
+#edit-field-description-complete-0-format{
+  display: none;
+}
 
 .box-video {
   position: relative;

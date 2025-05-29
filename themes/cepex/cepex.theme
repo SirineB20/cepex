@@ -1,45 +1,32 @@
 <?php
-
 declare(strict_types=1);
-
 /**
  * @file
  * Functions to support theming in the cepex theme.
  */
-
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
-function cepex_preprocess_html(array &$variables): void {
-
-}
+function cepex_preprocess_html(array &$variables): void {}
 /**
  * Implémentation de hook_preprocess_HOOK() pour views_view.
  */
-function cepex_preprocess_views_view(&$variables) {
-  
-}
-
+function cepex_preprocess_views_view(&$variables) {}
 function cepex_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'cepex/amcharts5';
-}
-
+  $attachments['#attached']['library'][] = 'cepex/amcharts5';}
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
-
 function cepex_preprocess_page(array &$variables): void {
   $current_user = \Drupal::currentUser();
   $variables['nid'] = NULL;
-
   // Gestion des utilisateurs connectés
   if ($current_user->id() > 0) {
     // Charger l'objet utilisateur complet
     $user = \Drupal\user\Entity\User::load($current_user->id());
-
     // Variables de base de l'utilisateur
     $variables['user_logged_in'] = TRUE;
     $variables['user_name'] = $user->getDisplayName();
@@ -144,13 +131,11 @@ function cepex_user_login($account) {
   if (\Drupal::request()->query->get('destination')) {
     return;
   }
-
   // Éviter les redirections en boucle
   $request = \Drupal::request();
   if ($request->query->get('skip_redirect')) {
     return;
   }
-
   $user = $account;
   $user_roles = $user->getRoles();
   $redirect_url = NULL;
@@ -235,7 +220,6 @@ function cepex_user_login($account) {
         }, 100);
       </script>
     ";
-    
     // Ajouter le script à la page
     $response = new \Symfony\Component\HttpFoundation\Response($script);
     $response->send();
@@ -268,11 +252,9 @@ function cepex_user_login_form_submit(&$form, FormStateInterface $form_state) {
   if (\Drupal::request()->query->get('destination')) {
     return;
   }
-
   $user = \Drupal\user\Entity\User::load($current_user->id());
   $user_roles = $user->getRoles();
   $redirect_url = NULL;
-  
   // Même logique de redirection que dans hook_user_login
   if (in_array('rct', $user_roles)) {
     $pays_code = NULL;
@@ -320,8 +302,7 @@ function cepex_user_login_form_submit(&$form, FormStateInterface $form_state) {
           $secteur_id = $profile->get('field_secteur')->target_id;
         }
       }
-    }
-    
+    } 
     if ($secteur_id) {
       $redirect_url = "/fr/dashboard/gestion-produits-secteur/{$secteur_id}";
     }
@@ -339,7 +320,6 @@ function cepex_user_login_form_submit(&$form, FormStateInterface $form_state) {
     $form_state->setRedirectUrl($url);
   }
 }
-
 /**
  * Helper function to apply common form styles.
  */
@@ -429,6 +409,15 @@ function cepex_suggestions_views_view_alter(array &$suggestions, array $variable
  * Implements hook_form_alter().
  */
 function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Les form_id corrects sont probablement :
+  if ($form_id === 'node_opportunites_daffaires_form' || 
+      $form_id === 'node_opportunites_daffaires_edit_form') {
+    
+    $form['#validate'][] = 'cepex_opportunites_date_validate';
+    
+    // Debug : confirmer que la validation est ajoutée
+    \Drupal::messenger()->addMessage('Validation ajoutée au formulaire');
+  }
   if (strpos($form_id, 'webform_submission_formulaire_de_contact_') === 0) {
     // Obtenez le paramètre service de l'URL
     $service = \Drupal::request()->query->get('service');
@@ -454,7 +443,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
   
   // Initialize default values array
   $default_values = [];
-  
   // 1. First get connected user data if available
   $current_user = \Drupal::currentUser();
   if ($current_user->isAuthenticated()) {
@@ -512,7 +500,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
       }
     }
   }
-  
   // 2. Then apply URL parameters (they override user data if present)
   foreach ($parameters as $param_key => $param_value) {
     if (!empty($param_value)) {
@@ -532,18 +519,12 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
       }
     }
   }
-  
   // Log all parameters for debugging
   $debug_message = 'Valeurs par défaut à appliquer: ' . print_r($default_values, TRUE);
   \Drupal::logger('cepex_webform')->notice($debug_message);
-  
-  // No values to set, exit early
   if (empty($default_values)) {
     return;
   }
-  
-  // Apply values using multiple reliable methods
-  
   // Method 1: Using #default_data for the form
   $form['#default_data'] = isset($form['#default_data']) 
     ? array_merge($form['#default_data'], $default_values) 
@@ -575,7 +556,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     ]);
     $form_state->set('webform_submission', $submission);
   }
-  
   // Method 5: Add direct alter hook to ensure fields are populated during rendering
   $form['#after_build'][] = function($form, $form_state) use ($default_values) {
     foreach ($default_values as $key => $value) {
@@ -607,9 +587,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
       
       // Récupérer l'email de l'utilisateur
       $user_mail = $user->getEmail();
-      
-      // Appliquer les valeurs aux champs du formulaire si disponibles
-      
       // Nom de l'utilisateur (contact)
       if (isset($form['elements']['contact'])) {
         $form['elements']['contact']['#default_value'] = $user_name;
@@ -663,7 +640,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
           $form['elements']['description_de_produit']['#attributes']['value'] = $decoded_description;
         }
       }
-       
       // Approche 3: chercher le champ avec #webform_key = description_de_produit
       foreach ($form as $key => &$element) {
         if (is_array($element) && isset($element['#webform_key']) && $element['#webform_key'] === 'description_de_produit') {
@@ -674,31 +650,25 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
         }
       }
     }
-    
     // Gérer le champ nom_de_produit indépendamment de la connexion utilisateur
     if (!empty($nom_de_produit)) {
       // Décode la valeur
       $decoded_value = urldecode($nom_de_produit);
-      
       // Approche 1: via le state du formulaire
       $webform = $form_state->getFormObject()->getWebform();
       $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
       $values = ['data' => ['nom_de_produit' => $decoded_value]];
-      
       // Ajouter la description du produit aux valeurs si disponible
       if (!empty($description_produit)) {
         $values['data']['description_de_produit'] = urldecode($description_produit);
       }
-      
       $submission = $storage->create(['webform_id' => $webform->id(), 'data' => $values['data']]);
       $form_state->setValues($values);
       $form_state->set('submission', $submission);
-      
       // Approche 2: modifier directement les éléments du formulaire
       if (isset($form['elements']['nom_de_produit'])) {
         $form['elements']['nom_de_produit']['#default_value'] = $decoded_value;
         $form['elements']['nom_de_produit']['#value'] = $decoded_value;
-        
         // Si c'est un champ textfield standard
         if (isset($form['elements']['nom_de_produit']['#type']) && 
             ($form['elements']['nom_de_produit']['#type'] == 'textfield' || 
@@ -714,7 +684,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
           break;
         }
       }
-      
       // Si tout échoue, affichons plus d'informations sur le formulaire
       if (function_exists('dpm') || function_exists('kint')) {
         // Si Devel est activé, utilisons ses fonctions pour un meilleur débogage
@@ -734,7 +703,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
       }
     }
   }
-  
   // Formulaire pour gestion-produit-par-exportateur
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-gestion-produit-par-exportateur-page-1') {
     _cepex_setup_filter_form($form);
@@ -750,8 +718,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     _cepex_setup_filter_form_exportateurs($form);
   }
 }
-
-
 /**
  * Helper function pour configurer le formulaire de filtres de produits
  */
@@ -776,11 +742,7 @@ function _cepex_setup_filter_form(&$form) {
     $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
     $form['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
   }
-
-  // Ajouter un traitement après la construction du formulaire.
-  $form['#after_build'][] = 'cepex_filter_form_after_build';
 }
-
 /**
  * Helper function pour configurer le formulaire de filtres des exportateurs
  */
@@ -822,21 +784,6 @@ function _cepex_setup_filter_form_exportateurs(&$form) {
     $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
     $form['actions']['submit']['#attributes']['class'][] = 'search-btn-rounded';
   }
-
-  // Ajouter un traitement après la construction du formulaire.
-  $form['#after_build'][] = 'cepex_filter_form_after_build';
-}
-
-/**
- * After build callback pour le formulaire de filtres.
- */
-function cepex_filter_form_after_build($form, &$form_state) {
-  // Ajouter des attributs supplémentaires une fois le formulaire construit
-  if (isset($form['filter_group'])) {
-    $form['filter_group']['#attributes']['class'][] = 'filter-group-processed';
-  }
-  
-  return $form;
 }
 
 /**
@@ -1004,7 +951,7 @@ function cepex_theme_suggestions_node_alter(array &$suggestions, array $variable
 /*
  * Validate Matricule Fiscal Format.
  */
-function my_custom_module_validate_matricule_fiscal(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form)
+function cepex_validate_matricule_fiscal(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form)
 {
   $matricule_fiscal1 = $form_state->getValue('field_matricul_fiscale');
   $matricule_fiscal = $matricule_fiscal1[0]["value"];
@@ -1033,7 +980,6 @@ function my_custom_module_validate_matricule_fiscal(array &$element, \Drupal\Cor
     $form_state->setError($element, t('Le matricule fiscal n\'est pas valide selon la clé de contrôle.'));
   }
 }
-
 function validateUniqueMatriculeFiscal(array &$element, FormStateInterface $form_state, array &$complete_form)
 {
   $matricule_fiscal1 = $form_state->getValue('field_matricul_fiscale');
@@ -1065,18 +1011,57 @@ function validateUniqueMail(array &$element, FormStateInterface $form_state, arr
     $form_state->setError($element, t('Votre mail existe déjà. Veuillez choisir un autre mail de contact !!'));
   }
 }
-function opportunite_custom_date_validate($form, \Drupal\Core\Form\FormStateInterface $form_state)
-{
-  // Get the date value from the form.
-  $date_value = $form_state->getValue(['field_date_opportunite', 0, 'value']);
-  $timestamp_opp = $date_value->getTimestamp();
+/**
+ * Implements hook_node_validate().
+ */
+function cepex_node_validate($node, $form, &$form_state) {
+  // Vérifier si c'est le bon type de contenu
+  if ($node->getType() !== 'opportunites_daffaires') {
+    return;
+  }
+  
+  // Vérifier si le champ existe et a une valeur
+  if ($node->hasField('field_date_opportunitie') && !$node->get('field_date_opportunitie')->isEmpty()) {
+    $date_value = $node->get('field_date_opportunitie')->value;
+    $today = date('Y-m-d');
+    
+    // Comparer les dates
+    if ($date_value < $today) {
+      $form_state->setErrorByName('field_date_opportunitie', t('La date d\'opportunité ne peut pas être antérieure à la date d\'aujourd\'hui. Veuillez sélectionner une date valide.'));
+    }
+  }
+}
+/**
+ * Validation personnalisée pour la date d'opportunité.
+ */
+function cepex_opportunites_date_validate($form, FormStateInterface $form_state) {
+  $date_value = $form_state->getValue(['field_date_opportunitie', 0, 'value']);
 
-  // Get the current date timestamp.
-  $current_timestamp = strtotime(date('Y-m-d'));
-
-  // Check if the date is not greater than the current date.
-  if ($timestamp_opp <= $current_timestamp) {
-    // Set an error on the date field.
-    $form_state->setErrorByName('field_date_opportunitie', t('La date de clôture doit être supérieure à la date d\'aujourd\'hui.'));
+  // Chercher la valeur du champ
+  $field_values = $form_state->getValue('field_date_opportunitie');
+  \Drupal::logger('cepex')->notice('Valeur du champ date: @date', ['@date' => print_r($field_values, TRUE)]);
+  
+  if (!empty($date_value)) {
+    // Gérer le cas où $date_value est un objet DrupalDateTime
+    if ($date_value instanceof \Drupal\Core\Datetime\DrupalDateTime) {
+      $selected_date = $date_value->getPhpDateTime();
+    } elseif (is_string($date_value)) {
+      $selected_date = new DateTime($date_value);
+    } else {
+      // Si ce n'est ni l'un ni l'autre, on sort de la fonction
+      return;
+    }
+    
+    $today = new DateTime();
+    $today->setTime(0, 0, 0); // Reset time to compare only dates
+    $selected_date->setTime(0, 0, 0); // Reset time pour la date sélectionnée aussi
+    
+    if ($selected_date < $today) {
+      $form_state->setErrorByName('field_date_opportunitie', 
+        t('❌ Date invalide : La date d\'opportunité doit être égale ou supérieure à la date d\'aujourd\'hui (@today).', 
+          ['@today' => $today->format('d/m/Y')]
+        )
+      );
+    }
   }
 }

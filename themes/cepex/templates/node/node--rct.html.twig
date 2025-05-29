@@ -1,0 +1,117 @@
+<div class="container">
+  <article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class, 'rct-profile') }}>
+    
+    {# Header avec photo de fond et overlay #}
+    <header class="rct-header">
+
+			{% if content.field_photo_representant %}
+				<div class="rct-header__bg">
+					{% set image_url = content.field_photo_representant.0['#markup'] %}
+					<img src="{{ image_url }}">
+          </div>
+				{% endif %}
+      
+      {# Informations principales #}
+      <div class="rct-header__content">
+        {{ title_prefix }}
+        {% if label %}
+          <h1{{ title_attributes.addClass('rct-header__name') }}>{{ label }}</h1>
+        {% endif %}
+        {{ title_suffix }}
+        
+        {% if content.field_namerct %}
+          <div class="rct-header__title">{{ content.field_namerct }}</div>
+        {% endif %}
+        
+        {% if content.field_pays %}
+          <div class="rct-header__territory">
+            <i class="fas fa-map-marker-alt"></i>
+            {{ content.field_pays }}
+          </div>
+        {% endif %}
+      </div>
+    </header>
+
+    {# Informations de contact rapides #}
+    <section class="rct-quick-contact">
+      {% if content.field_mail_pays_etranger %}
+        <div class="contact-quick-item">
+          <i class="fas fa-envelope"></i>
+          <div class="field-content">{{ content.field_mail_pays_etranger }}</div>
+        </div>
+      {% endif %}
+      
+      {% if content.field_telephone_pays_etranger %}
+        <div class="contact-quick-item">
+          <i class="fas fa-phone"></i>
+          <div class="field-content">{{ content.field_telephone_pays_etranger }}</div>
+        </div>
+      {% endif %}
+      
+      {% if content.field_mobile_pays_etranger %}
+        <div class="contact-quick-item">
+          <i class="fas fa-mobile-alt"></i>
+          <div class="field-content">{{ content.field_mobile_pays_etranger }}</div>
+        </div>
+      {% endif %}
+      
+      {% if content.field_whatsapp_pays_etranger %}
+        <div class="contact-quick-item">
+          <i class="fab fa-whatsapp"></i>
+          <div class="field-content">{{ content.field_whatsapp_pays_etranger }}</div>
+        </div>
+      {% endif %}
+    </section>
+
+    {# Réseaux sociaux #}
+    {% if content.field_reseau_sociaux_representan %}
+      <section class="rct-socials">
+        {{ content.field_reseau_sociaux_representan }}
+      </section>
+    {% endif %}
+
+    {# Description/Présentation #}
+    {% if content.field_body %}
+      <section class="rct-description">
+        <div class="presentation-section">
+          {{ content.field_body }}
+        </div>
+      </section>
+    {% endif %}
+
+    {# Adresse complète #}
+    {% if content.field_adress_pays_etranger %}
+      <section class="rct-address">
+        <h3><i class="fas fa-building"></i> Adresse du bureau</h3>
+        <div class="additional-info">
+          <div>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ content.field_adress_pays_etranger }}</span>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Carte de localisation #}
+    {% if content.field_location_pays_etranger %}
+      <section class="rct-location">
+        <h3><i class="fas fa-map"></i> Localisation</h3>
+        <div class="rct-map">
+          {{ content.field_location_pays_etranger }}
+        </div>
+      </section>
+    {% endif %}
+
+    {# Documents PDF #}
+    {% if content.field_pdf_representant_network %}
+      <section class="rct-documents">
+        <h3><i class="fas fa-file-pdf"></i> Fiche pays</h3>
+        <div class="rct-pdf-container">
+          {{ content.field_pdf_representant_network }}
+        </div>
+      </section>
+    {% endif %}
+
+
+  </article>
+</div>

@@ -13,3 +13,32 @@ exporter_sync.config:
     _title: 'Configuration Exporter Sync'
   requirements:
     _permission: 'administer site configuration'
+# Route pour mettre à jour complètement un exportateur (PUT)
+exporter_sync.api.update:
+  path: '/api/exporter/{user_id}'
+  defaults:
+    _controller: '\Drupal\exporter_sync\Controller\ExporterApiController::updateExporter'
+  methods: [PUT]
+  requirements:
+    _access: 'TRUE'
+    user_id: \d+
+
+# Route pour mettre à jour partiellement un exportateur (PATCH)
+exporter_sync.api.patch:
+  path: '/api/exporter/{user_id}'
+  defaults:
+    _controller: '\Drupal\exporter_sync\Controller\ExporterApiController::patchExporter'
+  methods: [PATCH]
+  requirements:
+    _access: 'TRUE'
+    user_id: \d+
+
+# Route pour supprimer un exportateur (DELETE)
+exporter_sync.api.delete:
+  path: '/api/exporter/{user_id}'
+  defaults:
+    _controller: '\Drupal\exporter_sync\Controller\ExporterApiController::deleteExporter'
+  methods: [DELETE]
+  requirements:
+    _access: 'TRUE'
+    user_id: \d+
