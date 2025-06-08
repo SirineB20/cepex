@@ -151,31 +151,6 @@
     background: linear-gradient(transparent, white);
 }
 
-/* Button container positioned at bottom */
-.flexbox-bouton-marketplace {
-    margin-top: auto; /* Push buttons to the bottom */
-    display: flex;
-    justify-content: space-between;
-    gap:15px;
-}
-
-.btn-cepex {
-    padding: 3px 15px;
-    border :1px solid #cb043d;
-    border-radius: 20px;
-    background-color: transparent;
-    margin: 30px 0 0;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-    display: inline-block;
-    color: #686868;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.btn-cepex:hover {
-    background: #9b0230;
-}
-
 /* Animation effects */
 .box-actualites:before {
     content: "";
@@ -357,34 +332,7 @@
     font-size: 16px;
     color: #000;
     line-height: 28px;
-    text-align: justify;
-}
-
-.btn-download {
-    color: #fff;
-    font-size: 16px;
-    display: inline-flex;
-    padding: 10px 20px;
-    border-radius: 18px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.5s ease all;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-    background: #cb033d;
-    border: 2px solid #cb033d;
-    font-weight: 500;
-    align-items: center;
-    margin: 20px 0 0;
-}
-
-.btn-download i {
-    margin-left: 5px;
-}
-
-.btn-download:hover {
-    background: #fff;
-    color: #303030;
-}
+    text-align: justify;}
 
 .form-etude {
     position: relative;
@@ -440,20 +388,6 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-}
-.button-send {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto 0;
-}
-
-.btn-cepex.btn-send {
-    background: #fff;
-}
-
-.btn-cepex.btn-send:hover {
-    color: #cb033d;
 }
 .focus-pays {
     background: url(../images/bg-focus.jpg) top center no-repeat;
@@ -621,43 +555,7 @@
     margin: 20px 0 10px;
     line-height: 28px;
 }
-.btn-cepex-pays {
-    color: #fff;
-    font-size: 16px;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.5s ease all;
-    font-weight: 500;
-    align-items: center;
-}
 
-.btn-cepex-pays i {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    text-align: center;
-    background: white;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    border-radius: 7px;
-    font-size: 15px;
-    margin-left: 10px;
-    color: #000;
-}
-
-.btn-cepex-pays:hover {
-    color: #fff;
-}
-
-.btn-cepex-pays:hover i {
-    background: #cb033d;
-    color: #fff;
-}
-.btn-cepex.btn-margin {
-    margin: 25px 0 0;
-}
 .etude-personnalise {
     padding: 50px 0 0;
 }

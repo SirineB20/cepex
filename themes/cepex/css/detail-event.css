@@ -229,31 +229,48 @@
             text-align: center;
             margin: var(--spacing-lg) 0;
         }
+         .btn-cep{
+            padding: 7px 17px;
+    height: 55px;
+    width: 170px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--primary) 0%, #a0032f 100%);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(203, 4, 61, 0.3);
+    text-transform: uppercase;
 
+         }
         .btn-cepex {
+            padding: 3px 13px;
+            height: 55px;
+            width: 130px;
             display: inline-flex;
             align-items: center;
             gap: var(--spacing-sm);
             background: linear-gradient(135deg, var(--primary) 0%, #a0032f 100%);
             color: var(--white);
-            padding: 5px 5px;
             border-radius: var(--radius-lg);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
             transition: var(--transition);
             box-shadow: 0 4px 15px rgba(203, 4, 61, 0.3);
             text-transform: uppercase;
         }
 
-        .btn-cepex:hover {
+        .btn-cepex:hover,.btn-cep:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(203, 4, 61, 0.4);
             background: linear-gradient(135deg, #a0032f 0%, var(--primary) 100%);
         }
 
-        .btn-cepex i {
-            font-size: 1.2rem;
+        .btn-cepex i,.btn-cep i {
+            font-size: 1rem;
         }
 
         /* Bouton flottant */

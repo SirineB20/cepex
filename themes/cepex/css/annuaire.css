@@ -119,6 +119,7 @@
   color: var(--text-primary);
   transition: all var(--transition-normal);
   outline: none;
+  margin-bottom: 15px;
 }
 
 .boxfiltre-guide input.form-select:focus,

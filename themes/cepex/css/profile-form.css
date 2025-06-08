@@ -296,7 +296,7 @@ input#shs-widget-create-new-item-shs-field-secteurs-produit-delta-0, button#shs-
 
 .rct-header__bg img {
     height: 100%;
-    width: 100%;
+    margin-left: 1000px;  
     object-fit: cover;
     transition: var(--transition);
 }
@@ -348,14 +348,14 @@ input#shs-widget-create-new-item-shs-field-secteurs-produit-delta-0, button#shs-
     font-weight: 700;
     margin: 0 0 var(--spacing-sm) 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    color: var(--white);
+    color: var(--primary-light);
 }
 
 .rct-header__title {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: 600;
     margin-bottom: var(--spacing-md);
-    color: rgba(255,255,255,0.9);
+    color: #cb033d;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
@@ -541,32 +541,6 @@ input#shs-widget-create-new-item-shs-field-secteurs-produit-delta-0, button#shs-
 .rct-actions {
     text-align: center;
     margin: var(--spacing-lg) 0;
-}
-
-.btn-cepex {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    background: linear-gradient(135deg, var(--primary) 0%, #a0032f 100%);
-    color: var(--white);
-    padding: 15px 30px;
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(203, 4, 61, 0.3);
-    text-transform: uppercase;
-}
-
-.btn-cepex:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(203, 4, 61, 0.4);
-    background: linear-gradient(135deg, #a0032f 0%, var(--primary) 100%);
-}
-
-.btn-cepex i {
-    font-size: 1.2rem;
 }
 
 /* Bouton flottant */

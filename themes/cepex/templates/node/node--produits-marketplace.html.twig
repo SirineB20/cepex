@@ -73,7 +73,7 @@
 			{% endif %}
 			
 			<!-- Contact Provider Button -->
-			<a href="http://localhost:8087/fr/form/formulaire-de-contact?service={{ node.title.value|url_encode }}" class="btn-cepex btn-devis">
+			<a href="http://localhost:8087/fr/form/formulaire-de-contact?service={{ node.title.value|url_encode }}" class="btn-cep btn-devis">
 			Contactez le prestataire
 			</a>
 			
@@ -89,12 +89,12 @@
 			<!-- Request Quote Button - Conditional Display -->
 			{% if 'exportateur' in user.roles %}
 			{% set description_produit = node.field_description_produit.value|default('') %}
-			<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cepex btn-devis" tabindex="0">
+			<a href="http://localhost:8087/fr/form/demande-de-devis?nom_de_produit={{ node.title.value|url_encode }}&contact={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}&description_produit={{ description_produit|url_encode }}" class="btn-cep btn-devis" tabindex="0">
 				Demander un devis<i class="fa-solid fa-arrow-right"></i>
 			</a>
 			{% else %}
 			{% set description_produit = node.field_description_produit.value|default('') %}
-			<a href="javascript:void(0);" class="btn-cepex btnprod" tabindex="0" onclick="document.getElementById('popup-login').style.display='block';">
+			<a href="javascript:void(0);" class="btn-cep btnprod" tabindex="0" onclick="document.getElementById('popup-login').style.display='block';">
 				Demander un devis<i class="fa-solid fa-arrow-right"></i>
 			</a>
 			{% endif %}
