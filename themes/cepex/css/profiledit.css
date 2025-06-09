@@ -1,7 +1,7 @@
 /* Profile Edit Form Styling */
 
 /* Form container */
-.profile-profile-exportateur-edit-form {
+.profile-profile-exportateur-edit-form,.webform-submission-form {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
@@ -11,6 +11,7 @@
     margin-top: 22px;
     margin-bottom: 22px;
   }
+
   
   /* Form labels */
   .profile-profile-exportateur-edit-form label,
@@ -22,7 +23,9 @@
   .node-rct-edit-form label,
   .node-rct-edit-form legend,
   .node-profile-exportateur-edit-form label,
-  .node-profile-exportateur-edit-form legend{
+  .node-profile-exportateur-edit-form legend,
+  .webform-submission-form label,
+  .webform-submission-form legend {
     font-weight: 600;
     display: block;
     margin-bottom: 8px;

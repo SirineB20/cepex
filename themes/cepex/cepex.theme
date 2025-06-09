@@ -450,7 +450,6 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     if ($user) {
       $default_values['nom'] = $user->getDisplayName(); // Nom complet field seen in screenshot
       $default_values['courriel'] = $user->getEmail(); // Courriel field seen in screenshot
-      
       // Récupérer le profil exportateur (type de contenu) associé à l'utilisateur
       try {
         // Requête pour trouver les noeuds de type "profile_exportateur" liés à l'utilisateur courant
@@ -460,17 +459,13 @@ function cepex_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
           ->accessCheck(TRUE)
           ->sort('created', 'DESC') // Prendre le plus récent si plusieurs existent
           ->range(0, 1);
-        
         $nids = $query->execute();
-        
         if (!empty($nids)) {
           $nid = reset($nids);
           $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-          
           if ($node && $node->hasField('field_secteur') && !$node->get('field_secteur')->isEmpty()) {
             // Récupération du champ secteur selon son type
             $field_secteur = $node->get('field_secteur');
-            
             // Si c'est une référence à un terme de taxonomie
             if ($field_secteur->entity) {
               $default_values['secteur_d_activite'] = $field_secteur->entity->label();

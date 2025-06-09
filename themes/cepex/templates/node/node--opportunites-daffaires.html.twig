@@ -105,14 +105,13 @@
     {# === BOUTON RÉPONDRE À L'OPPORTUNITÉ === #}
     <div class="opportunity-card__actions">
       {% set opportunity_url %}
-        http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunite_id={{ node.title.value|url_encode }}
-        {% if user.id %}
-          &nom_d_entreprise={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}
+        http://localhost:8087/fr/form/repondre-a-l-opportunite?opportunity_id={{ node.id }}&opportunite_id={{ node.title.value|url_encode }}
+        {% if user.id %}&nom_d_entreprise={{ user.displayName|url_encode }}&email={{ user.mail|url_encode }}
         {% endif %}
       {% endset %}
       
       <a href="{{ opportunity_url|trim }}" 
-         class="btn-cepex btn-devis"style="width: 280px important!;"
+         class="btn-devis"style="width: 280px important!;"
          {% if not user.id %}
            title="{{ 'Vous devez être connecté pour répondre'|t }}"
          {% endif %}>
